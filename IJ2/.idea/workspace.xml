@@ -41,18 +41,18 @@
       <file leaf-file-name="Kmeans.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Kmeans.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7020448">
-              <caret line="275" column="29" selection-start-line="275" selection-start-column="29" selection-end-line="275" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.6319377">
+              <caret line="274" column="52" selection-start-line="274" selection-start-column="52" selection-end-line="274" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6521#6522#0" expanded="true" />
                 <element signature="e#6556#6557#0" expanded="true" />
                 <element signature="e#6600#6601#0" expanded="true" />
                 <element signature="e#6631#6632#0" expanded="true" />
-                <element signature="e#8495#8496#0" expanded="true" />
-                <element signature="e#8531#8532#0" expanded="true" />
-                <element signature="e#8626#8627#0" expanded="true" />
-                <element signature="e#8663#8664#0" expanded="true" />
+                <element signature="e#8625#8626#0" expanded="true" />
+                <element signature="e#8661#8662#0" expanded="true" />
+                <element signature="e#8756#8757#0" expanded="true" />
+                <element signature="e#8793#8794#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -503,7 +503,7 @@
       <option name="number" value="Default" />
       <updated>1446124214221</updated>
       <workItem from="1446124216551" duration="187000" />
-      <workItem from="1446124731959" duration="3161000" />
+      <workItem from="1446124731959" duration="3323000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Nikitas latest change 28.10.2015 on Nikita_plugin.java and Kmeans.java">
       <created>1446125233885</created>
@@ -517,11 +517,17 @@
       <option name="project" value="LOCAL" />
       <updated>1446126636536</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updating Nikitas latest change 28.10.2015 on Nikita_plugin.java and Kmeans.java">
+      <created>1446127959946</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1446127959946</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3348000" />
+    <option name="totallyTimeSpent" value="3510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-3" width="1924" height="1172" extended-state="6" />
@@ -597,18 +603,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Kmeans.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7020448">
-          <caret line="275" column="29" selection-start-line="275" selection-start-column="29" selection-end-line="275" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.6319377">
+          <caret line="274" column="52" selection-start-line="274" selection-start-column="52" selection-end-line="274" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6521#6522#0" expanded="true" />
             <element signature="e#6556#6557#0" expanded="true" />
             <element signature="e#6600#6601#0" expanded="true" />
             <element signature="e#6631#6632#0" expanded="true" />
-            <element signature="e#8495#8496#0" expanded="true" />
-            <element signature="e#8531#8532#0" expanded="true" />
-            <element signature="e#8626#8627#0" expanded="true" />
-            <element signature="e#8663#8664#0" expanded="true" />
+            <element signature="e#8625#8626#0" expanded="true" />
+            <element signature="e#8661#8662#0" expanded="true" />
+            <element signature="e#8756#8757#0" expanded="true" />
+            <element signature="e#8793#8794#0" expanded="true" />
           </folding>
         </state>
       </provider>

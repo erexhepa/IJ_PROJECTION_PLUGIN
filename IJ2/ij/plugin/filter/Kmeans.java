@@ -271,6 +271,9 @@ public class Kmeans{
         }
     }
 
+    /** Method to return the final clustering labels for each pixel.
+     @return the cluster labels as vector of doubles
+     */
     public double[] getClusterLabels()
     {
         return clusterLabels;
