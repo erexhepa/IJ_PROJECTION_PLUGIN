@@ -1,7 +1,6 @@
 package ij.plugin.filter;
 import ij.*;
 import ij.process.*;
-import net.sf.ij_plugins.clustering.KMeans2D;
 
 /*
 When creating a new plugin and in order to debug it in ImageJ
@@ -45,8 +44,8 @@ public class Niki_Plugin implements PlugInFilter {
         Kmeans_(3, FFT_1D_(stack1));
         ImageStack Blur1 = Create_Gaussian_Image(stack2, 5, 5);
         ImageStack Blur2 = Create_Gaussian_Image(stack3, 10, 10);
-        ImageStack Blur3 = Create_Gaussian_Image(stack4,  15, 15);
-        Gaussian_Filter_(stack5, Blur1, Blur2, Blur3 );
+        ImageStack Blur3 = Create_Gaussian_Image(stack4, 15, 15);
+        Gaussian_Filter_(stack5, Blur1, Blur2, Blur3);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +148,7 @@ public class Niki_Plugin implements PlugInFilter {
             Complex[] z = new Complex[size2_];                              //Creates a vector type Complex named z and of size = stack size after padding
             Complex[] z_fft_value;
             float abs_array[] = new float[size2_];                          // Create an empty array of size "size2_"
-            float final_FFT_result_ [][] = new float [W*H][size2_];         // Create a new empty vector to put the final result of FFT
+            float final_FFT_result_[][] = new float[W * H][size2_];         // Create a new empty vector to put the final result of FFT
 
             for (x_coord = 0; x_coord < W; x_coord++) {                     //Go through x coordinates
                 for (y_coord = 0; y_coord < H; y_coord++) {                 //Go through y coordinates
@@ -182,8 +181,8 @@ public class Niki_Plugin implements PlugInFilter {
                     }
 
                     //Add the created array in a new matrix with a width size of z and a height size of W*H
-                    int k_=y_coord*W+x_coord;
-                    for (z_coord=0;z_coord<size2_;z_coord++){
+                    int k_ = y_coord * W + x_coord;
+                    for (z_coord = 0; z_coord < size2_; z_coord++) {
                         final_FFT_result_[k_][z_coord] = normalized_values[z_coord];
                     }
                 }
@@ -196,7 +195,7 @@ public class Niki_Plugin implements PlugInFilter {
         Complex[] z = new Complex[size1_];
         Complex[] z_fft_value;
         float abs_array[] = new float[size1_];
-        float final_FFT_result_ [][] = new float [W*H][size1_];
+        float final_FFT_result_[][] = new float[W * H][size1_];
 
         for (x_coord = 0; x_coord < W; x_coord++) {              //Go through x coordinates
             for (y_coord = 0; y_coord < H; y_coord++) {          //Go through y coordinates
@@ -227,8 +226,8 @@ public class Niki_Plugin implements PlugInFilter {
                 }
 
                 //Add the created array in a new matrix with a width size of z and a height size of W*H
-                int k_=y_coord*W+x_coord;
-                for (z_coord=0;z_coord<size1_;z_coord++){
+                int k_ = y_coord * W + x_coord;
+                for (z_coord = 0; z_coord < size1_; z_coord++) {
                     final_FFT_result_[k_][z_coord] = normalized_values[z_coord];
                 }
             }
@@ -245,7 +244,7 @@ public class Niki_Plugin implements PlugInFilter {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    public void Kmeans_(int k_clust, float [][] result_fft)
+    public void Kmeans_(int k_clust, float[][] result_fft)
 
     {
 
@@ -282,7 +281,7 @@ public class Niki_Plugin implements PlugInFilter {
     /////////////////////////////////////////////////////////////////////////////////////////
 
     // Apply to the highest pic (mean of the Kmean) the lowest sigma value
-    public void Gaussian_Filter_(ImageStack stack2,ImageStack Gauss_Stack1,ImageStack Gauss_Stack2,ImageStack Gauss_Stack3) { // ADD THE KMEANS ARRAY RESULT AS ARGUMENT
+    public void Gaussian_Filter_(ImageStack stack2, ImageStack Gauss_Stack1, ImageStack Gauss_Stack2, ImageStack Gauss_Stack3) { // ADD THE KMEANS ARRAY RESULT AS ARGUMENT
 
         ImageProcessor ip = imp.getProcessor();
         int W3 = ip.getWidth();              // Get the image width
@@ -313,7 +312,7 @@ public class Niki_Plugin implements PlugInFilter {
         }
         System.out.println("AGF Done !");
     }
-
+}
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
