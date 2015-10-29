@@ -28,45 +28,47 @@ public class Kmeans{
      */
     public Kmeans(double[][] data, int numClusters, double[][] clusterCenters)
     {
-        dataSize = data.length;
-        dataDim = data[0].length;
+        this.dataSize = data.length;
+        this.dataDim = data[0].length;
+
+        // Initialise the class variables
 
         this.data = data;
-
         this.numClusters = numClusters;
-
         this.clusterCenters = clusterCenters;
+        this.clusterLabels  = new double[dataDim];
 
         clusters = new ArrayList[numClusters];
         for(int i=0;i<numClusters;i++)
         {
             clusters[i] = new ArrayList();
         }
+
         clusterVars = new double[numClusters];
 
         epsilon = 0.01;
     }
 
     /** The constructor creating an object of KMeans.
+     * deterministic manner by using a seed of 100
      * @param data  The input pixel features organised as 2D matrix where each row correspond to a pixels and each coloumn
      *             correspond to features describing the pixel properties.
      * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
+     * @param randomizeCenters  Boolean indicating if TRUE whether cluster centers are initialised randomly everytime the
+     *                          constructor is called. If FALSE Cluster centers are by default initialised randomly in a
+     *                          deterministic manner by using a seed of 100.
      */
-    public Kmeans(double[][] data, int numClusters)
-    {
-        this(data, numClusters, true);
-    }
-
     public Kmeans(double[][] data, int numClusters, boolean randomizeCenters)
     {
-        dataSize = data.length;
-        dataDim = data[0].length;
+        this.dataSize = data.length;
+        this.dataDim = data[0].length;
+
+        // Initialise the class variables
 
         this.data = data;
-
         this.numClusters = numClusters;
-
         this.clusterCenters =  new double[numClusters][dataDim];
+        this.clusterLabels  = new double[dataDim];
 
         clusters = new ArrayList[numClusters];
         for(int i=0;i<numClusters;i++)
@@ -77,14 +79,42 @@ public class Kmeans{
 
         epsilon = 0.01;
 
+        //TODO: Discuss choice of seed
+
         if(randomizeCenters)
         {
             randomizeCenters(numClusters, data);
+        }else{
+            randomizeCentersFixedSeed(numClusters, data,100);
         }
     }
 
+    /** Method initalising the kmean centers randomly.
+     * @param data  The input pixel features organised as 2D matrix where each row correspond to a pixels and each coloumn
+     *             correspond to features describing the pixel properties.
+     * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
+     */
     private void randomizeCenters(int numClusters, double[][] data) {
         Random r = new Random();
+        int[] check = new int[numClusters];
+        for (int i = 0; i < numClusters; i++) {
+            int rand = r.nextInt(dataSize);
+            if (check[i] == 0) {
+                this.clusterCenters[i] = data[rand].clone();
+                check[i] = 1;
+            } else {
+                i--;
+            }
+        }
+    }
+
+    /** Method initalising the kmean centers randomly.
+     * @param data  The input pixel features organised as 2D matrix where each row correspond to a pixels and each coloumn
+     *             correspond to features describing the pixel properties.
+     * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
+     */
+    private void randomizeCentersFixedSeed(int numClusters, double[][] data, int seedRandint) {
+        Random r = new Random(seedRandint);
         int[] check = new int[numClusters];
         for (int i = 0; i < numClusters; i++) {
             int rand = r.nextInt(dataSize);
@@ -187,6 +217,7 @@ public class Kmeans{
             }
 
             clusters[clust].add(data[i]);
+            clusterLabels[i] = clust;
         }
 
     }
@@ -238,6 +269,11 @@ public class Kmeans{
         {
             this.epsilon = epsilon;
         }
+    }
+
+    public double[] getClusterLabels()
+    {
+        return clusterLabels;
     }
 
     /**
