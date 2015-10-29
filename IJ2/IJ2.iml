@@ -7,9 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="opencv-2411" level="project" />
-    <orderEntry type="library" name="moa-prerelease-2015" level="project" />
-    <orderEntry type="library" name="ij-plugins_toolkit" level="project" />
-    <orderEntry type="library" name="junit3.8" level="project" />
   </component>
 </module>
