@@ -36,7 +36,7 @@ public class Kmeans{
         this.data = data;
         this.numClusters = numClusters;
         this.clusterCenters = clusterCenters;
-        this.clusterLabels  = new double[dataDim];
+        this.clusterLabels  = new double[dataSize];
 
         clusters = new ArrayList[numClusters];
         for(int i=0;i<numClusters;i++)
@@ -114,7 +114,7 @@ public class Kmeans{
      * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
      */
     private void randomizeCentersFixedSeed(int numClusters, double[][] data, int seedRandint) {
-        Random r = new Random(seedRandint);
+        Random r = new Random();
         int[] check = new int[numClusters];
         for (int i = 0; i < numClusters; i++) {
             int rand = r.nextInt(dataSize);
