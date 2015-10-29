@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="moa-prerelease-2015">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/moa-prerelease-2015.05" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$USER_HOME$/Downloads/moa-prerelease-2015.05/doc/api" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/moa-prerelease-2015.05/examples" />
+      <root url="file://$USER_HOME$/Downloads/moa-prerelease-2015.05/moa-src/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/moa-prerelease-2015.05" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Downloads/moa-prerelease-2015.05" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/moa-prerelease-2015.05" recursive="false" type="SOURCES" />
+  </library>
+</component>

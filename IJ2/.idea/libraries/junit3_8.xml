@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="junit3.8">
+    <CLASSES />
+    <JAVADOC>
+      <root url="file://$USER_HOME$/Downloads/jtk-master/jtk-master/docs/junit3.8.1" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/jtk-master/jtk-master/src/demo/java" />
+      <root url="file://$USER_HOME$/Downloads/jtk-master/jtk-master/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/jtk-master/jtk-master/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
