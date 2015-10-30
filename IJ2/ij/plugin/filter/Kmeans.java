@@ -1,4 +1,6 @@
 package ij.plugin.filter;
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -68,7 +70,7 @@ public class Kmeans{
         this.data = data;
         this.numClusters = numClusters;
         this.clusterCenters =  new double[numClusters][dataDim];
-        this.clusterLabels  = new double[dataDim];
+        this.clusterLabels  = new double[dataSize];
 
         clusters = new ArrayList[numClusters];
         for(int i=0;i<numClusters;i++)

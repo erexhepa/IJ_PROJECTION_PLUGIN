@@ -1,25 +1,32 @@
 package ij.plugin.filter;
 import ij.*;
+import ij.gui.GenericDialog;
 import ij.process.*;
+import java.util.ArrayList;
 
-/*
-When creating a new plugin and in order to debug it in ImageJ
-it has to be added in the filter IJ_Props.txt at the right place
-that is to say in the "filters" in our case
-*/
+/**
+ When creating a new plugin and in order to debug it in ImageJ
+ it has to be added in the filter IJ_Props.txt at the right place
+ that is to say in the "filters" in our case
+ **/
 
-/* This plugin needs a "setup part" and a "run" part (cf.PlugInFilter) which are compulsory
-so that it can work in ImageJ
- */
+/** This plugin needs a "setup part" and a "run" part (cf.PlugInFilter) which are compulsory
+ so that it can work in ImageJ
+ **/
 
-/*To add OpenCv as an external library we have to go in File>ProjectStructure and
-add a new library which is OpenCV in our case But not used in this plugin*/
+/**To add OpenCv as an external library we have to go in File>ProjectStructure and
+ add a new library which is OpenCV in our case But not used in this plugin
+ **/
 
 
 public class Niki_Plugin implements PlugInFilter {
 
     public ImagePlus imp;
     public ImageStack stack;
+
+    public double[] kmeansLabels ;
+    public double[][] kmeanCentroids;
+
     float[] kernel1_X = {0, 0, 0, -1, 2, -1, 0, 0, 0}; // Kernel for the X axis
     float[] kernel2_Y = {0, -1, 0, 0, 2, 0, 0, -1, 0}; // Kernel for the Y axis
 
@@ -39,18 +46,22 @@ public class Niki_Plugin implements PlugInFilter {
         ImageStack stack5 = stack.duplicate();   // Duplicates the original stack image
 
         System.out.println("Original Image duplicates Done !");
-
+        showDialog(stack2, stack3, stack4);
         sML(stack1);
         Kmeans_(3, FFT_1D_(stack1));
-        ImageStack Blur1 = Create_Gaussian_Image(stack2, 5, 5);
-        ImageStack Blur2 = Create_Gaussian_Image(stack3, 10, 10);
-        ImageStack Blur3 = Create_Gaussian_Image(stack4, 15, 15);
-        Gaussian_Filter_(stack5, Blur1, Blur2, Blur3);
+        Gaussian_Filter_(stack5, stack2, stack3, stack4);
+        Max_Proj();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
+
+    /** Applying the sML filter on the Original ImageStack
+     *
+     * @param stack1 : Original image stack duplicated
+     * @return : returns the stack image after sML filtering is done
+     */
 
     public ImageStack sML(ImageStack stack1) {
 
@@ -101,7 +112,14 @@ public class Niki_Plugin implements PlugInFilter {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    public float[][] FFT_1D_(ImageStack stack1) {
+    /** Apply 1D FFT on the stack image obtained after doing the sML filtering
+     * Padding is done for the images that are not power of 2
+     *
+     * @param stack1: stack image obtained after applying sML filtering
+     * @return : returns the matrix containing the 1D FFT result
+     */
+
+    public double[][] FFT_1D_(ImageStack stack1) {
 
         int x_coord, y_coord, z_coord, z_fft, i, j, k, l;
         int size1_ = stack.getSize();                   // Size of the stack image
@@ -148,7 +166,7 @@ public class Niki_Plugin implements PlugInFilter {
             Complex[] z = new Complex[size2_];                              //Creates a vector type Complex named z and of size = stack size after padding
             Complex[] z_fft_value;
             float abs_array[] = new float[size2_];                          // Create an empty array of size "size2_"
-            float final_FFT_result_[][] = new float[W * H][size2_];         // Create a new empty vector to put the final result of FFT
+            double final_FFT_result_ [][] = new double [W*H][size2_];         // Create a new empty vector to put the final result of FFT
 
             for (x_coord = 0; x_coord < W; x_coord++) {                     //Go through x coordinates
                 for (y_coord = 0; y_coord < H; y_coord++) {                 //Go through y coordinates
@@ -163,6 +181,7 @@ public class Niki_Plugin implements PlugInFilter {
                     for (z_fft = 0; z_fft < size2_; z_fft++) {
                         float absolute_ = (float) Math.sqrt((Math.pow(z_fft_value[z_fft].re(), 2.0)) + (Math.pow(z_fft_value[z_fft].im(), 2.0)));
                         abs_array[z_fft] = absolute_;
+
                     }
 
                     // Find the max value for normalization
@@ -171,7 +190,8 @@ public class Niki_Plugin implements PlugInFilter {
                         if (abs_array[i] > largest)
                             largest = abs_array[i];
                     }
-//                    System.out.println("Max value : ");System.out.println(largest);
+//                    System.out.println("Max value : ");
+//                    System.out.println(largest);
 
                     // Normalization for same (x,y) coordinates and changing z
                     float normalized_values[] = new float[size2_];
@@ -181,8 +201,8 @@ public class Niki_Plugin implements PlugInFilter {
                     }
 
                     //Add the created array in a new matrix with a width size of z and a height size of W*H
-                    int k_ = y_coord * W + x_coord;
-                    for (z_coord = 0; z_coord < size2_; z_coord++) {
+                    int k_=y_coord*W+x_coord;
+                    for (z_coord=0;z_coord<size2_;z_coord++){
                         final_FFT_result_[k_][z_coord] = normalized_values[z_coord];
                     }
                 }
@@ -195,7 +215,7 @@ public class Niki_Plugin implements PlugInFilter {
         Complex[] z = new Complex[size1_];
         Complex[] z_fft_value;
         float abs_array[] = new float[size1_];
-        float final_FFT_result_[][] = new float[W * H][size1_];
+        double final_FFT_result_ [][] = new double [W*H][size1_];
 
         for (x_coord = 0; x_coord < W; x_coord++) {              //Go through x coordinates
             for (y_coord = 0; y_coord < H; y_coord++) {          //Go through y coordinates
@@ -226,8 +246,8 @@ public class Niki_Plugin implements PlugInFilter {
                 }
 
                 //Add the created array in a new matrix with a width size of z and a height size of W*H
-                int k_ = y_coord * W + x_coord;
-                for (z_coord = 0; z_coord < size1_; z_coord++) {
+                int k_=y_coord*W+x_coord;
+                for (z_coord=0;z_coord<size1_;z_coord++){
                     final_FFT_result_[k_][z_coord] = normalized_values[z_coord];
                 }
             }
@@ -244,11 +264,61 @@ public class Niki_Plugin implements PlugInFilter {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    public void Kmeans_(int k_clust, float[][] result_fft)
+    /** Apply the Kmeans for segmentation
+     *
+     * @param numClust_ : number of clusters
+     * @param result_fft : matrix that contains
+     * the results after applying the FFT_1D = width is equal to the number of stacks in the image
+     * and length of result_fft is equal to the number of pixels of the image
+     */
+
+    public void Kmeans_(int numClust_, double [][] result_fft)
 
     {
+        int i,j,k,m;
+        float mean0 = 0;
+        float mean1 = 0;
+        float mean2 = 0;
+        int slice_num = stack.getSize();
+
+        Kmeans kmeans_Niki = new Kmeans(result_fft, numClust_,false);
+        kmeans_Niki.calculateClusters();
+
+        // ca t'en as pas besoin
+        ArrayList Clust_array []= kmeans_Niki.getClusters();
+
+        // ca c'est les centroid feature vector et il faudra utiliser ceci pour definir les centroids mais tu devrait
+        // peut-etre declarer ca comme une variable de classe comme cela tu garde les valeurs une fois sorti de la
+        // methode Kmeans_? regard comme je l'ai fait en bas.
+        double[][] Clust_Center =   kmeans_Niki.getClusterCenters();
+        this.kmeanCentroids     =   kmeans_Niki.getClusterCenters();
+        this.kmeansLabels       =   kmeans_Niki.getClusterLabels();
 
         System.out.println("Kmeans Done! ^^");
+
+        System.out.println("Calculating Mean of the Clust_Centers");
+        for (m = 0; m < slice_num; m++) {
+            mean0 += Clust_Center[0][m] / slice_num;
+            mean1 += Clust_Center[1][m] / slice_num;
+            mean2 += Clust_Center[2][m] / slice_num;
+        }
+        System.out.println(mean0);
+        System.out.println(mean1);
+        System.out.println(mean2);
+        System.out.println("Mean of Clust_Centers DONE !");
+
+
+        System.out.println("Create the Map 2D Image with labels");
+
+//         System.out.println(Clust_array[0].size());
+//         System.out.println(Clust_array[1].size());
+//         System.out.println(Clust_array[2].size());
+//         System.out.println(result_fft.length);
+//         ArrayList Map_array[]= new ArrayList[];
+
+
+        System.out.println("Map 2D Image DONE !");
+
 
     }
 
@@ -259,6 +329,13 @@ public class Niki_Plugin implements PlugInFilter {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
+
+    /** Create the filtered images
+     * @param stack2: new duplicated stack image from the Original Stack Image
+     * @param sigmaX : Sigma value for the X axis
+     * @param sigmaY : Sigma value for the Y axis
+     * @return : returns the image obtained after applying the Gaussian Filter
+     */
 
     public ImageStack Create_Gaussian_Image(ImageStack stack2, int sigmaX, int sigmaY) {
 
@@ -280,8 +357,14 @@ public class Niki_Plugin implements PlugInFilter {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    // Apply to the highest pic (mean of the Kmean) the lowest sigma value
-    public void Gaussian_Filter_(ImageStack stack2, ImageStack Gauss_Stack1, ImageStack Gauss_Stack2, ImageStack Gauss_Stack3) { // ADD THE KMEANS ARRAY RESULT AS ARGUMENT
+    /** Apply to the highest pic (mean of the Kmean) the lowest sigma value
+     * @param stack2
+     * @param Gauss_Stack1
+     * @param Gauss_Stack2
+     * @param Gauss_Stack3
+     */
+
+    public void Gaussian_Filter_(ImageStack stack2,ImageStack Gauss_Stack1,ImageStack Gauss_Stack2,ImageStack Gauss_Stack3) { // ADD THE KMEANS ARRAY RESULT AS ARGUMENT
 
         ImageProcessor ip = imp.getProcessor();
         int W3 = ip.getWidth();              // Get the image width
@@ -299,20 +382,63 @@ public class Niki_Plugin implements PlugInFilter {
                         //prendre la slice de ip_Gauss_new1
                         //prendre le pixel ayant meme x y que le pixel dans ArrayTEST
                         //remplacer valeur
-                        System.out.println("1");
+                        //System.out.println("1");
                     }
                     if (TEST_Array[i][j] == 2) {
-                        System.out.println("2");
+                        //System.out.println("2");
                     }
                     if (TEST_Array[i][j] == 3) {
-                        System.out.println("3");
+                        //System.out.println("3");
                     }
                 }
             }
         }
         System.out.println("AGF Done !");
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    public void Max_Proj(){
+
+        System.out.println("Maximum Projection Done!");
+
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    /**Ask the user for the parameters
+     * Here the filtered images are created with the sigma values given by the user
+     * The first sigma has to be the lowest and the 3rd one the highest. Here the default values are 5, 15 and 20.
+     * The argument given below are the duplicated stack images on which the gaussian filter is applied and
+     * that will be used for the Adaptive Gaussian Filter
+     *
+     * @param stack2 : image stack duplicate for 1st filtered image
+     * @param stack3 : image stack duplicate for 2nd filtered image
+     * @param stack4 : image stack duplicate for 3rd filtered image
+     */
+
+
+    public void showDialog(ImageStack stack2,ImageStack stack3,ImageStack stack4) {
+        int sigma1= 5;
+        int sigma2= 15;
+        int sigma3= 20;
+
+        GenericDialog gd = new GenericDialog("Sigma Values for Gaussian Filtering");
+        gd.addNumericField("Sigma1: ", sigma1, 0);
+        gd.addNumericField("Sigma2: ", sigma2, 0);
+        gd.addNumericField("Sigma3: ", sigma3, 0);
+
+        gd.showDialog();
+
+        // Create the filtered images with the different sigma values needed for hte Adaptive Gaussian Filter
+        ImageStack Blur1 = Create_Gaussian_Image(stack2, sigma1, sigma1);
+        ImageStack Blur2 = Create_Gaussian_Image(stack3, sigma2, sigma2);
+        ImageStack Blur3 = Create_Gaussian_Image(stack4, sigma3, sigma3);
+
+    }
 }
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
