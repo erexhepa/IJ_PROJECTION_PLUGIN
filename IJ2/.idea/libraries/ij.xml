@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="ij-plugins_toolkit">
+  <library name="ij">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/ij-plugins_toolkit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ij.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
