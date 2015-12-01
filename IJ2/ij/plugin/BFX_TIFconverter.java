@@ -72,7 +72,7 @@ public class BFX_TIFconverter implements PlugIn {
         return image;
     }
 
-    public List<String> trimStrings(List<String> listToTrim) {
+    /*public List<String> trimStrings(List<String> listToTrim) {
         int listLen = listToTrim.size();
 
         List<String> trimmedList = new ArrayList<String>( listLen );
@@ -82,7 +82,7 @@ public class BFX_TIFconverter implements PlugIn {
         }
 
         return trimmedList;
-    }
+    }*/
 
     public void run(String arg) {
         boolean isMacro = Macro.getOptions()!=null;
