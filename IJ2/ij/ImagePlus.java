@@ -2657,5 +2657,5 @@ public class ImagePlus implements ImageObserver, Measurements, Cloneable {
     public String toString() {
     	return "img["+getTitle()+" ("+width+"x"+height+"x"+getNChannels()+"x"+getNSlices()+"x"+getNFrames()+")]";
     }
-    
+
 }

@@ -7,5 +7,21 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/IHC_Toolbox.jar!/" />
+          <root url="jar://$MODULE_DIR$/Mosaic_ToolSuite_imagej_new.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/Mosaic_ToolSuite_imagej_new.jar!/cma/doc" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/IHC_Toolbox.jar!/" />
+          <root url="jar://$MODULE_DIR$/Mosaic_ToolSuite_imagej_new.jar!/" />
+          <root url="jar://$MODULE_DIR$/Mosaic_ToolSuite_imagej_new.jar!/cma/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

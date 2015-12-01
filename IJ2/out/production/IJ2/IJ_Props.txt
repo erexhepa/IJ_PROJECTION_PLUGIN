@@ -123,6 +123,7 @@ adjust05="Color Threshold...",ij.plugin.frame.ColorThresholder
 adjust06="Size...",ij.plugin.Resizer
 adjust07="Canvas Size...",ij.plugin.CanvasResizer
 adjust08="Line Width... ",ij.plugin.frame.LineWidthAdjuster
+adjust09="Elton_IM_convert",ij.plugin.BFX_TIFconverter
 
 # Plugins installed in the Image/Color submenu
 color01="Split Channels",ij.plugin.ChannelSplitter
@@ -324,7 +325,7 @@ filters15="Variance 3D...",ij.plugin.Filters3D("var")
 filters16=-
 filters17="Show Circular Masks...",ij.plugin.filter.RankFilters("masks")
 filters18="Niki_Plugin...",ij.plugin.filter.Niki_Plugin
-
+filters19="Elton_Plugin_Autophagy",plugins.AutophagyColocalisation
 
 # Plugins installed in the File/Batch submenu
 batch01="Measure...",ij.plugin.BatchMeasure
