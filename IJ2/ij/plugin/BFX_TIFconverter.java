@@ -15,19 +15,23 @@ import ij.measure.Calibration;
 import ij.process.ImageProcessor;
 import ij.util.DicomTools;
 import ij.util.StringSorter;
+import ij.process.StackStatistics;
+import ij.process.StackProcessor;
 
+import java.awt.List;
+import java.lang.String;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.TextEvent;
 import java.awt.image.ColorModel;
 import java.io.File;
-
+import ij.plugin.ContrastEnhancer;
 import java.awt.*;
 import java.io.*;
 import java.awt.event.*;
 import java.awt.image.ColorModel;
-import java.util.ArrayList;
-
+import java.util.*;
+import ij.io.FileSaver;
 import ij.*;
 import ij.io.*;
 import ij.gui.*;
@@ -42,9 +46,9 @@ public class BFX_TIFconverter implements PlugIn {
     private static String[] excludedTypes = {".txt", ".lut", ".roi", ".pty", ".hdr", ".java", ".ijm", ".py", ".js", ".bsh", ".xml"};
     private static boolean staticSortFileNames = true;
     private static boolean staticOpenAsVirtualStack;
-    private boolean convertToRGB;
+    private boolean convertToRGB = false;
     private boolean sortFileNames = true;
-    private boolean openAsVirtualStack;
+    private boolean openAsVirtualStack = true;
     private double scale = 100.0;
     private int n, start, increment;
     private String filter;
@@ -52,8 +56,15 @@ public class BFX_TIFconverter implements PlugIn {
     private FileInfo fi;
     private String info1;
     private ImagePlus image;
-    private boolean saveImage;
+    private boolean saveImage = false;
     private long t0;
+    private ImageStack[] calibrationSet;
+    private double[][] scalingParam ;
+    private String outdir = "/ac-ulm/transfert/Plateforme Biophenics/plateformes/incell/RUBIES_JPEG";
+    private String indir  = "";
+    private List dirList ;
+    private Set<String> listChannelsUnique ;
+
 
     /** Opens the images in the specified directory as a stack. Displays
      directory chooser and options dialogs if the argument is null. */
@@ -72,64 +83,24 @@ public class BFX_TIFconverter implements PlugIn {
         return image;
     }
 
-    /*public List<String> trimStrings(List<String> listToTrim) {
-        int listLen = listToTrim.size();
+    public String[] trimStrings(String[] listToTrim) {
+        String[] trimmedList = new String[listToTrim.length];
 
-        List<String> trimmedList = new ArrayList<String>( listLen );
+        int listLen = (int) listToTrim.length;
 
         for ( int i = 0; i < listLen; i++ ) {
-            trimmedList.add( listToTrim.get( i ).trim() );
+            String currentFname = (String)listToTrim[i].trim();
+            int strLen = currentFname.length();
+            // remove changing bits from the filename and add to the list
+            trimmedList[i] = currentFname.substring(currentFname.length() - 8, currentFname.length());
         }
 
         return trimmedList;
-    }*/
+    }
 
-    public void run(String arg) {
-        boolean isMacro = Macro.getOptions()!=null;
-        String directory = null;
-        if (arg!=null && !arg.equals("")) {
-            directory = arg;
-        } else {
-            if (!isMacro) {
-                sortFileNames = staticSortFileNames;
-                openAsVirtualStack = staticOpenAsVirtualStack;
-            }
-            arg = null;
-            String title = "Open Image Sequence...";
-            String macroOptions = Macro.getOptions();
-            if (macroOptions!=null) {
-                directory = Macro.getValue(macroOptions, title, null);
-                if (directory!=null) {
-                    directory = OpenDialog.lookupPathVariable(directory);
-                    File f = new File(directory);
-                    if (!f.isDirectory() && (f.exists()||directory.lastIndexOf(".")>directory.length()-5))
-                        directory = f.getParent();
-                }
-                legacyRegex = Macro.getValue(macroOptions, "or", "");
-                if (legacyRegex.equals(""))
-                    legacyRegex = null;
-            }
-            if (directory==null) {
-                if (Prefs.useFileChooser && !IJ.isMacOSX()) {
-                    OpenDialog od = new OpenDialog(title, arg);
-                    directory = od.getDirectory();
-                    String name = od.getFileName();
-                    if (name==null)
-                        return;
-                } else
-                    directory = IJ.getDirectory(title);
-            }
-        }
-        if (directory==null)
-            return;
-        String[] list = (new File(directory)).list(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.toLowerCase().endsWith(".tif");
-            }
-        });
-        if (list==null)
-            return;
+    public ImageStack loadImsequenceFromList(String[] list, String directory){
         String title = directory;
+
         if (title.endsWith(File.separator) || title.endsWith("/"))
             title = title.substring(0, title.length()-1);
         int index = title.lastIndexOf(File.separatorChar);
@@ -139,7 +110,7 @@ public class BFX_TIFconverter implements PlugIn {
 
         IJ.register(FolderOpener.class);
         list = trimFileList(list);
-        if (list==null) return;
+        if (list==null) return null;
         if (IJ.debugMode) IJ.log("FolderOpener: "+directory+" ("+list.length+" files)");
         int width=0, height=0, stackSize=1, bitDepth=0;
         ImageStack stack = null;
@@ -153,40 +124,35 @@ public class BFX_TIFconverter implements PlugIn {
         start = 1;
         increment = 1;
         try {
-            if (isMacro) {
-                if (!showDialog(null, list))
-                    return;
-            } else {
-                for (int i=0; i<list.length; i++) {
-                    Opener opener = new Opener();
-                    opener.setSilentMode(true);
-                    IJ.redirectErrorMessages(true);
-                    ImagePlus imp = opener.openImage(directory, list[i]);
-                    IJ.redirectErrorMessages(false);
-                    if (imp!=null) {
-                        width = imp.getWidth();
-                        height = imp.getHeight();
-                        bitDepth = imp.getBitDepth();
-                        if (arg==null) {
-                            if (!showDialog(imp, list))
-                                return;
-                        }
-                        break;
-                    }
+
+            for (int i=0; i<list.length; i++) {
+                Opener opener = new Opener();
+                opener.setSilentMode(true);
+                IJ.redirectErrorMessages(true);
+                ImagePlus imp = opener.openImage(directory, list[i]);
+                IJ.redirectErrorMessages(false);
+                if (imp!=null) {
+                    width = imp.getWidth();
+                    height = imp.getHeight();
+                    bitDepth = imp.getBitDepth();
+
+                    break;
                 }
-                if (width==0) {
-                    IJ.error("Sequence Reader", "This folder does not appear to contain\n"
-                            + "any TIFF, JPEG, BMP, DICOM, GIF, FITS or PGM files.\n \n"
-                            + "   \""+directory+"\"");
-                    return;
-                }
+            }//
+            if (width==0) {
+                IJ.error("Sequence Reader", "This folder does not appear to contain\n"
+                        + "any TIFF, JPEG, BMP, DICOM, GIF, FITS or PGM files.\n \n"
+                        + "   \""+directory+"\"");
+                return null;
             }
+
+
             String pluginName = "Sequence Reader";
             if (legacyRegex!=null)
                 pluginName += "(legacy)";
             list = getFilteredList(list, filter, pluginName);
             if (list==null)
-                return;
+                return null;
             IJ.showStatus("");
             t0 = System.currentTimeMillis();
             if (sortFileNames)
@@ -315,8 +281,8 @@ public class BFX_TIFconverter implements PlugIn {
                     }
                 }
                 count++;
-                IJ.showStatus(count+"/"+n);
-                IJ.showProgress(count, n);
+                //IJ.showStatus(count+"/"+n);
+                //IJ.showProgress(count, n);
                 if (count>=n)
                     break;
                 if (IJ.escapePressed())
@@ -326,61 +292,242 @@ public class BFX_TIFconverter implements PlugIn {
             IJ.outOfMemory("FolderOpener");
             if (stack!=null) stack.trim();
         }
-        if (stack!=null && stack.getSize()>0) {
-            ImagePlus imp2 = new ImagePlus(title, stack);
-            if (imp2.getType()==ImagePlus.GRAY16 || imp2.getType()==ImagePlus.GRAY32)
-                imp2.getProcessor().setMinAndMax(min, max);
-            if (fi==null)
-                fi = new FileInfo();
-            fi.fileFormat = FileInfo.UNKNOWN;
-            fi.fileName = "";
-            fi.directory = directory;
-            imp2.setFileInfo(fi); // saves FileInfo of the first image
-            imp2.setOverlay(overlay);
-            if (allSameCalibration) {
-                // use calibration from first image
-                if (scale!=100.0 && cal.scaled()) {
-                    cal.pixelWidth /= scale/100.0;
-                    cal.pixelHeight /= scale/100.0;
-                }
-                if (cal.pixelWidth!=1.0 && cal.pixelDepth==1.0)
-                    cal.pixelDepth = cal.pixelWidth;
-                if (cal.pixelWidth<=0.0001 && cal.getUnit().equals("cm")) {
-                    cal.pixelWidth *= 10000.0;
-                    cal.pixelHeight *= 10000.0;
-                    cal.pixelDepth *= 10000.0;
-                    cal.setUnit("um");
-                }
-                imp2.setCalibration(cal);
+
+
+        return stack;
+    }
+
+
+    public void walk( String path ) {
+
+        File root = new File( path );
+        File[] list = root.listFiles();
+
+        if (list == null) return;
+
+        for ( File f : list ) {
+            if ( f.isDirectory() ) {
+                walk( f.getAbsolutePath() );
+                System.out.println( "Dir:" + f.getAbsoluteFile() );
             }
-            if (info1!=null && info1.lastIndexOf("7FE0,0010")>0) {
-                stack = DicomTools.sort(stack);
-                imp2.setStack(stack);
-                double voxelDepth = DicomTools.getVoxelDepth(stack);
-                if (voxelDepth>0.0) {
-                    if (IJ.debugMode) IJ.log("DICOM voxel depth set to "+voxelDepth+" ("+cal.pixelDepth+")");
-                    cal.pixelDepth = voxelDepth;
-                    imp2.setCalibration(cal);
-                }
+            else {
+                System.out.println( "File:" + f.getAbsoluteFile() );
             }
-            if (imp2.getStackSize()==1) {
-                imp2.setProperty("Label", list[0]);
-                if (info1!=null)
-                    imp2.setProperty("Info", info1);
-            }
-            if (arg==null && !saveImage) {
-                String time = (System.currentTimeMillis()-t0)/1000.0 + " seconds";
-                imp2.show(time);
-                if (stack.isVirtual()) {
-                    overlay = stack.getProcessor(1).getOverlay();
-                    if (overlay!=null)
-                        imp2.setOverlay(overlay);
-                }
-            }
-            if (saveImage)
-                image = imp2;
         }
-        IJ.showProgress(1.0);
+    }
+
+    /**
+     * Method to scan folder automatically and detect how many channels are present and the scaling factor for each
+     * respective channel.
+     */
+    public void setConvertionParam(String directory){
+        // get directory listing of all files ending with '.tif'
+        String[] list = (new File(directory)).list(new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".tif");
+            }
+        });
+
+        // create copy of directory listing with only the channel name
+        String[] listChannels = this.trimStrings(list);
+
+        // get unique channels
+        java.util.List<String> wordList = Arrays.asList(listChannels);
+        listChannelsUnique = new HashSet<String>( wordList);
+
+        //int[][] scalingParam = new int [listChannelsUnique.size()][2];
+        calibrationSet = new ImageStack[listChannelsUnique.size()];
+        scalingParam   = new double [listChannelsUnique.size()][2];
+
+        final Object[] arrayChannels = listChannelsUnique.toArray();
+
+        // initialize to default values the scaling parameters
+        for (int chanIndx=0;chanIndx<listChannelsUnique.size();chanIndx++){
+            scalingParam[chanIndx][0] = 100;
+            scalingParam[chanIndx][1] = 350;
+            // get list of each channel type
+            final String finalChanIndx = arrayChannels[chanIndx].toString();
+
+            String[] listChannel = (new File(directory)).list(new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(finalChanIndx);
+                }
+            });
+
+            // get random selection of 10 elements
+
+            Random myRandomizer = new Random();
+            int randSeleCalibration = 10;
+            String[] listChannelRand;
+
+            if(listChannel.length<=10){
+                randSeleCalibration = listChannel.length;
+                listChannelRand = new String[listChannel.length];
+            }else{
+                listChannelRand = new String[10];
+            }
+
+            for(int randIndxSel=0;randIndxSel<randSeleCalibration;randIndxSel++){
+                listChannelRand[randIndxSel] = listChannel[myRandomizer.nextInt(listChannel.length)];
+            }
+
+            calibrationSet[chanIndx] = this.loadImsequenceFromList(listChannelRand, directory);
+            String stackTitle = "Processing calibration image set - ";
+            stackTitle.concat(finalChanIndx);
+
+            ImagePlus impProcess = new ImagePlus(stackTitle, calibrationSet[chanIndx]);
+            ImageProcessor ip = impProcess.getProcessor();
+            double minStack = ip.getMin();
+            double maxStack = ip.getMax();
+
+            StackStatistics sps = new StackStatistics(impProcess, 256, minStack, maxStack);
+            double spsMin   = sps.min;
+            double spsMax   = sps.max;
+
+            scalingParam[chanIndx][0] = sps.min;
+            scalingParam[chanIndx][1] = sps.mean+3*sps.stdDev;
+
+            System.out.print("Debug");
+            //
+            //IJ.showProgress(chanIndx,listChannelsUnique.size());
+        }
+
+    }
+
+    public void convertBFXfolder(String directory){
+
+        final Object[] arrayChannels = listChannelsUnique.toArray();
+
+        for (int chanIndx=0;chanIndx<listChannelsUnique.size();chanIndx++){
+            scalingParam[chanIndx][0] = 100;
+            scalingParam[chanIndx][1] = 350;
+
+            // get list of each channel type
+            final String finalChanIndx = arrayChannels[chanIndx].toString();
+
+            String[] listChannel = (new File(directory)).list(new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(finalChanIndx);
+                }
+            });
+
+            // iterate through all the images of the specified channel
+            for(int chanFileIndx=0;chanFileIndx<listChannel.length;chanFileIndx++){
+                ImagePlus imp = null;
+                ContrastEnhancer contrastEnhancer = new ContrastEnhancer();
+                Opener opener = new Opener();
+                opener.setSilentMode(false);
+                IJ.redirectErrorMessages(true);
+
+                imp = opener.openImage(directory, listChannel[chanFileIndx]);
+                ImageProcessor ip = imp.getProcessor();
+                double min = ip.getMin();
+                double max = ip.getMax();
+                Calibration cal = imp.getCalibration();
+                ip.setMinAndMax(scalingParam[chanIndx][0],scalingParam[chanIndx][1]);
+                imp.show();
+                IJ.showProgress(chanIndx*listChannel.length+chanFileIndx,listChannel.length*listChannelsUnique.size());
+                System.out.print("Debug");
+                //
+                String barrcode   = "12345678";
+                String imfOutpath = outdir+"/"+barrcode+"/"+listChannel[chanFileIndx].replace(".tif",".jpeg");
+                saveCustomBFX(imp,imfOutpath);
+                imp.close();
+            }
+        }
+
+    }
+
+    public void run(String arg) {
+        boolean isMacro = Macro.getOptions()!=null;
+        String directory = null;
+        if (arg!=null && !arg.equals("")) {
+            directory = arg;
+        } else {
+            if (!isMacro) {
+                sortFileNames = staticSortFileNames;
+                openAsVirtualStack = staticOpenAsVirtualStack;
+            }
+            arg = null;
+            String title = "Open Image Sequence...";
+            String macroOptions = Macro.getOptions();
+            if (macroOptions!=null) {
+                directory = Macro.getValue(macroOptions, title, null);
+                if (directory!=null) {
+                    directory = OpenDialog.lookupPathVariable(directory);
+                    File f = new File(directory);
+                    if (!f.isDirectory() && (f.exists()||directory.lastIndexOf(".")>directory.length()-5))
+                        directory = f.getParent();
+                }
+                legacyRegex = Macro.getValue(macroOptions, "or", "");
+                if (legacyRegex.equals(""))
+                    legacyRegex = null;
+            }
+            if (directory==null) {
+                directory = IJ.getDirectory("Select input directory");
+                indir     = directory;
+                outdir    = IJ.getDirectory("Select output directory");
+            }
+        }
+        if (directory==null)
+            return;
+
+        // get directory listing of all files ending with '.tif'
+        String[] listDir = (new File(directory)).list(new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().matches(".*[0-9]{8,8}.*");
+            }
+        });
+
+        // Iterate through all directories and complete scaling calibration and convertion
+        for(int dirIndx=0;dirIndx<listDir.length;dirIndx++){
+            // get scaling parameters for plate-i
+            // TODO: Implement
+            this.setConvertionParam(indir+"/"+listDir[dirIndx]);
+
+            // convert all images for all channels in plate-i
+            // TODO: Implement
+            String barCodePlate = "12345678";
+            barCodePlate = getBarcodeFromDir(listDir[dirIndx]);
+            this.convertBFXfolder(outdir+"/"+barCodePlate);
+        }
+
+        if (listDir==null)
+            return;
+    }
+
+    public String getBarcodeFromDir(String dirFname){
+        String barCode =  "12345678";
+
+        // match a regular expression of 8 numerical digits sequence in the directory name
+
+        if(dirFname.matches(".*[0-9]{8,8}.*")){
+            String[] barCodeTrimSeq = dirFname.split(".*[0-9]{8,8}.*");
+
+            if(barCodeTrimSeq.length>0){
+                for(int trimIndxSeq=0;trimIndxSeq<barCodeTrimSeq.length;trimIndxSeq++){
+                    dirFname.replace(barCodeTrimSeq[trimIndxSeq],"");
+                }
+            }else{
+                barCode = dirFname;
+            }
+        }
+
+        return barCode;
+    }
+
+    public void saveCustomBFX(ImagePlus imp, String path) {
+        File file = new File(path);
+
+        try {
+
+            FileInfo fi = imp.getFileInfo();
+            FileSaver fs = new FileSaver(imp);
+            fs.saveAsJpeg(path);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void openAsFileInfoStack(FileInfoVirtualStack stack, String path) {
