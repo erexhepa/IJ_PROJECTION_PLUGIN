@@ -105,7 +105,7 @@ public class ListVirtualStack extends VirtualStack implements PlugIn {
 			}
 			r.close();
     		String[] list = new String[v.size()];
-			v.copyInto((String[])list);
+			v.copyInto(list);
     		return list;
 		}
 		catch (Exception e) {
@@ -146,7 +146,7 @@ public class ListVirtualStack extends VirtualStack implements PlugIn {
 		if (url.length()>0)
 			imp = IJ.openImage(url);
 		if (imp!=null) {
-			labels[n-1] = (new File(list[n-1])).getName()+"\n"+(String)imp.getProperty("Info");
+			labels[n-1] = (new File(list[n-1])).getName()+"\n"+ imp.getProperty("Info");
 			ImageProcessor ip =  imp.getProcessor();
 			int bitDepth = getBitDepth();
 			if (imp.getBitDepth()!=bitDepth) {

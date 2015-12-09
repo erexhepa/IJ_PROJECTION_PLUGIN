@@ -164,7 +164,7 @@ public class Kmeans{
 
                 for(int k= 0; k < dataDim; k++)
                 {
-                    sum += Math.pow( (Double)elem[k] -
+                    sum += Math.pow( elem[k] -
                             getClusterCenters()[i][k], 2);
                 }
             }

@@ -86,10 +86,10 @@ public class BFX_TIFconverter implements PlugIn {
     public String[] trimStrings(String[] listToTrim) {
         String[] trimmedList = new String[listToTrim.length];
 
-        int listLen = (int) listToTrim.length;
+        int listLen = listToTrim.length;
 
         for ( int i = 0; i < listLen; i++ ) {
-            String currentFname = (String)listToTrim[i].trim();
+            String currentFname = listToTrim[i].trim();
             int strLen = currentFname.length();
             // remove changing bits from the filename and add to the list
             trimmedList[i] = currentFname.substring(currentFname.length() - 8, currentFname.length());
@@ -394,7 +394,7 @@ public class BFX_TIFconverter implements PlugIn {
 
     }
 
-    public void convertBFXfolder(String directory){
+    public void convertBFXfolder(String directory, String outDirectory){
 
         final Object[] arrayChannels = listChannelsUnique.toArray();
 
@@ -428,9 +428,31 @@ public class BFX_TIFconverter implements PlugIn {
                 imp.show();
                 IJ.showProgress(chanIndx*listChannel.length+chanFileIndx,listChannel.length*listChannelsUnique.size());
                 System.out.print("Debug");
+
+
+
+                File theDir = new File(outDirectory);
+
+                // if the directory does not exist, create it
+                if (!theDir.exists()) {
+                    System.out.println("creating directory: " + outDirectory);
+                    boolean result = false;
+
+                    try{
+                        theDir.mkdir();
+                        result = true;
+                    }
+                    catch(SecurityException se){
+                        //handle it
+                    }
+                    if(result) {
+                        System.out.println("DIR created");
+                    }
+                }
+
+
                 //
-                String barrcode   = "12345678";
-                String imfOutpath = outdir+"/"+barrcode+"/"+listChannel[chanFileIndx].replace(".tif",".jpeg");
+                String imfOutpath = outDirectory + "/" +listChannel[chanFileIndx].replace(".tif",".jpeg");
                 saveCustomBFX(imp,imfOutpath);
                 imp.close();
             }
@@ -489,7 +511,7 @@ public class BFX_TIFconverter implements PlugIn {
             // TODO: Implement
             String barCodePlate = "12345678";
             barCodePlate = getBarcodeFromDir(listDir[dirIndx]);
-            this.convertBFXfolder(outdir+"/"+barCodePlate);
+            this.convertBFXfolder(indir+listDir[dirIndx],outdir+barCodePlate);
         }
 
         if (listDir==null)
@@ -502,12 +524,13 @@ public class BFX_TIFconverter implements PlugIn {
         // match a regular expression of 8 numerical digits sequence in the directory name
 
         if(dirFname.matches(".*[0-9]{8,8}.*")){
-            String[] barCodeTrimSeq = dirFname.split(".*[0-9]{8,8}.*");
+            String[] barCodeTrimSeq = dirFname.split("[0-9]{8,8}");
 
             if(barCodeTrimSeq.length>0){
                 for(int trimIndxSeq=0;trimIndxSeq<barCodeTrimSeq.length;trimIndxSeq++){
-                    dirFname.replace(barCodeTrimSeq[trimIndxSeq],"");
+                    dirFname = dirFname.replace(barCodeTrimSeq[trimIndxSeq],"");
                 }
+                barCode = dirFname;
             }else{
                 barCode = dirFname;
             }
@@ -517,11 +540,8 @@ public class BFX_TIFconverter implements PlugIn {
     }
 
     public void saveCustomBFX(ImagePlus imp, String path) {
-        File file = new File(path);
 
         try {
-
-            FileInfo fi = imp.getFileInfo();
             FileSaver fs = new FileSaver(imp);
             fs.saveAsJpeg(path);
 

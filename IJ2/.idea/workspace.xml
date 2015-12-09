@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Open Files" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e4841345-93aa-42ca-ab96-2ac0558e9415" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/B - 4(fld 4 wv Cy3 - Cy3).tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/B - 4(fld 4 wv DAPI - DAPI).tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/B - 4(fld 4 wv FITC - FITC).tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/B - 5 - Composite - (fld 1 wv FITC - FITC).tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/B - 5(fld 1 wv Cy3 - Cy3).tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/B - 5(fld 1 wv DAPI - DAPI).tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/B - 5(fld 1 wv FITC - FITC).tif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Cell_border1.tif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Niki_Plugin.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Niki_Plugin.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/BFX_TIFconverter.java" afterPath="$PROJECT_DIR$/ij/plugin/BFX_TIFconverter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/ContrastEnhancer.java" afterPath="$PROJECT_DIR$/ij/plugin/ContrastEnhancer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/Kmeans.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/Kmeans.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/ListVirtualStack.java" afterPath="$PROJECT_DIR$/ij/plugin/ListVirtualStack.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" />
@@ -41,15 +57,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BFX_TIFconverter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BFX_TIFconverter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ij/plugin/BFX_TIFconverter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.990991">
-              <caret line="391" column="14" selection-start-line="391" selection-start-column="14" selection-end-line="391" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="545" column="0" selection-start-line="545" selection-start-column="0" selection-end-line="545" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Niki_Plugin.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="239" column="29" selection-start-line="239" selection-start-column="18" selection-end-line="239" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#18754#18928#0" expanded="true" />
-                <element signature="e#18927#18928#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Kmeans.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Kmeans.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FloatProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ij/process/FloatProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#11006#11007#0" expanded="true" />
+                <element signature="e#11034#11035#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,15 +128,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#5421#5422#0" expanded="false" />
-                <element signature="e#5442#5443#0" expanded="false" />
-                <element signature="e#5750#5751#0" expanded="false" />
-                <element signature="e#5774#5775#0" expanded="false" />
-                <element signature="e#5801#5802#0" expanded="false" />
-                <element signature="e#5826#5827#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -113,15 +153,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ij/plugin/filter/Kmeans.java" />
         <option value="$PROJECT_DIR$/plugins/RG2B_Colocalization.java" />
         <option value="$PROJECT_DIR$/ij/plugin/RG2B_Colocalization.java" />
         <option value="$PROJECT_DIR$/ij/ImagePlus.java" />
         <option value="$PROJECT_DIR$/ij/plugin/AutophagyColocalisation.java" />
         <option value="$PROJECT_DIR$/plugins/AutophagyColocalisation.java" />
         <option value="$PROJECT_DIR$/IJ_Props.txt" />
-        <option value="$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java" />
         <option value="$PROJECT_DIR$/ij/plugin/BFX_TIFconverter.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/Kmeans.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java" />
       </list>
     </option>
   </component>
@@ -140,10 +180,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2" />
-    <option name="y" value="-3" />
-    <option name="width" value="1924" />
-    <option name="height" value="1172" />
+    <option name="width" value="1900" />
+    <option name="height" value="1165" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -184,22 +222,10 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.7 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="IJ2" />
@@ -209,8 +235,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -523,7 +547,11 @@
       <workItem from="1447169774893" duration="1977000" />
       <workItem from="1448987057964" duration="3951000" />
       <workItem from="1449050393791" duration="30116000" />
-      <workItem from="1449139604946" duration="2542000" />
+      <workItem from="1449139604946" duration="3506000" />
+      <workItem from="1449221167204" duration="7286000" />
+      <workItem from="1449571489019" duration="1749000" />
+      <workItem from="1449579112447" duration="8129000" />
+      <workItem from="1449664283549" duration="366000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Nikitas latest change 28.10.2015 on Nikita_plugin.java and Kmeans.java">
       <created>1446125233885</created>
@@ -573,20 +601,26 @@
       <option name="project" value="LOCAL" />
       <updated>1448990998616</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Adding functinoality for file broasing.">
+      <created>1449154409700</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1449154409700</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64493000" />
+    <option name="totallyTimeSpent" value="82987000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="-3" width="1924" height="1172" extended-state="6" />
+    <frame x="0" y="0" width="1900" height="1165" extended-state="4" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922202" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295129" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -597,16 +631,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18210863" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18015103" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295129" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32922202" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40227705" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3285578" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40210125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922202" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295129" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.71155685" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40210125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -626,34 +662,23 @@
     <MESSAGE value="Updating Nikitas latest change 28.10.2015 on Nikita_plugin.java and Kmeans.java. Adding functionality on Kmeans.java to return the labels of each pixel in the input data matrix. Tested and working for clustering pixels." />
     <MESSAGE value="Adding to the plugin project, colocalisation plugin to be used with FIJI for measuring colocalisation of RED and GREEN channels of a RGB image." />
     <MESSAGE value="adding code of plugin for doing file conversion" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding code of plugin for doing file conversion" />
+    <MESSAGE value="Adding functinoality for file broasing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding functinoality for file broasing." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java</url>
-          <line>297</line>
+          <line>311</line>
           <properties />
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java</url>
-          <line>185</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java</url>
-          <line>191</line>
-          <properties />
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="42" />
+      <option name="time" value="66" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -662,31 +687,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ij/plugin/FFT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Kmeans.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#33705#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/ResultsSorter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -713,7 +713,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="25" />
           <folding>
-            <element signature="e#0#33705#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -745,7 +744,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33705#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -770,7 +768,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33705#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -795,7 +792,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33705#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -813,7 +809,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33705#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -838,7 +833,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="e#0#33705#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -862,13 +856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="42" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Kmeans.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -995,25 +982,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/Executer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ij/IJ.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/ContrastEnhancer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,26 +1001,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5421#5422#0" expanded="false" />
-            <element signature="e#5442#5443#0" expanded="false" />
-            <element signature="e#5750#5751#0" expanded="false" />
-            <element signature="e#5774#5775#0" expanded="false" />
-            <element signature="e#5801#5802#0" expanded="false" />
-            <element signature="e#5826#5827#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6865672">
-          <caret line="659" column="50" selection-start-line="659" selection-start-column="50" selection-end-line="659" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#33705#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1063,14 +1016,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/ContrastEnhancer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/Executer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33222038">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/BFX_TIFconverter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.990991">
-          <caret line="391" column="14" selection-start-line="391" selection-start-column="14" selection-end-line="391" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="545" column="0" selection-start-line="545" selection-start-column="0" selection-end-line="545" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Kmeans_plugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Kmeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar!/java/util/Arrays.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4764398">
+          <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/process/FloatProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18754#18928#0" expanded="true" />
-            <element signature="e#18927#18928#0" expanded="true" />
+            <element signature="e#11006#11007#0" expanded="true" />
+            <element signature="e#11034#11035#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="239" column="29" selection-start-line="239" selection-start-column="18" selection-end-line="239" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

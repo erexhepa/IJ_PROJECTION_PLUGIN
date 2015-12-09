@@ -229,7 +229,7 @@ public class ContrastEnhancer implements PlugIn, Measurements {
 			else if (i>=max)
 				lut[i] = max2;
 			else
-				lut[i] = (int)(((double)(i-min)/(max-min))*max2);
+				lut[i] = (int)(((i-min) /(max-min))*max2);
 		}
 		applyTable(ip, lut);
 	}
