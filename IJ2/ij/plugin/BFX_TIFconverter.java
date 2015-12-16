@@ -12,11 +12,11 @@ import ij.io.FileInfo;
 import ij.io.OpenDialog;
 import ij.io.Opener;
 import ij.measure.Calibration;
+import ij.measure.Measurements;
 import ij.process.ImageProcessor;
-import ij.util.DicomTools;
+import ij.process.ImageStatistics;
 import ij.util.StringSorter;
 import ij.process.StackStatistics;
-import ij.process.StackProcessor;
 
 import java.awt.List;
 import java.lang.String;
@@ -25,23 +25,14 @@ import java.awt.event.ItemEvent;
 import java.awt.event.TextEvent;
 import java.awt.image.ColorModel;
 import java.io.File;
-import ij.plugin.ContrastEnhancer;
-import java.awt.*;
+
 import java.io.*;
-import java.awt.event.*;
-import java.awt.image.ColorModel;
 import java.util.*;
 import ij.io.FileSaver;
-import ij.*;
-import ij.io.*;
-import ij.gui.*;
-import ij.process.*;
-import ij.measure.Calibration;
-import ij.util.*;
 
 /** Implements the File/Import/Image Sequence command, which
  opens a folder of images as a stack. */
-public class BFX_TIFconverter implements PlugIn {
+public class BFX_TIFconverter implements PlugIn,Measurements {
 
     private static String[] excludedTypes = {".txt", ".lut", ".roi", ".pty", ".hdr", ".java", ".ijm", ".py", ".js", ".bsh", ".xml"};
     private static boolean staticSortFileNames = true;
@@ -386,6 +377,10 @@ public class BFX_TIFconverter implements PlugIn {
 
             scalingParam[chanIndx][0] = sps.min;
             scalingParam[chanIndx][1] = sps.mean+3*sps.stdDev;
+
+            ImageStack stack = impProcess.getStack();
+            Calibration cal = impProcess.getCalibration();
+            ImageStatistics stats = ImageStatistics.getStatistics(ip, MEAN, cal);
 
             System.out.print("Debug");
             //

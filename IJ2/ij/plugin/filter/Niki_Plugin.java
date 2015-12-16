@@ -174,6 +174,15 @@ public class Niki_Plugin implements PlugInFilter{
         return stack1;
     }
 
+    private boolean ispower2(int input){
+        while(((input != 2) && input % 2 == 0) || input == 1) {
+            input = input /2;
+        }
+
+        return input == 2;
+    }
+
+
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +208,7 @@ public class Niki_Plugin implements PlugInFilter{
 
 
         // Make the padding and apply the FFT for a number of stacks that is not power of 2
-        if (size1_ % 2 != 0) {
+        if (!ispower2(size1_)) {
 
             // Find the closest power of 2 in order to find the number of stacks with 0 to add to the original stack
             double result_ = Math.ceil(Math.log(size1_) / Math.log(2.0d));
