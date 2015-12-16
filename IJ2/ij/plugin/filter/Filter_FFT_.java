@@ -11,7 +11,9 @@ public class Filter_FFT_ {
         if (N == 1) return new Complex[] { x[0] };
 
         // radix 2 Cooley-Tukey FFT
-        if (N % 2 != 0) { throw new RuntimeException("N is not a power of 2"); }
+        if (N % 2 != 0) {
+            throw new RuntimeException("N is not a power of 2");
+        }
 
         // fft of even terms
         Complex[] even = new Complex[N/2];

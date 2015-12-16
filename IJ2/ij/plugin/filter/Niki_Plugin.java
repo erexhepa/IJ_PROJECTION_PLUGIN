@@ -187,6 +187,7 @@ public class Niki_Plugin implements PlugInFilter{
      */
 
     public double[][] FFT_1D_(ImageStack stack1) {
+        //TODO: add check step to control for number of slices being a power of 2
 
         int x_coord, y_coord, z_coord, z_fft, i, j, k, l;
         int size1_ = stack.getSize();                   // Size of the stack image
@@ -349,6 +350,8 @@ public class Niki_Plugin implements PlugInFilter{
         int slice_num = stack.getSize();
         boolean CONCURRENT_KMEANS = true;
         int threadcount = 5;
+        final int numClust = numClust_;
+        final double[][]  coordClust = result_fft;
 
         if (CONCURRENT_KMEANS) {
 
@@ -363,7 +366,7 @@ public class Niki_Plugin implements PlugInFilter{
                         exception.printStackTrace();
                     }
 
-                    MIP_KMeansFrame frame = new MIP_KMeansFrame(numClust_, result_fft);
+                    MIP_KMeansFrame frame = new MIP_KMeansFrame(numClust, coordClust);
 
                     frame.validate();
 
@@ -380,7 +383,7 @@ public class Niki_Plugin implements PlugInFilter{
                             (screenSize.height - frameSize.height) / 2);
                     frame.setVisible(true);
                     //frame.actionPerformedRun();
-                    //clustersKmean = frame.getClustersKmeans();
+                    //clustersKmean = frame.getClustersKmeans();*/
                 }
             });
 
