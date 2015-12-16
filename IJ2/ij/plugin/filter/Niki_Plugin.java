@@ -12,6 +12,12 @@ import ij.process.ByteProcessor;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Arrays;
 //import java.util.Vector;
 //import ij.util.ArrayUtil;
@@ -23,7 +29,7 @@ import java.util.Arrays;
  **/
 
 
-public class Niki_Plugin implements PlugInFilter {
+public class Niki_Plugin implements PlugInFilter{
 
     public ImagePlus imp;
     public ImagePlus imp2;
@@ -31,7 +37,7 @@ public class Niki_Plugin implements PlugInFilter {
     public ImagePlus imp5;
     public ImagePlus imp5_ind;
     public ImagePlus imp6;
-
+    private MIP_KMeans mKMeans;
     public ImageStack stack;
     public double[] kmeansLabels;
     public double[][] kmeanCentroids;
@@ -46,7 +52,7 @@ public class Niki_Plugin implements PlugInFilter {
     public ImageStack Blur5;
     public ImageStack stack1;
     public float[][] Map2DImage;
-
+    private MIP_Cluster[] clustersKmean;
 
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;
@@ -61,12 +67,50 @@ public class Niki_Plugin implements PlugInFilter {
         ImageStack stack3 = stack.duplicate();   // Duplicates the original stack image
         ImageStack stack4 = stack.duplicate();   // Duplicates the original stack image
 
-        showDialog(stack2, stack3, stack4);
-//        sML(stack1);
-//        Kmeans_(3, FFT_1D_(stack1));
-//        Gaussian_Filter_(Image_Segmented(kmeansLabels));
+        //showDialog(stack2, stack3, stack4);
+        //kmeanTestGUI("test");
+
+        //TODO replace code above with appropriate code to perform the projection
+
+        sML(stack1);
+        Kmeans_(3, FFT_1D_(stack1));
+        // Gaussian_Filter_(Image_Segmented(kmeansLabels));
 
 //        Sigma_choice_auto();
+    }
+
+    /**
+     * Application entry point.
+     *
+     * @param messageGui String[]
+     */
+    public void kmeanTestGUI(String messageGui) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.
+                            getSystemLookAndFeelClassName());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+
+                /*MIP_KMeansFrame frame = new MIP_KMeansFrame();
+                frame.validate();
+
+                // Center the window
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                Dimension frameSize = frame.getSize();
+                if (frameSize.height > screenSize.height) {
+                    frameSize.height = screenSize.height;
+                }
+                if (frameSize.width > screenSize.width) {
+                    frameSize.width = screenSize.width;
+                }
+                frame.setLocation((screenSize.width - frameSize.width) / 2,
+                        (screenSize.height - frameSize.height) / 2);
+                frame.setVisible(true);*/
+            }
+        });
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -303,11 +347,85 @@ public class Niki_Plugin implements PlugInFilter {
     public void Kmeans_(int numClust_, double[][] result_fft) {
         int m;
         int slice_num = stack.getSize();
+        boolean CONCURRENT_KMEANS = true;
+        int threadcount = 5;
 
-        Kmeans kmeans_Niki = new Kmeans(result_fft, numClust_, false);
-        kmeans_Niki.calculateClusters();
-        this.kmeanCentroids = kmeans_Niki.getClusterCenters();
-        this.kmeansLabels = kmeans_Niki.getClusterLabels();
+        if (CONCURRENT_KMEANS) {
+
+            long randomSeed = 1000;
+
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        UIManager.setLookAndFeel(UIManager.
+                                getSystemLookAndFeelClassName());
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
+
+                    MIP_KMeansFrame frame = new MIP_KMeansFrame(numClust_, result_fft);
+
+                    frame.validate();
+
+                    // Center the window
+                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    Dimension frameSize = frame.getSize();
+                    if (frameSize.height > screenSize.height) {
+                        frameSize.height = screenSize.height;
+                    }
+                    if (frameSize.width > screenSize.width) {
+                        frameSize.width = screenSize.width;
+                    }
+                    frame.setLocation((screenSize.width - frameSize.width) / 2,
+                            (screenSize.height - frameSize.height) / 2);
+                    frame.setVisible(true);
+                    //frame.actionPerformedRun();
+                    //clustersKmean = frame.getClustersKmeans();
+                }
+            });
+
+
+            //     = mKMeans.getClusters();
+
+
+
+            /*this.kmeansLabels = new double[result_fft.length];
+            this.kmeanCentroids = new double[numClust_][result_fft[0].length];
+
+            //iterate through the clusters to get all points
+            for(int indxClusters=0;indxClusters<clustersKmean.length;indxClusters++){
+                //iterate through all the clusters points to put them in the original order
+                int[] indxPoints = clustersKmean[indxClusters].getMemberIndexes();
+                //TODO merge lines below
+                double[] centerCoord = clustersKmean[indxClusters].getCenter();
+                this.kmeanCentroids[indxClusters]=centerCoord;
+
+                for(int indxPointclusters=0;indxPointclusters<indxPoints.length;indxPointclusters++){
+                    this.kmeansLabels[indxPoints[indxPointclusters]]=indxClusters;
+                }
+            }
+            //this.kmeanCentroids = kmeans_Niki.getClusterCenters();
+            //this.kmeansLabels = kmeans_Niki.getClusterLabels();*/
+            Kmeans kmeans_Niki = new Kmeans(result_fft, numClust_, false);
+            kmeans_Niki.calculateClusters();
+            this.kmeanCentroids = kmeans_Niki.getClusterCenters();
+            this.kmeansLabels = kmeans_Niki.getClusterLabels();
+
+            long endTime = System.nanoTime();
+        }else{
+            long startTime = System.nanoTime();
+
+            Kmeans kmeans_Niki = new Kmeans(result_fft, numClust_, false);
+            kmeans_Niki.calculateClusters();
+            this.kmeanCentroids = kmeans_Niki.getClusterCenters();
+            this.kmeansLabels = kmeans_Niki.getClusterLabels();
+
+            long endTime = System.nanoTime();
+
+            System.out.println("K-Means complete: processing time (ms) = " +
+                    Long.toString((endTime - startTime)/(long)1000000.0));
+            System.out.println("Number of clusters: " + numClust_);
+        }
 
         for (m = 0; m < slice_num; m++) {
             this.mean0 += kmeanCentroids[0][m] / slice_num;
@@ -727,4 +845,5 @@ public class Niki_Plugin implements PlugInFilter {
 
         imp6.show(); // Display the final image
     }
+
 }

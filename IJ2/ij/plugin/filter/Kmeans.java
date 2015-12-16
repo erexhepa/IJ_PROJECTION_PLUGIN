@@ -1,5 +1,4 @@
 package ij.plugin.filter;
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,7 +7,7 @@ import java.util.Random;
  * The class implements the functionalities to cluster the pixels around K centers and return pixel clusteur labels, cluster centers
  * and the cluster pixel vectors.
  * elton.rexhepaj@gmail.com
-  */
+ */
 
 public class Kmeans{
 
