@@ -10,7 +10,7 @@ import java.util.*;
  * Swing-based program for testing the versions of K-Means on 
  * randomly generated data.
  */
-public class SME_KMeansFrame extends JFrame implements ActionListener, SME_KMeansListener {
+public class SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansListener {
 
     JPanel contentPane;
     BorderLayout borderLayout1 = new BorderLayout();
@@ -46,7 +46,7 @@ public class SME_KMeansFrame extends JFrame implements ActionListener, SME_KMean
         this.clustersKmeans = clustersKmeans;
     }
 
-    public SME_KMeansFrame(int numClust_, double[][] result_fft) {
+    public SME_GUI_Main(int numClust_, double[][] result_fft) {
             
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         coordinates = result_fft;
@@ -220,7 +220,7 @@ public class SME_KMeansFrame extends JFrame implements ActionListener, SME_KMean
 
                 String implementation = (String) mImplementationCB.getSelectedItem();
                 if (implementation == BASIC_KMEANS) {
-                    mKMeans = new SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new OBS_SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == BENCHMARKED_KMEANS) {
                     mKMeans = new SME_BenchmarkedKMeans(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == CONCURRENT_KMEANS) {
@@ -281,7 +281,7 @@ public class SME_KMeansFrame extends JFrame implements ActionListener, SME_KMean
                 
                 String implementation = (String) mImplementationCB.getSelectedItem();
                 if (implementation == BASIC_KMEANS) {
-                    mKMeans = new SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new OBS_SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == BENCHMARKED_KMEANS) {
                     mKMeans = new SME_BenchmarkedKMeans(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == CONCURRENT_KMEANS) {

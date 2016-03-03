@@ -324,7 +324,7 @@ filters14="Maximum 3D...",ij.plugin.Filters3D("max")
 filters15="Variance 3D...",ij.plugin.Filters3D("var")
 filters16=-
 filters17="Show Circular Masks...",ij.plugin.filter.RankFilters("masks")
-filters18="Niki_Plugin...",ij.plugin.filter.Niki_Plugin
+filters18="Niki_Plugin...",ij.plugin.filter.SME_Plugin
 filters19="Elton_Plugin_Autophagy",plugins.AutophagyColocalisation
 
 # Plugins installed in the File/Batch submenu

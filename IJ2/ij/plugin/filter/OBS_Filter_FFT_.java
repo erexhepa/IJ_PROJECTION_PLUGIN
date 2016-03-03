@@ -1,6 +1,6 @@
 package ij.plugin.filter;
 
-public class Filter_FFT_ {
+public class OBS_Filter_FFT_ {
 
 
     // compute the FFT of x[], assuming its length is a power of 2

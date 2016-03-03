@@ -7,7 +7,7 @@ import java.util.*;
  * designed to be executed by a dedicated thread, but that thread
  * does not create any other threads to divide up the work.
  */
-public class SME_BasicKMeans implements SME_KMeans {
+public class OBS_SME_BasicKMeans implements SME_KMeans {
 
     // Temporary clusters used during the clustering process.  Converted to
     // an array of the simpler class Cluster at the conclusion.
@@ -46,8 +46,8 @@ public class SME_BasicKMeans implements SME_KMeans {
      * @param maxIterations the maximum number of clustering iterations.
      * @param randomSeed seed used with the random number generator.
      */
-    public SME_BasicKMeans(double[][] coordinates, int k, int maxIterations,
-                           long randomSeed) {
+    public OBS_SME_BasicKMeans(double[][] coordinates, int k, int maxIterations,
+                               long randomSeed) {
         mCoordinates = coordinates;
         // Can't have more clusters than coordinates.
         mK = Math.min(k, mCoordinates.length);

@@ -25,7 +25,7 @@ import java.util.Arrays;
  **/
 
 
-public class Niki_Plugin implements PlugInFilter{
+public class SME_Plugin implements PlugInFilter{
 
     public ImagePlus imp;
     public ImagePlus imp2;
@@ -90,7 +90,7 @@ public class Niki_Plugin implements PlugInFilter{
                     exception.printStackTrace();
                 }
 
-                /*SME_KMeansFrame frame = new SME_KMeansFrame();
+                /*SME_GUI_Main frame = new SME_GUI_Main();
                 frame.validate();
 
                 // Center the window
@@ -245,7 +245,7 @@ public class Niki_Plugin implements PlugInFilter{
                     }
 
                     // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
-                    z_fft_value = Filter_FFT_.fft(z);
+                    z_fft_value = OBS_Filter_FFT_.fft(z);
                     z_fft_value[0] = new Complex(0, 0);
                     z_fft_value[size1_ - 1] = new Complex(0, 0);
 
@@ -298,7 +298,7 @@ public class Niki_Plugin implements PlugInFilter{
                 }
 
                 // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
-                z_fft_value = Filter_FFT_.fft(z);
+                z_fft_value = OBS_Filter_FFT_.fft(z);
                 z_fft_value[0] = new Complex(0, 0);        // replace the first value of the FFT by 0
                 z_fft_value[size1_ - 1] = new Complex(0, 0); // replace the last value of the FFT by 0
 
@@ -342,7 +342,7 @@ public class Niki_Plugin implements PlugInFilter{
     /////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Apply the Kmeans for segmentation
+     * Apply the OBS_Kmeans for segmentation
      *
      * @param numClust_  : number of clusters
      * @param result_fft : matrix that contains
@@ -371,7 +371,7 @@ public class Niki_Plugin implements PlugInFilter{
                         exception.printStackTrace();
                     }
 
-                    SME_KMeansFrame frame = new SME_KMeansFrame(numClust, coordClust);
+                    SME_GUI_Main frame = new SME_GUI_Main(numClust, coordClust);
 
                     frame.validate();
 
@@ -412,21 +412,21 @@ public class Niki_Plugin implements PlugInFilter{
                     this.kmeansLabels[indxPoints[indxPointclusters]]=indxClusters;
                 }
             }
-            //this.kmeanCentroids = kmeans_Niki.getClusterCenters();
-            //this.kmeansLabels = kmeans_Niki.getClusterLabels();*/
-            Kmeans kmeans_Niki = new Kmeans(result_fft, numClust_, false);
-            kmeans_Niki.calculateClusters();
-            this.kmeanCentroids = kmeans_Niki.getClusterCenters();
-            this.kmeansLabels = kmeans_Niki.getClusterLabels();
+            //this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
+            //this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();*/
+            OBS_Kmeans OBSKmeans_Niki = new OBS_Kmeans(result_fft, numClust_, false);
+            OBSKmeans_Niki.calculateClusters();
+            this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
+            this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();
 
             long endTime = System.nanoTime();
         }else{
             long startTime = System.nanoTime();
 
-            Kmeans kmeans_Niki = new Kmeans(result_fft, numClust_, false);
-            kmeans_Niki.calculateClusters();
-            this.kmeanCentroids = kmeans_Niki.getClusterCenters();
-            this.kmeansLabels = kmeans_Niki.getClusterLabels();
+            OBS_Kmeans OBSKmeans_Niki = new OBS_Kmeans(result_fft, numClust_, false);
+            OBSKmeans_Niki.calculateClusters();
+            this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
+            this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();
 
             long endTime = System.nanoTime();
 
@@ -447,7 +447,7 @@ public class Niki_Plugin implements PlugInFilter{
     /////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Create the Kmeans segmented image and display it
+     * Create the OBS_Kmeans segmented image and display it
      *
      * @param kmeansLabels : the array containing the labels obtained thanks to Kmeans_
      * @return : returns the Image matrix which will be used as a Map for the Adaptive Gaussian Filtering
@@ -471,7 +471,7 @@ public class Niki_Plugin implements PlugInFilter{
         FloatProcessor fp3 = new FloatProcessor(Map2DImage);
         ImageProcessor ip3 = fp3.convertToFloat();
         ip3.setFloatArray(Map2DImage);
-        ImagePlus imp3 = new ImagePlus("Kmeans Segmented Image" + imp.getTitle(), ip3);
+        ImagePlus imp3 = new ImagePlus("OBS_Kmeans Segmented Image" + imp.getTitle(), ip3);
         imp3.setProcessor(ip3);
         this.imp3 = imp3;
         //imp3.show();
@@ -557,7 +557,7 @@ public class Niki_Plugin implements PlugInFilter{
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    /** Apply the adaptive gaussian filtering to the original image by using the Kmeans Map obtained previously
+    /** Apply the adaptive gaussian filtering to the original image by using the OBS_Kmeans Map obtained previously
      * @param Map2DImage_rearranged: map image obtain after applying Kmeans_ function and reshaping the KmeansLabel array into an image
      *                  matrix called Map2DImage.
      */
