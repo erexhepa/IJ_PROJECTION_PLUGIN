@@ -14,10 +14,6 @@ import ij.process.ImageProcessor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Arrays;
 //import java.util.Vector;
 //import ij.util.ArrayUtil;
@@ -37,7 +33,7 @@ public class Niki_Plugin implements PlugInFilter{
     public ImagePlus imp5;
     public ImagePlus imp5_ind;
     public ImagePlus imp6;
-    private MIP_KMeans mKMeans;
+    private SME_KMeans mKMeans;
     public ImageStack stack;
     public double[] kmeansLabels;
     public double[][] kmeanCentroids;
@@ -52,7 +48,7 @@ public class Niki_Plugin implements PlugInFilter{
     public ImageStack Blur5;
     public ImageStack stack1;
     public float[][] Map2DImage;
-    private MIP_Cluster[] clustersKmean;
+    private SME_Cluster[] clustersKmean;
 
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;
@@ -94,7 +90,7 @@ public class Niki_Plugin implements PlugInFilter{
                     exception.printStackTrace();
                 }
 
-                /*MIP_KMeansFrame frame = new MIP_KMeansFrame();
+                /*SME_KMeansFrame frame = new SME_KMeansFrame();
                 frame.validate();
 
                 // Center the window
@@ -375,7 +371,7 @@ public class Niki_Plugin implements PlugInFilter{
                         exception.printStackTrace();
                     }
 
-                    MIP_KMeansFrame frame = new MIP_KMeansFrame(numClust, coordClust);
+                    SME_KMeansFrame frame = new SME_KMeansFrame(numClust, coordClust);
 
                     frame.validate();
 

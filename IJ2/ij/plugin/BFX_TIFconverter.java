@@ -13,11 +13,14 @@ import ij.io.OpenDialog;
 import ij.io.Opener;
 import ij.measure.Calibration;
 import ij.measure.Measurements;
+import ij.plugin.ContrastEnhancer;
+import ij.plugin.FileInfoVirtualStack;
+import ij.plugin.FolderOpener;
 import ij.process.ImageProcessor;
 import ij.process.ImageStatistics;
 import ij.util.StringSorter;
 import ij.process.StackStatistics;
-
+import ij.plugin.PlugIn;
 import java.awt.List;
 import java.lang.String;
 import java.awt.*;
@@ -25,6 +28,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.TextEvent;
 import java.awt.image.ColorModel;
 import java.io.File;
+import ij.process.FloatProcessor;
+import ij.process.FloatStatistics;
 
 import java.io.*;
 import java.util.*;
@@ -371,22 +376,56 @@ public class BFX_TIFconverter implements PlugIn,Measurements {
             double minStack = ip.getMin();
             double maxStack = ip.getMax();
 
-            StackStatistics sps = new StackStatistics(impProcess, 256, minStack, maxStack);
+            StackStatistics sps = new StackStatistics(impProcess, 512, minStack, maxStack);
             double spsMin   = sps.min;
             double spsMax   = sps.max;
+            int indxMaxpix = getPercentile(sps.getHistogram(), (float) (0.99));
 
             scalingParam[chanIndx][0] = sps.min;
-            scalingParam[chanIndx][1] = sps.mean+3*sps.stdDev;
+            scalingParam[chanIndx][1] = sps.binSize*(indxMaxpix+2)+sps.min;
 
             ImageStack stack = impProcess.getStack();
             Calibration cal = impProcess.getCalibration();
             ImageStatistics stats = ImageStatistics.getStatistics(ip, MEAN, cal);
 
-            System.out.print("Debug");
+            //System.out.print("Debug");
             //
             //IJ.showProgress(chanIndx,listChannelsUnique.size());
         }
 
+    }
+
+    public int getPercentile(long[] imHist, float percThresh){
+        int percentReturn = 0;
+        long[] filteredHist = new long[imHist.length-2];
+        float[] filteredHistpercent = new float[imHist.length-2];
+
+        // remove first bin count (i.e. background)
+        for(int i=0;i<filteredHist.length;i++){
+            filteredHist[i] = imHist[i+2];
+        }
+
+        // normalise histCounts
+        long normFactor = 0;
+
+        for(int i=0;i<filteredHist.length;i++){
+            normFactor = normFactor+filteredHist[i];
+        }
+
+        for(int i=0;i<filteredHist.length;i++){
+            filteredHistpercent[i] = (float)filteredHist[i]/(float)normFactor;
+        }
+
+        float cmdSum = 0;
+        for(int i=0;i<filteredHistpercent.length;i++){
+            cmdSum = cmdSum + filteredHistpercent[i];
+            if(cmdSum>=percThresh){
+                percentReturn = i;
+                break;
+            }
+        }
+
+        return percentReturn;
     }
 
     public void convertBFXfolder(String directory, String outDirectory){
@@ -394,8 +433,8 @@ public class BFX_TIFconverter implements PlugIn,Measurements {
         final Object[] arrayChannels = listChannelsUnique.toArray();
 
         for (int chanIndx=0;chanIndx<listChannelsUnique.size();chanIndx++){
-            scalingParam[chanIndx][0] = 100;
-            scalingParam[chanIndx][1] = 350;
+            //scalingParam[chanIndx][0] = 100;
+            //scalingParam[chanIndx][1] = 350;
 
             // get list of each channel type
             final String finalChanIndx = arrayChannels[chanIndx].toString();
@@ -422,7 +461,7 @@ public class BFX_TIFconverter implements PlugIn,Measurements {
                 ip.setMinAndMax(scalingParam[chanIndx][0],scalingParam[chanIndx][1]);
                 imp.show();
                 IJ.showProgress(chanIndx*listChannel.length+chanFileIndx,listChannel.length*listChannelsUnique.size());
-                System.out.print("Debug");
+                System.out.println("Converting File :: "+listChannel[chanFileIndx]);
 
 
 
