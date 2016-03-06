@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="Refactoring plugin classes. Changing class prefix from MPI to SME.">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ImageConversion/drcImageJPlugins/plugins_toolkit_src/lib/ij.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/Filter_FFT_.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/Kmeans.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/OBS_Kmeans.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/Niki_Plugin.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_Plugin.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_BasicKMeans.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/OBS_SME_BasicKMeans.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_KMeansFrame.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IJ_Props.txt" afterPath="$PROJECT_DIR$/IJ_Props.txt" />
     </list>
     <ignored path="IJ2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,7 +33,18 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding>
-                <element signature="e#1517#1537#0" expanded="true" />
+                <element signature="e#4586#4587#0" expanded="false" />
+                <element signature="e#4618#4619#0" expanded="false" />
+                <element signature="e#16323#16324#0" expanded="false" />
+                <element signature="e#16361#16362#0" expanded="false" />
+                <element signature="e#17677#17678#0" expanded="false" />
+                <element signature="e#17725#17726#0" expanded="false" />
+                <element signature="e#19048#19049#0" expanded="false" />
+                <element signature="e#19101#19102#0" expanded="false" />
+                <element signature="e#19307#19308#0" expanded="false" />
+                <element signature="e#19357#19358#0" expanded="false" />
+                <element signature="e#19663#19664#0" expanded="false" />
+                <element signature="e#19705#19706#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,8 +56,15 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
-                <marker date="1457008753248" expanded="true" signature="1549:2063" placeholder="{...}" />
-                <marker date="1457008753248" expanded="true" signature="2865:3613" placeholder="{...}" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#6517#6518#0" expanded="false" />
+                <element signature="e#6552#6553#0" expanded="false" />
+                <element signature="e#6596#6597#0" expanded="false" />
+                <element signature="e#6627#6628#0" expanded="false" />
+                <element signature="e#8621#8622#0" expanded="false" />
+                <element signature="e#8657#8658#0" expanded="false" />
+                <element signature="e#8752#8753#0" expanded="false" />
+                <element signature="e#8789#8790#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -67,14 +80,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_GUI_Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SME_GUI_Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10526316">
+            <state vertical-scroll-proportion="0.0">
               <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RankFilters.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/RankFilters.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.27272728">
+              <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,10 +149,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2" />
-    <option name="y" value="-3" />
-    <option name="width" value="1924" />
-    <option name="height" value="1172" />
+    <option name="x" value="49" />
+    <option name="y" value="24" />
+    <option name="width" value="1317" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -156,6 +179,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -244,9 +269,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -708,7 +731,8 @@
       <workItem from="1450279567761" duration="1565000" />
       <workItem from="1450282355094" duration="1259000" />
       <workItem from="1450345032785" duration="14891000" />
-      <workItem from="1457006071227" duration="2824000" />
+      <workItem from="1457006071227" duration="6405000" />
+      <workItem from="1457272089720" duration="40000" />
     </task>
     <task id="LOCAL-00001" summary="Found error on Niki_Plugin.java, padding of slice profile with 0s in such a way to be a power of 2.">
       <created>1450278227838</created>
@@ -728,41 +752,49 @@
       <option name="project" value="LOCAL" />
       <updated>1457006828552</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactoring plugin classes. Labeling obsolete classes for future delete.">
+      <created>1457008950609</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1457008950609</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26852000" />
+    <option name="totallyTimeSpent" value="30473000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="-3" width="1924" height="1172" extended-state="6" />
+    <frame x="49" y="24" width="1317" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953465" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54415953" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15004748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24866879" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24862745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24440895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46895894" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953465" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46895894" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953465" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -781,7 +813,8 @@
     <MESSAGE value="Found error on Niki_Plugin.java, padding of slice profile with 0s in such a way to be a power of 2." />
     <MESSAGE value="Adding code to get mean + 3*sdt for scaling of images." />
     <MESSAGE value="Refactoring plugin classes. Changing class prefix from MPI to SME." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring plugin classes. Changing class prefix from MPI to SME." />
+    <MESSAGE value="Refactoring plugin classes. Labeling obsolete classes for future delete." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring plugin classes. Labeling obsolete classes for future delete." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -811,16 +844,75 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_SME_BasicKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="e#4586#4587#0" expanded="false" />
+            <element signature="e#4618#4619#0" expanded="false" />
+            <element signature="e#16323#16324#0" expanded="false" />
+            <element signature="e#16361#16362#0" expanded="false" />
+            <element signature="e#17677#17678#0" expanded="false" />
+            <element signature="e#17725#17726#0" expanded="false" />
+            <element signature="e#19048#19049#0" expanded="false" />
+            <element signature="e#19101#19102#0" expanded="false" />
+            <element signature="e#19307#19308#0" expanded="false" />
+            <element signature="e#19357#19358#0" expanded="false" />
+            <element signature="e#19663#19664#0" expanded="false" />
+            <element signature="e#19705#19706#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Kmeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6517#6518#0" expanded="false" />
+            <element signature="e#6552#6553#0" expanded="false" />
+            <element signature="e#6596#6597#0" expanded="false" />
+            <element signature="e#6627#6628#0" expanded="false" />
+            <element signature="e#8621#8622#0" expanded="false" />
+            <element signature="e#8657#8658#0" expanded="false" />
+            <element signature="e#8752#8753#0" expanded="false" />
+            <element signature="e#8789#8790#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/RankFilters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Cluster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#919#920#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,7 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -854,7 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="100" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="100" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,7 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="212" column="41" selection-start-line="212" selection-start-column="41" selection-end-line="212" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,12 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#919#920#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -919,7 +1002,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="100" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="100" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -927,7 +1009,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="212" column="41" selection-start-line="212" selection-start-column="41" selection-end-line="212" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -953,12 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#919#920#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -966,7 +1041,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,7 +1082,7 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="120.5" y="131.0" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="121.0" y="131.0" />
           <SelectedNodes />
           <Categories />
           <SCOPE>All</SCOPE>
@@ -1059,7 +1133,7 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="150.5" y="299.5" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="151.0" y="300.0" />
           <SelectedNodes />
           <Categories />
           <SCOPE>All</SCOPE>
@@ -1071,9 +1145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.281106">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#7544#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1081,7 +1152,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2631579">
           <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,7 +1159,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50877196">
           <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1115,7 +1184,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3859649">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,12 +1191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0877193">
           <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding>
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#919#920#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1136,7 +1198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.01754386">
           <caret line="24" column="100" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="100" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1145,7 +1206,18 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding>
-            <element signature="e#1517#1537#0" expanded="true" />
+            <element signature="e#4586#4587#0" expanded="false" />
+            <element signature="e#4618#4619#0" expanded="false" />
+            <element signature="e#16323#16324#0" expanded="false" />
+            <element signature="e#16361#16362#0" expanded="false" />
+            <element signature="e#17677#17678#0" expanded="false" />
+            <element signature="e#17725#17726#0" expanded="false" />
+            <element signature="e#19048#19049#0" expanded="false" />
+            <element signature="e#19101#19102#0" expanded="false" />
+            <element signature="e#19307#19308#0" expanded="false" />
+            <element signature="e#19357#19358#0" expanded="false" />
+            <element signature="e#19663#19664#0" expanded="false" />
+            <element signature="e#19705#19706#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1155,8 +1227,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <marker date="1457008753248" expanded="true" signature="1549:2063" placeholder="{...}" />
-            <marker date="1457008753248" expanded="true" signature="2865:3613" placeholder="{...}" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#6517#6518#0" expanded="false" />
+            <element signature="e#6552#6553#0" expanded="false" />
+            <element signature="e#6596#6597#0" expanded="false" />
+            <element signature="e#6627#6628#0" expanded="false" />
+            <element signature="e#8621#8622#0" expanded="false" />
+            <element signature="e#8657#8658#0" expanded="false" />
+            <element signature="e#8752#8753#0" expanded="false" />
+            <element signature="e#8789#8790#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1171,7 +1250,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10526316">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1179,5 +1258,139 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://JAVA/ij.plugin.filter.SME_Plugin">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>ij.plugin.filter.SME_Plugin</OriginalElement>
+          <nodes>
+            <node x="35.989844418385985" y="-34.615384615384585">ij.plugin.filter.SME_BenchmarkedKMeans</node>
+            <node x="249.59106852944495" y="39.900826905752496">ij.plugin.filter.SME_Cluster</node>
+            <node x="-137.00392000150373" y="52.19544991202463">ij.plugin.filter.SME_KMeansListener</node>
+            <node x="-171.5384615384616" y="215.84297122183688">ij.plugin.filter.SME_GUI_Main</node>
+            <node x="134.56493154328177" y="440.65041306832364">ij.plugin.filter.SME_Plugin</node>
+            <node x="279.25680787772137" y="203.50672453298233">ij.plugin.filter.SME_ConcurrentKMeans</node>
+            <node x="139.55948823960597" y="509.89935887194673">ij.plugin.filter.PlugInFilter</node>
+            <node x="250.02550114416925" y="370.1448273080541">ij.plugin.filter.SME_KMeans</node>
+            <node x="-132.90918486705738" y="401.2709128932471">ij.plugin.filter.SME_InsufficientMemoryException</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="ij.plugin.filter.SME_GUI_Main" target="ij.plugin.filter.SME_KMeansListener">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_BenchmarkedKMeans" target="ij.plugin.filter.SME_KMeansListener">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_BenchmarkedKMeans" target="ij.plugin.filter.SME_KMeans">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_ConcurrentKMeans" target="ij.plugin.filter.SME_KMeans">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_ConcurrentKMeans" target="ij.plugin.filter.SME_InsufficientMemoryException">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_GUI_Main" target="ij.plugin.filter.SME_Cluster">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_GUI_Main" target="ij.plugin.filter.SME_ConcurrentKMeans">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_GUI_Main" target="ij.plugin.filter.SME_BenchmarkedKMeans">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_Plugin" target="ij.plugin.filter.SME_Cluster">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_BenchmarkedKMeans" target="ij.plugin.filter.SME_InsufficientMemoryException">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_Plugin" target="ij.plugin.filter.PlugInFilter">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_ConcurrentKMeans" target="ij.plugin.filter.SME_Cluster">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_GUI_Main" target="ij.plugin.filter.SME_InsufficientMemoryException">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_GUI_Main" target="ij.plugin.filter.SME_KMeans">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_BenchmarkedKMeans" target="ij.plugin.filter.SME_Cluster">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_Plugin" target="ij.plugin.filter.SME_KMeans">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_ConcurrentKMeans" target="ij.plugin.filter.SME_KMeansListener">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="ij.plugin.filter.SME_Plugin" target="ij.plugin.filter.SME_GUI_Main">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.3000000000000003" x="-163.0" y="83.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/RankFilters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27272728">
+          <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
