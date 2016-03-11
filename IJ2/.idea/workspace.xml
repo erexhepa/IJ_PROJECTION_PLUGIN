@@ -2,9 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="Refactoring plugin classes. Changing class prefix from MPI to SME.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Template_Matching.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/javacpp.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/javacv.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/opencv-linux-x86_64.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/opencv.jar" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ImageConversion/drcImageJPlugins/plugins_toolkit_src/lib/ij.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Complex.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/plugins.config" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ij/plugin/filter/Complex.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Filter_FFT_.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/OBS_Kmeans.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_Kmeans.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/OBS_SME_BasicKMeans.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_BenchmarkedKMeans.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_BenchmarkedKMeans.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_Cluster.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Cluster.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_ConcurrentKMeans.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_ConcurrentKMeans.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_InsufficientMemoryException.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_KMeans.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_KMeans.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_KMeansListener.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_KMeansListener.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_Plugin.java" afterPath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Plugin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IJ2.iml" afterPath="$PROJECT_DIR$/IJ2.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/FFT.java" afterPath="$PROJECT_DIR$/ij/plugin/FFT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/FFTMath.java" afterPath="$PROJECT_DIR$/ij/plugin/FFTMath.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/process/FHT.java" afterPath="$PROJECT_DIR$/ij/process/FHT.java" />
     </list>
     <ignored path="IJ2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,83 +48,7 @@
     <favorites_list name="IJ2" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OBS_SME_BasicKMeans.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_SME_BasicKMeans.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-              <folding>
-                <element signature="e#4586#4587#0" expanded="false" />
-                <element signature="e#4618#4619#0" expanded="false" />
-                <element signature="e#16323#16324#0" expanded="false" />
-                <element signature="e#16361#16362#0" expanded="false" />
-                <element signature="e#17677#17678#0" expanded="false" />
-                <element signature="e#17725#17726#0" expanded="false" />
-                <element signature="e#19048#19049#0" expanded="false" />
-                <element signature="e#19101#19102#0" expanded="false" />
-                <element signature="e#19307#19308#0" expanded="false" />
-                <element signature="e#19357#19358#0" expanded="false" />
-                <element signature="e#19663#19664#0" expanded="false" />
-                <element signature="e#19705#19706#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OBS_Kmeans.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Kmeans.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#6517#6518#0" expanded="false" />
-                <element signature="e#6552#6553#0" expanded="false" />
-                <element signature="e#6596#6597#0" expanded="false" />
-                <element signature="e#6627#6628#0" expanded="false" />
-                <element signature="e#8621#8622#0" expanded="false" />
-                <element signature="e#8657#8658#0" expanded="false" />
-                <element signature="e#8752#8753#0" expanded="false" />
-                <element signature="e#8789#8790#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OBS_Filter_FFT_.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SME_GUI_Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RankFilters.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/RankFilters.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27272728">
-              <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -140,6 +86,18 @@
         <option value="$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java" />
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_KMeansFrame.java" />
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION/SME_Plugin.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/SME_PROJECTION/SME_Plugin.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION/SME_Filter_FFT_.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION/SME_Complex.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION/SME_GUI_Main.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION/SME_BenchmarkedKMeans.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION/SME_ConcurrentKMeans.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION/OBS_SME_BasicKMeans.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION/SME_Plugin.java" />
+        <option value="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Plugin.java" />
+        <option value="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/plugins.config" />
+        <option value="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java" />
       </list>
     </option>
   </component>
@@ -149,10 +107,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="49" />
-    <option name="y" value="24" />
-    <option name="width" value="1317" />
-    <option name="height" value="744" />
+    <option name="width" value="1918" />
+    <option name="height" value="1165" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -179,6 +135,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
@@ -189,100 +146,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ij" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ij" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ij" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Template_Matching.jar!/" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="FullScreen" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.Unnamed">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -732,7 +612,9 @@
       <workItem from="1450282355094" duration="1259000" />
       <workItem from="1450345032785" duration="14891000" />
       <workItem from="1457006071227" duration="6405000" />
-      <workItem from="1457272089720" duration="40000" />
+      <workItem from="1457272089720" duration="173000" />
+      <workItem from="1457694449383" duration="1070000" />
+      <workItem from="1457696527496" duration="3911000" />
     </task>
     <task id="LOCAL-00001" summary="Found error on Niki_Plugin.java, padding of slice profile with 0s in such a way to be a power of 2.">
       <created>1450278227838</created>
@@ -758,14 +640,20 @@
       <option name="project" value="LOCAL" />
       <updated>1457008950609</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactoring plugin classes. Tagging obsolete classe files.">
+      <created>1457272226119</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1457272226119</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30473000" />
+    <option name="totallyTimeSpent" value="35587000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="24" width="1317" height="744" extended-state="6" />
+    <frame x="0" y="0" width="1918" height="1165" extended-state="4" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -774,14 +662,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54415953" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15004748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24862745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24786325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24440895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7036329" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24412394" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46895894" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -789,12 +680,9 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953465" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46895894" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953465" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -814,7 +702,8 @@
     <MESSAGE value="Adding code to get mean + 3*sdt for scaling of images." />
     <MESSAGE value="Refactoring plugin classes. Changing class prefix from MPI to SME." />
     <MESSAGE value="Refactoring plugin classes. Labeling obsolete classes for future delete." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring plugin classes. Labeling obsolete classes for future delete." />
+    <MESSAGE value="Refactoring plugin classes. Tagging obsolete classe files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring plugin classes. Tagging obsolete classe files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -844,46 +733,31 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_SME_BasicKMeans.java">
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/RankFilters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="e#4586#4587#0" expanded="false" />
-            <element signature="e#4618#4619#0" expanded="false" />
-            <element signature="e#16323#16324#0" expanded="false" />
-            <element signature="e#16361#16362#0" expanded="false" />
-            <element signature="e#17677#17678#0" expanded="false" />
-            <element signature="e#17725#17726#0" expanded="false" />
-            <element signature="e#19048#19049#0" expanded="false" />
-            <element signature="e#19101#19102#0" expanded="false" />
-            <element signature="e#19307#19308#0" expanded="false" />
-            <element signature="e#19357#19358#0" expanded="false" />
-            <element signature="e#19663#19664#0" expanded="false" />
-            <element signature="e#19705#19706#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Kmeans.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_Kmeans.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#6517#6518#0" expanded="false" />
-            <element signature="e#6552#6553#0" expanded="false" />
-            <element signature="e#6596#6597#0" expanded="false" />
-            <element signature="e#6627#6628#0" expanded="false" />
-            <element signature="e#8621#8622#0" expanded="false" />
-            <element signature="e#8657#8658#0" expanded="false" />
-            <element signature="e#8752#8753#0" expanded="false" />
-            <element signature="e#8789#8790#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Filter_FFT_.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
@@ -891,7 +765,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
@@ -909,7 +783,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Cluster.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Cluster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
@@ -920,17 +794,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="463" column="84" selection-start-line="463" selection-start-column="16" selection-end-line="463" selection-end-column="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12554#12555#0" expanded="false" />
-            <element signature="e#12628#12629#0" expanded="false" />
-            <element signature="e#13713#13714#0" expanded="false" />
-            <element signature="e#13788#13789#0" expanded="false" />
-            <element signature="e#17156#17157#0" expanded="false" />
-            <element signature="e#17231#17232#0" expanded="false" />
-            <element signature="e#20741#20742#0" expanded="false" />
-            <element signature="e#20824#20825#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -948,14 +812,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Plugin.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Plugin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="212" column="41" selection-start-line="212" selection-start-column="41" selection-end-line="212" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Filter_FFT_.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
@@ -963,7 +827,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -973,7 +837,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Cluster.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Cluster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
@@ -984,17 +848,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12554#12555#0" expanded="false" />
-            <element signature="e#12628#12629#0" expanded="false" />
-            <element signature="e#13713#13714#0" expanded="false" />
-            <element signature="e#13788#13789#0" expanded="false" />
-            <element signature="e#17156#17157#0" expanded="false" />
-            <element signature="e#17231#17232#0" expanded="false" />
-            <element signature="e#20741#20742#0" expanded="false" />
-            <element signature="e#20824#20825#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,14 +859,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Plugin.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Plugin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="212" column="41" selection-start-line="212" selection-start-column="41" selection-end-line="212" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Filter_FFT_.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
@@ -1020,7 +874,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
@@ -1030,21 +884,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Cluster.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Cluster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Plugin.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Plugin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Filter_FFT_.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
@@ -1052,7 +906,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
@@ -1148,13 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Plugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2631579">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ij/process/ImageStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50877196">
@@ -1166,31 +1013,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.01754386">
           <caret line="463" column="84" selection-start-line="463" selection-start-column="16" selection-end-line="463" selection-end-column="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12554#12555#0" expanded="false" />
-            <element signature="e#12628#12629#0" expanded="false" />
-            <element signature="e#13713#13714#0" expanded="false" />
-            <element signature="e#13788#13789#0" expanded="false" />
-            <element signature="e#17156#17157#0" expanded="false" />
-            <element signature="e#17231#17232#0" expanded="false" />
-            <element signature="e#20741#20742#0" expanded="false" />
-            <element signature="e#20824#20825#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_InsufficientMemoryException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3859649">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_Cluster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0877193">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1198,63 +1021,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.01754386">
           <caret line="24" column="100" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_SME_BasicKMeans.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="e#4586#4587#0" expanded="false" />
-            <element signature="e#4618#4619#0" expanded="false" />
-            <element signature="e#16323#16324#0" expanded="false" />
-            <element signature="e#16361#16362#0" expanded="false" />
-            <element signature="e#17677#17678#0" expanded="false" />
-            <element signature="e#17725#17726#0" expanded="false" />
-            <element signature="e#19048#19049#0" expanded="false" />
-            <element signature="e#19101#19102#0" expanded="false" />
-            <element signature="e#19307#19308#0" expanded="false" />
-            <element signature="e#19357#19358#0" expanded="false" />
-            <element signature="e#19663#19664#0" expanded="false" />
-            <element signature="e#19705#19706#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Kmeans.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#6517#6518#0" expanded="false" />
-            <element signature="e#6552#6553#0" expanded="false" />
-            <element signature="e#6596#6597#0" expanded="false" />
-            <element signature="e#6627#6628#0" expanded="false" />
-            <element signature="e#8621#8622#0" expanded="false" />
-            <element signature="e#8657#8658#0" expanded="false" />
-            <element signature="e#8752#8753#0" expanded="false" />
-            <element signature="e#8789#8790#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/OBS_Filter_FFT_.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_GUI_Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1359,8 +1125,170 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/RankFilters.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27272728">
+        <state vertical-scroll-proportion="0.0">
           <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Template_Matching.jar!/TemplateMatching/Align_slices.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7692308">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10351#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_BenchmarkedKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <folding>
+            <element signature="e#1416#1436#0" expanded="true" />
+            <element signature="e#15510#15523#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_ConcurrentKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="23" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <folding>
+            <element signature="e#1990#2010#0" expanded="true" />
+            <element signature="e#15771#15784#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Filter_FFT_.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_KMeansListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Complex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26496565">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Cluster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08832189">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_KMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08832189">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Template_Matching.jar!/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/opencv.jar!/org/bytedeco/javacpp/opencv_calib3d.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-31.153847">
+          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Plugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="7.2532797">
+          <caret line="817" column="0" selection-start-line="817" selection-start-column="0" selection-end-line="817" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#36767#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15897939">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_Kmeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Template_Matching.jar!/TemplateMatching/cvMatch_Template.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.83685803">
+          <caret line="327" column="787" selection-start-line="327" selection-start-column="8" selection-end-line="327" selection-end-column="787" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5937193">
+          <caret line="277" column="54" selection-start-line="277" selection-start-column="54" selection-end-line="277" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/plugins.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15897939">
+          <caret line="9" column="66" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Template_Matching.jar!/plugins.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10598626">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1368,9 +1296,80 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>IJ2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Template_Matching</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
