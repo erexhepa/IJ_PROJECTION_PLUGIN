@@ -12,7 +12,6 @@
       <exclude name="plugins/**"/>
     </javac>
   </target>
-  
 
   <target name="build" depends="compile" description="Build ij.jar.">
     <!-- Copy needed files into the build directory. -->
@@ -53,6 +52,28 @@
     />
   </target>
 
+    <!-- SME PLUGIN TARGETS = START -->
+
+    <target name="prepareDir" description="prepare source directory prior to the archive compilation">
+        <!-- Prepare jar directory. -->
+        <mkdir dir="SME_PROJECTION_ENS" />
+        <copydir src="build/SME_PROJECTION_SRC" dest="SME_PROJECTION_ENS/SME_PROJECTION_SRC"/>
+        <copyfile src="SME_PROJECTION_SRC/plugins.config" dest="SME_PROJECTION_ENS/plugins.config"/>
+    </target>
+
+  <target name="createSMEjar" depends="prepareDir" description="Create JAR SME plugin">
+        <!-- Build ij.jar. -->
+        <jar jarfile="SME_PROJECTION_ENS.jar" basedir="SME_PROJECTION_ENS"
+             manifest="MANIFEST_SME.MF" /><!-- Create JAR archive -->
+        <delete dir="SME_PROJECTION_ENS" />
+  </target>
+
+  <target name="SMEPlugin" depends="createSMEjar" description="copy SME jar file to plugin directory">
+      <copy file="SME_PROJECTION_ENS.jar" toDir="out/production/IJ2/ij/plugin" /> <!-- Copy JAR archive -->
+      <copy file="CPU_Meter-2.0.0.jar" toDir="out/production/IJ2/ij/plugin" /> <!-- Copy JAR archive -->
+  </target>
+
+    <!-- SME PLUGIN TARGETS = END -->
 
   <target name="javadocs" description="Build the JavaDocs.">
     <delete dir="../api" />
