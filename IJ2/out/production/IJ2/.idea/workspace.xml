@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="Refactoring plugin classes. Changing class prefix from MPI to SME.">
+    <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="Removing obsoletes jar archives and modifying the Apache ANT build.xml to automatically create/compile/compress the jar from the source and the build.">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ImageConversion/drcImageJPlugins/plugins_toolkit_src/lib/ij.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MANIFEST_SME.MF" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Mosaic_ToolSuite_imagej_new.jar" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_Kmeans.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_Kmeans.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_BenchmarkedKMeans.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeans.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Cluster.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Complex.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Complex.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_ConcurrentKMeans.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ConcurrentKMeans.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Filter_FFT_.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Filter_FFT_.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_GUI_Main.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_GUI_Main.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_KMeans.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_KMeansListener.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/SME_Plugin.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SME_ENS/SME_PROJECTION_SRC/plugins.config" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/plugins.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/OBS_Kmeans.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_BenchmarkedKMeans.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Cluster.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Complex.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ConcurrentKMeans.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Filter_FFT_.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_GUI_Main.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_KMeans.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_KMeansListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/plugins.config" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij.jar" afterPath="$PROJECT_DIR$/ij.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFT.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFT.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFTMath.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFTMath.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FHT.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/FHT.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/misc.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IJ_Props.txt" afterPath="$PROJECT_DIR$/IJ_Props.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/IJ2.iml" afterPath="$PROJECT_DIR$/out/production/IJ2/IJ2.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/IJ_Props.txt" afterPath="$PROJECT_DIR$/out/production/IJ2/IJ_Props.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/build.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/build.xml" />
     </list>
     <ignored path="IJ2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,11 +43,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46717557">
-              <caret line="59" column="91" selection-start-line="59" selection-start-column="91" selection-end-line="59" selection-end-column="91" />
+            <state vertical-scroll-proportion="-7.3333335">
+              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OBS_Kmeans.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/OBS_Kmeans.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SME_Plugin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#36847#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IJ_Props.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/IJ_Props.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43425077">
+              <caret line="351" column="57" selection-start-line="351" selection-start-column="57" selection-end-line="351" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -106,28 +130,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IHC_Toolbox.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/IHC_Toolbox.jar!/IHC_Toolbox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plugins.config" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/CPU_Meter-2.0.0.jar!/plugins.config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -139,6 +141,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -185,6 +190,19 @@
         <option value="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin.java" />
         <option value="$PROJECT_DIR$/SME_PROJECTION_SRC/plugins.config" />
         <option value="$PROJECT_DIR$/build.xml" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/OBS_Kmeans.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_BenchmarkedKMeans.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Cluster.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Complex.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ConcurrentKMeans.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Filter_FFT_.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_GUI_Main.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_KMeans.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_KMeansListener.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin.java" />
+        <option value="$PROJECT_DIR$/IJ_Props.txt" />
       </list>
     </option>
   </component>
@@ -251,9 +269,19 @@
               <option name="myItemId" value="IJ2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Template_Matching.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+              <option name="myItemId" value="IJ2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IJ2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ij" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -266,8 +294,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SME_PROJECTION_ENS.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+              <option name="myItemId" value="ij" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -277,6 +309,18 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="IJ2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ij" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -287,7 +331,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ij/plugin/filter" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
@@ -302,6 +346,7 @@
       <recent name="$PROJECT_DIR$/SME_PROJECTION_PROJECT/SME_PROJECTION_SRC" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ij/plugin/filter" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -759,7 +804,7 @@
       <workItem from="1457272089720" duration="173000" />
       <workItem from="1457694449383" duration="1070000" />
       <workItem from="1457696527496" duration="5481000" />
-      <workItem from="1457949452034" duration="17934000" />
+      <workItem from="1457949452034" duration="19766000" />
     </task>
     <task id="LOCAL-00001" summary="Found error on Niki_Plugin.java, padding of slice profile with 0s in such a way to be a power of 2.">
       <created>1450278227838</created>
@@ -797,15 +842,21 @@
       <option name="project" value="LOCAL" />
       <updated>1457700588914</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Removing obsoletes jar archives and modifying the Apache ANT build.xml to automatically create/compile/compress the jar from the source and the build.">
+      <created>1457969086256</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1457969086256</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55091000" />
+    <option name="totallyTimeSpent" value="56923000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-3" width="1924" height="1172" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -813,7 +864,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4617591" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46153846" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27160493" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -821,7 +872,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.702754" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24412394" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24813631" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24813631" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46818614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -855,7 +906,8 @@
     <MESSAGE value="Refactoring plugin classes. Labeling obsolete classes for future delete." />
     <MESSAGE value="Refactoring plugin classes. Tagging obsolete classe files." />
     <MESSAGE value="Refactoring plugin classes. &#10; &#10; 1) Create package to pack all classes together&#10; 2) Move package outside IJ path&#10; 3) Adding config file for Plugin to get registered by ImageJ&#10; 4) Renaming all files with SME prefix&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring plugin classes. &#10; &#10; 1) Create package to pack all classes together&#10; 2) Move package outside IJ path&#10; 3) Adding config file for Plugin to get registered by ImageJ&#10; 4) Renaming all files with SME prefix&#10;" />
+    <MESSAGE value="Removing obsoletes jar archives and modifying the Apache ANT build.xml to automatically create/compile/compress the jar from the source and the build." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removing obsoletes jar archives and modifying the Apache ANT build.xml to automatically create/compile/compress the jar from the source and the build." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -897,6 +949,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1148,6 +1201,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1276,10 +1330,117 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/OBS_SME_BasicKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_BenchmarkedKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Complex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36486486">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Cluster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12162162">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ConcurrentKMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Filter_FFT_.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_GUI_Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_KMeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_KMeansListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46717557">
-          <caret line="59" column="91" selection-start-line="59" selection-start-column="91" selection-end-line="59" selection-end-column="91" />
+        <state vertical-scroll-proportion="-7.3333335">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/OBS_Kmeans.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#36847#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IJ_Props.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43425077">
+          <caret line="351" column="57" selection-start-line="351" selection-start-column="57" selection-end-line="351" selection-end-column="57" />
           <folding />
         </state>
       </provider>

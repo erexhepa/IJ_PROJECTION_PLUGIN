@@ -324,8 +324,7 @@ filters14="Maximum 3D...",ij.plugin.Filters3D("max")
 filters15="Variance 3D...",ij.plugin.Filters3D("var")
 filters16=-
 filters17="Show Circular Masks...",ij.plugin.filter.RankFilters("masks")
-filters18="Niki_Plugin...",ij.plugin.filter.SME_Plugin
-filters19="Elton_Plugin_Autophagy",plugins.AutophagyColocalisation
+
 
 # Plugins installed in the File/Batch submenu
 batch01="Measure...",ij.plugin.BatchMeasure
@@ -361,6 +360,7 @@ plug-in05="Compile and Run...",ij.plugin.Compiler
 plug-in06="Install... [M]",ij.plugin.PluginInstaller
 #plug-in07=-
 #plug-in08=>"User_Plugins"
+plug-in07="ENS_SME_PROJECTION",ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin
 
 # Install user plugins located in ij.jar to Plugins>User Plugins submenu
 #user_plugins01="Red And Blue",RedAndBlue_
