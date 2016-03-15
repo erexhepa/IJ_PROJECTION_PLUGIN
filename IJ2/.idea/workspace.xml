@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="Moving the source directory to the ij.plugin.filter package directory for dev/debuggin. To refactor again to the root directory when ready to pack and distribute.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CellBorder1.tif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Centriole1.tif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Neuron1.tif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FV1_make_projection_from_layer.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FV1_real_images.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FV2_Main_SME_method8.m" />
+    <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/find_base.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/find_base2.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FV1_real_images.m" afterPath="$PROJECT_DIR$/FV1_real_images.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FV2_Main_SME_method8.m" afterPath="$PROJECT_DIR$/FV2_Main_SME_method8.m" />
     </list>
     <ignored path="IJ2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +32,8 @@
       <file leaf-file-name="build.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.072434604">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.03629032">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -251,6 +248,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="IJ2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IJ2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IJ2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -737,7 +744,7 @@
       <workItem from="1457694449383" duration="1070000" />
       <workItem from="1457696527496" duration="5481000" />
       <workItem from="1457949452034" duration="20852000" />
-      <workItem from="1458058870207" duration="646000" />
+      <workItem from="1458058870207" duration="2079000" />
     </task>
     <task id="LOCAL-00001" summary="Found error on Niki_Plugin.java, padding of slice profile with 0s in such a way to be a power of 2.">
       <created>1450278227838</created>
@@ -793,11 +800,17 @@
       <option name="project" value="LOCAL" />
       <updated>1457971285601</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Adding matlab scripts and example input images from Shihav.">
+      <created>1458059579480</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1458059579480</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58655000" />
+    <option name="totallyTimeSpent" value="60088000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1918" height="1165" extended-state="4" />
@@ -805,6 +818,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32600382" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -825,7 +839,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46818614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32668567" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -854,7 +867,8 @@
     <MESSAGE value="Removing obsoletes jar archives and modifying the Apache ANT build.xml to automatically create/compile/compress the jar from the source and the build." />
     <MESSAGE value="Moving the source directory to the ij.plugin.filter package directory for dev/debuggin. To refactor again to the root directory when ready to pack and distribute." />
     <MESSAGE value="adding the metafile for the JAR also to the DEV directory in ij.plugin.filter" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding the metafile for the JAR also to the DEV directory in ij.plugin.filter" />
+    <MESSAGE value="Adding matlab scripts and example input images from Shihav." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding matlab scripts and example input images from Shihav." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1314,8 +1328,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.072434604">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.03629032">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
