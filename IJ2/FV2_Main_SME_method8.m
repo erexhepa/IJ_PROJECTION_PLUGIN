@@ -1,6 +1,6 @@
 function [OUTput_image,Manifold,Classmap,movmat,dekay,sftzm]=FV2_Main_SME_method8(Img,FG,Group,Norm,doplot,nametex,makegraph)
 
-%% STEP1 = Already encoded in JAVA
+%% STEP1 = Already encoded in JAVA - gaussian filter
 
 % function [OUTput_image,Manifold,Classmap]=Main_SME_method6(Img,mapid,Group,Fmin,Fmax,Limit,doplot)
 
@@ -24,8 +24,8 @@ function [OUTput_image,Manifold,Classmap,movmat,dekay,sftzm]=FV2_Main_SME_method
 % makegraph=1;
 % close all
 
+
 %% Making the profile distribution
-%%
 dekay=0;
 M = [-1 2 -1];
 sz1=size(Img,1);
@@ -34,6 +34,7 @@ npxl=sz1*sz2;
 timk=[];
 hG = fspecial('gaussian',[5 5],1);
 
+% for every z-layer apply gaussian filter
 for k=1:size(Img,3)
     timg=Img(:,:,k);
     timg = imfilter(timg,hG,'replicate');
@@ -42,25 +43,27 @@ for k=1:size(Img,3)
     timk(:,:,k) = abs(Gx) + abs(Gy);
 end
 
-class=Group;
 
+%% STEP2 = Already encoded in JAVA - FFT
+class=Group;
 zprof2=reshape(timk,[size(Img,1)*size(Img,2) size(Img,3)]);
 tempt=abs(fft(zprof2,size(Img,3),2));
-
 tempt(:,ceil(size(Img,3)/2):end)=[];
 tempt=tempt./repmat((max(tempt,[],1)-min(tempt,[],1)),[size(tempt,1) 1]);
+
+
+%% STEP3 = Already encoded in JAVA - KMEANS
 [idx,c]=kmeans(tempt,class);
 [~,I] = sort(sum(c,2),1);
 idxt=idx;
-
 ct=c;
 for cng=1:size(I,1)
     idx(idxt==I(cng))=cng;
     c(cng,:)=ct(I(cng),:);
 end
 
-%% STEP 2 - To encode in JAVA
 
+%% STEP 4 - To encode in JAVA
 edgeflag=reshape(idx,[size(Img,1) size(Img,2)]);
 edgeflag2=double((edgeflag-1)/Norm);
 
@@ -68,7 +71,6 @@ edgeflag2=double((edgeflag-1)/Norm);
 %                 [~,idmin]=min(timk,[],3);
 idmaxk=idmax;
 %                  idmaxk(edgeflag==1)=idmin(edgeflag==1);
-
 idmaxki=idmaxk;
 
 if FG==1
@@ -80,6 +82,7 @@ if FG==1
     caxis([1 k]);
     colorbar
 end
+
 cost=[];
 step=k/100;
 cost(2)=10;
