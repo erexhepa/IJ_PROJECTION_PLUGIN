@@ -50,6 +50,7 @@ public class SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansLi
         this.clustersKmeans = clustersKmeans;
     }
 
+
     public SME_GUI_Main(int numClust_, double[][] result_fft) {
             
         setDefaultCloseOperation(EXIT_ON_CLOSE);

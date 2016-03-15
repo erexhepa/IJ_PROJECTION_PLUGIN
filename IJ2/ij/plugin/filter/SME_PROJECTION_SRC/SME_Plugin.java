@@ -79,44 +79,6 @@ public class SME_Plugin implements PlugInFilter {
     }
 
     /**
-     * Application entry point.
-     *
-     * @param messageGui String[]
-     */
-    public void kmeanTestGUI(String messageGui) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UIManager.setLookAndFeel(UIManager.
-                            getSystemLookAndFeelClassName());
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-
-                /*SME_GUI_Main frame = new SME_GUI_Main();
-                frame.validate();
-
-                // Center the window
-                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                Dimension frameSize = frame.getSize();
-                if (frameSize.height > screenSize.height) {
-                    frameSize.height = screenSize.height;
-                }
-                if (frameSize.width > screenSize.width) {
-                    frameSize.width = screenSize.width;
-                }
-                frame.setLocation((screenSize.width - frameSize.width) / 2,
-                        (screenSize.height - frameSize.height) / 2);
-                frame.setVisible(true);*/
-            }
-        });
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
      * Applying the sML filter on the Original ImageStack
      *
      * @param stack1 : Original image stack duplicated

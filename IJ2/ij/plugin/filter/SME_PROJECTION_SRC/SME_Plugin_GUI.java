@@ -114,6 +114,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
 
         //showDialog(stack2, stack3, stack4);
         //kmeanTestGUI("test");
+        initGui();
 
         //TODO replace code above with appropriate code to perform the projection
 
@@ -123,7 +124,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
         // Fast Fourier transform
         double[][] result_fft = FFT_1D_(smlOutput);
 
-        start_SME_gui(3, result_fft);
+        kmean_clustering(3, result_fft);
         // Gaussian_Filter_(Image_Segmented(kmeansLabels));
 
 //        Sigma_choice_auto();
@@ -195,7 +196,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
      *                   and length of result_fft is equal to the number of pixels of the image
      */
 
-    public void start_SME_gui(int numClust_, double[][] result_fft) {
+    public void kmean_clustering(int numClust_, double[][] result_fft) {
         int m;
         int slice_num = stack.getSize();
         boolean CONCURRENT_KMEANS = true;
@@ -235,28 +236,6 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
             }
         });
 
-
-        //     = mKMeans.getClusters();
-
-
-
-            /*this.kmeansLabels = new double[result_fft.length];
-            this.kmeanCentroids = new double[numClust_][result_fft[0].length];
-
-            //iterate through the clusters to get all points
-            for(int indxClusters=0;indxClusters<clustersKmean.length;indxClusters++){
-                //iterate through all the clusters points to put them in the original order
-                int[] indxPoints = clustersKmean[indxClusters].getMemberIndexes();
-                //TODO merge lines below
-                double[] centerCoord = clustersKmean[indxClusters].getCenter();
-                this.kmeanCentroids[indxClusters]=centerCoord;
-
-                for(int indxPointclusters=0;indxPointclusters<indxPoints.length;indxPointclusters++){
-                    this.kmeansLabels[indxPoints[indxPointclusters]]=indxClusters;
-                }
-            }
-            //this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
-            //this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();*/
         OBS_Kmeans OBSKmeans_Niki = new OBS_Kmeans(result_fft, numClust_, false);
         OBSKmeans_Niki.calculateClusters();
         this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
@@ -271,9 +250,11 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
         }
     }
 
-    public void initGui(int numClust_, double[][] result_fft){
+    public void initGui(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        coordinates = result_fft;
+        //coordinates = result_fft;
+
+        // Main panel
         contentPane = (JPanel) getContentPane();
         contentPane.setLayout(borderLayout1);
         setSize(new Dimension(620, 760));
@@ -289,7 +270,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
         mClusterCountTF.setText("3");
         mClusterCountTF.setColumns(10);
         mClusterCountLabel.setText("Number of Clusters (K):");
-        mCoordCountTF.setText(Integer.toString(result_fft.length));
+        mCoordCountTF.setText(Integer.toString(3));
         mCoordCountTF.setColumns(10);
         mCountLabel.setText("Number of Coordinates (N):");
         mThreadCountLabel.setEnabled(false);
@@ -873,7 +854,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
             this.Blur2 = Create_Gaussian_Image(stack4, sigma3, sigma3);
 
             sML(stack1);
-            start_SME_gui(3, FFT_1D_(stack1));
+            kmean_clustering(3, FFT_1D_(stack1));
             Gaussian_Filter_(Rearrange_Map2DImage(Image_Segmented(kmeansLabels)));
         }
 
@@ -887,7 +868,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
 
             imp.show();
             sML(stack1);
-            start_SME_gui(3, FFT_1D_(stack1));
+            kmean_clustering(3, FFT_1D_(stack1));
             Rearrange_Map2DImage(Image_Segmented(kmeansLabels));
 
 
