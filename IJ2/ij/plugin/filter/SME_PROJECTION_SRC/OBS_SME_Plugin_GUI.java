@@ -29,7 +29,7 @@ import java.util.Random;
  Plugin Description :
  **/
 
-public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListener, SME_KMeansListener {
+public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListener, SME_KMeansListener {
 
     public ImagePlus imp;
     public ImagePlus imp2;
@@ -37,7 +37,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
     public ImagePlus imp5;
     public ImagePlus imp5_ind;
     public ImagePlus imp6;
-    //private SME_KMeans mKMeans;
+    //private SME_KMeans_Paralel mKMeans;
     public ImageStack stack;
     public double[] kmeansLabels;
     public double[][] kmeanCentroids;
@@ -77,7 +77,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
     // Concurrent components
 
     private boolean mRunning;
-    private SME_KMeans mKMeans;
+    private SME_KMeans_Paralel mKMeans;
     private SME_Cluster[] clustersKmeans;
     private static final String BASIC_KMEANS = "Basic K-Means Clustering";
     private static final String BENCHMARKED_KMEANS = "Benchmarked K-Means Clustering";
@@ -215,7 +215,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
                     exception.printStackTrace();
                 }
 
-                SME_GUI_Main frame = new SME_GUI_Main(numClust, coordClust);
+                OBS_SME_GUI_Main frame = new OBS_SME_GUI_Main(numClust, coordClust);
 
                 frame.validate();
 
@@ -355,7 +355,7 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
                     exception.printStackTrace();
                 }
 
-                /*SME_GUI_Main frame = new SME_GUI_Main();
+                /*OBS_SME_GUI_Main frame = new OBS_SME_GUI_Main();
                 frame.validate();
 
                 // Center the window
@@ -1036,13 +1036,13 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
 
                 String implementation = (String) mImplementationCB.getSelectedItem();
                 if (implementation == BASIC_KMEANS) {
-                    mKMeans = new OBS_SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new OBS_SME_BasicKMeansInterface(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == BENCHMARKED_KMEANS) {
-                    mKMeans = new SME_BenchmarkedKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new SME_BenchmarkedKMeansInterface(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == CONCURRENT_KMEANS) {
                     try {
                         int threadCount = (int) getEnteredValue(mThreadCountTF, 1L, 20L);
-                        mKMeans = new SME_ConcurrentKMeans(coordinates, clusterCount, 500, randomSeed, threadCount);
+                        mKMeans = new SME_KMeans_Concurrent(coordinates, clusterCount, 500, randomSeed, threadCount);
                     } catch (RuntimeException rte2) {
                         JOptionPane.showMessageDialog(this,
                                 "The thread count entry is invalid (" + rte2.getMessage() +
@@ -1109,13 +1109,13 @@ public class SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionListe
 
                 String implementation = (String) mImplementationCB.getSelectedItem();
                 if (implementation == BASIC_KMEANS) {
-                    mKMeans = new OBS_SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new OBS_SME_BasicKMeansInterface(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == BENCHMARKED_KMEANS) {
-                    mKMeans = new SME_BenchmarkedKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new SME_BenchmarkedKMeansInterface(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == CONCURRENT_KMEANS) {
                     try {
                         int threadCount = (int) getEnteredValue(mThreadCountTF, 1L, 20L);
-                        mKMeans = new SME_ConcurrentKMeans(coordinates, clusterCount, 500, randomSeed, threadCount);
+                        mKMeans = new SME_KMeans_Concurrent(coordinates, clusterCount, 500, randomSeed, threadCount);
                     } catch (RuntimeException rte2) {
                         JOptionPane.showMessageDialog(this,
                                 "The thread count entry is invalid (" + rte2.getMessage() +

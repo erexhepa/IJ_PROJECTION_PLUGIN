@@ -609,7 +609,7 @@ public class ZProjector implements PlugIn {
 				fpixels[i] /= fnum;
 		}
 
-    } // end AverageIntensity
+    } // end SME_Projection_Average_Intensity
 
 
      /** Compute max intensity projection. */

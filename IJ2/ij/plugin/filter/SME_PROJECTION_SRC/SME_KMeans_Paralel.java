@@ -3,7 +3,7 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 /**
  * K-Means clustering interface.
  */
-public interface SME_KMeans extends Runnable {
+public interface SME_KMeans_Paralel extends Runnable {
     
     /** 
      * Adds a KMeansListener to be notified of significant happenings.

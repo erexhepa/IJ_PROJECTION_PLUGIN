@@ -35,7 +35,7 @@ public class SME_Plugin implements PlugInFilter {
     public ImagePlus imp5;
     public ImagePlus imp5_ind;
     public ImagePlus imp6;
-    private SME_KMeans mKMeans;
+    private SME_KMeans_Paralel mKMeans;
     public ImageStack stack;
     public double[] kmeansLabels;
     public double[][] kmeanCentroids;
@@ -51,6 +51,7 @@ public class SME_Plugin implements PlugInFilter {
     public ImageStack stack1;
     public float[][] Map2DImage;
     private SME_Cluster[] clustersKmean;
+    private SME_ENS_GUI_MAIN gui_main = null;
 
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;
@@ -66,8 +67,47 @@ public class SME_Plugin implements PlugInFilter {
         ImageStack stack3 = stack.duplicate();   // Duplicates the original stack image
         ImageStack stack4 = stack.duplicate();   // Duplicates the original stack image
 
+        // initialise gui
+
+        gui_main = new SME_ENS_GUI_MAIN();
+
+        // Set gui object local variables
+        gui_main.setCurrentImage(new ImagePlus("Current Stack",stack));
+        gui_main.setProcessedImage(new ImagePlus("Current Stack",stack));
+        gui_main.setTmpImage(new ImagePlus("Current Stack",stack));
+        gui_main.initGUI();
+        gui_main.setVisible(Boolean.TRUE);
+        gui_main.validate();
+        gui_main.repaint();
+
         //showDialog(stack2, stack3, stack4);
         //kmeanTestGUI("test");
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.
+                            getSystemLookAndFeelClassName());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+
+                gui_main.validate();
+
+                // Center the window
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                Dimension frameSize = gui_main.getSize();
+                if (frameSize.height > screenSize.height) {
+                    frameSize.height = screenSize.height;
+                }
+                if (frameSize.width > screenSize.width) {
+                    frameSize.width = screenSize.width;
+                }
+                gui_main.setLocation((screenSize.width - frameSize.width) / 2,
+                        (screenSize.height - frameSize.height) / 2);
+                gui_main.setVisible(true);
+            }
+        });
 
         //TODO replace code above with appropriate code to perform the projection
 
@@ -336,22 +376,20 @@ public class SME_Plugin implements PlugInFilter {
                         exception.printStackTrace();
                     }
 
-                    SME_GUI_Main frame = new SME_GUI_Main(numClust, coordClust);
-
-                    frame.validate();
+                    gui_main.validate();
 
                     // Center the window
                     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                    Dimension frameSize = frame.getSize();
+                    Dimension frameSize = gui_main.getSize();
                     if (frameSize.height > screenSize.height) {
                         frameSize.height = screenSize.height;
                     }
                     if (frameSize.width > screenSize.width) {
                         frameSize.width = screenSize.width;
                     }
-                    frame.setLocation((screenSize.width - frameSize.width) / 2,
+                    gui_main.setLocation((screenSize.width - frameSize.width) / 2,
                             (screenSize.height - frameSize.height) / 2);
-                    frame.setVisible(true);
+                    gui_main.setVisible(true);
                     //frame.actionPerformedRun();
                     //clustersKmean = frame.getClustersKmeans();*/
                 }

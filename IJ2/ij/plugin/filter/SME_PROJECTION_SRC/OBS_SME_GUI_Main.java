@@ -12,7 +12,7 @@ import java.util.*;
  * Swing-based program for testing the versions of K-Means on 
  * randomly generated data.
  */
-public class SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansListener {
+public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansListener {
 
     JPanel contentPane;
     BorderLayout borderLayout1 = new BorderLayout();
@@ -33,7 +33,7 @@ public class SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansLi
     JTextField mThreadCountTF = new JTextField();
 
     private boolean mRunning;
-    private SME_KMeans mKMeans;
+    private SME_KMeans_Paralel mKMeans;
     private SME_Cluster[] clustersKmeans;
     private static final String BASIC_KMEANS = "Basic K-Means Clustering";
     private static final String BENCHMARKED_KMEANS = "Benchmarked K-Means Clustering";
@@ -51,7 +51,7 @@ public class SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansLi
     }
 
 
-    public SME_GUI_Main(int numClust_, double[][] result_fft) {
+    public OBS_SME_GUI_Main(int numClust_, double[][] result_fft) {
             
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         coordinates = result_fft;
@@ -206,67 +206,6 @@ public class SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansLi
         //return data2cluster;
     }
 
-    public synchronized void actionPerformedRun( ) {
-
-        {
-
-            // Ensure entered parameters make sense.
-            try {
-
-                int coordCount = (int) getEnteredValue (mCoordCountTF,
-                        1L, (long) Integer.MAX_VALUE);
-                int clusterCount = (int) getEnteredValue(mClusterCountTF,
-                        1L, (long) (coordCount - 1));
-                long randomSeed = getEnteredValue(mRandomSeedTF,
-                        Long.MIN_VALUE, Long.MAX_VALUE);
-
-                //TODO: add number of dimensions for the test
-                //double[][] coordinates = generateCoordinates(coordCount, 50, clusterCount, randomSeed);
-
-                String implementation = (String) mImplementationCB.getSelectedItem();
-                if (implementation == BASIC_KMEANS) {
-                    mKMeans = new OBS_SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
-                } else if (implementation == BENCHMARKED_KMEANS) {
-                    mKMeans = new SME_BenchmarkedKMeans(coordinates, clusterCount, 500, randomSeed);
-                } else if (implementation == CONCURRENT_KMEANS) {
-                    try {
-                        int threadCount = (int) getEnteredValue(mThreadCountTF, 1L, 20L);
-                        mKMeans = new SME_ConcurrentKMeans(coordinates, clusterCount, 500, randomSeed, threadCount);
-                    } catch (RuntimeException rte2) {
-                        JOptionPane.showMessageDialog(this,
-                                "The thread count entry is invalid (" + rte2.getMessage() +
-                                        ").\nPlease enter a thread count in the range [1 - 20].",
-                                "Invalid Entry", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                }
-
-                if (mKMeans != null) {
-                    // Force gc, so resources taken up by a previous run that haven't
-                    // been freed yet, will not affect this test.
-                    System.gc();
-
-                    mMessageArea.setText("");
-                    mKMeans.addKMeansListener(this);
-                    mRunButton.setEnabled(false);
-                    new Thread(mKMeans).start();
-                    mRunning = true;
-                    clustersKmeans = mKMeans.getClusters();
-                }
-
-            } catch (RuntimeException rte) {
-
-                JOptionPane.showMessageDialog(this,
-                        "One or more entries are invalid (" + rte.getMessage() +
-                                ").\nPlease enter positive numbers for the number of coordinates and clusters\n" +
-                                "The number of clusters must be less than the number of coordinates.",
-                        "Invalid Entries", JOptionPane.ERROR_MESSAGE);
-
-            }
-
-        }
-    }
-
     /** Public method to show show help from ImageJ main help menu **/
 
     public void sme_gethelp(String helpIDcode){
@@ -298,13 +237,13 @@ public class SME_GUI_Main extends JFrame implements ActionListener, SME_KMeansLi
                 
                 String implementation = (String) mImplementationCB.getSelectedItem();
                 if (implementation == BASIC_KMEANS) {
-                    mKMeans = new OBS_SME_BasicKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new OBS_SME_BasicKMeansInterface(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == BENCHMARKED_KMEANS) {
-                    mKMeans = new SME_BenchmarkedKMeans(coordinates, clusterCount, 500, randomSeed);
+                    mKMeans = new SME_BenchmarkedKMeansInterface(coordinates, clusterCount, 500, randomSeed);
                 } else if (implementation == CONCURRENT_KMEANS) {
                     try {
                         int threadCount = (int) getEnteredValue(mThreadCountTF, 1L, 20L);
-                        mKMeans = new SME_ConcurrentKMeans(coordinates, clusterCount, 500, randomSeed, threadCount);
+                        mKMeans = new SME_KMeans_Concurrent(coordinates, clusterCount, 500, randomSeed, threadCount);
                     } catch (RuntimeException rte2) {
                         JOptionPane.showMessageDialog(this, 
                                 "The thread count entry is invalid (" + rte2.getMessage() +

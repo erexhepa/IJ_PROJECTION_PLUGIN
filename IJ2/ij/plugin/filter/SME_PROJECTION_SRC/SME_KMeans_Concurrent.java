@@ -1,13 +1,15 @@
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
- * Basic implementation of K-means clustering.  Since it's a Runnable, it's 
- * designed to be executed by a dedicated thread, but that thread
- * does not create any other threads to divide up the work.
+ * The version of K-means clustering adapted for true concurrency
+ * or simultaneous multithreading (SMT).  The subtasks of
+ * computing distances and making assignments are delegate to
+ * a subtask manager which oversees a thread pool.
  */
-public class OBS_SME_BasicKMeans implements SME_KMeans {
+public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
 
     // Temporary clusters used during the clustering process.  Converted to
     // an array of the simpler class Cluster at the conclusion.
@@ -31,9 +33,19 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
     // Seed for the random number generator used to select
     // coordinates for the initial cluster centers.
     private long mRandomSeed;
+    // The number of threads used to perform the subtasks.
+    private int mThreadCount;
+    // Subtask manager that handles the thread pool to which
+    // time-consuming tasks are delegated.
+    private SubtaskManager mSubtaskManager;
     
     // An array of Cluster objects: the output of k-means.
     private SME_Cluster[] mClusters;
+    private SME_Cluster[] mClusters2;
+
+    // An array of Cluster centers:
+    private double[][] centerCoordinates;
+    private double[][] centerCoordinates2;
 
     // Listeners to be notified of significant happenings.
     private List<SME_KMeansListener> mListeners = new ArrayList<SME_KMeansListener>(1);
@@ -45,14 +57,59 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
      * @param k  the number of desired clusters.
      * @param maxIterations the maximum number of clustering iterations.
      * @param randomSeed seed used with the random number generator.
+     * @param threadCount the number of threads to be used for computing time-consuming steps.
      */
-    public OBS_SME_BasicKMeans(double[][] coordinates, int k, int maxIterations,
-                               long randomSeed) {
+    public SME_KMeans_Concurrent(double[][] coordinates, int k, int maxIterations,
+                                 long randomSeed, int threadCount) {
         mCoordinates = coordinates;
         // Can't have more clusters than coordinates.
         mK = Math.min(k, mCoordinates.length);
         mMaxIterations = maxIterations;
         mRandomSeed = randomSeed;
+        mThreadCount = threadCount;
+    }
+
+    /**
+     * Constructor that uses the return from 
+     * <tt>Runtime.getRuntime().availableProcessors()</tt> as the number
+     * of threads for time-consuming steps.
+     * 
+     * @param coordinates two-dimensional array containing the coordinates to be clustered.
+     * @param k  the number of desired clusters.
+     * @param maxIterations the maximum number of clustering iterations.
+     * @param randomSeed seed used with the random number generator.
+     */
+    public SME_KMeans_Concurrent(double[][] coordinates, int k, int maxIterations,
+                                 long randomSeed) {
+        this (coordinates, k, maxIterations, randomSeed, 
+                Runtime.getRuntime().availableProcessors());
+    }
+
+    public SME_Cluster[] getmClusters2() {
+        return mClusters2;
+    }
+
+    public void setmClusters2(SME_Cluster[] mClusters2) {
+        this.mClusters2 = mClusters2;
+    }
+    public double[][] getCenterCoordinates2() {
+        return centerCoordinates2;
+    }
+
+    public void setCenterCoordinates2(double[][] centerCoordinates2) {
+        this.centerCoordinates2 = centerCoordinates2;
+    }
+
+    // getter for the cluster centers
+
+    public double[][] getCenterCoordinates() {
+        return centerCoordinates;
+    }
+
+    // setter for the cluster centers
+
+    public void setCenterCoordinates(double[][] centerCoordinates) {
+        this.centerCoordinates = centerCoordinates;
     }
 
     /** 
@@ -69,7 +126,7 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
     }
     
     /**
-     * Removes a KMeansListener from the listener list.
+     * Removes a KMeansListener
      * 
      * @param l the listener to be removed.
      */
@@ -128,7 +185,7 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             }
         }
     }
-
+    
     /**
      * Get the clusters computed by the algorithm.  This method should
      * not be called until clustering has completed successfully.
@@ -138,14 +195,14 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
     public SME_Cluster[] getClusters() {
         return mClusters;
     }
-    
+     
     /**
-     * Run the clustering algorithm.
+     * Run the clustering algorithm. Called by the Thread when start is called
      */
     public void run() {
 
         try {
-            
+
             // Note the start time.
             long startTime = System.currentTimeMillis();
             
@@ -154,8 +211,18 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             // Randomly initialize the cluster centers creating the
             // array mProtoClusters.
             initCenters();
-            
             postKMeansMessage("... centers initialized");
+
+            // Instantiate the subtask manager.
+            mSubtaskManager = new SubtaskManager(mThreadCount);
+
+            // Post a message about the state of concurrent subprocessing.
+            if (mThreadCount > 1) {
+                postKMeansMessage("... concurrent processing mode with "
+                            + mThreadCount + " subtask threads");
+            } else {
+                postKMeansMessage("... non-concurrent processing mode");
+            }
 
             // Perform the initial computation of distances.
             computeDistances();
@@ -176,7 +243,7 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             //   (it == mMaxIterations)
             //
             do {
-
+                
                 // Compute the centers of the clusters that need updating.
                 computeCenters();
                 
@@ -196,9 +263,11 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             // Transform the array of ProtoClusters to an array
             // of the simpler class Cluster.
             mClusters = generateFinalClusters();
-            
+
             long executionTime = System.currentTimeMillis() - startTime;
-            
+            this.setCenterCoordinates2(centerCoordinates);
+            this.setmClusters2(mClusters);
+
             postKMeansComplete(mClusters, executionTime);
             
         } catch (Throwable t) {
@@ -253,7 +322,7 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             mClusterAssignments[indices[i]] = i;
         }
     }
-
+    
     /**
      * Recompute the centers of the protoclusters with 
      * update flags set to true.
@@ -295,10 +364,9 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
      */
     private void computeDistances() throws SME_InsufficientMemoryException {
         
-        int numCoords = mCoordinates.length;
-        int numClusters = mProtoClusters.length;
-
         if (mDistanceCache == null) {
+            int numCoords = mCoordinates.length;
+            int numClusters = mProtoClusters.length;
             // Explicit garbage collection to reduce likelihood of insufficient
             // memory.
             System.gc();
@@ -312,19 +380,10 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             // and cluster centers
             mDistanceCache = new double[numCoords][numClusters];
         }
-
-        for (int coord=0; coord < numCoords; coord++) {
-            // Update the distances between the coordinate and all
-            // clusters currently in contention with update flags set.
-            for (int clust=0; clust<numClusters; clust++) {
-                ProtoCluster cluster = mProtoClusters[clust];
-                if (cluster.getConsiderForAssignment() && cluster.needsUpdate()) {
-                    mDistanceCache[coord][clust] = 
-                        distance(mCoordinates[coord], cluster.getCenter());
-                }
-            }
-        }
         
+        // Bulk of the work is delegated to the
+        // SubtaskManager.
+        mSubtaskManager.computeDistances();
     }
     
     /** 
@@ -334,11 +393,8 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
      */
     private int makeAssignments() {
 
-        int moves = 0;
-        int coordCount = mCoordinates.length;
-
         // Checkpoint the clusters, so we'll be able to tell
-        // which ones have changed after all the assignments have been
+        // which one have changed after all the assignments have been
         // made.
         int numClusters = mProtoClusters.length;
         for (int c = 0; c < numClusters; c++) {
@@ -347,17 +403,10 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             }
         }
 
-        // Now do the assignments.
-        for (int i = 0; i < coordCount; i++) {
-            int c = nearestCluster(i);
-            mProtoClusters[c].add(i);
-            if (mClusterAssignments[i] != c) {
-                mClusterAssignments[i] = c;
-                moves++;
-            }
-        }
-
-        return moves;
+        // Bulk of the work is delegated to the SubtaskManager.
+        mSubtaskManager.makeAssignments();
+        // Get the number of moves from the SubtaskManager.
+        return mSubtaskManager.numberOfMoves();
     }
 
     /**
@@ -428,6 +477,10 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
         mProtoClusters = null;
         mDistanceCache = null;
         mClusterAssignments = null;
+        if (mSubtaskManager != null) {
+            mSubtaskManager.shutdown();
+            mSubtaskManager = null;
+        }
     }
 
     /**
@@ -501,11 +554,13 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
         }
 
         /**
-         * Add a coordinate to the protocluster.
+         * Add a coordinate to the protocluster. Note that this
+         * method has to be synchronized, because multiple threads
+         * may be adding members to the cluster.
          * 
          * @param ndx index of the coordinate to be added.
          */
-        void add(int ndx) {
+        synchronized void add(int ndx) {
             // Ensure there's space to add the new member.
             if (mCurrentSize == mCurrentMembership.length) {
                 // If not, double the size of mCurrentMembership.
@@ -536,6 +591,10 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
             // Trim the current membership array length down to the
             // number of members.
             trimCurrentMembership();
+            // Since members may have been added by multiple threads, they
+            // are probably not in order.  They must be sorted in order to
+            // do a valid comparison with mPreviousMembership.
+            Arrays.sort(mCurrentMembership);
             mUpdateFlag = false;
             if (mPreviousMembership.length == mCurrentSize) {
                 for (int i=0; i<mCurrentSize; i++) {
@@ -610,4 +669,335 @@ public class OBS_SME_BasicKMeans implements SME_KMeans {
         }
     }
 
+    /**
+     * The class which manages the SMT-adapted subtasks.
+     */
+    private class SubtaskManager {
+        
+        // Codes used to identify what step is being done.
+        static final int DOING_NOTHING = 0;
+        static final int COMPUTING_DISTANCES = 1;
+        static final int MAKING_ASSIGNMENTS = 2;
+
+        // What the object is currently doing. Set to one of the 
+        // three codes above.
+        private int mDoing = DOING_NOTHING;
+
+        // True if the at least one of the Workers is doing something.
+        private boolean mWorking;
+
+        // The executor that runs the Workers.
+        // When in multiple processor mode, this is a ThreadPoolExecutor 
+        // with a fixed number of threads. In single-processor mode, it's
+        // a simple implementation that calls the single worker's run
+        // method directly.
+        private Executor mExecutor;
+
+        // A Barrier to wait on multiple Workers to finish up the current task.
+        // In single-processor mode, there is no need for a barrier, so it
+        // is not set.
+        private CyclicBarrier mBarrier;
+
+        // The worker objects which implement Runnable.
+        private Worker[] mWorkers;
+
+        /**
+         * Constructor
+         * 
+         * @param numThreads the number of worker threads to be used for
+         *   the subtasks.
+         */
+        SubtaskManager(int numThreads) {
+            
+            if (numThreads <= 0) {
+                throw new IllegalArgumentException("number of threads <= 0: "
+                        + numThreads);
+            }
+
+            int coordCount = mCoordinates.length;
+
+            // There would be no point in having more workers than
+            // coordinates, since some of the workers would have nothing
+            // to do.
+            if (numThreads > coordCount) {
+                numThreads = coordCount;
+            }
+
+            // Create the workers.
+            mWorkers = new Worker[numThreads];
+
+            // To hold the number of coordinates for each worker.
+            int[] coordsPerWorker = new int[numThreads];
+            
+            // Initialize with the base amounts.  
+            Arrays.fill(coordsPerWorker, coordCount/numThreads);
+            
+            // There may be some leftovers, since coordCount may not be
+            // evenly divisible by numWorkers. Add a coordinate to each
+            // until all are covered.
+            int leftOvers = coordCount - numThreads * coordsPerWorker[0];
+            for (int i = 0; i < leftOvers; i++) {
+                coordsPerWorker[i]++;
+            }
+
+            int startCoord = 0;
+            // Instantiate the workers.
+            for (int i = 0; i < numThreads; i++) {
+                // Each worker needs to know its starting coordinate and the number of 
+                // coordinates it handles.
+                // every worker get a set of coordinates
+                mWorkers[i] = new Worker(startCoord, coordsPerWorker[i]);
+                startCoord += coordsPerWorker[i];
+            }
+
+            if (numThreads == 1) { // Single-processor mode.
+                
+                // Create a simple executor that directly calls the single
+                // worker's run method.  Do not set the barrier.
+                mExecutor = new Executor() {
+                    public void execute(Runnable runnable) {
+                        if (!Thread.interrupted()) {
+                            runnable.run();
+                        } else {
+                            throw new RejectedExecutionException();
+                        }
+                    }
+                };
+                
+            } else { // Multiple-processor mode.
+                
+                // Need the barrier to notify the controlling thread when the
+                // Workers are done.
+                mBarrier = new CyclicBarrier(numThreads, new Runnable() {
+                    public void run() {
+                        // Method called after all workers haved called await() on the
+                        // barrier.  The call to workersDone() 
+                        // unblocks the controlling thread.
+                        workersDone();
+                    }
+                });
+
+                // Set the executor to a fixed thread pool with 
+                // threads that do not time out.
+                mExecutor = Executors.newFixedThreadPool(numThreads);
+            }
+        }
+
+        /**
+         * Make the cluster assignments.
+         * 
+         * @return true if nothing went wrong.
+         */
+        boolean makeAssignments() {
+            mDoing = MAKING_ASSIGNMENTS;
+            return work();
+        }
+
+        /**
+         * Compute the distances between the coordinates and those centers with
+         * update flags.
+         * 
+         * @return true if nothing went wrong.
+         */
+        boolean computeDistances() {
+            mDoing = COMPUTING_DISTANCES;
+            return work();
+        }
+        
+        /** 
+         * Perform the current subtask, waiting until all the workers
+         * finish their part of the current task before returning.
+         * 
+         * @return true if the subtask succeeded.
+         */
+        private boolean work() {
+            boolean ok = false;
+            // Set the working flag to true.
+            mWorking = true;
+            try {
+                if (mBarrier != null) {
+                    // Resets the barrier so it can be reused if
+                    // this is not the first call to this method.
+                    mBarrier.reset();
+                }
+                // Now execute the run methods on the Workers.  
+                for (int i = 0; i < mWorkers.length; i++) {
+                    mExecutor.execute(mWorkers[i]);
+                }
+                if (mBarrier != null) {
+                    // Block until the workers are done.  The barrier
+                    // triggers the unblocking.
+                    waitOnWorkers();
+                    // If the isBroken() method of the barrier returns false, 
+                    // no problems.
+                    ok = !mBarrier.isBroken();
+                } else {
+                    // No barrier, so the run() method of a single worker
+                    // was called directly and everything must have worked
+                    // if we made it here.
+                    ok = true;
+                }
+            } catch (RejectedExecutionException ree) {
+                // Possibly thrown by the executor.
+            } finally {
+                mWorking = false;
+            }
+            return ok;
+        }
+
+        /**
+         * Called from work() to put the controlling thread into
+         * wait mode until the barrier calls workersDone().
+         */
+        private synchronized void waitOnWorkers() {
+            // It is possible for the workers to have finished so quickly that
+            // workersDone() has already been called.  Since workersDone() sets
+            // mWorking to false, check this flag before going into wait mode.
+            // Not doing so could result in hanging the SubtaskManager.
+            while (mWorking) {
+                try {
+                    // Blocks until workersDone() is called.
+                    wait();
+                } catch (InterruptedException ie) {
+                    // mBarrier.isBroken() will return true.
+                    break;
+                }
+            }
+        }
+
+        /**
+         * Notifies the controlling thread that it can come out of
+         * wait mode.
+         */
+        private synchronized void workersDone() {
+            // If this gets called before waitOnWorkers(), setting this
+            // to false prevents waitOnWorkers() from entering a 
+            // permanent wait.
+            mWorking = false;
+            notifyAll();
+        }
+
+        /**
+         * Shutdown the thread pool when k-means is finished.
+         */
+        void shutdown() {
+            if (mExecutor instanceof ThreadPoolExecutor) {
+                // This terminates the threads in the thread pool.
+                ((ThreadPoolExecutor) mExecutor).shutdownNow();
+            }
+        }
+
+        /** 
+         * Returns the number of cluster assignment changes made in the
+         * previous call to makeAssignments().
+         */
+        int numberOfMoves() {
+            // Sum the contributions from the workers.
+            int moves = 0;
+            for (int i=0; i<mWorkers.length; i++) {
+                moves += mWorkers[i].numberOfMoves();
+            }
+            return moves;
+        }
+
+        /**
+         * The class which does the hard work of the subtasks.
+         */
+        private class Worker implements Runnable {
+
+            // Defines range of coordinates to cover.
+            private int mStartCoord, mNumCoords;
+
+            // Number of moves made by this worker in the last call
+            // to workerMakeAssignments().  The SubtaskManager totals up
+            // this value from all the workers in numberOfMoves().
+            private int mMoves;
+
+            /**
+             * Constructor
+             * 
+             * @param startCoord index of the first coordinate covered by
+             *   this Worker.
+             * @param numCoords the number of coordinates covered.
+             */
+            Worker(int startCoord, int numCoords) {
+                mStartCoord = startCoord;
+                mNumCoords = numCoords;
+            }
+
+            /**
+             * Returns the number of moves this worker made in the last
+             * execution of workerMakeAssignments()
+             */
+            int numberOfMoves() {
+                return mMoves;
+            }
+            
+            /**
+             * The run method.  It accesses the SubtaskManager field mDoing
+             * to determine what subtask to perform.
+             */
+            public void run() {
+
+                try {
+                    switch (mDoing) {
+                    case COMPUTING_DISTANCES:
+                        workerComputeDistances();
+                        break;
+                    case MAKING_ASSIGNMENTS:
+                        workerMakeAssignments();
+                        break;
+                    }
+                } finally {
+                    // If there's a barrier, call its await() method.  To ensure it
+                    // gets done, it's placed in the finally clause.
+                    if (mBarrier != null) {
+                        try {
+                            mBarrier.await();
+                        // barrier.isBroken() will return true if either of these
+                        // exceptions happens, so the SubtaskManager will detect
+                        // the problem.
+                        } catch (InterruptedException ex) {
+                        } catch (BrokenBarrierException ex) {
+                        }
+                    }
+                }
+                
+            }
+
+            /**
+             * Compute the distances for the covered coordinates
+             * to the updated centers.
+             */
+            private void workerComputeDistances() {
+                int lim = mStartCoord + mNumCoords;
+                for (int i = mStartCoord; i < lim; i++) {
+                    int numClusters = mProtoClusters.length;
+                    for (int c = 0; c < numClusters; c++) {
+                        ProtoCluster cluster = mProtoClusters[c];
+                        if (cluster.getConsiderForAssignment() && cluster.needsUpdate()) {
+                            mDistanceCache[i][c] = distance(mCoordinates[i], cluster.getCenter()); 
+                        }
+                    }
+                } 
+            }
+
+            /**
+             * Assign each covered coordinate to the nearest cluster.
+             */
+            private void workerMakeAssignments() {
+                mMoves = 0;
+                int lim = mStartCoord + mNumCoords;
+                for (int i = mStartCoord; i < lim; i++) {
+                    int c = nearestCluster(i);
+                    mProtoClusters[c].add(i);
+                    if (mClusterAssignments[i] != c) {
+                        mClusterAssignments[i] = c;
+                        mMoves++;
+                    }
+                }
+            }
+
+        }
+    }
 }

@@ -7,7 +7,7 @@ import java.util.*;
  * Same as BasicKMeans, but with the addition of 
  * timing statements.
  */
-public class SME_BenchmarkedKMeans implements SME_KMeans {
+public class SME_BenchmarkedKMeansInterface implements SME_KMeans_Paralel {
 
     // Temporary clusters used during the clustering process.  Converted to
     // an array of the simpler class Cluster at the conclusion.
@@ -52,8 +52,8 @@ public class SME_BenchmarkedKMeans implements SME_KMeans {
      * @param maxIterations the maximum number of clustering iterations.
      * @param randomSeed seed used with the random number generator.
      */
-    public SME_BenchmarkedKMeans(double[][] coordinates, int k, int maxIterations,
-                                 long randomSeed) {
+    public SME_BenchmarkedKMeansInterface(double[][] coordinates, int k, int maxIterations,
+                                          long randomSeed) {
         mCoordinates = coordinates;
         // Can't have more clusters than coordinates.
         mK = Math.min(k, mCoordinates.length);

@@ -93,7 +93,7 @@ public class SME_Plugin implements PlugInFilter {
                     exception.printStackTrace();
                 }
 
-                /*SME_GUI_Main frame = new SME_GUI_Main();
+                /*OBS_SME_GUI_Main frame = new OBS_SME_GUI_Main();
                 frame.validate();
 
                 // Center the window
