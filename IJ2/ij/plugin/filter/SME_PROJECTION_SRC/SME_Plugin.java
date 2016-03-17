@@ -48,7 +48,7 @@ public class SME_Plugin implements PlugInFilter {
     public ImageStack Blur3;
     public ImageStack Blur4;
     public ImageStack Blur5;
-    public ImageStack stack1;
+    private ImageStack stack1;
     public float[][] Map2DImage;
     private SME_Cluster[] clustersKmean;
     private SME_ENS_GUI_MAIN gui_main = null;
@@ -68,9 +68,9 @@ public class SME_Plugin implements PlugInFilter {
         ImageStack stack4 = stack.duplicate();   // Duplicates the original stack image
 
         // initialise gui
+        gui_main = new SME_ENS_GUI_MAIN(this);
 
-        gui_main = new SME_ENS_GUI_MAIN();
-
+        //TODO replace code above with appropriate code to perform the projection
         // Set gui object local variables
         gui_main.setCurrentImage(new ImagePlus("Current Stack",stack));
         gui_main.setProcessedImage(new ImagePlus("Current Stack",stack));
@@ -79,10 +79,25 @@ public class SME_Plugin implements PlugInFilter {
         gui_main.setVisible(Boolean.TRUE);
         gui_main.validate();
         gui_main.repaint();
+        refreshGUI();
 
         //showDialog(stack2, stack3, stack4);
         //kmeanTestGUI("test");
 
+        //sML(stack1); // TODO: remplace this with call to creation of a new object plus method to handle filtering and returning the new ImageStack
+        //Kmeans_(3, FFT_1D_(stack1)); // TODO: remplace this with call to creation of a new object plus method to handle KMean clustering
+        // Gaussian_Filter_(Image_Segmented(kmeansLabels));
+
+//        Sigma_choice_auto();
+    }
+
+    public ImageStack getStacktmp(){return stack1;}
+
+    public void runSml(){sML(stack1);}
+
+    public void runKmeans(){Kmeans_(3, FFT_1D_(stack1));}
+
+    public void refreshGUI(){
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -108,16 +123,7 @@ public class SME_Plugin implements PlugInFilter {
                 gui_main.setVisible(true);
             }
         });
-
-        //TODO replace code above with appropriate code to perform the projection
-
-        sML(stack1);
-        Kmeans_(3, FFT_1D_(stack1));
-        // Gaussian_Filter_(Image_Segmented(kmeansLabels));
-
-//        Sigma_choice_auto();
     }
-
     /**
      * Applying the sML filter on the Original ImageStack
      *

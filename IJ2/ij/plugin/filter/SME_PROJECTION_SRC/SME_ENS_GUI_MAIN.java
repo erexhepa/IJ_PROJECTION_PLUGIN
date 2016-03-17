@@ -12,10 +12,12 @@ import java.awt.event.ActionListener;
  * Created by rexhepaj on 16/03/16.
  */
 public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
+    private SME_Plugin smePlugin;
 
     // Set ImageJ graphical components
     private ImagePlus currentImage ;
     private ImagePlus processedImage;
+    private Image outputIm ;
     private ImagePlus tmpImage ;
     public ImageStack imageStack;
 
@@ -50,6 +52,10 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     private static final String SUM_SLICE = "Sum Slices";
     private static final String STD_INT = "Standard Deviation";
     private static final String MED_INT = "Median Deviation";
+    private String[] projMethods = new String[6];
+
+    private static final int WIDTHSHOW  = 500;
+    private static final int HEIGHTSHOW = 500;
 
     private double[][] coordinates ;
 
@@ -60,7 +66,15 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     /**
      * Constructor called to initialize the graphical interface
      */
-    public SME_ENS_GUI_MAIN() {
+    public SME_ENS_GUI_MAIN(SME_Plugin sme_plugin) {
+        projMethods[0] = AVG_INT;
+        projMethods[1] = MAX_INT;
+        projMethods[2] = MED_INT;
+        projMethods[3] = MIN_INT;
+        projMethods[4] = STD_INT;
+        projMethods[5] = SUM_SLICE;
+
+        smePlugin = sme_plugin;
         System.out.print("Debug");
         //super("FrameDemo");
     }
@@ -164,9 +178,10 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.gridwidth = 2;
         cMain.gridx = 0;
         cMain.gridy = 1;
-        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component(currentImage,Boolean.TRUE, currentImage.getWidth(), currentImage.getHeight(), "blabla");
 
-        controlPanel.add(imcontent, cMain);
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component(currentImage,Boolean.TRUE, currentImage.getWidth(), currentImage.getHeight(), 0);
+        JLabel picLabel = new JLabel(new ImageIcon(imcontent.getIm2Show().getScaledInstance(WIDTHSHOW,HEIGHTSHOW, Image.SCALE_DEFAULT)));
+        controlPanel.add(picLabel, cMain);
 
         // add batch run control buttons
         cMain.ipady = 10;
@@ -188,6 +203,11 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
         controlPanel.setVisible(Boolean.TRUE);
         this.setVisible(Boolean.TRUE);
+
+        //TestFrame tframe = new TestFrame(imcontent.getIm2Show()) ;
+        //tframe.setVisible(Boolean.TRUE);
+        //tframe.repaint();
+        System.out.println("new line");
     }
 
     // Action listeners
@@ -196,12 +216,102 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
         // switch depending on the source of the action button the according response
 
-        if (e.getSource() == batchRunButton && !mRunning) {
-            System.out.println("new line");
+        if (e.getSource() == standartProjectionMethods ) {
+            // case where action came from the drop menu
+            int selIndex = standartProjectionMethods.getSelectedIndex();
+            updateProjectionRaw(selIndex);
+
+        }else if(e.getSource() == batchRunButton){
+            //run batch mode
+            runBatchStep();
+            updateProjectionOutput(outputIm);
+
+        }else if(e.getSource() == smlRunButton){
+            //run sml - step 1
+            runSmlStep();
+            updateProjectionOutput(outputIm);
+
+        }else if(e.getSource() == kmeanRunButton){
+            //run kmean - step 2
+            runKmeansStep();
+            updateProjectionOutput(outputIm);
+
+        }else if(e.getSource() == enoptRunButton){
+            //run enopt - step 3
+            runEnoptStep();
+            updateProjectionOutput(outputIm);
+
+        }else if(e.getSource() == saveImButton){
+            //save current output
+            runSaveimStep();
         }
+
     }
 
-   // Getter and setters
+    public void runSmlStep(){
+        smePlugin.runSml();
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( IJ.getImage(),Boolean.TRUE,
+                currentImage.getWidth(), currentImage.getHeight(),6);
+        outputIm = imcontent.getIm2Show();
+    }
+
+    public void runKmeansStep(){
+        smePlugin.runKmeans();
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( IJ.getImage(),Boolean.TRUE,
+                currentImage.getWidth(), currentImage.getHeight(),6);
+        outputIm = imcontent.getIm2Show();
+    }
+
+    public void runEnoptStep(){
+
+    }
+
+    public void runSaveimStep(){
+
+    }
+
+    public void runBatchStep(){
+
+    }
+
+    public void updateProjectionRaw(int projectionIndex){
+        // add images
+        cMain.ipady = 10;
+        cMain.ipadx = 10;
+        cMain.weightx = 1;
+        cMain.gridwidth = 2;
+        cMain.gridx = 0;
+        cMain.gridy = 1;
+
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component(currentImage,Boolean.TRUE,
+                currentImage.getWidth(), currentImage.getHeight(),projectionIndex);
+        Image image2icon = imcontent.getIm2Show();
+        JLabel picLabel = new JLabel(new ImageIcon(image2icon.getScaledInstance(WIDTHSHOW, HEIGHTSHOW, Image.SCALE_DEFAULT)));
+        controlPanel.add(picLabel, cMain);
+
+        controlPanel.setVisible(Boolean.TRUE);
+        this.repaint();
+        this.setVisible(Boolean.TRUE);
+    }
+
+    public void updateProjectionOutput(Image outputIM){
+        // add images
+        cMain.ipady = 10;
+        cMain.ipadx = 10;
+        cMain.weightx = 1;
+        cMain.gridwidth = 2;
+        cMain.gridx = 2;
+        cMain.gridy = 1;
+
+        JLabel picLabel = new JLabel(new ImageIcon(outputIM.getScaledInstance(500, 500, Image.SCALE_DEFAULT)));
+        controlPanel.add(picLabel, cMain);
+
+        controlPanel.setVisible(Boolean.TRUE);
+        this.repaint();
+        this.setVisible(Boolean.TRUE);
+    }
+
+   /************************************************** Getter and setters********************************************/
 
     public ImagePlus getCurrentImage() {
         return currentImage;
@@ -225,5 +335,28 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
     public void setTmpImage(ImagePlus tmpImage) {
         this.tmpImage = tmpImage;
+    }
+
+
+    /*******************************************************************************************************/
+
+    // Add a template JFrame to show images
+
+    class TestFrame extends JFrame
+    {
+        public TestFrame(Image im2show) {
+            // setSize(1000, 750);  <---- do not do it
+            // setResizable(false); <----- do not do it either, unless any good reason
+
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setTitle("Test JFrame to illustrate Image");
+
+            JLabel label = new JLabel(new ImageIcon(im2show));
+            JScrollPane scrollPane = new JScrollPane(label);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+            add(scrollPane, BorderLayout.CENTER);
+            pack();
+        }
     }
 }

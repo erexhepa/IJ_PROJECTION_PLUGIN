@@ -23,12 +23,12 @@ public class SME_ENS_Image_Component extends JComponent {
     private boolean allTimeFrames = true;/** Project all time points? */
     private int drawWidth = 200;
     private int drawHeight = 200;
-    private String methodProject = "MAX_INT";
+    private int methodProject = 0;
     /**
      * Constructor to build the image for the display
      * @param imstk
      */
-    public SME_ENS_Image_Component(ImagePlus imstk, Boolean imProj, int dWidth, int dHeight, String projMeth){
+    public SME_ENS_Image_Component(ImagePlus imstk, Boolean imProj, int dWidth, int dHeight, int projMeth){
         imp = imstk;
         projectImage = imProj;
         drawHeight = dHeight;
@@ -41,7 +41,7 @@ public class SME_ENS_Image_Component extends JComponent {
      * Method projecting a multilayer stack image into a single layer by MAX projection
      * @return
      */
-    private void stk2im(ImagePlus imstack, String projMeth){
+    private void stk2im(ImagePlus imstack, int projMeth){
         SME_ENS_Image_Prepare sipStk = new SME_ENS_Image_Prepare(imp,true);
         imShow = sipStk.getImageFromProjection(projMeth);
     }
@@ -58,4 +58,7 @@ public class SME_ENS_Image_Component extends JComponent {
                 if(i+j>0) g.copyArea(0, 0, imageWidth, imageHeight, i*imageWidth, j*imageHeight);
     }
 
+    public Image getIm2Show(){
+        return imShow;
+    }
 }

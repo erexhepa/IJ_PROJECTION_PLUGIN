@@ -71,9 +71,9 @@ public class SME_ENS_Image_Prepare {
         stopSlice = imp.getStackSize();
     }
 
-    public Image getImageFromProjection(String projectionMeth){
+    public Image getImageFromProjection(int projectionMeth){
         Image im2show = null;
-
+        method = projectionMeth;
         // TODO: change the projection method according to the value of the string projectionMeth
         runZProject();
 
