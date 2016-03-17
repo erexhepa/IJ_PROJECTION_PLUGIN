@@ -1,8 +1,6 @@
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
 import ij.ImagePlus;
-import ij.ImageStack;
-import ij.Prefs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +8,7 @@ import java.awt.*;
 /**
  * Created by rexhepaj on 16/03/16.
  */
-public class SME_image_component extends JComponent {
+public class SME_ENS_Image_Component extends JComponent {
     /**
      * Image stack context
      */
@@ -30,7 +28,7 @@ public class SME_image_component extends JComponent {
      * Constructor to build the image for the display
      * @param imstk
      */
-    public SME_image_component(ImagePlus imstk,Boolean imProj, int dWidth, int dHeight, String projMeth){
+    public SME_ENS_Image_Component(ImagePlus imstk, Boolean imProj, int dWidth, int dHeight, String projMeth){
         imp = imstk;
         projectImage = imProj;
         drawHeight = dHeight;
@@ -44,7 +42,7 @@ public class SME_image_component extends JComponent {
      * @return
      */
     private void stk2im(ImagePlus imstack, String projMeth){
-        SME_image_prepare sipStk = new SME_image_prepare(imp,true);
+        SME_ENS_Image_Prepare sipStk = new SME_ENS_Image_Prepare(imp,true);
         imShow = sipStk.getImageFromProjection(projMeth);
     }
 

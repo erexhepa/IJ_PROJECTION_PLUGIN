@@ -1,14 +1,14 @@
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
-public class SME_Filter_FFT_ {
+public class SME_ENS_Filter_FFT_ {
 
 
     // compute the FFT of x[], assuming its length is a power of 2
-    public static SME_Complex[] fft(SME_Complex[] x) {
+    public static SME_ENS_Complex[] fft(SME_ENS_Complex[] x) {
         int N = x.length;
 
         // base case
-        if (N == 1) return new SME_Complex[] { x[0] };
+        if (N == 1) return new SME_ENS_Complex[] { x[0] };
 
         // radix 2 Cooley-Tukey FFT
         if (N % 2 != 0) {
@@ -16,24 +16,24 @@ public class SME_Filter_FFT_ {
         }
 
         // fft of even terms
-        SME_Complex[] even = new SME_Complex[N/2];
+        SME_ENS_Complex[] even = new SME_ENS_Complex[N/2];
         for (int k = 0; k < N/2; k++) {
             even[k] = x[2*k];
         }
-        SME_Complex[] q = fft(even);
+        SME_ENS_Complex[] q = fft(even);
 
         // fft of odd terms
-        SME_Complex[] odd  = even;  // reuse the array
+        SME_ENS_Complex[] odd  = even;  // reuse the array
         for (int k = 0; k < N/2; k++) {
             odd[k] = x[2*k + 1];
         }
-        SME_Complex[] r = fft(odd);
+        SME_ENS_Complex[] r = fft(odd);
 
         // combine
-        SME_Complex[] y = new SME_Complex[N];
+        SME_ENS_Complex[] y = new SME_ENS_Complex[N];
         for (int k = 0; k < N/2; k++) {
             double kth = -2 * k * Math.PI / N;
-            SME_Complex wk = new SME_Complex(Math.cos(kth), Math.sin(kth));
+            SME_ENS_Complex wk = new SME_ENS_Complex(Math.cos(kth), Math.sin(kth));
             y[k]       = q[k].plus(wk.times(r[k]));
             y[k + N/2] = q[k].minus(wk.times(r[k]));
         }

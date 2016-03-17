@@ -1,11 +1,8 @@
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
 import ij.*;
-import ij.gui.GenericDialog;
 import ij.gui.Overlay;
 import ij.gui.Roi;
-import ij.plugin.ChannelSplitter;
-import ij.plugin.RGBStackMerge;
 import ij.process.ByteProcessor;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
@@ -17,7 +14,7 @@ import java.util.Arrays;
 /**
  * Created by rexhepaj on 16/03/16.
  */
-public class SME_image_prepare {
+public class SME_ENS_Image_Prepare {
     /**
      * Image stack context
      */
@@ -60,7 +57,7 @@ public class SME_image_prepare {
      * Constructor to build the image for the display
      * @param imstk
      */
-    public SME_image_prepare(ImagePlus imstk,Boolean imProj){
+    public SME_ENS_Image_Prepare(ImagePlus imstk, Boolean imProj){
         projectImage = imProj;
         setImage(imstk);
     }
@@ -123,7 +120,7 @@ public class SME_image_prepare {
         // Create new float processor for projected pixels.
         FloatProcessor fp = new FloatProcessor(imp.getWidth(),imp.getHeight());
         ImageStack stack = imp.getStack();
-        SME_Projection_Function rayFunc = getRayFunction(method, fp);
+        SME_ENS_Projection_Function rayFunc = getRayFunction(method, fp);
         if (IJ.debugMode==true) {
             IJ.log("\nProjecting stack from: "+startSlice
                     +" to: "+stopSlice);
@@ -199,20 +196,20 @@ public class SME_image_prepare {
     }
 
 
-    private SME_Projection_Function getRayFunction(int method, FloatProcessor fp) {
+    private SME_ENS_Projection_Function getRayFunction(int method, FloatProcessor fp) {
         switch (method) {
             case AVG_METHOD:
-                return new SME_Projection_Average_Intensity(fp, sliceCount);
+                return new SME_ENS_ENS_Projection_Average_Intensity(fp, sliceCount);
             case MAX_METHOD:
-                return new SME_Projection_Max_Intensity(fp);
+                return new SME_ENS_Projection_Max_Intensity(fp);
             case SUM_METHOD:
-                return new SME_Projection_Sum_Intensity(fp);
+                return new SME_ENS_Projection_Sum_Intensity(fp);
             case MEDIAN_METHOD:
-                return new SME_Projection_Median_Intensity(fp);
+                return new SME_ENS_Projection_Median_Intensity(fp);
             case MIN_METHOD:
-                return new SME_Projection_Min_Intensity(fp);
+                return new SME_ENS_Projection_Min_Intensity(fp);
             case SD_METHOD:
-                return new SME_Projection_STD_Intensity(fp, sliceCount);
+                return new SME_ENS_Projection_STD_Intensity(fp, sliceCount);
             default:
                 IJ.error("Z Project", "Unknown method.");
                 return null;
@@ -262,7 +259,7 @@ public class SME_image_prepare {
      array type. We do this rather than using more general
      ImageProcessor getPixelValue() and putPixel() methods because
      direct manipulation of pixel arrays is much more efficient.  */
-    private void projectSlice(Object pixelArray, SME_Projection_Function rayFunc, int ptype) {
+    private void projectSlice(Object pixelArray, SME_ENS_Projection_Function rayFunc, int ptype) {
         switch(ptype) {
             case BYTE_TYPE:
                 rayFunc.projectSlice((byte[])pixelArray);

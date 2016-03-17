@@ -6,12 +6,12 @@ import ij.process.FloatProcessor;
  * Created by rexhepaj on 16/03/16.
  * Compute standard deviation projection.
  * */
-class SME_Projection_STD_Intensity extends SME_Projection_Function {
+class SME_ENS_Projection_STD_Intensity extends SME_ENS_Projection_Function {
     private float[] result;
     private double[] sum, sum2;
     private int num,len;
 
-    public SME_Projection_STD_Intensity(FloatProcessor fp, int num) {
+    public SME_ENS_Projection_STD_Intensity(FloatProcessor fp, int num) {
         result = (float[])fp.getPixels();
         len = result.length;
         this.num = num;

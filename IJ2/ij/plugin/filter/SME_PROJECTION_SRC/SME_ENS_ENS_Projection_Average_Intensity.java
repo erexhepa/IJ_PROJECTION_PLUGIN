@@ -7,14 +7,14 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 import ij.process.FloatProcessor;
 
 /** Compute average intensity projection. */
-class SME_Projection_Average_Intensity extends SME_Projection_Function {
+class SME_ENS_ENS_Projection_Average_Intensity extends SME_ENS_Projection_Function {
     private float[] fpixels;
     private int num, len;
 
     /** Constructor requires number of slices to be
      projected. This is used to determine average at each
      pixel. */
-    public SME_Projection_Average_Intensity(FloatProcessor fp, int num) {
+    public SME_ENS_ENS_Projection_Average_Intensity(FloatProcessor fp, int num) {
         fpixels = (float[])fp.getPixels();
         len = fpixels.length;
         this.num = num;
@@ -41,4 +41,4 @@ class SME_Projection_Average_Intensity extends SME_Projection_Function {
             fpixels[i] /= fnum;
     }
 
-} // end SME_Projection_Average_Intensity
+} // end SME_ENS_ENS_Projection_Average_Intensity

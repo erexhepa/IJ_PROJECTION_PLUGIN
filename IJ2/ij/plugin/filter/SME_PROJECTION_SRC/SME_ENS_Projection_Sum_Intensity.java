@@ -1,16 +1,21 @@
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
+/**
+ * Created by rexhepaj on 16/03/16.
+ */
+
 import ij.process.FloatProcessor;
+
 /**
  * Compute max intensity projection.
  * */
-public class SME_Projection_Max_Intensity extends SME_Projection_Function  {
+public class SME_ENS_Projection_Sum_Intensity extends SME_ENS_Projection_Function {
 
     private float[] fpixels;
     private int len;
 
     /** Simple constructor since no preprocessing is necessary. */
-    public SME_Projection_Max_Intensity(FloatProcessor fp) {
+    public SME_ENS_Projection_Sum_Intensity(FloatProcessor fp) {
         fpixels = (float[])fp.getPixels();
         len = fpixels.length;
         for (int i=0; i<len; i++)
@@ -39,4 +44,3 @@ public class SME_Projection_Max_Intensity extends SME_Projection_Function  {
     }
 
 } // end MaxIntensity
-

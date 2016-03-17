@@ -299,7 +299,7 @@ public class FFT implements  PlugIn, Measurements {
         gd.setInsets(0, 35, 0);
         gd.addCheckbox("Fast Hartley Transform", displayFHT);
         gd.setInsets(0, 35, 0);
-        gd.addCheckbox("SME_Complex Fourier Transform", displayComplex);
+        gd.addCheckbox("SME_ENS_Complex Fourier Transform", displayComplex);
         gd.setInsets(8, 20, 0);
         gd.addCheckbox("Do forward transform", false);
         gd.addHelp(IJ.URL+"/docs/menus/process.html#fft-options");
@@ -356,7 +356,7 @@ public class FFT implements  PlugIn, Measurements {
         return stack2;
     }
     
-    /** SME_Complex to SME_Complex Inverse Fourier Transform
+    /** SME_ENS_Complex to SME_ENS_Complex Inverse Fourier Transform
     *   @author Joachim Wesner
     */
     void c2c2DFFT(float[] rein, float[] imin, int maxN, float[] reout, float[] imout) {

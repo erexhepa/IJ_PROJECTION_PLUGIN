@@ -7,7 +7,7 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
  * constructors.
  */
 
-abstract class SME_Projection_Function {
+abstract class SME_ENS_Projection_Function {
 
         /** Do actual slice projection for specific data types. */
         public abstract void projectSlice(byte[] pixels);

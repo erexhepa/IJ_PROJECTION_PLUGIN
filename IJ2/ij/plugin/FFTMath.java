@@ -120,7 +120,7 @@ public class FFTMath implements PlugIn {
 		FHT result=null;
 		switch (operation) {
 			case CONJUGATE_MULTIPLY: 
-				IJ.showStatus("SME_Complex conjugate multiply");
+				IJ.showStatus("SME_ENS_Complex conjugate multiply");
 				result = h1.conjugateMultiply(h2); 
 				break;
 			case MULTIPLY: 

@@ -12,7 +12,7 @@ import java.awt.*;
 /**
  * Created by rexhepaj on 16/03/16.
  */
-public class SME_Projection_COLOURS {
+public class SME_ENS_Projection_COLOURS {
     /**
      * Image stack context
      */

@@ -164,7 +164,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.gridwidth = 2;
         cMain.gridx = 0;
         cMain.gridy = 1;
-        SME_image_component imcontent = new SME_image_component(currentImage,Boolean.TRUE, currentImage.getWidth(), currentImage.getHeight(), "blabla");
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component(currentImage,Boolean.TRUE, currentImage.getWidth(), currentImage.getHeight(), "blabla");
 
         controlPanel.add(imcontent, cMain);
 

@@ -236,7 +236,7 @@ public class SME_Plugin implements PlugInFilter {
             System.out.println("Padding Done !");
 
             // Get the right input data for the FFT function
-            SME_Complex[] z = new SME_Complex[size2_];                              //Creates a vector type SME_Complex named z and of size = stack size after padding
+            SME_Complex[] z = new SME_Complex[size2_];                              //Creates a vector type SME_ENS_Complex named z and of size = stack size after padding
             SME_Complex[] z_fft_value;
             float abs_array[] = new float[size2_];                          // Create an empty array of size "size2_"
             double final_FFT_result_[][] = new double[W * H][size2_];         // Create a new empty vector to put the final result of FFT

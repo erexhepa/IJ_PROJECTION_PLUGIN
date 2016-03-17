@@ -443,21 +443,21 @@ public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionL
             System.out.println("Padding Done !");
 
             // Get the right input data for the FFT function
-            SME_Complex[] z = new SME_Complex[size2_];                              //Creates a vector type SME_Complex named z and of size = stack size after padding
-            SME_Complex[] z_fft_value;
+            SME_ENS_Complex[] z = new SME_ENS_Complex[size2_];                              //Creates a vector type SME_ENS_Complex named z and of size = stack size after padding
+            SME_ENS_Complex[] z_fft_value;
             float abs_array[] = new float[size2_];                          // Create an empty array of size "size2_"
             double final_FFT_result_[][] = new double[W * H][size2_];         // Create a new empty vector to put the final result of FFT
 
             for (x_coord = 0; x_coord < W; x_coord++) {                     //Go through x coordinates
                 for (y_coord = 0; y_coord < H; y_coord++) {                 //Go through y coordinates
                     for (z_coord = 0; z_coord < size2_; z_coord++) {        //Go through each slice (z coordinates)
-                        z[z_coord] = new SME_Complex(stack.getVoxel(x_coord, y_coord, z_coord), 0);
+                        z[z_coord] = new SME_ENS_Complex(stack.getVoxel(x_coord, y_coord, z_coord), 0);
                     }
 
                     // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
-                    z_fft_value = SME_Filter_FFT_.fft(z);
-                    z_fft_value[0] = new SME_Complex(0, 0);
-                    z_fft_value[size1_ - 1] = new SME_Complex(0, 0);
+                    z_fft_value = SME_ENS_Filter_FFT_.fft(z);
+                    z_fft_value[0] = new SME_ENS_Complex(0, 0);
+                    z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0);
 
 
                     //Calculate absolute value
@@ -496,21 +496,21 @@ public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionL
         }
 
         // Part of the program for the case where the padding is not needed
-        SME_Complex[] z = new SME_Complex[size1_];
-        SME_Complex[] z_fft_value;
+        SME_ENS_Complex[] z = new SME_ENS_Complex[size1_];
+        SME_ENS_Complex[] z_fft_value;
         float abs_array[] = new float[size1_];
         double final_FFT_result_[][] = new double[W * H][size1_];
 
         for (x_coord = 0; x_coord < W; x_coord++) {              //Go through x coordinates
             for (y_coord = 0; y_coord < H; y_coord++) {          //Go through y coordinates
                 for (z_coord = 0; z_coord < size1_; z_coord++) { //Go through each slice (z coordinates)
-                    z[z_coord] = new SME_Complex(stack.getVoxel(x_coord, y_coord, z_coord), 0);
+                    z[z_coord] = new SME_ENS_Complex(stack.getVoxel(x_coord, y_coord, z_coord), 0);
                 }
 
                 // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
-                z_fft_value = SME_Filter_FFT_.fft(z);
-                z_fft_value[0] = new SME_Complex(0, 0);        // replace the first value of the FFT by 0
-                z_fft_value[size1_ - 1] = new SME_Complex(0, 0); // replace the last value of the FFT by 0
+                z_fft_value = SME_ENS_Filter_FFT_.fft(z);
+                z_fft_value[0] = new SME_ENS_Complex(0, 0);        // replace the first value of the FFT by 0
+                z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0); // replace the last value of the FFT by 0
 
 
                 //Calculate absolute value

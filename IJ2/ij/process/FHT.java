@@ -449,7 +449,7 @@ public class FHT extends FloatProcessor {
 		}
 		if (FFT.displayComplex) {
 			ImageStack ct = getComplexTransform();
-			ImagePlus imp2 = new ImagePlus("SME_Complex of "+FFT.fileName, ct);
+			ImagePlus imp2 = new ImagePlus("SME_ENS_Complex of "+FFT.fileName, ct);
 			(new ContrastEnhancer()).stretchHistogram(imp2, 0.1);
 			imp2.setProperty("FFT width", ""+originalWidth);
 			imp2.setProperty("FFT height", ""+originalHeight);
