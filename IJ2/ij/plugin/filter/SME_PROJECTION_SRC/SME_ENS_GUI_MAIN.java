@@ -57,11 +57,15 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     private static final int WIDTHSHOW  = 500;
     private static final int HEIGHTSHOW = 500;
 
+    private static final int WIDTHGUI  = 1100;
+    private static final int HEIGHTGUI = 600;
+
     private double[][] coordinates ;
 
     private static final String BASIC_KMEANS = "Basic K-Means Clustering";
     private static final String BENCHMARKED_KMEANS = "Benchmarked K-Means Clustering";
     private static final String CONCURRENT_KMEANS = "Concurrent K-Means Clustering";
+    private Boolean guiStatus = false;
 
     /**
      * Constructor called to initialize the graphical interface
@@ -108,7 +112,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         int widthScreen     = gd.getDisplayMode().getWidth();
         int heightScreen    = gd.getDisplayMode().getHeight();
 
-        setSize(new Dimension(heightScreen, widthScreen));
+        setSize(new Dimension( WIDTHGUI,HEIGHTGUI));
         setTitle("SME 3D PROJECTION METHOD - ENS COMPUTATIONAL BIOLOGY GROUP");
 
         // Initialise the different GUI building components
@@ -208,6 +212,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         //tframe.setVisible(Boolean.TRUE);
         //tframe.repaint();
         System.out.println("new line");
+        guiStatus = true;
     }
 
     // Action listeners
@@ -215,37 +220,37 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     public synchronized void actionPerformed(ActionEvent e) {
 
         // switch depending on the source of the action button the according response
+        if(guiStatus==true) {
+            if (e.getSource() == standartProjectionMethods) {
+                // case where action came from the drop menu
+                int selIndex = standartProjectionMethods.getSelectedIndex();
+                updateProjectionRaw(selIndex);
 
-        if (e.getSource() == standartProjectionMethods ) {
-            // case where action came from the drop menu
-            int selIndex = standartProjectionMethods.getSelectedIndex();
-            //updateProjectionRaw(selIndex);
+            } else if (e.getSource() == batchRunButton) {
+                //run batch mode
+                runBatchStep();
+                updateProjectionOutput(outputIm);
 
-        }else if(e.getSource() == batchRunButton){
-            //run batch mode
-            runBatchStep();
-            updateProjectionOutput(outputIm);
+            } else if (e.getSource() == smlRunButton) {
+                //run sml - step 1
+                runSmlStep();
+                updateProjectionOutput(outputIm);
 
-        }else if(e.getSource() == smlRunButton){
-            //run sml - step 1
-            runSmlStep();
-            updateProjectionOutput(outputIm);
+            } else if (e.getSource() == kmeanRunButton) {
+                //run kmean - step 2
+                runKmeansStep();
+                updateProjectionOutput(outputIm);
 
-        }else if(e.getSource() == kmeanRunButton){
-            //run kmean - step 2
-            runKmeansStep();
-            updateProjectionOutput(outputIm);
+            } else if (e.getSource() == enoptRunButton) {
+                //run enopt - step 3
+                runEnoptStep();
+                updateProjectionOutput(outputIm);
 
-        }else if(e.getSource() == enoptRunButton){
-            //run enopt - step 3
-            runEnoptStep();
-            updateProjectionOutput(outputIm);
-
-        }else if(e.getSource() == saveImButton){
-            //save current output
-            runSaveimStep();
+            } else if (e.getSource() == saveImButton) {
+                //save current output
+                runSaveimStep();
+            }
         }
-
     }
 
     public void runSmlStep(){
@@ -257,7 +262,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
     public void runKmeansStep(){
         smePlugin.runKmeans();
-        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( IJ.getImage(),Boolean.TRUE,
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getKmeanMaping(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         outputIm = imcontent.getIm2Show();
     }
@@ -311,7 +316,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         this.setVisible(Boolean.TRUE);
     }
 
-   /************************************************** Getter and setters********************************************/
+    /************************************************** Getter and setters********************************************/
 
     public ImagePlus getCurrentImage() {
         return currentImage;

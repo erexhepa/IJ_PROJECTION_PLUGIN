@@ -52,6 +52,7 @@ public class SME_Plugin implements PlugInFilter {
     public float[][] Map2DImage;
     private SME_Cluster[] clustersKmean;
     private SME_ENS_GUI_MAIN gui_main = null;
+    private ImagePlus map2d ;
 
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;
@@ -154,13 +155,17 @@ public class SME_Plugin implements PlugInFilter {
         // this.Blur2 = Create_Gaussian_Image(stack4, sigma_value_3, sigma_value_3);
 
         Map2DImage = (Rearrange_Map2DImage(Image_Segmented(kmeansLabels)));
-        ImagePlus map2d = new ImagePlus("Map2d", (new FloatProcessor(Map2DImage)));
+        map2d = new ImagePlus("Map2d", (new FloatProcessor(Map2DImage)));
         //imp2.show();
         //imp5_ind.show();
         //imp5.show();
         //imp6.show(); // Display the final image
         map2d.show(); // TODO : make this current imagej image that can be grabed by the gui
 
+    }
+
+    public ImagePlus getKmeanMaping(){
+        return(map2d);
     }
 
     public void refreshGUI(){
@@ -776,26 +781,6 @@ public class SME_Plugin implements PlugInFilter {
         imp6.setProcessor(ip6);
         this.imp6=imp6;
         imp6.show();
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    /**Ask the user for the parameters
-     * Here the filtered images are created with the sigma values given by the user
-     * The first sigma has to be the lowest and the 3rd one the highest. Here the default values are 5, 15 and 20.
-     * The argument given below are the duplicated stack images on which the gaussian filter is applied and
-     * that will be used for the Adaptive Gaussian Filter
-     *
-     * @param stack2 : image stack duplicate for 1st filtered image
-     * @param stack3 : image stack duplicate for 2nd filtered image
-     * @param stack4 : image stack duplicate for 3rd filtered image
-     */
-
-    public void showDialog(ImageStack stack2,ImageStack stack3,ImageStack stack4) {
-
-
     }
 
 }
