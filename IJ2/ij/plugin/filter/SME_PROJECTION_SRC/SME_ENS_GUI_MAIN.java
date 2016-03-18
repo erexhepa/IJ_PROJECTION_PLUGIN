@@ -219,7 +219,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         if (e.getSource() == standartProjectionMethods ) {
             // case where action came from the drop menu
             int selIndex = standartProjectionMethods.getSelectedIndex();
-            updateProjectionRaw(selIndex);
+            //updateProjectionRaw(selIndex);
 
         }else if(e.getSource() == batchRunButton){
             //run batch mode

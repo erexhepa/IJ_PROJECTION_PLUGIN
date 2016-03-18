@@ -88,14 +88,80 @@ public class SME_Plugin implements PlugInFilter {
         //Kmeans_(3, FFT_1D_(stack1)); // TODO: remplace this with call to creation of a new object plus method to handle KMean clustering
         // Gaussian_Filter_(Image_Segmented(kmeansLabels));
 
-//        Sigma_choice_auto();
+
     }
 
     public ImageStack getStacktmp(){return stack1;}
 
-    public void runSml(){sML(stack1);}
+    public void runSml(){
+        sML(stack1);
+    }
 
-    public void runKmeans(){Kmeans_(3, FFT_1D_(stack1));}
+    public void runKmeans(){
+        //Kmeans_(3, FFT_1D_(stack1));
+        //Gaussian_Filter_(Image_Segmented(kmeansLabels));
+
+        int x, y,i,j,k;
+        int W = stack1.getProcessor(1).getWidth();                      // Get the image width
+        int H = stack1.getProcessor(1).getHeight();                     // Get the image height
+
+        Kmeans_(3, FFT_1D_(stack1));
+        Rearrange_Map2DImage(Image_Segmented(kmeansLabels));
+
+        float [][] foreground_pix =new float[W][H];
+        for (x = 0; x < W; x++) {                     //Go through x coordinates
+            for (y = 0; y < H; y++) {                 //Go through y coordinates
+                foreground_pix [x][y]=1;
+            }
+        }
+        for (x = 0; x < W; x++) {                     //Go through x coordinates
+            for (y = 0; y < H; y++) {                 //Go through y coordinates
+                if (Map2DImage[x][y]==2)
+                    foreground_pix [x][y]=0;
+            }
+        }
+
+        FloatProcessor fp_sig = new FloatProcessor(foreground_pix);
+        ByteProcessor bp_=fp_sig.convertToByteProcessor();
+        ImagePlus imp_sig = new ImagePlus(""+imp.getTitle(),bp_);
+        float [] EDM_value_array = new float[W*H];
+
+
+        EDM edm_sig1 = new EDM();
+        FloatProcessor fp_sig1 = edm_sig1.makeFloatEDM(bp_, 0, false);
+
+        k=0;
+        for (i=0;i < W;i++){
+            for (j=0;j < H; j++){
+                EDM_value_array[k]=fp_sig1.get(i,j);
+                k=k+1;
+            }
+        }
+
+        // Sort the values obtained after applying EDM
+        Arrays.sort(EDM_value_array);
+        int divide = (EDM_value_array.length)-1;
+        float sigma_value_1 = ((EDM_value_array[divide*33/100])+5)*(1/5);
+        float sigma_value_2 = ((EDM_value_array[divide*66/100])+5)*(1/5);
+        float sigma_value_3 = ((EDM_value_array[divide*99/100])+5)*(1/5);
+
+        imp_sig.setProcessor(fp_sig1);
+        imp_sig.show();
+
+
+        // this.Blur0 = Create_Gaussian_Image(stack2, sigma_value_1, sigma_value_1);
+        // this.Blur1 = Create_Gaussian_Image(stack3, sigma_value_2, sigma_value_2);
+        // this.Blur2 = Create_Gaussian_Image(stack4, sigma_value_3, sigma_value_3);
+
+        Map2DImage = (Rearrange_Map2DImage(Image_Segmented(kmeansLabels)));
+        ImagePlus map2d = new ImagePlus("Map2d", (new FloatProcessor(Map2DImage)));
+        //imp2.show();
+        //imp5_ind.show();
+        //imp5.show();
+        //imp6.show(); // Display the final image
+        map2d.show(); // TODO : make this current imagej image that can be grabed by the gui
+
+    }
 
     public void refreshGUI(){
         SwingUtilities.invokeLater(new Runnable() {
@@ -131,7 +197,7 @@ public class SME_Plugin implements PlugInFilter {
      * @return : returns the stack image after sML filtering is done
      */
 
-    public ImageStack sML(ImageStack stack1) {
+    public void sML(ImageStack stack1) {
 
         float[] kernel1_X = {0, 0, 0, -1, 2, -1, 0, 0, 0}; // Kernel for the X axis
         float[] kernel2_Y = {0, -1, 0, 0, 2, 0, 0, -1, 0}; // Kernel for the Y axis
@@ -176,9 +242,9 @@ public class SME_Plugin implements PlugInFilter {
         imp2.setStack(stack1, 1, size_, 1);
         imp2.setCalibration(imp2.getCalibration());
 
-        //imp2.show();
+        imp2.show();
 
-        return stack1;
+        //return stack1;
     }
 
     private boolean ispower2(int input){
@@ -206,8 +272,8 @@ public class SME_Plugin implements PlugInFilter {
         //TODO: add check step to control for number of slices being a power of 2
 
         int x_coord, y_coord, z_coord, z_fft, i, j, k, l;
-        int size1_ = stack.getSize();                   // Size of the stack image
-        ImageProcessor ip_FFT = stack.getProcessor(1);  // Step done just to have W and H of one image
+        int size1_ = stack1.getSize();                   // Size of the stack image
+        ImageProcessor ip_FFT = stack1.getProcessor(1);  // Step done just to have W and H of one image
         ImageProcessor ip = imp.getProcessor();
         ImageProcessor ip_zero = ip.duplicate();
         int W = ip_FFT.getWidth();                      // Get the image width
@@ -449,6 +515,7 @@ public class SME_Plugin implements PlugInFilter {
             this.mean1 += kmeanCentroids[1][m] / slice_num;
             this.mean2 += kmeanCentroids[2][m] / slice_num;
         }
+
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -464,7 +531,7 @@ public class SME_Plugin implements PlugInFilter {
     public float[][] Image_Segmented(double[] kmeansLabels) {
 
         int x, y;
-        ImageProcessor ip_ = stack.getProcessor(1);  // Done just to have W and H of one image
+        ImageProcessor ip_ = stack1.getProcessor(1);  // Done just to have W and H of one image
         int W = ip_.getWidth();                      // Get the image width
         int H = ip_.getHeight();                     // Get the image height
         this.Map2DImage = new float[W][H];
@@ -501,7 +568,7 @@ public class SME_Plugin implements PlugInFilter {
      * @return : returns the image obtained after applying the Gaussian Filter
      */
 
-    public ImageStack Create_Gaussian_Image(ImageStack stack2, double sigmaX, double sigmaY) {
+    public void Create_Gaussian_Image(ImageStack stack2, double sigmaX, double sigmaY) {
 
         int slice;                                                     // Define the type of slice
         int size3_ = stack2.getSize();                                 // Size of the stack image
@@ -513,7 +580,18 @@ public class SME_Plugin implements PlugInFilter {
             ip_Gauss = Gauss_Stack.getProcessor(slice);                     // Returns an ImageProcessor for the specified slice using the Original stack image
             blurimg.blurGaussian(ip_Gauss, sigmaX, sigmaY, 0.01);      // Apply the blurring on the given slice
         }
-        return Gauss_Stack;
+
+        stack1      = Gauss_Stack;
+        int size_   = stack1.getSize();
+
+        //Image display in new window
+        this.imp2 = new ImagePlus("sML_" + imp.getTitle(), stack1);
+        imp2.setStack(stack1, 1, size_, 1);
+        imp2.setCalibration(imp2.getCalibration());
+
+        imp2.show();
+
+        //return Gauss_Stack;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -572,15 +650,15 @@ public class SME_Plugin implements PlugInFilter {
      */
 
     public void Gaussian_Filter_(float[][] Map2DImage_rearranged) {
-
+        Map2DImage = Map2DImage_rearranged;
         int x,y,z,slice,i,j,w,sl,k1_;
         int k_=0;
         int i_=0;
         int j_=0;
-        ImageProcessor ip_ = stack.getProcessor(1);  // Done just to have W and H of one image
+        ImageProcessor ip_ = stack1.getProcessor(1);  // Done just to have W and H of one image
         int W = ip_.getWidth();                      // Get the image width
         int H = ip_.getHeight();
-        int Size_stack = stack.getSize();
+        int Size_stack = stack1.getSize();
 
         double[] array = new double[Size_stack];
         double[][] Image_AGF_reshape = new double[W * H][Size_stack];
@@ -697,7 +775,7 @@ public class SME_Plugin implements PlugInFilter {
         ip6.setFloatArray(Image_AGF_final_projection);
         imp6.setProcessor(ip6);
         this.imp6=imp6;
-        //imp6.show();
+        imp6.show();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -717,150 +795,7 @@ public class SME_Plugin implements PlugInFilter {
 
     public void showDialog(ImageStack stack2,ImageStack stack3,ImageStack stack4) {
 
-        GenericDialog gd = new GenericDialog("Sigma Values for Gaussian Filtering");
 
-        //DialogBox
-        gd.addMessage("Sigma values should be given in increasing order");
-
-        gd.addCheckbox("Input sigma values manually ", true);
-        gd.addCheckbox("Use automated way to generate sigma values ", false);
-        gd.addCheckbox("Show SML image", false);
-        gd.addCheckbox("Show blurred images for manual sigma value", true);
-        gd.addCheckbox("Show Label Map Image", false);
-        gd.addCheckbox("Show max projection from blurred images ", false);
-        gd.showDialog();
-        gd.getCheckboxes();
-
-        // Get the checkboxes "values" = True or False
-        boolean ind1=gd.getNextBoolean();
-        boolean ind2=gd.getNextBoolean();
-        boolean ind3=gd.getNextBoolean();
-        boolean ind4=gd.getNextBoolean();
-        boolean ind5=gd.getNextBoolean();
-        boolean ind6=gd.getNextBoolean();
-
-
-        if (ind1) { // if true for checkbox 1
-            //Default values
-            double sigma1=1;
-            double sigma2=5;
-            double sigma3=10;
-
-            //open a new generic dialog
-            GenericDialog gd1 = new GenericDialog("Sigma Values for Gaussian Filtering");
-            gd1.addNumericField("Sigma1: ", sigma1, 0);
-            gd1.addNumericField("Sigma2: ", sigma2, 0);
-            gd1.addNumericField("Sigma3: ", sigma3, 0);
-            gd1.showDialog(); // show the window and wait for the user input
-            gd1.getChoices(); // take the values given by the user and replace the default values
-
-            //Get values given by the user and assign them to each variable
-            sigma1=gd1.getNextNumber();
-            sigma2=gd1.getNextNumber();
-            sigma3=gd1.getNextNumber();
-
-            //Apply the blurring using the sigma values given by user
-            this.Blur0 = Create_Gaussian_Image(stack2, sigma1, sigma1);
-            this.Blur1 = Create_Gaussian_Image(stack3, sigma2, sigma2);
-            this.Blur2 = Create_Gaussian_Image(stack4, sigma3, sigma3);
-
-            sML(stack1);
-            Kmeans_(3, FFT_1D_(stack1));
-            Gaussian_Filter_(Rearrange_Map2DImage(Image_Segmented(kmeansLabels)));
-        }
-
-        if (ind2){
-            //implement the automated way to find sigma
-
-            int x, y,i,j,k;
-            ImageProcessor ip_ = stack.getProcessor(1);  // Done just to have W and H of one image
-            int W = ip_.getWidth();                      // Get the image width
-            int H = ip_.getHeight();                     // Get the image height
-
-            imp.show();
-            sML(stack1);
-            Kmeans_(3, FFT_1D_(stack1));
-            Rearrange_Map2DImage(Image_Segmented(kmeansLabels));
-
-
-            float [][] foreground_pix =new float[W][H];
-            for (x = 0; x < W; x++) {                     //Go through x coordinates
-                for (y = 0; y < H; y++) {                 //Go through y coordinates
-                    foreground_pix [x][y]=1;
-                }
-            }
-            for (x = 0; x < W; x++) {                     //Go through x coordinates
-                for (y = 0; y < H; y++) {                 //Go through y coordinates
-                    if (Map2DImage[x][y]==2)
-                        foreground_pix [x][y]=0;
-                }
-            }
-
-            FloatProcessor fp_sig = new FloatProcessor(foreground_pix);
-            ByteProcessor bp_=fp_sig.convertToByteProcessor();
-            ImagePlus imp_sig = new ImagePlus(""+imp.getTitle(),bp_);
-            float [] EDM_value_array = new float[W*H];
-
-
-            EDM edm_sig1 = new EDM();
-            FloatProcessor fp_sig1 = edm_sig1.makeFloatEDM(bp_, 0, false);
-
-            k=0;
-            for (i=0;i < W;i++){
-                for (j=0;j < H; j++){
-                    EDM_value_array[k]=fp_sig1.get(i,j);
-                    k=k+1;
-                }
-            }
-
-            // Sort the values obtained after applying EDM
-            Arrays.sort(EDM_value_array);
-            int divide = (EDM_value_array.length)-1;
-            float sigma_value_1 = ((EDM_value_array[divide*33/100])+5)*(1/5);
-            float sigma_value_2 = ((EDM_value_array[divide*66/100])+5)*(1/5);
-            float sigma_value_3 = ((EDM_value_array[divide*99/100])+5)*(1/5);
-
-            imp_sig.setProcessor(fp_sig1);
-            imp_sig.show();
-
-
-            this.Blur0 = Create_Gaussian_Image(stack2, sigma_value_1, sigma_value_1);
-            this.Blur1 = Create_Gaussian_Image(stack3, sigma_value_2, sigma_value_2);
-            this.Blur2 = Create_Gaussian_Image(stack4, sigma_value_3, sigma_value_3);
-
-            Gaussian_Filter_(Rearrange_Map2DImage(Image_Segmented(kmeansLabels)));
-
-
-            // 5/ 18.2/51.7 pour les valeur de sigma +5 *1/5
-        }
-
-        if(ind3) {
-            imp2.show();
-        }
-
-        if(ind4) {
-            //Create the filtered images with the different sigma values needed for hte Adaptive Gaussian Filter
-            ImagePlus imp7 = new ImagePlus("Blur0_"+imp.getTitle(),stack);
-            imp7.setStack(Blur0, 1, stack2.getSize(), 1);
-            imp7.show();
-            ImagePlus imp8 = new ImagePlus("Blur1_"+imp.getTitle(),stack);
-            imp8.setStack(Blur1, 1, stack2.getSize(), 1);
-            imp8.show();
-            ImagePlus imp9 = new ImagePlus("Blur2_"+imp.getTitle(),stack);
-            imp9.setStack(Blur2, 1, stack2.getSize(), 1);
-            imp9.show();
-        }
-
-
-        if(ind5) {
-            imp5_ind.show();
-        }
-
-        if(ind6) {
-            imp5.show();
-        }
-
-        imp6.show(); // Display the final image
     }
 
 }
