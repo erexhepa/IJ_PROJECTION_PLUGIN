@@ -29,27 +29,30 @@ import java.util.Arrays;
 
 public class SME_Plugin implements PlugInFilter {
 
-    public ImagePlus imp;
-    public ImagePlus imp2;
-    public ImagePlus imp3;
-    public ImagePlus imp5;
-    public ImagePlus imp5_ind;
-    public ImagePlus imp6;
+    private ImagePlus imp;
+    private ImagePlus imp2;
+    private ImagePlus imp3;
+    private ImagePlus imp5;
+    private ImagePlus imp5_ind;
+    private ImagePlus imp6;
     private SME_KMeans_Paralel mKMeans;
-    public ImageStack stack;
-    public double[] kmeansLabels;
-    public double[][] kmeanCentroids;
+    private ImageStack stack;
+    private double[] kmeansLabels;
+    private double[][] kmeanCentroids;
+
     protected float mean0;
     protected float mean1;
     protected float mean2;
-    public ImageStack Blur0;
-    public ImageStack Blur1;
-    public ImageStack Blur2;
-    public ImageStack Blur3;
-    public ImageStack Blur4;
-    public ImageStack Blur5;
+
+    private ImageStack Blur0;
+    private ImageStack Blur1;
+    private ImageStack Blur2;
+    private ImageStack Blur3;
+    private ImageStack Blur4;
+    private ImageStack Blur5;
+
     private ImageStack stack1;
-    public float[][] Map2DImage;
+    private float[][] Map2DImage;
     private SME_Cluster[] clustersKmean;
     private SME_ENS_GUI_MAIN gui_main = null;
     private ImagePlus map2d ;
@@ -58,8 +61,6 @@ public class SME_Plugin implements PlugInFilter {
         this.imp = imp;
         return DOES_ALL + STACK_REQUIRED; // Works for stack images
     }
-
-// Old header with PluginFilter = public void run(ImageProcessor ip)
 
     public void run(ImageProcessor ip) {
         stack = imp.getStack();                  // ImagePlus into ImageStack
@@ -92,76 +93,19 @@ public class SME_Plugin implements PlugInFilter {
 
     }
 
-    public ImageStack getStacktmp(){return stack1;}
-
-    public void runSml(){
-        sML(stack1);
+    public void runKmeans(){
+        SME_ENS_Kmean_Control smlPlugin = new SME_ENS_Kmean_Control(this);
+        smlPlugin.applyKmeans();
     }
 
-    public void runKmeans(){
-        //Kmeans_(3, FFT_1D_(stack1));
-        //Gaussian_Filter_(Image_Segmented(kmeansLabels));
+    public void runSml(){
+        SME_ENS_Sml smlPlugin = new SME_ENS_Sml(this);
+        smlPlugin.applySML();
+    }
 
-        int x, y,i,j,k;
-        int W = stack1.getProcessor(1).getWidth();                      // Get the image width
-        int H = stack1.getProcessor(1).getHeight();                     // Get the image height
-
-        Kmeans_(3, FFT_1D_(stack1));
-        Rearrange_Map2DImage(Image_Segmented(kmeansLabels));
-
-        float [][] foreground_pix =new float[W][H];
-        for (x = 0; x < W; x++) {                     //Go through x coordinates
-            for (y = 0; y < H; y++) {                 //Go through y coordinates
-                foreground_pix [x][y]=1;
-            }
-        }
-        for (x = 0; x < W; x++) {                     //Go through x coordinates
-            for (y = 0; y < H; y++) {                 //Go through y coordinates
-                if (Map2DImage[x][y]==2)
-                    foreground_pix [x][y]=0;
-            }
-        }
-
-        FloatProcessor fp_sig = new FloatProcessor(foreground_pix);
-        ByteProcessor bp_=fp_sig.convertToByteProcessor();
-        ImagePlus imp_sig = new ImagePlus(""+imp.getTitle(),bp_);
-        float [] EDM_value_array = new float[W*H];
-
-
-        EDM edm_sig1 = new EDM();
-        FloatProcessor fp_sig1 = edm_sig1.makeFloatEDM(bp_, 0, false);
-
-        k=0;
-        for (i=0;i < W;i++){
-            for (j=0;j < H; j++){
-                EDM_value_array[k]=fp_sig1.get(i,j);
-                k=k+1;
-            }
-        }
-
-        // Sort the values obtained after applying EDM
-        Arrays.sort(EDM_value_array);
-        int divide = (EDM_value_array.length)-1;
-        float sigma_value_1 = ((EDM_value_array[divide*33/100])+5)*(1/5);
-        float sigma_value_2 = ((EDM_value_array[divide*66/100])+5)*(1/5);
-        float sigma_value_3 = ((EDM_value_array[divide*99/100])+5)*(1/5);
-
-        imp_sig.setProcessor(fp_sig1);
-        imp_sig.show();
-
-
-        // this.Blur0 = Create_Gaussian_Image(stack2, sigma_value_1, sigma_value_1);
-        // this.Blur1 = Create_Gaussian_Image(stack3, sigma_value_2, sigma_value_2);
-        // this.Blur2 = Create_Gaussian_Image(stack4, sigma_value_3, sigma_value_3);
-
-        Map2DImage = (Rearrange_Map2DImage(Image_Segmented(kmeansLabels)));
-        map2d = new ImagePlus("Map2d", (new FloatProcessor(Map2DImage)));
-        //imp2.show();
-        //imp5_ind.show();
-        //imp5.show();
-        //imp6.show(); // Display the final image
-        map2d.show(); // TODO : make this current imagej image that can be grabed by the gui
-
+    public void runEnergyOptimisation(){
+        SME_ENS_EnergyOptimisation enOpt = new SME_ENS_EnergyOptimisation(this);
+        enOpt.applyEnergyOptimisation();
     }
 
     public ImagePlus getKmeanMaping(){
@@ -195,592 +139,198 @@ public class SME_Plugin implements PlugInFilter {
             }
         });
     }
-    /**
-     * Applying the sML filter on the Original ImageStack
-     *
-     * @param stack1 : Original image stack duplicated
-     * @return : returns the stack image after sML filtering is done
-     */
 
-    public void sML(ImageStack stack1) {
+    /************************************************ Getter and Setters *******************************/
 
-        float[] kernel1_X = {0, 0, 0, -1, 2, -1, 0, 0, 0}; // Kernel for the X axis
-        float[] kernel2_Y = {0, -1, 0, 0, 2, 0, 0, -1, 0}; // Kernel for the Y axis
-
-        ImagePlus imp_sml = imp.duplicate();
-
-        ImageProcessor ip = imp_sml.getProcessor();
-        stack1 = imp_sml.getStack();                    // ImagePlus into ImageStack
-        int W = ip.getWidth();                      // Get the image width
-        int H = ip.getHeight();                     // Get the image height
-        int i, j, slice;                            // Define the type of i, j and slice (equivalent to z axis)
-        int size_ = stack1.getSize();               // Size of the stack image
-
-        for (slice = 1; slice <= size_; slice++) {  //Go through each slice
-
-            // Work on the duplicated images.
-            ImageProcessor ip_copy1_X = ip.duplicate();
-            ImageProcessor ip_copy1_Y = ip.duplicate();
-
-            ip = stack1.getProcessor(slice);                     // Returns an ImageProcessor for the specified slice
-            ImageProcessor ip_sum = ip.createProcessor(W, H);    //Create an empty ImageProcessor
-
-            // Apply the convolution on the duplicated ImageProcessor
-            ip_copy1_X.convolve(kernel1_X, 3, 3);                // Make the convolution on the X axis
-            ip_copy1_X.abs();                                    // absolute value of each pixel
-            ip_copy1_Y.convolve(kernel2_Y, 3, 3);                // Make the convolution on the Y axis
-            ip_copy1_Y.abs();                                    // absolute value of each pixel
-
-            for (i = 0; i < W; ++i) {
-                for (j = 0; j < H; ++j) {
-                    int a = ip_copy1_X.get(i, j);                // get the pixel value in the resultant image after convolution (X axis)
-                    int b = ip_copy1_Y.get(i, j);                // get the pixel value in the resultant image after convolution (Y axis)
-                    int sum = a + b;                             // add the 2 pixel values
-                    ip_sum.putPixel(i, j, sum);                  // put the result of the addition in the newly created ImageProcessor
-                }
-            }
-            stack1.setPixels(ip_sum.getPixels(), slice);         // Assigns a pixel array to the specified slice
-        }
-
-        //Image display in new window
-        this.imp2 = new ImagePlus("sML_" + imp.getTitle(), stack1);
-        imp2.setStack(stack1, 1, size_, 1);
-        imp2.setCalibration(imp2.getCalibration());
-
-        imp2.show();
-
-        //return stack1;
+    public ImagePlus getImp() {
+        return imp;
     }
 
-    private boolean ispower2(int input){
-        while(((input != 2) && input % 2 == 0) || input == 1) {
-            input = input /2;
-        }
-
-        return input == 2;
+    public void setImp(ImagePlus imp) {
+        this.imp = imp;
     }
 
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Apply 1D FFT on the stack image obtained after doing the sML filtering
-     * Padding is done for the images that are not power of 2
-     *
-     * @param stack1: stack image returned after applying sML filtering
-     * @return : returns the matrix containing the 1D FFT result
-     */
-
-    public double[][] FFT_1D_(ImageStack stack1) {
-        //TODO: add check step to control for number of slices being a power of 2
-
-        int x_coord, y_coord, z_coord, z_fft, i, j, k, l;
-        int size1_ = stack1.getSize();                   // Size of the stack image
-        ImageProcessor ip_FFT = stack1.getProcessor(1);  // Step done just to have W and H of one image
-        ImageProcessor ip = imp.getProcessor();
-        ImageProcessor ip_zero = ip.duplicate();
-        int W = ip_FFT.getWidth();                      // Get the image width
-        int H = ip_FFT.getHeight();                     // Get the image height
-
-
-        // Make the padding and apply the FFT for a number of stacks that is not power of 2
-        if (!ispower2(size1_)) {
-
-            // Find the closest power of 2 in order to find the number of stacks with 0 to add to the original stack
-            double result_ = Math.ceil(Math.log(size1_) / Math.log(2.0d));
-            double padding_zero = Math.pow(2.0, result_);
-            double number_of_zero = padding_zero - size1_; //Number of stacks to add
-
-            // Create ImageProcessor containing only pixels which value is 0
-            for (i = 0; i < W; i++) {
-                for (j = 0; j < H; j++) {
-                    ip_zero.putPixel(i, j, 0);
-                }
-            }
-
-            // Add the missing slices to the stack image so that the number of slice is a power of 2
-            for (k = 1; k <= (int) number_of_zero; k++) {
-                stack.addSlice(ip_zero);
-            }
-
-            // Size of the stack image after doing the padding with 0
-            int size2_ = stack.getSize();
-
-            // Set the pixel values
-            for (l = size1_ + 1; l < size2_; l++) {
-                stack.setPixels(ip_zero.getPixels(), l);
-            }
-            System.out.println("Padding Done !");
-
-            // Get the right input data for the FFT function
-            SME_ENS_Complex[] z = new SME_ENS_Complex[size2_];                              //Creates a vector type SME_ENS_Complex named z and of size = stack size after padding
-            SME_ENS_Complex[] z_fft_value;
-            float abs_array[] = new float[size2_];                          // Create an empty array of size "size2_"
-            double final_FFT_result_[][] = new double[W * H][size2_];         // Create a new empty vector to put the final result of FFT
-
-            for (x_coord = 0; x_coord < W; x_coord++) {                     //Go through x coordinates
-                for (y_coord = 0; y_coord < H; y_coord++) {                 //Go through y coordinates
-                    for (z_coord = 0; z_coord < size2_; z_coord++) {        //Go through each slice (z coordinates)
-                        z[z_coord] = new SME_ENS_Complex(stack.getVoxel(x_coord, y_coord, z_coord), 0);
-                    }
-
-                    // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
-                    z_fft_value = SME_ENS_Filter_FFT_.fft(z);
-                    z_fft_value[0] = new SME_ENS_Complex(0, 0);
-                    z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0);
-
-
-                    //Calculate absolute value
-                    for (z_fft = 0; z_fft < size2_; z_fft++) {
-                        float absolute_ = (float) Math.sqrt((Math.pow(z_fft_value[z_fft].re(), 2.0)) + (Math.pow(z_fft_value[z_fft].im(), 2.0)));
-                        abs_array[z_fft] = absolute_;
-                    }
-
-                    //Add the created array in a new matrix with a width size of z and a height size of W*H
-                    int k_ = y_coord * W + x_coord;
-                    for (z_coord = 0; z_coord < size1_; z_coord++) {
-                        final_FFT_result_[k_][z_coord] = abs_array[z_coord];
-                    }
-                }
-            }
-
-            // Find the max value along (x,y) in the matrix that is needed for normalization
-            double[] vect_max = new double[W];
-            for (i = 0; i < size2_; i++) {
-                double largest_ = final_FFT_result_[i][1];
-                for (j = 0; j < W * H; j++) {
-                    if (final_FFT_result_[j][i] > largest_)
-                        largest_ = final_FFT_result_[j][i];
-                }
-                vect_max[i] = largest_;
-            }
-
-            // Normalization
-            for (i = 0; i < W * H; i++) {
-                for (j = 0; j < size2_; j++) {
-                    final_FFT_result_[i][j] = final_FFT_result_[i][j] / vect_max[j];
-                }
-            }
-
-            return final_FFT_result_;
-        }
-
-        // Part of the program for the case where the padding is not needed
-        SME_ENS_Complex[] z = new SME_ENS_Complex[size1_];
-        SME_ENS_Complex[] z_fft_value;
-        float abs_array[] = new float[size1_];
-        double final_FFT_result_[][] = new double[W * H][size1_];
-
-        for (x_coord = 0; x_coord < W; x_coord++) {              //Go through x coordinates
-            for (y_coord = 0; y_coord < H; y_coord++) {          //Go through y coordinates
-                for (z_coord = 0; z_coord < size1_; z_coord++) { //Go through each slice (z coordinates)
-                    z[z_coord] = new SME_ENS_Complex(stack.getVoxel(x_coord, y_coord, z_coord), 0);
-                }
-
-                // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
-                z_fft_value = SME_ENS_Filter_FFT_.fft(z);
-                z_fft_value[0] = new SME_ENS_Complex(0, 0);        // replace the first value of the FFT by 0
-                z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0); // replace the last value of the FFT by 0
-
-
-                //Calculate absolute value
-                for (z_fft = 0; z_fft < size1_; z_fft++) {
-                    float absolute_ = (float) Math.sqrt((Math.pow(z_fft_value[z_fft].re(), 2.0)) + (Math.pow(z_fft_value[z_fft].im(), 2.0)));
-                    abs_array[z_fft] = absolute_;
-                }
-
-                //Add the created array in a new matrix with a width size of z and a height size of W*H
-                int k_ = y_coord * W + x_coord;
-                for (z_coord = 0; z_coord < size1_; z_coord++) {
-                    final_FFT_result_[k_][z_coord] = abs_array[z_coord];
-                }
-            }
-        }
-
-        // Find the max value along (x,y) in the matrix that is needed for normalization
-        double[] vect_max = new double[W];
-        for (i = 0; i < size1_; i++) {
-            double largest_ = final_FFT_result_[i][1];
-            for (j = 0; j < W * H; j++) {
-                if (final_FFT_result_[j][i] > largest_)
-                    largest_ = final_FFT_result_[j][i];
-            }
-            vect_max[i] = largest_;
-        }
-
-        // Normalization
-        for (i = 0; i < W * H; i++) {
-            for (j = 0; j < size1_; j++) {
-                final_FFT_result_[i][j] = final_FFT_result_[i][j] / vect_max[j];
-            }
-        }
-        return final_FFT_result_;
+    public ImagePlus getImp2() {
+        return imp2;
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Apply the OBS_Kmeans for segmentation
-     *
-     * @param numClust_  : number of clusters
-     * @param result_fft : matrix that contains
-     *                   the results after applying the FFT_1D = width is equal to the number of stacks in the image
-     *                   and length of result_fft is equal to the number of pixels of the image
-     */
-
-    public void Kmeans_(int numClust_, double[][] result_fft) {
-        int m;
-        int slice_num = stack.getSize();
-        boolean CONCURRENT_KMEANS = true;
-        int threadcount = 5;
-        final int numClust = numClust_;
-        final double[][]  coordClust = result_fft;
-
-        if (CONCURRENT_KMEANS) {
-
-            long randomSeed = 1000;
-
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    try {
-                        UIManager.setLookAndFeel(UIManager.
-                                getSystemLookAndFeelClassName());
-                    } catch (Exception exception) {
-                        exception.printStackTrace();
-                    }
-
-                    gui_main.validate();
-
-                    // Center the window
-                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                    Dimension frameSize = gui_main.getSize();
-                    if (frameSize.height > screenSize.height) {
-                        frameSize.height = screenSize.height;
-                    }
-                    if (frameSize.width > screenSize.width) {
-                        frameSize.width = screenSize.width;
-                    }
-                    gui_main.setLocation((screenSize.width - frameSize.width) / 2,
-                            (screenSize.height - frameSize.height) / 2);
-                    gui_main.setVisible(true);
-                    //frame.actionPerformedRun();
-                    //clustersKmean = frame.getClustersKmeans();*/
-                }
-            });
-
-
-            //     = mKMeans.getClusters();
-
-
-
-            /*this.kmeansLabels = new double[result_fft.length];
-            this.kmeanCentroids = new double[numClust_][result_fft[0].length];
-
-            //iterate through the clusters to get all points
-            for(int indxClusters=0;indxClusters<clustersKmean.length;indxClusters++){
-                //iterate through all the clusters points to put them in the original order
-                int[] indxPoints = clustersKmean[indxClusters].getMemberIndexes();
-                //TODO merge lines below
-                double[] centerCoord = clustersKmean[indxClusters].getCenter();
-                this.kmeanCentroids[indxClusters]=centerCoord;
-
-                for(int indxPointclusters=0;indxPointclusters<indxPoints.length;indxPointclusters++){
-                    this.kmeansLabels[indxPoints[indxPointclusters]]=indxClusters;
-                }
-            }
-            //this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
-            //this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();*/
-            OBS_Kmeans OBSKmeans_Niki = new OBS_Kmeans(result_fft, numClust_, false);
-            OBSKmeans_Niki.calculateClusters();
-            this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
-            this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();
-
-            long endTime = System.nanoTime();
-        }else{
-            long startTime = System.nanoTime();
-
-            OBS_Kmeans OBSKmeans_Niki = new OBS_Kmeans(result_fft, numClust_, false);
-            OBSKmeans_Niki.calculateClusters();
-            this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
-            this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();
-
-            long endTime = System.nanoTime();
-
-            System.out.println("K-Means complete: processing time (ms) = " +
-                    Long.toString((endTime - startTime)/(long)1000000.0));
-            System.out.println("Number of clusters: " + numClust_);
-        }
-
-        for (m = 0; m < slice_num; m++) {
-            this.mean0 += kmeanCentroids[0][m] / slice_num;
-            this.mean1 += kmeanCentroids[1][m] / slice_num;
-            this.mean2 += kmeanCentroids[2][m] / slice_num;
-        }
-
+    public void setImp2(ImagePlus imp2) {
+        this.imp2 = imp2;
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
+    public ImagePlus getImp3() {
+        return imp3;
+    }
 
-    /**
-     * Create the OBS_Kmeans segmented image and display it
-     *
-     * @param kmeansLabels : the array containing the labels obtained thanks to Kmeans_
-     * @return : returns the Image matrix which will be used as a Map for the Adaptive Gaussian Filtering
-     */
-    public float[][] Image_Segmented(double[] kmeansLabels) {
-
-        int x, y;
-        ImageProcessor ip_ = stack1.getProcessor(1);  // Done just to have W and H of one image
-        int W = ip_.getWidth();                      // Get the image width
-        int H = ip_.getHeight();                     // Get the image height
-        this.Map2DImage = new float[W][H];
-
-        for (x = 0; x < W; x++) {                     //Go through x coordinates
-            for (y = 0; y < H; y++) {                 //Go through y coordinates
-                int k = y * W + x;
-                Map2DImage[x][y] = (float) kmeansLabels[k];
-            }
-        }
-
-        //Image Display in a new window
-        FloatProcessor fp3 = new FloatProcessor(Map2DImage);
-        ImageProcessor ip3 = fp3.convertToFloat();
-        ip3.setFloatArray(Map2DImage);
-        ImagePlus imp3 = new ImagePlus("OBS_Kmeans Segmented Image" + imp.getTitle(), ip3);
-        imp3.setProcessor(ip3);
+    public void setImp3(ImagePlus imp3) {
         this.imp3 = imp3;
-        //imp3.show();
+    }
 
+    public ImagePlus getImp5() {
+        return imp5;
+    }
+
+    public void setImp5(ImagePlus imp5) {
+        this.imp5 = imp5;
+    }
+
+    public ImagePlus getImp5_ind() {
+        return imp5_ind;
+    }
+
+    public void setImp5_ind(ImagePlus imp5_ind) {
+        this.imp5_ind = imp5_ind;
+    }
+
+    public ImagePlus getImp6() {
+        return imp6;
+    }
+
+    public void setImp6(ImagePlus imp6) {
+        this.imp6 = imp6;
+    }
+
+    public SME_KMeans_Paralel getmKMeans() {
+        return mKMeans;
+    }
+
+    public void setmKMeans(SME_KMeans_Paralel mKMeans) {
+        this.mKMeans = mKMeans;
+    }
+
+    public ImageStack getStack() {
+        return stack;
+    }
+
+    public void setStack(ImageStack stack) {
+        this.stack = stack;
+    }
+
+    public double[] getKmeansLabels() {
+        return kmeansLabels;
+    }
+
+    public void setKmeansLabels(double[] kmeansLabels) {
+        this.kmeansLabels = kmeansLabels;
+    }
+
+    public double[][] getKmeanCentroids() {
+        return kmeanCentroids;
+    }
+
+    public void setKmeanCentroids(double[][] kmeanCentroids) {
+        this.kmeanCentroids = kmeanCentroids;
+    }
+
+    public ImageStack getStack1() {
+        return stack1;
+    }
+
+    public void setStack1(ImageStack stack1) {
+        this.stack1 = stack1;
+    }
+
+    public float[][] getMap2DImage() {
         return Map2DImage;
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Create the filtered images
-     *
-     * @param stack2: new duplicated stack image from the Original Stack Image
-     * @param sigmaX  : Sigma value for the X axis
-     * @param sigmaY  : Sigma value for the Y axis
-     * @return : returns the image obtained after applying the Gaussian Filter
-     */
-
-    public void Create_Gaussian_Image(ImageStack stack2, double sigmaX, double sigmaY) {
-
-        int slice;                                                     // Define the type of slice
-        int size3_ = stack2.getSize();                                 // Size of the stack image
-        ImageProcessor ip_Gauss;                                       // Work on the duplicated images.
-        GaussianBlur blurimg = new GaussianBlur();                     // Create ImageType
-        ImageStack Gauss_Stack = stack2.duplicate();                   // We duplicate the original stack image .Create new empty stack to put the pixel values obtained after blurring blur
-
-        for (slice = 1; slice <= size3_; slice++) {                    // Go through each slice
-            ip_Gauss = Gauss_Stack.getProcessor(slice);                     // Returns an ImageProcessor for the specified slice using the Original stack image
-            blurimg.blurGaussian(ip_Gauss, sigmaX, sigmaY, 0.01);      // Apply the blurring on the given slice
-        }
-
-        stack1      = Gauss_Stack;
-        int size_   = stack1.getSize();
-
-        //Image display in new window
-        this.imp2 = new ImagePlus("sML_" + imp.getTitle(), stack1);
-        imp2.setStack(stack1, 1, size_, 1);
-        imp2.setCalibration(imp2.getCalibration());
-
-        imp2.show();
-
-        //return Gauss_Stack;
+    public void setMap2DImage(float[][] map2DImage) {
+        Map2DImage = map2DImage;
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    public float [][] Rearrange_Map2DImage(float[][] Map2DImage) {
-
-
-        int x, y;
-        ImageProcessor ip_ = stack.getProcessor(1);  // Done just to have W and H of one image
-        int W = ip_.getWidth();                      // Get the image width
-        int H = ip_.getHeight();
-        float mean_val_array[] = new float[3];
-        float mean_val_array_duplicate[] = new float[3];
-
-
-        // Create an array containing the 3 mean values
-        mean_val_array[0] = mean0;
-        mean_val_array[1] = mean1;
-        mean_val_array[2] = mean2;
-
-        // Sort the array values (increasing order)
-        Arrays.sort(mean_val_array);
-
-        //In a new array find the index of each mean value after having been sorted
-        mean_val_array_duplicate[0] = Arrays.binarySearch(mean_val_array, mean0);
-        mean_val_array_duplicate[1] = Arrays.binarySearch(mean_val_array, mean1);
-        mean_val_array_duplicate[2] = Arrays.binarySearch(mean_val_array, mean2);
-
-        //Change the labels of the 2D Map Image
-        for (x = 0; x < W; x++)
-
-        {
-            for (y = 0; y < H; y++) {
-                if (Map2DImage[x][y] == 0) {
-                    Map2DImage[x][y] = mean_val_array_duplicate[0];
-                } else if (Map2DImage[x][y] == 1) {
-                    Map2DImage[x][y] = mean_val_array_duplicate[1];
-                } else if (Map2DImage[x][y] == 2) {
-                    Map2DImage[x][y] = mean_val_array_duplicate[2];
-                }
-            }
-        }
-        return Map2DImage;
+    public SME_Cluster[] getClustersKmean() {
+        return clustersKmean;
     }
 
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    /** Apply the adaptive gaussian filtering to the original image by using the OBS_Kmeans Map obtained previously
-     * @param Map2DImage_rearranged: map image obtain after applying Kmeans_ function and reshaping the KmeansLabel array into an image
-     *                  matrix called Map2DImage.
-     */
-
-    public void Gaussian_Filter_(float[][] Map2DImage_rearranged) {
-        Map2DImage = Map2DImage_rearranged;
-        int x,y,z,slice,i,j,w,sl,k1_;
-        int k_=0;
-        int i_=0;
-        int j_=0;
-        ImageProcessor ip_ = stack1.getProcessor(1);  // Done just to have W and H of one image
-        int W = ip_.getWidth();                      // Get the image width
-        int H = ip_.getHeight();
-        int Size_stack = stack1.getSize();
-
-        double[] array = new double[Size_stack];
-        double[][] Image_AGF_reshape = new double[W * H][Size_stack];
-        float[][] Image_AGF_final_projection_blur = new float[W][H];
-        float[][] Image_AGF_final_projection = new float[W][H];
-        for (i=0;i<W;i++) {
-            for (j = 0; j < H; j++) {
-
-                if (Map2DImage[i][j] == 0) { //Map2DImage is the image containing the new labels once relabeled (step done previously)
-                    for (slice = 0; slice < Size_stack; slice++) {
-                        array[slice] = Blur2.getVoxel(i, j, slice);
-                    }
-                } else if (Map2DImage[i][j] == 1) {
-                    for (slice = 0; slice < Size_stack; slice++) {
-                        array[slice] = Blur1.getVoxel(i, j, slice);
-                    }
-                }
-                if (Map2DImage[i][j] == 2) {
-                    for (slice = 0; slice < Size_stack; slice++) {
-                        array[slice] = Blur0.getVoxel(i, j, slice);
-                    }
-                }
-
-                // reshape each array found previously and added in a new matrix which is Image_AGF_toreshape
-                for (z = 0; z < Size_stack; z++) {
-                    Image_AGF_reshape[i_][j_] = array[z];
-                    j_=j_+1;
-                }
-                i_=i_+1;
-                j_=0;
-            }
-        }
-
-        // Find maximum value for each pixel in the stack = projection
-        double[] vect_max2= new double[W*H];
-        double[]index_j= new double[W*H];  // index where the maximum pixel value was taken
-
-
-        //Looking for the max value for each pixel in among all the stacks
-        for (i =0 ; i < W*H ; i++) {
-            double largest_2 = Image_AGF_reshape[i][0];  //Consider the first value of the stack for one given pixel as the largest
-            for (j=0 ; j < Size_stack; j++) {
-                if (Image_AGF_reshape[i][j] > largest_2) // Compare the value contained in largest_2 to the next value
-                    largest_2 = Image_AGF_reshape[i][j]; // if the new value is greater that the one contained in largest_2
-                // than it will be considered as the new largest value
-            }
-            vect_max2[i]=largest_2; // all the maximum values are stored in this vector "vect_max2"
-        }
-
-        // Here we are looking for the stack index from where the max pixel was taken
-        int f = 0;
-        for (i =0 ; i < W*H ; i++) {
-            for (j=0 ; j < Size_stack; j++) {
-                if (Image_AGF_reshape[i][j] == vect_max2[i])
-                    f=j;
-            }
-            index_j[i]=f;
-            f=0;
-        }
-
-        //Image where the labels are represented = Map
-        float [][] index_representation = new float[W][H];
-        k1_=0;
-        for (i=0;i<W;i++){
-            for (j=0;j<H;j++){
-                index_representation[i][j]=(float)index_j[k1_];
-                k1_=k1_+1;
-            }
-        }
-
-
-        // Add the new max values found of the corresponding blurred image in a new matrix
-        for (x = 0; x < W; x++) {
-            for (y = 0; y < H; y++) {
-                Image_AGF_final_projection_blur[x][y] = (float) vect_max2[k_];
-                k_=k_+1;
-            }
-        }
-
-        // Add the new max values found of the corresponding original image in a new matrix using index_j vector to
-        // extract the right pixel
-        w=0;
-        for (x = 0; x < W; x++) {
-            for (y = 0; y < H; y++) {
-                sl=(int)index_j[w];
-                Image_AGF_final_projection[x][y] = (float)stack.getVoxel(x,y,sl); // get the pixel of the original image at the right stack (getVoxel)
-                // using index_j
-                w=w+1;
-            }
-        }
-
-        //Image displayed in a new window Image_AGF_final_projection_
-        FloatProcessor fp5_ind = new FloatProcessor(index_representation);
-        ImageProcessor ip5_ind = fp5_ind.convertToFloat();
-        ImagePlus imp5_ind = new ImagePlus("Index_image"+imp.getTitle(),ip5_ind);
-        ip5_ind.setFloatArray(index_representation);
-        imp5_ind.setProcessor(ip5_ind);
-        this.imp5_ind=imp5_ind;
-        //imp5_ind.show();
-
-        //Image displayed in a new window Image_AGF_final_projection_blur
-        FloatProcessor fp5 = new FloatProcessor(Image_AGF_final_projection_blur);
-        ImageProcessor ip5 = fp5.convertToFloat();
-        ImagePlus imp5 = new ImagePlus("BLUR_Final_Projected_Image"+imp.getTitle(),ip5);
-        ip5.setFloatArray(Image_AGF_final_projection_blur);
-        imp5.setProcessor(ip5);
-        this.imp5=imp5;
-        //imp5.show();
-
-        //Image displayed in a new window Image_AGF_final_projection_
-        FloatProcessor fp6 = new FloatProcessor(Image_AGF_final_projection);
-        ImageProcessor ip6 = fp6.convertToFloat();
-        ImagePlus imp6 = new ImagePlus("Final_Projected_Image"+imp.getTitle(),ip6);
-        ip6.setFloatArray(Image_AGF_final_projection);
-        imp6.setProcessor(ip6);
-        this.imp6=imp6;
-        imp6.show();
+    public void setClustersKmean(SME_Cluster[] clustersKmean) {
+        this.clustersKmean = clustersKmean;
     }
 
+    public SME_ENS_GUI_MAIN getGui_main() {
+        return gui_main;
+    }
+
+    public void setGui_main(SME_ENS_GUI_MAIN gui_main) {
+        this.gui_main = gui_main;
+    }
+
+    public ImagePlus getMap2d() {
+        return map2d;
+    }
+
+    public void setMap2d(ImagePlus map2d) {
+        this.map2d = map2d;
+    }
+
+    public float getMean0() {
+        return mean0;
+    }
+
+    public void setMean0(float mean0) {
+        this.mean0 = mean0;
+    }
+
+    public float getMean1() {
+        return mean1;
+    }
+
+    public void setMean1(float mean1) {
+        this.mean1 = mean1;
+    }
+
+    public float getMean2() {
+        return mean2;
+    }
+
+    public void setMean2(float mean2) {
+        this.mean2 = mean2;
+    }
+
+    public ImageStack getBlur0() {
+        return Blur0;
+    }
+
+    public void setBlur0(ImageStack blur0) {
+        Blur0 = blur0;
+    }
+
+    public ImageStack getBlur1() {
+        return Blur1;
+    }
+
+    public void setBlur1(ImageStack blur1) {
+        Blur1 = blur1;
+    }
+
+    public ImageStack getBlur2() {
+        return Blur2;
+    }
+
+    public void setBlur2(ImageStack blur2) {
+        Blur2 = blur2;
+    }
+
+    public ImageStack getBlur3() {
+        return Blur3;
+    }
+
+    public void setBlur3(ImageStack blur3) {
+        Blur3 = blur3;
+    }
+
+    public ImageStack getBlur4() {
+        return Blur4;
+    }
+
+    public void setBlur4(ImageStack blur4) {
+        Blur4 = blur4;
+    }
+
+    public ImageStack getBlur5() {
+        return Blur5;
+    }
+
+    public void setBlur5(ImageStack blur5) {
+        Blur5 = blur5;
+    }
 }

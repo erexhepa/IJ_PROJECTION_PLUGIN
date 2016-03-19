@@ -188,7 +188,7 @@ public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionL
     }
 
     /**
-     * Apply the OBS_Kmeans for segmentation
+     * Apply the SME_ENS_Kmeans_Engine for segmentation
      *
      * @param numClust_  : number of clusters
      * @param result_fft : matrix that contains
@@ -236,7 +236,7 @@ public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionL
             }
         });
 
-        OBS_Kmeans OBSKmeans_Niki = new OBS_Kmeans(result_fft, numClust_, false);
+        SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
         OBSKmeans_Niki.calculateClusters();
         this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
         this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();
@@ -548,7 +548,7 @@ public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionL
     }
 
     /**
-     * Create the OBS_Kmeans segmented image and display it
+     * Create the SME_ENS_Kmeans_Engine segmented image and display it
      *
      * @param kmeansLabels : the array containing the labels obtained thanks to Kmeans_
      * @return : returns the Image matrix which will be used as a Map for the Adaptive Gaussian Filtering
@@ -572,7 +572,7 @@ public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionL
         FloatProcessor fp3 = new FloatProcessor(Map2DImage);
         ImageProcessor ip3 = fp3.convertToFloat();
         ip3.setFloatArray(Map2DImage);
-        ImagePlus imp3 = new ImagePlus("OBS_Kmeans Segmented Image" + imp.getTitle(), ip3);
+        ImagePlus imp3 = new ImagePlus("SME_ENS_Kmeans_Engine Segmented Image" + imp.getTitle(), ip3);
         imp3.setProcessor(ip3);
         this.imp3 = imp3;
         //imp3.show();
@@ -658,7 +658,7 @@ public class OBS_SME_Plugin_GUI extends JFrame implements PlugInFilter , ActionL
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    /** Apply the adaptive gaussian filtering to the original image by using the OBS_Kmeans Map obtained previously
+    /** Apply the adaptive gaussian filtering to the original image by using the SME_ENS_Kmeans_Engine Map obtained previously
      * @param Map2DImage_rearranged: map image obtain after applying Kmeans_ function and reshaping the KmeansLabel array into an image
      *                  matrix called Map2DImage.
      */

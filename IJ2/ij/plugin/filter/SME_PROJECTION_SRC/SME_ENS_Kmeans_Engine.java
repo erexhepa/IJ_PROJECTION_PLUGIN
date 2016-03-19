@@ -9,7 +9,7 @@ import java.util.Random;
  * elton.rexhepaj@gmail.com
  */
 
-public class OBS_Kmeans {
+public class SME_ENS_Kmeans_Engine {
 
     private double[][] data;         // data to cluster
     private int numClusters;    // number of clusters
@@ -27,7 +27,7 @@ public class OBS_Kmeans {
      * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
      * @param clusterCenters    The argument specifies the cluster's center vector descriptors when these are known.
      */
-    public OBS_Kmeans(double[][] data, int numClusters, double[][] clusterCenters)
+    public SME_ENS_Kmeans_Engine(double[][] data, int numClusters, double[][] clusterCenters)
     {
         this.dataSize = data.length;
         this.dataDim = data[0].length;
@@ -59,7 +59,7 @@ public class OBS_Kmeans {
      *                          constructor is called. If FALSE Cluster centers are by default initialised randomly in a
      *                          deterministic manner by using a seed of 100.
      */
-    public OBS_Kmeans(double[][] data, int numClusters, boolean randomizeCenters)
+    public SME_ENS_Kmeans_Engine(double[][] data, int numClusters, boolean randomizeCenters)
     {
         this.dataSize = data.length;
         this.dataDim = data[0].length;
