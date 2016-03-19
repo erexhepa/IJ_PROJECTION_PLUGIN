@@ -64,6 +64,8 @@ end
 
 
 %% STEP 4 - To encode in JAVA
+% idx contain cluster IDs
+
 edgeflag=reshape(idx,[size(Img,1) size(Img,2)]);
 edgeflag2=double((edgeflag-1)/Norm);
 
@@ -82,6 +84,8 @@ if FG==1
     caxis([1 k]);
     colorbar
 end
+
+% k = nmber of slices
 
 cost=[];
 step=k/100;

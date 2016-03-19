@@ -1,0 +1,43 @@
+/**
+         while abs((cost(iter)-cost(iter-1)))>0.0001%*k
+
+            iter=iter+1;
+            idmax1=idmaxk+step;
+            idmax2=idmaxk-step;
+
+            idmaxkB = padarray(idmaxk',1,'symmetric');
+            IB = padarray(idmaxkB',1,'symmetric');
+
+            base=find_base(IB,3);
+            Mold=mean(base,3);
+            varold2=sum((base-repmat(Mold,[1 1 8])).^2,3);
+
+            d1=abs(idmax-idmax1).*edgeflag2;
+            d2=abs(idmax-idmax2).*edgeflag2;
+            d0=abs(idmax-idmaxk).*edgeflag2;
+
+            M11=idmax1-Mold;
+            M12=idmax2-Mold;
+            M10=idmaxk-Mold;
+
+            s1=9*sqrt((varold2+(M11).*(idmax1-(Mold+(M11)./9)))./8);
+            s2=9*sqrt((varold2+(M12).*(idmax2-(Mold+(M12)./9)))./8);
+            s0=9*sqrt((varold2+(M10).*(idmaxk-(Mold+(M10)./9)))./8);
+
+            c1=d1+s1;
+            c2=d2+s2;
+            c0=d0+s0;
+            [minc,shiftc]=min(cat(3,c0,c1,c2),[],3);
+
+            shiftc=shiftc-1;
+
+            shiftc(shiftc==1)=step;
+            shiftc(shiftc==2)=-step;
+
+            idmaxk=idmaxk+shiftc;
+            if FG==1
+
+            cost(iter)=sum(abs(minc(:)))/(npxl);
+            step=step*0.99;
+         end
+         **/
