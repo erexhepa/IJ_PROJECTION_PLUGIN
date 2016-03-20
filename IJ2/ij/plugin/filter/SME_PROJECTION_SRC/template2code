@@ -1,43 +1,99 @@
 /**
-         while abs((cost(iter)-cost(iter-1)))>0.0001%*k
 
-            iter=iter+1;
-            idmax1=idmaxk+step;
-            idmax2=idmaxk-step;
+%% final step - Zmap calculated
 
-            idmaxkB = padarray(idmaxk',1,'symmetric');
-            IB = padarray(idmaxkB',1,'symmetric');
+qzr2=round(idmaxk);
+edgeflag2=edgeflag;
+A=Img;
+imageSize=size(A);
+qzr2(qzr2>k)=k;
+qzr2(qzr2<1)=1;
+%
 
-            base=find_base(IB,3);
-            Mold=mean(base,3);
-            varold2=sum((base-repmat(Mold,[1 1 8])).^2,3);
+zprojf1=zeros(size(qzr2));
 
-            d1=abs(idmax-idmax1).*edgeflag2;
-            d2=abs(idmax-idmax2).*edgeflag2;
-            d0=abs(idmax-idmaxk).*edgeflag2;
+for kin=min(qzr2(:)):max(qzr2(:))
+    temp=Img(:,:,kin);
+    zprojf1(qzr2==kin)=temp(qzr2==kin);
+end
 
-            M11=idmax1-Mold;
-            M12=idmax2-Mold;
-            M10=idmaxk-Mold;
+Manifold=idmaxk;
+OUTput_image=zprojf1;
+Classmap=double(edgeflag);
+%                        waitbar(1,h,'Manifold finalized...');close(h)
 
-            s1=9*sqrt((varold2+(M11).*(idmax1-(Mold+(M11)./9)))./8);
-            s2=9*sqrt((varold2+(M12).*(idmax2-(Mold+(M12)./9)))./8);
-            s0=9*sqrt((varold2+(M10).*(idmaxk-(Mold+(M10)./9)))./8);
+totalz=sum(timk(:));
+sftz=[];
 
-            c1=d1+s1;
-            c2=d2+s2;
-            c0=d0+s0;
-            [minc,shiftc]=min(cat(3,c0,c1,c2),[],3);
+for k=1:size(A,3)
+    sft=k-1;
+    qzr3=qzr2-sft;
+    qzr3(qzr3>imageSize(3))=imageSize(3);
+    qzr3(qzr3<1)=1;
 
-            shiftc=shiftc-1;
+    zprojf1=zeros(size(qzr3));
 
-            shiftc(shiftc==1)=step;
-            shiftc(shiftc==2)=-step;
+    for kin=min(qzr3(:)):max(qzr3(:))
+        temp=Img(:,:,kin);
+        zprojf1(qzr3==kin)=temp(qzr3==kin);
+    end
 
-            idmaxk=idmaxk+shiftc;
-            if FG==1
+    Gx = imfilter(zprojf1, M, 'replicate', 'conv');
+    Gy = imfilter(zprojf1, M', 'replicate', 'conv');
+    zprojf1 = abs(Gx) + abs(Gy);
+    zprojf2=zprojf1;
+    %          zprojf2(Classmap==1)=0;
 
-            cost(iter)=sum(abs(minc(:)))/(npxl);
-            step=step*0.99;
-         end
-         **/
+    qzr3=qzr2+sft;
+    qzr3(qzr3>imageSize(3))=imageSize(3);
+    qzr3(qzr3<1)=1;
+
+    zprojf1=zeros(size(qzr3));
+
+    for kin=min(qzr3(:)):max(qzr3(:))
+        temp=Img(:,:,kin);
+        zprojf1(qzr3==kin)=temp(qzr3==kin);
+    end
+
+    Gx = imfilter(zprojf1, M, 'replicate', 'conv');
+    Gy = imfilter(zprojf1, M', 'replicate', 'conv');
+    zprojf1 = abs(Gx) + abs(Gy);
+    % zprojf1(Classmap==1)=0;
+
+    sftz(k)=(sum(zprojf2(:))+sum(zprojf1(:)))/totalz;
+end
+
+sftzm=sftz;
+
+if doplot==1
+
+    col=cool(class);
+    classmap=zeros(size(Img,1),size(Img,2),3);
+
+    for xin=1:size(Img,1)
+        for yin=1:size(Img,2)
+            classmap(xin,yin,:)=col(edgeflag2(xin,yin),:);
+        end
+    end
+
+    figure()
+    imagesc(Manifold);
+    colormap((jet));  %# Change the colormap to gray (so higher values are
+    %   colorbar                       %#   black and lower values are white)
+    caxis manual
+    caxis([1 imageSize(3)])
+    colorbar
+
+    ha = axes('Position',[0 0 1 1],'Xlim',[0 1],'Ylim',[0 1],'Box','off','Visible','off','Units','normalized', 'clipping' , 'off');
+    %                                             text(0.7,.7,['Comparison of nMI' ],'HorizontalAlignment','center','VerticalAlignment', 'top');
+    set(gcf,'PaperPositionMode','auto')
+    a = get(gca,'XTickLabel');
+    set(gca,'XTickLabel',a,'FontName','Times','fontsize',10,'FontName','Times');
+    b = get(gca,'YTickLabel');
+    set(gca,'YTickLabel',b,'FontName','Times','fontsize',10,'FontName','Times');
+
+
+    print([nametex 'Manifold.png'], '-dpng', '-r300');
+    imwrite(uint16(65536*mat2gray(classmap)),[nametex 'KmeansCC.png']);
+    imwrite(uint16(65536*mat2gray(edgeflag)),[nametex 'KmeansG.png']);
+**/
