@@ -131,7 +131,7 @@ public final class SME_ENS_Utils {
             iPadStart   = i*2;
             iPadEnd     = iPadStart+2;
 
-            for(int j=iPadStart;j<=iPadEnd;j++){
+            for(int j=iPadStart;j<iPadEnd;j++){
                 padedMatrix.setRowVector(j,templateMatrix.getRowVector(i));
             }
         }

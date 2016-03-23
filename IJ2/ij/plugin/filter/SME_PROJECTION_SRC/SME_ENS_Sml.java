@@ -68,5 +68,6 @@ public class SME_ENS_Sml {
         sme_plugin.getImp2().setCalibration(sme_plugin.getImp2().getCalibration());
 
         sme_plugin.getImp2().show();
+        sme_plugin.setSmlImage(sme_plugin.getImp2());
     }
 }

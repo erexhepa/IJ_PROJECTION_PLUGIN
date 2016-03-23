@@ -3,21 +3,41 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 import ij.*;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import javax.swing.text.html.ObjectView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 
 /**
  * Created by rexhepaj on 16/03/16.
  */
 public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
+
+
+    private static final int WIDTHSHOW  = 200;
+    private static final int HEIGHTSHOW = 200;
+    private static final int WIDTHGUI   = 1100;
+    private static final int HEIGHTGUI  = 550;
+
+    private static final String AVG_INT     = "Average Intensity";
+    private static final String MAX_INT     = "Max Intensity";
+    private static final String MIN_INT     = "MIN Intensity";
+    private static final String SUM_SLICE   = "Sum Slices";
+    private static final String STD_INT     = "Standard Deviation";
+    private static final String MED_INT     = "Median Deviation";
+    private static final String BASIC_KMEANS        = "Basic K-Means Clustering";
+    private static final String BENCHMARKED_KMEANS  = "Benchmarked K-Means Clustering";
+    private static final String CONCURRENT_KMEANS   = "Concurrent K-Means Clustering";
+
     private SME_Plugin smePlugin;
 
     // Set ImageJ graphical components
     private ImagePlus currentImage ;
     private ImagePlus processedImage;
-    private Image outputIm ;
+    private Image outputIm,rawIm ;
     private ImagePlus tmpImage ;
     public ImageStack imageStack;
 
@@ -38,34 +58,31 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     private GridBagConstraints cBottom  = new GridBagConstraints();
     private GridBagConstraints cCenter  = new GridBagConstraints();
 
+    BufferedImage imgtemplate1 = new BufferedImage(WIDTHSHOW, HEIGHTSHOW, BufferedImage.TYPE_INT_RGB);
+    BufferedImage imgtemplate2 = new BufferedImage(WIDTHSHOW, HEIGHTSHOW, BufferedImage.TYPE_INT_RGB);
+
     // application content
     private boolean mRunning;
     private SME_KMeans_Paralel mKMeans;
     private SME_Cluster[] clustersKmeans;
 
+    TitledBorder titledTOPLEFT ,titledTOPRIGHT,titledBOTLEFT,titledBOTRIGHT ;
+
     // Define standart projection methods
     //{"Average Intensity", "Max Intensity", "Min Intensity",
     // "Sum Slices", "Standard Deviation", "Median"};
-    private static final String AVG_INT = "Average Intensity";
-    private static final String MAX_INT = "Max Intensity";
-    private static final String MIN_INT = "MIN Intensity";
-    private static final String SUM_SLICE = "Sum Slices";
-    private static final String STD_INT = "Standard Deviation";
-    private static final String MED_INT = "Median Deviation";
+
+
     private String[] projMethods = new String[6];
 
-    private static final int WIDTHSHOW  = 500;
-    private static final int HEIGHTSHOW = 500;
-
-    private static final int WIDTHGUI  = 1100;
-    private static final int HEIGHTGUI = 600;
 
     private double[][] coordinates ;
 
-    private static final String BASIC_KMEANS = "Basic K-Means Clustering";
-    private static final String BENCHMARKED_KMEANS = "Benchmarked K-Means Clustering";
-    private static final String CONCURRENT_KMEANS = "Concurrent K-Means Clustering";
     private Boolean guiStatus = false;
+    private JLabel leftImage = null;
+    private JLabel centerImage = null;
+    private JLabel rightImage  = null;
+    private JLabel leftSME, rightSME = null;
 
     /**
      * Constructor called to initialize the graphical interface
@@ -91,6 +108,13 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
      * Method to initialise all graphical components for display
      */
     public void buildGUI() {
+
+        initTemplates();
+
+        titledTOPLEFT  = new TitledBorder("RAW STACK - CLASSICAL PROJECTION");
+        titledTOPRIGHT = new TitledBorder("RAW STACK - PREPROCESSING");
+        titledBOTLEFT  = new TitledBorder("RAW STACK - MANIFOLD");
+        titledBOTRIGHT = new TitledBorder("RAW STACK - SME PROJECTION");
 
         // initialise the action listeners
         standartProjectionMethods.addActionListener(this);
@@ -184,8 +208,33 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.gridy = 1;
 
         SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component(currentImage,Boolean.TRUE, currentImage.getWidth(), currentImage.getHeight(), 0);
-        JLabel picLabel = new JLabel(new ImageIcon(imcontent.getIm2Show().getScaledInstance(WIDTHSHOW,HEIGHTSHOW, Image.SCALE_DEFAULT)));
-        controlPanel.add(picLabel, cMain);
+        leftImage = new JLabel(new ImageIcon(imcontent.getIm2Show().getScaledInstance(WIDTHSHOW,HEIGHTSHOW, Image.SCALE_DEFAULT)));
+        controlPanel.add(leftImage, cMain);
+        leftImage.setBorder(titledTOPLEFT);
+
+        // add images
+        cMain.ipady = 10;
+        cMain.ipadx = 10;
+        cMain.weightx = 1;
+        cMain.gridwidth = 2;
+        cMain.gridx = 0;
+        cMain.gridy = 2;
+
+        leftSME = new JLabel(new ImageIcon(imgtemplate1));
+        controlPanel.add(leftSME, cMain);
+        leftImage.setBorder(titledBOTLEFT);
+
+        // add images
+        cMain.ipady = 10;
+        cMain.ipadx = 10;
+        cMain.weightx = 1;
+        cMain.gridwidth = 2;
+        cMain.gridx = 2;
+        cMain.gridy = 2;
+
+        leftSME = new JLabel(new ImageIcon(imgtemplate2));
+        controlPanel.add(leftSME, cMain);
+        leftImage.setBorder(titledBOTRIGHT);
 
         // add batch run control buttons
         cMain.ipady = 10;
@@ -193,7 +242,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.weightx = 0;
         cMain.gridwidth = 2;
         cMain.gridx = 0;
-        cMain.gridy = 2;
+        cMain.gridy = 3;
         controlPanel.add(batchRunButton, cMain);
 
         // add batch save control buttons
@@ -202,7 +251,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.weightx = 0;
         cMain.gridwidth = 2;
         cMain.gridx = 2;
-        cMain.gridy = 2;
+        cMain.gridy = 3;
         controlPanel.add(saveImButton, cMain);
 
         controlPanel.setVisible(Boolean.TRUE);
@@ -215,6 +264,21 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         guiStatus = true;
     }
 
+    public void initTemplates(){
+        int r = 255 ;// red component 0...255
+        int g = 255 ;// green component 0...255
+        int b = 255 ;// blue component 0...255
+        int col = (r << 16) | (g << 8) | b;
+
+        for(int x=0; x<WIDTHSHOW;x++){
+            for(int y=0; y<WIDTHSHOW;y++){
+                imgtemplate1.setRGB(x, y, col);
+                imgtemplate2.setRGB(x, y, col);
+            }
+        }
+
+    }
+
     // Action listeners
 
     public synchronized void actionPerformed(ActionEvent e) {
@@ -224,7 +288,9 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
             if (e.getSource() == standartProjectionMethods) {
                 // case where action came from the drop menu
                 int selIndex = standartProjectionMethods.getSelectedIndex();
-                updateProjectionRaw(selIndex);
+                System.out.println("Selecting projection method :"+Integer.toString(selIndex));
+                runNormProjection(selIndex);
+                updateProjectionRaw(rawIm);
 
             } else if (e.getSource() == batchRunButton) {
                 //run batch mode
@@ -253,16 +319,21 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         }
     }
 
+    public void runNormProjection(int projMethod){
+        smePlugin.runProjection(projMethod);
+        rawIm = smePlugin.getProjImage().getImage();
+    }
+
     public void runSmlStep(){
         smePlugin.runSml();
-        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( IJ.getImage(),Boolean.TRUE,
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getSmlImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         outputIm = imcontent.getIm2Show();
     }
 
     public void runKmeansStep(){
         smePlugin.runKmeans();
-        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getKmeanMaping(),Boolean.TRUE,
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getKmensImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         outputIm = imcontent.getIm2Show();
     }
@@ -278,13 +349,20 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
     }
 
+
     public void runBatchStep(){
         smePlugin.runSml();
         smePlugin.runKmeans();
         smePlugin.runEnergyOptimisation();
     }
 
-    public void updateProjectionRaw(int projectionIndex){
+
+    public void updateProjectionRaw(Image rawIM){
+
+        if(leftImage!=null){
+            controlPanel.remove(leftImage);
+        }
+
         // add images
         cMain.ipady = 10;
         cMain.ipadx = 10;
@@ -293,18 +371,27 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.gridx = 0;
         cMain.gridy = 1;
 
-        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component(currentImage,Boolean.TRUE,
-                currentImage.getWidth(), currentImage.getHeight(),projectionIndex);
-        Image image2icon = imcontent.getIm2Show();
-        JLabel picLabel = new JLabel(new ImageIcon(image2icon.getScaledInstance(WIDTHSHOW, HEIGHTSHOW, Image.SCALE_DEFAULT)));
-        controlPanel.add(picLabel, cMain);
+        if(smePlugin.getRawImage()==null){
+            System.out.println("Image is NULL");
+        }else{
+            System.out.println("Image with data");
+        }
 
+        leftImage = new JLabel(new ImageIcon(rawIM.getScaledInstance(WIDTHSHOW, HEIGHTSHOW, Image.SCALE_DEFAULT)));
+        controlPanel.add(leftImage, cMain);
+        leftImage.setBorder(titledTOPLEFT);
         controlPanel.setVisible(Boolean.TRUE);
         this.repaint();
         this.setVisible(Boolean.TRUE);
     }
 
+
     public void updateProjectionOutput(Image outputIM){
+
+        if(centerImage != null) {
+            controlPanel.remove(centerImage);
+        }
+
         // add images
         cMain.ipady = 10;
         cMain.ipadx = 10;
@@ -313,9 +400,9 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.gridx = 2;
         cMain.gridy = 1;
 
-        JLabel picLabel = new JLabel(new ImageIcon(outputIM.getScaledInstance(500, 500, Image.SCALE_DEFAULT)));
-        controlPanel.add(picLabel, cMain);
-
+        centerImage = new JLabel(new ImageIcon(outputIM.getScaledInstance(WIDTHSHOW, HEIGHTSHOW, Image.SCALE_DEFAULT)));
+        controlPanel. add(centerImage, cMain);
+        centerImage.setBorder(titledTOPRIGHT);
         controlPanel.setVisible(Boolean.TRUE);
         this.repaint();
         this.setVisible(Boolean.TRUE);

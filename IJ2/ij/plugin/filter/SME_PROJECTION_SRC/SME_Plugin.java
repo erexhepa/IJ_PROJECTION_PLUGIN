@@ -8,6 +8,7 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
+import ij.plugin.ZProjector;
 import ij.plugin.filter.EDM;
 import ij.plugin.filter.GaussianBlur;
 import ij.plugin.filter.PlugInFilter;
@@ -57,12 +58,21 @@ public class SME_Plugin implements PlugInFilter {
     private SME_ENS_GUI_MAIN gui_main = null;
     private ImagePlus map2d ;
 
+    // Output step by step images
+    private ImagePlus rawImage = null;
+    private ImagePlus projImage = null;
+    private ImagePlus smlImage = null;
+    private ImagePlus kmensImage = null;
+    private ImagePlus mfoldImage = null;
+    private ImagePlus smeImage = null;
+
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;
         return DOES_ALL + STACK_REQUIRED; // Works for stack images
     }
 
     public void run(ImageProcessor ip) {
+        this.rawImage = imp.duplicate();
         stack = imp.getStack();                  // ImagePlus into ImageStack
         this.stack1 = stack.duplicate();   // Duplicates the original stack image
         ImageStack stack2 = stack.duplicate();   // Duplicates the original stack image
@@ -91,6 +101,14 @@ public class SME_Plugin implements PlugInFilter {
         // Gaussian_Filter_(Image_Segmented(kmeansLabels));
 
 
+    }
+
+    public void runProjection(int methodProj){
+        ZProjector zproject = new ZProjector();
+        zproject.setImage(rawImage.duplicate());
+        zproject.setMethod(methodProj);
+        zproject.doProjection();
+        projImage = zproject.getProjection();
     }
 
     public void runKmeans(){
@@ -332,5 +350,53 @@ public class SME_Plugin implements PlugInFilter {
 
     public void setBlur5(ImageStack blur5) {
         Blur5 = blur5;
+    }
+
+    public ImagePlus getRawImage() {
+        return rawImage;
+    }
+
+    public void setRawImage(ImagePlus rawImage) {
+        this.rawImage = rawImage;
+    }
+
+    public ImagePlus getSmlImage() {
+        return smlImage;
+    }
+
+    public void setSmlImage(ImagePlus smlImage) {
+        this.smlImage = smlImage;
+    }
+
+    public ImagePlus getKmensImage() {
+        return kmensImage;
+    }
+
+    public void setKmensImage(ImagePlus kmensImage) {
+        this.kmensImage = kmensImage;
+    }
+
+    public ImagePlus getMfoldImage() {
+        return mfoldImage;
+    }
+
+    public void setMfoldImage(ImagePlus mfoldImage) {
+        this.mfoldImage = mfoldImage;
+    }
+
+    public ImagePlus getSmeImage() {
+        return smeImage;
+    }
+
+    public void setSmeImage(ImagePlus smeImage) {
+        this.smeImage = smeImage;
+    }
+
+    public ImagePlus getProjImage() {
+        return projImage;
+    }
+
+    public void setProjImage(ImagePlus projImage) {
+        this.projImage = projImage;
     }
 }

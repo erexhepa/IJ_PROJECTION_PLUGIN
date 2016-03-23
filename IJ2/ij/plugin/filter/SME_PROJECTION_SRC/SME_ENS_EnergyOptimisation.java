@@ -37,16 +37,18 @@ public class SME_ENS_EnergyOptimisation {
 
     public SME_ENS_EnergyOptimisation(SME_Plugin refplugin){
         sme_plugin = refplugin;
+        initOptimisation();
     }
-
-
 
     public void initOptimisation(){
         edgeflag = MatrixUtils.createRealMatrix(sme_plugin.getKmeanCentroids());
         edgeflag2  = edgeflag.scalarAdd(-1).scalarMultiply(1/KMEAN_NORM);
         kmeanOutput = SME_ENS_Utils.getMaxProjectionIndex(sme_plugin.getStack1());
 
-        idmax       = kmeanOutput.copy();
+        idmax       = MatrixUtils.createRealMatrix(
+                SME_ENS_Utils.convertFloatMatrixToDoubles(
+                        sme_plugin.getSmlImage().getProcessor().getFloatArray(),
+                        kmeanOutput.getRowDimension(),kmeanOutput.getColumnDimension()));
         idmaxk      = idmax.copy();
         idmaxki     = idmax.copy();
         mink        = idmax.copy().scalarMultiply(0).scalarAdd(1);

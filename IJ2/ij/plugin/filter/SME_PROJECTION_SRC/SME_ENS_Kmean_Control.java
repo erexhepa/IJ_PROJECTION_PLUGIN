@@ -85,7 +85,7 @@ public class SME_ENS_Kmean_Control {
         //imp5.show();
         //imp6.show(); // Display the final image
         sme_plugin.getMap2d().show(); // TODO : make this current imagej image that can be grabed by the gui
-
+        sme_plugin.setKmensImage(new ImagePlus("Map2d", (new FloatProcessor(sme_plugin.getMap2DImage()))));
     }
 
     public float [][] Rearrange_Map2DImage(float[][] Map2DImage) {
