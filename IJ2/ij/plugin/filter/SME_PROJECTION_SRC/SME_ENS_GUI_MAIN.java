@@ -268,7 +268,10 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     }
 
     public void runEnoptStep(){
-
+        smePlugin.runEnergyOptimisation();
+        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getKmeanMaping(),Boolean.TRUE,
+                currentImage.getWidth(), currentImage.getHeight(),6);
+        outputIm = imcontent.getIm2Show();
     }
 
     public void runSaveimStep(){
@@ -276,7 +279,9 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     }
 
     public void runBatchStep(){
-
+        smePlugin.runSml();
+        smePlugin.runKmeans();
+        smePlugin.runEnergyOptimisation();
     }
 
     public void updateProjectionRaw(int projectionIndex){
