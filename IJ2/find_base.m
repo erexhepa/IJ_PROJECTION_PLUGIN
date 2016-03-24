@@ -5,6 +5,7 @@ sz1=size(IB,1)-k+1;
 sz2=size(IB,2)-k+1;
 for inx=1:k
     for iny=1:k
+        is1 = inx:inx+sz1-1;is2 = iny:iny+sz2-1;
         
         base(:,:,loop)=IB(inx:inx+sz1-1,iny:iny+sz2-1);
         loop=loop+1;

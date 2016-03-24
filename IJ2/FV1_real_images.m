@@ -5,9 +5,9 @@ frame = 1;
 
 %% Read the TIF file
 
-name{1} = 'CellBorder1.tif';
+name{3} = 'CellBorder1.tif';
 name{2} = 'Centriole1.tif';
-name{3} = 'Neuron1.tif';
+name{1} = 'Neuron1.tif';
 name{16}='Cell_border1.tif';
 
 %  addpath(genpath([cd '/prtools']));
@@ -25,7 +25,7 @@ for kid=[1];
         I = imread([cd filesep fname], k);
         Img1(:,:,k)=I;
     end
-    Img1=Img1(1:150,1:150,:);
+    %Img1=Img1(1:150,1:150,:);
 %
     
     [Img11,zval11]=max(Img1,[],3);

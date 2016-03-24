@@ -295,7 +295,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
             } else if (e.getSource() == batchRunButton) {
                 //run batch mode
                 runBatchStep();
-                updateProjectionOutput(outputIm);
+                //updateProjectionOutput(outputIm);
 
             } else if (e.getSource() == smlRunButton) {
                 //run sml - step 1

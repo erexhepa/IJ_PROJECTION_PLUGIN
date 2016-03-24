@@ -121,19 +121,17 @@ public final class SME_ENS_Utils {
             templateMatrix = inMatrix.copy();
         }
 
-        padedMatrix          = MatrixUtils.createRealMatrix(templateMatrix.getRowDimension()*2,
+        padedMatrix          = MatrixUtils.createRealMatrix(templateMatrix.getRowDimension()+2,
                 templateMatrix.getColumnDimension());
 
-        int iPadStart,iPadEnd = 0;
+        int iPadStart = 1,iPadEnd = padedMatrix.getRowDimension()-1;
+
+        padedMatrix.setRowVector(0,templateMatrix.getRowVector(1));
+        padedMatrix.setRowVector(iPadEnd,templateMatrix.getRowVector(templateMatrix.getRowDimension()-1));
 
         // symetrical padding
-        for(int i=0;i<=padedMatrix.getRowDimension();i++){
-            iPadStart   = i*2;
-            iPadEnd     = iPadStart+2;
-
-            for(int j=iPadStart;j<iPadEnd;j++){
-                padedMatrix.setRowVector(j,templateMatrix.getRowVector(i));
-            }
+        for(int i=iPadStart;i<iPadEnd;i++){
+                padedMatrix.setRowVector(i,templateMatrix.getRowVector(i-1));
         }
 
         return(padedMatrix);
@@ -141,9 +139,6 @@ public final class SME_ENS_Utils {
 
 
     public static ImageStack find_base(RealMatrix inMatrix, int indexK){
-        ImageStack baseMatrix           = new ImageStack(inMatrix.getRowDimension(),
-                inMatrix.getColumnDimension());
-
         int nrowsMat = inMatrix.getRowDimension();
         int ncolsMat = inMatrix.getColumnDimension();
 
@@ -151,14 +146,21 @@ public final class SME_ENS_Utils {
         int sz1     =   inMatrix.getRowDimension()-indexK+1;
         int sz2     =   inMatrix.getColumnDimension()-indexK+1;
 
+        ImageStack baseMatrix           = new ImageStack(nrowsMat, ncolsMat);
+
         for(int inx=0;inx<indexK;inx++){
-            for(int iny=0;inx<indexK;inx++){
-                RealMatrix subMatrix = inMatrix.getSubMatrix(inx,(inx+sz1-1),iny,(iny+sz2-1)).copy();
+            for(int iny=0;iny<indexK;iny++){
+                int rowStart = inx;int rowEnd = (inx+sz1-1);
+                int colStart = iny;int colEnd = (iny+sz2-1);
+
+                RealMatrix tmpMatrix = MatrixUtils.createRealMatrix(nrowsMat, ncolsMat);
+                RealMatrix subMatrix = inMatrix.getSubMatrix(rowStart,rowEnd,colStart,colEnd).copy();
+                tmpMatrix.setSubMatrix(subMatrix.getData(),rowStart,colStart);
 
                 baseMatrix.addSlice((ImageProcessor) new FloatProcessor(
                         SME_ENS_Utils.convertDoubleMatrixToFloat(
-                                subMatrix.getData(),nrowsMat,ncolsMat
-                        )));
+                                tmpMatrix.getData(),
+                                tmpMatrix.getRowDimension(),tmpMatrix.getColumnDimension())));
                 loop= loop+1;
             }
         }
@@ -187,7 +189,7 @@ public final class SME_ENS_Utils {
                         convertFloatMatrixToDoubles(base.getProcessor(inz+1).getFloatArray(),
                         nrowsMat,ncolsMat));
                 RealMatrix tmpSlice     = currentSlice.subtract(inMatrix);
-                tmpSlice     = tmpSlice.power(2);
+                tmpSlice     = realmatrixDoublepow(tmpSlice,2);
                 baseMatrix.addSlice((ImageProcessor) new FloatProcessor(
                         SME_ENS_Utils.convertDoubleMatrixToFloat(
                                 tmpSlice.getData(),nrowsMat,ncolsMat
@@ -196,6 +198,22 @@ public final class SME_ENS_Utils {
 
         return(baseMatrix);
     }
+
+    public static RealMatrix elementMultiply(RealMatrix inMatrix1,RealMatrix inMatrix2){
+        int nrows = inMatrix1.getRowDimension();
+        int ncols = inMatrix1.getColumnDimension();
+
+        RealMatrix retuRealMatrix = MatrixUtils.createRealMatrix(nrows,ncols);
+
+        for(int i=0;i<nrows;i++){
+            for(int j=0;j<ncols;j++){
+                retuRealMatrix.setEntry(i,j,inMatrix1.getEntry(i,j)* inMatrix2.getEntry(i,j));
+            }
+        }
+
+        return(retuRealMatrix);
+    }
+
 
     public static RealMatrix realmatrixDoublepow(RealMatrix inMatrix, double expPow){
         int nrows = inMatrix.getRowDimension();
@@ -251,11 +269,15 @@ public final class SME_ENS_Utils {
         double[][] maxIndex = new double[imageStack.getProcessor(1).getWidth()]
                 [imageStack.getProcessor(1).getHeight()];
 
-        for(int pixIndexI=0;pixIndexI<=imageStack.getProcessor(1).getWidth();pixIndexI++){
-            for(int pixIndexJ=0;pixIndexJ<=imageStack.getProcessor(1).getWidth();pixIndexJ++){
+        int rowDim = imageStack.getProcessor(1).getWidth();
+        int colDim = imageStack.getProcessor(1).getHeight();
+        int zDim   = imageStack.getSize();
+
+        for(int pixIndexI=0;pixIndexI<rowDim;pixIndexI++){
+            for(int pixIndexJ=0;pixIndexJ<colDim;pixIndexJ++){
                 double minZval = Double.MAX_VALUE;
 
-                for(int pixIndexZ=0;pixIndexZ<=imageStack.getSize();pixIndexZ++){
+                for(int pixIndexZ=0;pixIndexZ<zDim;pixIndexZ++){
                     if(imageStack.getVoxel(pixIndexI,pixIndexJ,pixIndexZ)<minZval){
                         maxIndex[pixIndexI][pixIndexJ] = pixIndexZ;
                         minZval = imageStack.getVoxel(pixIndexI,pixIndexJ,pixIndexZ);
