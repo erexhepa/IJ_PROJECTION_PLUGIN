@@ -20,7 +20,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     private static final int WIDTHSHOW  = 200;
     private static final int HEIGHTSHOW = 200;
     private static final int WIDTHGUI   = 1100;
-    private static final int HEIGHTGUI  = 550;
+    private static final int HEIGHTGUI  = 600;
 
     private static final String AVG_INT     = "Average Intensity";
     private static final String MAX_INT     = "Max Intensity";
@@ -38,6 +38,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     private ImagePlus currentImage ;
     private ImagePlus processedImage;
     private Image outputIm,rawIm ;
+    private Image manifoldSME, projectionSME;
     private ImagePlus tmpImage ;
     public ImageStack imageStack;
 
@@ -113,8 +114,8 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
         titledTOPLEFT  = new TitledBorder("RAW STACK - CLASSICAL PROJECTION");
         titledTOPRIGHT = new TitledBorder("RAW STACK - PREPROCESSING");
-        titledBOTLEFT  = new TitledBorder("RAW STACK - MANIFOLD");
-        titledBOTRIGHT = new TitledBorder("RAW STACK - SME PROJECTION");
+        titledBOTLEFT  = new TitledBorder("SME - 2D MANIFOLD");
+        titledBOTRIGHT = new TitledBorder("SME - 3D->2D PROJECTION");
 
         // initialise the action listeners
         standartProjectionMethods.addActionListener(this);
@@ -222,7 +223,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
         leftSME = new JLabel(new ImageIcon(imgtemplate1));
         controlPanel.add(leftSME, cMain);
-        leftImage.setBorder(titledBOTLEFT);
+        leftSME.setBorder(titledBOTLEFT);
 
         // add images
         cMain.ipady = 10;
@@ -232,9 +233,9 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         cMain.gridx = 2;
         cMain.gridy = 2;
 
-        leftSME = new JLabel(new ImageIcon(imgtemplate2));
-        controlPanel.add(leftSME, cMain);
-        leftImage.setBorder(titledBOTRIGHT);
+        rightSME = new JLabel(new ImageIcon(imgtemplate2));
+        controlPanel.add(rightSME, cMain);
+        rightSME.setBorder(titledBOTRIGHT);
 
         // add batch run control buttons
         cMain.ipady = 10;
@@ -295,7 +296,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
             } else if (e.getSource() == batchRunButton) {
                 //run batch mode
                 runBatchStep();
-                //updateProjectionOutput(outputIm);
+                updateProjectionSME(manifoldSME,projectionSME);
 
             } else if (e.getSource() == smlRunButton) {
                 //run sml - step 1
@@ -310,7 +311,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
             } else if (e.getSource() == enoptRunButton) {
                 //run enopt - step 3
                 runEnoptStep();
-                updateProjectionOutput(outputIm);
+                updateProjectionSME(manifoldSME,projectionSME);
 
             } else if (e.getSource() == saveImButton) {
                 //save current output
@@ -340,9 +341,12 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
     public void runEnoptStep(){
         smePlugin.runEnergyOptimisation();
-        SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getKmeanMaping(),Boolean.TRUE,
+        SME_ENS_Image_Component imcontent1 = new SME_ENS_Image_Component( smePlugin.getMfoldImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
-        outputIm = imcontent.getIm2Show();
+        manifoldSME = imcontent1.getIm2Show();
+        SME_ENS_Image_Component imcontent2 = new SME_ENS_Image_Component( smePlugin.getSmeImage(),Boolean.TRUE,
+                currentImage.getWidth(), currentImage.getHeight(),6);
+        projectionSME = imcontent2.getIm2Show();
     }
 
     public void runSaveimStep(){
@@ -351,11 +355,55 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
 
 
     public void runBatchStep(){
-        smePlugin.runSml();
-        smePlugin.runKmeans();
+        runSmlStep();updateProjectionOutput(outputIm);
+        runKmeansStep();updateProjectionOutput(outputIm);
         smePlugin.runEnergyOptimisation();
+        SME_ENS_Image_Component imcontent1 = new SME_ENS_Image_Component( smePlugin.getMfoldImage(),Boolean.TRUE,
+                currentImage.getWidth(), currentImage.getHeight(),6);
+        manifoldSME = imcontent1.getIm2Show();
+        SME_ENS_Image_Component imcontent2 = new SME_ENS_Image_Component( smePlugin.getSmeImage(),Boolean.TRUE,
+                currentImage.getWidth(), currentImage.getHeight(),6);
+        projectionSME = imcontent2.getIm2Show();
     }
 
+    public void updateProjectionSME(Image smeManifold, Image smeOutput){
+        if( leftSME!= null) {
+            controlPanel.remove(leftSME);
+        }
+        if( rightSME!= null) {
+            controlPanel.remove(rightSME);
+        }
+
+        // add manifold image
+        cMain.ipady = 10;
+        cMain.ipadx = 10;
+        cMain.weightx = 1;
+        cMain.gridwidth = 2;
+        cMain.gridx = 0;
+        cMain.gridy = 2;
+
+        leftSME = new JLabel(new ImageIcon(smeManifold.getScaledInstance(WIDTHSHOW, HEIGHTSHOW, Image.SCALE_DEFAULT)));
+        controlPanel. add(leftSME, cMain);
+        leftSME.setBorder(titledBOTLEFT);
+        controlPanel.setVisible(Boolean.TRUE);
+        this.repaint();
+        this.setVisible(Boolean.TRUE);
+
+        // add SME projection image
+        cMain.ipady = 10;
+        cMain.ipadx = 10;
+        cMain.weightx = 1;
+        cMain.gridwidth = 2;
+        cMain.gridx = 2;
+        cMain.gridy = 2;
+
+        rightSME = new JLabel(new ImageIcon(projectionSME.getScaledInstance(WIDTHSHOW, HEIGHTSHOW, Image.SCALE_DEFAULT)));
+        controlPanel. add(rightSME, cMain);
+        rightSME.setBorder(titledBOTRIGHT);
+        controlPanel.setVisible(Boolean.TRUE);
+        this.repaint();
+        this.setVisible(Boolean.TRUE);
+    }
 
     public void updateProjectionRaw(Image rawIM){
 

@@ -8,12 +8,17 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.stat.StatUtils;
+
+import java.text.DecimalFormat;
 
 
 /**
  * Created by eltonr on 19/03/16.
  */
 public final class SME_ENS_Utils {
+
+    private static DecimalFormat df2 = new DecimalFormat("###.###");
 
     public static double[] convertFloatVecToDoubles(float[] input)
     {
@@ -146,7 +151,7 @@ public final class SME_ENS_Utils {
         int sz1     =   inMatrix.getRowDimension()-indexK+1;
         int sz2     =   inMatrix.getColumnDimension()-indexK+1;
 
-        ImageStack baseMatrix           = new ImageStack(nrowsMat, ncolsMat);
+        ImageStack baseMatrix           = new ImageStack(ncolsMat , nrowsMat);
 
         for(int inx=0;inx<indexK;inx++){
             for(int iny=0;iny<indexK;iny++){
@@ -156,11 +161,12 @@ public final class SME_ENS_Utils {
                 RealMatrix tmpMatrix = MatrixUtils.createRealMatrix(nrowsMat, ncolsMat);
                 RealMatrix subMatrix = inMatrix.getSubMatrix(rowStart,rowEnd,colStart,colEnd).copy();
                 tmpMatrix.setSubMatrix(subMatrix.getData(),rowStart,colStart);
+                tmpMatrix = tmpMatrix.transpose();
+                ImageProcessor ip   = (ImageProcessor) new FloatProcessor(ncolsMat,nrowsMat);
+                float[][] sliceData =  SME_ENS_Utils.convertDoubleMatrixToFloat(tmpMatrix.getData(),ncolsMat,nrowsMat);
 
-                baseMatrix.addSlice((ImageProcessor) new FloatProcessor(
-                        SME_ENS_Utils.convertDoubleMatrixToFloat(
-                                tmpMatrix.getData(),
-                                tmpMatrix.getRowDimension(),tmpMatrix.getColumnDimension())));
+                ip.setFloatArray(sliceData);
+                baseMatrix.addSlice(ip);
                 loop= loop+1;
             }
         }
@@ -176,23 +182,24 @@ public final class SME_ENS_Utils {
 
     public static ImageStack repmatMatrixVar(RealMatrix inMatrix, ImageStack base){
         //varold2=sum((base-repmat(Mold,[1 1 8])).^2,3);
-        final int DIMZ = 8;
-
-        ImageStack baseMatrix           = new ImageStack(inMatrix.getRowDimension(),
-                inMatrix.getColumnDimension());
-
+        final int DIMZ              = 8;
         int nrowsMat                = inMatrix.getRowDimension();
         int ncolsMat                = inMatrix.getColumnDimension();
+        ImageStack baseMatrix       = new ImageStack(ncolsMat,nrowsMat);
 
         for(int inz=0;inz<DIMZ;inz++){
                 RealMatrix currentSlice = MatrixUtils.createRealMatrix(
                         convertFloatMatrixToDoubles(base.getProcessor(inz+1).getFloatArray(),
-                        nrowsMat,ncolsMat));
-                RealMatrix tmpSlice     = currentSlice.subtract(inMatrix);
-                tmpSlice     = realmatrixDoublepow(tmpSlice,2);
+                                ncolsMat,nrowsMat));
+                currentSlice = currentSlice.transpose();
+
+                RealMatrix tmpSlice =   currentSlice.subtract(inMatrix);
+                tmpSlice            =   realmatrixDoublepow(tmpSlice,2);
+                tmpSlice            =   tmpSlice.transpose();
+
                 baseMatrix.addSlice((ImageProcessor) new FloatProcessor(
                         SME_ENS_Utils.convertDoubleMatrixToFloat(
-                                tmpSlice.getData(),nrowsMat,ncolsMat
+                                tmpSlice.getData(),ncolsMat,nrowsMat
                         )));
         }
 
@@ -245,17 +252,17 @@ public final class SME_ENS_Utils {
 
     public static RealMatrix getMaxProjectionIndex(ImageStack imageStack){
 
-        double[][] maxIndex = new double[imageStack.getProcessor(1).getWidth()]
-                [imageStack.getProcessor(1).getHeight()];
+        double[][] maxIndex = new double[imageStack.getProcessor(1).getHeight()]
+                [imageStack.getProcessor(1).getWidth()];
 
-        for(int pixIndexI=0;pixIndexI<=imageStack.getProcessor(1).getWidth();pixIndexI++){
-            for(int pixIndexJ=0;pixIndexJ<=imageStack.getProcessor(1).getWidth();pixIndexJ++){
+        for(int pixIndexI=0;pixIndexI<=imageStack.getProcessor(1).getHeight();pixIndexI++){
+            for(int pixIndexJ=0;pixIndexJ<=imageStack.getProcessor(1).getHeight();pixIndexJ++){
                 double maxZval = Double.MIN_VALUE;
 
                 for(int pixIndexZ=0;pixIndexZ<=imageStack.getSize();pixIndexZ++){
-                    if(imageStack.getVoxel(pixIndexI,pixIndexJ,pixIndexZ)>maxZval){
+                    if(imageStack.getVoxel(pixIndexJ,pixIndexI,pixIndexZ)>maxZval){
                         maxIndex[pixIndexI][pixIndexJ] = pixIndexZ;
-                        maxZval = imageStack.getVoxel(pixIndexI,pixIndexJ,pixIndexZ);
+                        maxZval = imageStack.getVoxel(pixIndexJ,pixIndexI,pixIndexZ);
                     }
                 }
             }
@@ -266,21 +273,20 @@ public final class SME_ENS_Utils {
 
     public static RealMatrix getMinProjectionIndex(ImageStack imageStack){
 
-        double[][] maxIndex = new double[imageStack.getProcessor(1).getWidth()]
-                [imageStack.getProcessor(1).getHeight()];
-
-        int rowDim = imageStack.getProcessor(1).getWidth();
-        int colDim = imageStack.getProcessor(1).getHeight();
+        int colDim = imageStack.getProcessor(1).getWidth();
+        int rowDim = imageStack.getProcessor(1).getHeight();
         int zDim   = imageStack.getSize();
+
+        double[][] maxIndex = new double[rowDim][colDim];
 
         for(int pixIndexI=0;pixIndexI<rowDim;pixIndexI++){
             for(int pixIndexJ=0;pixIndexJ<colDim;pixIndexJ++){
                 double minZval = Double.MAX_VALUE;
 
                 for(int pixIndexZ=0;pixIndexZ<zDim;pixIndexZ++){
-                    if(imageStack.getVoxel(pixIndexI,pixIndexJ,pixIndexZ)<minZval){
+                    if(imageStack.getVoxel(pixIndexJ,pixIndexI,pixIndexZ)<minZval){
                         maxIndex[pixIndexI][pixIndexJ] = pixIndexZ;
-                        minZval = imageStack.getVoxel(pixIndexI,pixIndexJ,pixIndexZ);
+                        minZval = imageStack.getVoxel(pixIndexJ,pixIndexI,pixIndexZ);
                     }
                 }
             }
@@ -327,5 +333,33 @@ public final class SME_ENS_Utils {
         }
 
         return(retVector);
+    }
+
+    public static void printRealMatrix(double[][] matrix,String matrixID) {
+
+        System.out.println("################## Matrix print - "+matrixID+ " ###################");
+
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[row].length; col++) {
+                System.out.printf("%6.2f",(matrix[row][col]));
+                System.out.printf("|");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printRealMatrixStats(RealMatrix inMatrix, String matrixID){
+        double[] dataStream     =   realmat2vector(inMatrix,1).toArray();
+
+        System.out.println("################## Summary Statistics - "+matrixID+ " ###################");
+        System.out.printf("Min value : ");System.out.printf(df2.format(StatUtils.min(dataStream)));System.out.printf("\n");
+        System.out.printf("Max value : ");System.out.printf(df2.format(StatUtils.max(dataStream)));System.out.printf("\n");
+        System.out.printf("Sum value : ");System.out.printf(df2.format(StatUtils.sum(dataStream)));System.out.printf("\n");
+        System.out.printf("Var value : ");System.out.printf(df2.format(StatUtils.variance(dataStream)));System.out.printf("\n");
+        System.out.printf("Median value : ");System.out.printf(df2.format(StatUtils.percentile(dataStream,0.5)));System.out.printf("\n");
+        System.out.printf("Mean value : ");System.out.printf(df2.format(StatUtils.mean(dataStream)));System.out.printf("\n");
+        //System.out.printf("Mode value : ");System.out.printf(df2.format(StatUtils.mode(dataStream)));System.out.printf("\n");
+        //System.out.printf("25% value : ");System.out.printf(df2.format(StatUtils.percentile(dataStream,0.25)));System.out.printf("\n");
+        //System.out.printf("75% value : ");System.out.printf(df2.format(StatUtils.percentile(dataStream,0.75)));System.out.printf("\n");
     }
 }

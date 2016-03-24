@@ -154,7 +154,9 @@ while abs((cost(iter)-cost(iter-1)))>0.0001%*k
     cost(iter)=sum(abs(minc(:)))/(npxl);
     step=step*0.99;
     %       (cost(iter)-cost(iter-1));
+    cost(iter)
     iter
+    disp 'step'
 end
 
 %% final step - Zmap calculated

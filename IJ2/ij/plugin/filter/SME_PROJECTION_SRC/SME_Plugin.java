@@ -124,6 +124,8 @@ public class SME_Plugin implements PlugInFilter {
     public void runEnergyOptimisation(){
         SME_ENS_EnergyOptimisation enOpt = new SME_ENS_EnergyOptimisation(this);
         enOpt.applyEnergyOptimisation();
+        enOpt.setOutputManifold();
+        enOpt.setOutputSME();
     }
 
     public ImagePlus getKmeanMaping(){

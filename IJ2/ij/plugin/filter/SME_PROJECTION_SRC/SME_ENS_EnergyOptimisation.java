@@ -17,7 +17,7 @@ import java.awt.*;
  */
 public class SME_ENS_EnergyOptimisation {
     private SME_Plugin sme_plugin   = null;
-    private final int KMEAN_NORM    = 3;
+    private final int KMEAN_NORM    = 2;
     private final double ENERGY_STEP= 0.0001;
     private RealMatrix kmeanOutput ;
     private RealMatrix rawdata2D    = null;
@@ -43,19 +43,19 @@ public class SME_ENS_EnergyOptimisation {
 
     public void initOptimisation(){
         ImagePlus   smlProjection = sme_plugin.getSmlImage();
-        edgeflag = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(
-                sme_plugin.getMap2d().getProcessor().getFloatArray(),
-                smlProjection.getWidth(),smlProjection.getHeight()));
-        edgeflag2  = MatrixUtils.createRealMatrix(edgeflag.scalarAdd(-1).scalarMultiply(1/KMEAN_NORM).getData());
         kmeanOutput = SME_ENS_Utils.getMaxProjectionIndex(sme_plugin.getStack1());
 
-        ZProjector zproject = new ZProjector();zproject.setImage(smlProjection);
-        zproject.setMethod(1); zproject.doProjection();
+        edgeflag = kmeanOutput;
+        //SME_ENS_Utils.printRealMatrix(edgeflag.getData());
+        double normFactor = 1.0/KMEAN_NORM;
+        edgeflag2  = MatrixUtils.createRealMatrix(edgeflag.scalarMultiply(normFactor).getData());
+        //SME_ENS_Utils.printRealMatrix(edgeflag2.getData());
+        //SME_ENS_Utils.printRealMatrixStats(edgeflag2,"edgeflag2");
 
-        idmax       = MatrixUtils.createRealMatrix(
-                SME_ENS_Utils.convertFloatMatrixToDoubles(
-                        zproject.getProjection().getChannelProcessor().getFloatArray(),
-                        kmeanOutput.getRowDimension(),kmeanOutput.getColumnDimension()));
+        idmax       = SME_ENS_Utils.getMaxProjectionIndex(smlProjection.getImageStack()).scalarAdd(1);
+        //SME_ENS_Utils.printRealMatrix(idmax.getData(),"idmax");
+        SME_ENS_Utils.printRealMatrixStats(idmax,"idmax");
+
         idmaxk      = idmax.copy();
         idmaxki     = idmax.copy();
         mink        = idmax.copy().scalarMultiply(0).scalarAdd(1);
@@ -87,20 +87,28 @@ public class SME_ENS_EnergyOptimisation {
             ImageStack base = SME_ENS_Utils.find_base(IB, 3);
             zproject.setImage(new ImagePlus("IterativeProjection", base));
             zproject.doProjection();
-            RealMatrix Mold = MatrixUtils.createRealMatrix(
+            int nrowsIB     = base.getHeight();
+            int ncolsIB     = base.getWidth();
+
+            RealMatrix Mold =   MatrixUtils.createRealMatrix(
                     SME_ENS_Utils.convertFloatMatrixToDoubles(
                             zproject.getProjection().getImageStack().getProcessor(1).getFloatArray(),
-                            idmax1.getRowDimension(), idmax1.getColumnDimension()));
+                            ncolsIB, nrowsIB));
+            Mold            =   Mold.transpose();
 
             ImageStack varoldStack = SME_ENS_Utils.repmatMatrixVar(Mold, base);
 
             zproject.setImage(new ImagePlus("IterativeProjection", varoldStack));
             zproject.setMethod(3);
             zproject.doProjection();
+            int rowDim = varoldStack.getHeight();
+            int colDim = varoldStack.getWidth();
+
             RealMatrix varold2 = MatrixUtils.createRealMatrix(
                     SME_ENS_Utils.convertFloatMatrixToDoubles(
                             zproject.getProjection().getImageStack().getProcessor(1).getFloatArray(),
-                            idmax1.getRowDimension(), idmax1.getColumnDimension()));
+                            colDim, rowDim));
+            varold2             = varold2.transpose();
 
             RealMatrix d1 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax1),edgeflag2);
             RealMatrix d2 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax2),edgeflag2);
@@ -153,6 +161,37 @@ public class SME_ENS_EnergyOptimisation {
             System.out.println(Integer.toString(iter));
             System.out.println(Double.toString(costIterStep));
         }
+    }
+
+    public void setOutputManifold(){
+        double norm_factor  =   sme_plugin.getStack1().getSize();
+        int dimW            =   sme_plugin.getStack1().getWidth();
+        int dimH            =   sme_plugin.getStack1().getHeight();
+
+        RealMatrix normMnold = idmaxk.scalarMultiply(1/norm_factor).scalarMultiply(255);
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.getData(),dimW,dimH);
+        ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+        sme_plugin.setMfoldImage(smeManifold);
+    }
+
+    public void setOutputSME(){
+        double norm_factor  =   sme_plugin.getStack1().getSize();
+        int dimW            =   sme_plugin.getStack1().getWidth();
+        int dimH            =   sme_plugin.getStack1().getHeight();
+
+        ImageStack rawStack  = sme_plugin.getStack();
+        RealMatrix projMnold = MatrixUtils.createRealMatrix(dimW,dimH);
+
+        for(int i=0;i<dimW;i++){
+            for(int j=0;j<dimH;j++){
+                int zIndex = (int) Math.round(idmaxk.getEntry(i,j));
+                projMnold.setEntry (i,j,rawStack.getVoxel(j,i,zIndex));
+            }
+        }
+
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.getData(),dimW,dimH);
+        ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+        sme_plugin.setSmeImage(smeManifold);
     }
 
 }
