@@ -151,19 +151,19 @@ public final class SME_ENS_Utils {
         int sz1     =   inMatrix.getRowDimension()-indexK+1;
         int sz2     =   inMatrix.getColumnDimension()-indexK+1;
 
-        ImageStack baseMatrix           = new ImageStack(ncolsMat , nrowsMat);
+        ImageStack baseMatrix           = new ImageStack(sz2 , sz1);
 
         for(int inx=0;inx<indexK;inx++){
             for(int iny=0;iny<indexK;iny++){
                 int rowStart = inx;int rowEnd = (inx+sz1-1);
                 int colStart = iny;int colEnd = (iny+sz2-1);
 
-                RealMatrix tmpMatrix = MatrixUtils.createRealMatrix(nrowsMat, ncolsMat);
+                RealMatrix tmpMatrix = MatrixUtils.createRealMatrix(sz1, sz2);
                 RealMatrix subMatrix = inMatrix.getSubMatrix(rowStart,rowEnd,colStart,colEnd).copy();
-                tmpMatrix.setSubMatrix(subMatrix.getData(),rowStart,colStart);
+                tmpMatrix.setSubMatrix(subMatrix.getData(),0,0);
                 tmpMatrix = tmpMatrix.transpose();
-                ImageProcessor ip   = (ImageProcessor) new FloatProcessor(ncolsMat,nrowsMat);
-                float[][] sliceData =  SME_ENS_Utils.convertDoubleMatrixToFloat(tmpMatrix.getData(),ncolsMat,nrowsMat);
+                ImageProcessor ip   = (ImageProcessor) new FloatProcessor(sz2,sz1);
+                float[][] sliceData =  SME_ENS_Utils.convertDoubleMatrixToFloat(tmpMatrix.getData(),sz2,sz1);
 
                 ip.setFloatArray(sliceData);
                 baseMatrix.addSlice(ip);
