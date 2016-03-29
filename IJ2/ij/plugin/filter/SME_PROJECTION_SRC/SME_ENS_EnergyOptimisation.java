@@ -1,5 +1,6 @@
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
+import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.plugin.ZProjector;
@@ -10,7 +11,10 @@ import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 /**
  * Created by rexhepaj on 17/03/16.
@@ -53,6 +57,12 @@ public class SME_ENS_EnergyOptimisation {
         //SME_ENS_Utils.printRealMatrixStats(edgeflag2,"edgeflag2");
 
         idmax       = SME_ENS_Utils.getMaxProjectionIndex(smlProjection.getImageStack()).scalarAdd(1);
+
+        // save tmp sml max projection and kmeans projection
+
+        IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
+        IJ.saveAsTiff(sme_plugin.getKmensImage(),"kmeansResult.tiff");
+
         //SME_ENS_Utils.printRealMatrix(idmax.getData(),"idmax");
         SME_ENS_Utils.printRealMatrixStats(idmax,"idmax");
 
