@@ -155,8 +155,10 @@ public class SME_ENS_EnergyOptimisation {
                     SME_ENS_Utils.convertFloatMatrixToDoubles(
                             zproject.getProjection().getImageStack().getProcessor(1).getFloatArray(),
                             idmax1.getRowDimension(), idmax1.getColumnDimension()));
+            minc    =   minc.transpose();
 
             RealMatrix shiftc   =   SME_ENS_Utils.getMinProjectionIndex(catStack);
+            shiftc              =   shiftc.transpose();
             shiftc              =   shiftc.scalarAdd(-1);
             SME_ENS_Utils.replaceRealmatElements(shiftc,1,step);
             SME_ENS_Utils.replaceRealmatElements(shiftc,2,-step);
@@ -179,7 +181,7 @@ public class SME_ENS_EnergyOptimisation {
         int dimH            =   sme_plugin.getStack1().getHeight();
 
         RealMatrix normMnold = idmaxk.scalarMultiply(1/norm_factor).scalarMultiply(255);
-        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.getData(),dimW,dimH);
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.getData(),dimH,dimW);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_plugin.setMfoldImage(smeManifold);
     }
@@ -190,16 +192,16 @@ public class SME_ENS_EnergyOptimisation {
         int dimH            =   sme_plugin.getStack1().getHeight();
 
         ImageStack rawStack  = sme_plugin.getStack();
-        RealMatrix projMnold = MatrixUtils.createRealMatrix(dimW,dimH);
+        RealMatrix projMnold = MatrixUtils.createRealMatrix(dimH,dimW);
 
-        for(int i=0;i<dimW;i++){
-            for(int j=0;j<dimH;j++){
+        for(int i=0;i<dimH;i++){
+            for(int j=0;j<dimW;j++){
                 int zIndex = (int) Math.round(idmaxk.getEntry(i,j));
                 projMnold.setEntry (i,j,rawStack.getVoxel(j,i,zIndex));
             }
         }
 
-        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.getData(),dimW,dimH);
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.getData(),dimH,dimW);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_plugin.setSmeImage(smeManifold);
     }
