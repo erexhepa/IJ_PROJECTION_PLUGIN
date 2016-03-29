@@ -66,6 +66,26 @@ end
 %% STEP 4 - To encode in JAVA
 % idx contain cluster IDs
 
+% read intermediate results from ImageJ
+
+fnameSML    = '../smlResult.tiff';
+fnameKMEAN  = '../kmeansResult.tiff';
+
+info = imfinfo(fnameSML);
+num_images = numel(info);
+
+smlMod      =   zeros(size(Img));
+kmeanMod    =   zeros(size(Img,1),size(Img,2));
+
+for k = 1:num_images
+    smlMod(:,:,k) = imread(fnameSML, k);
+end
+
+% replace standard input
+kmeanMod    = double(imread(fnameKMEAN, 1))+1;
+idx         = reshape(kmeanMod,size(Img,1)*size(Img,2),1);
+timk        = smlMod;
+
 edgeflag=reshape(idx,[size(Img,1) size(Img,2)]);
 edgeflag2=double((edgeflag-1)/Norm);
 

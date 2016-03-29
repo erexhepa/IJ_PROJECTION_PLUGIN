@@ -9,6 +9,7 @@ import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.stat.StatUtils;
+import org.bytedeco.javacpp.opencv_core;
 
 import java.text.DecimalFormat;
 
@@ -131,7 +132,7 @@ public final class SME_ENS_Utils {
 
         int iPadStart = 1,iPadEnd = padedMatrix.getRowDimension()-1;
 
-        padedMatrix.setRowVector(0,templateMatrix.getRowVector(1));
+        padedMatrix.setRowVector(0,templateMatrix.getRowVector(0));
         padedMatrix.setRowVector(iPadEnd,templateMatrix.getRowVector(templateMatrix.getRowDimension()-1));
 
         // symetrical padding
@@ -171,7 +172,7 @@ public final class SME_ENS_Utils {
             }
         }
 
-        int indxRetour      = (int) Math.pow(indexK,2);
+        int indxRetour      = (int) Math.ceil(Math.pow(indexK,2)/2.0);
         baseMatrix.deleteSlice(indxRetour);
         /**
          base(:,:,ceil((k^2)/2))=[];
@@ -206,7 +207,7 @@ public final class SME_ENS_Utils {
         return(baseMatrix);
     }
 
-    public static RealMatrix elementMultiply(RealMatrix inMatrix1,RealMatrix inMatrix2){
+    public static RealMatrix elementMultiply(RealMatrix inMatrix1,RealMatrix inMatrix2,Boolean absVal){
         int nrows = inMatrix1.getRowDimension();
         int ncols = inMatrix1.getColumnDimension();
 
@@ -214,7 +215,11 @@ public final class SME_ENS_Utils {
 
         for(int i=0;i<nrows;i++){
             for(int j=0;j<ncols;j++){
-                retuRealMatrix.setEntry(i,j,inMatrix1.getEntry(i,j)* inMatrix2.getEntry(i,j));
+                if(absVal) {
+                    retuRealMatrix.setEntry(i, j, Math.abs(inMatrix1.getEntry(i, j) * inMatrix2.getEntry(i, j)));
+                }else {
+                    retuRealMatrix.setEntry(i, j, inMatrix1.getEntry(i, j) * inMatrix2.getEntry(i, j));
+                }
             }
         }
 
@@ -244,8 +249,12 @@ public final class SME_ENS_Utils {
         int ncols = inMatrix.getColumnDimension();
         int nrows = inMatrix.getRowDimension();
 
-        returStack.addSlice( (ImageProcessor) new FloatProcessor(
-                convertDoubleMatrixToFloat(inMatrix.getData(), nrows,ncols))) ;
+        RealMatrix tmpMatrix = inMatrix.copy().transpose();
+        ImageProcessor ip   = (ImageProcessor) new FloatProcessor(ncols,nrows);
+        float[][] sliceData =  SME_ENS_Utils.convertDoubleMatrixToFloat(tmpMatrix.getData(),ncols,nrows);
+
+        ip.setFloatArray(sliceData);
+        returStack.addSlice(ip);
 
         return(returStack);
     }
@@ -320,14 +329,14 @@ public final class SME_ENS_Utils {
             {
                 retVector = MatrixUtils.createRealVector(inMatrix.getRow(0));
                 for(int i=1;i<nrows;i++){
-                    retVector.append(inMatrix.getRowVector(i));
+                    retVector = retVector.append(inMatrix.getRowVector(i));
                 }
             }
             default:
             {
                 retVector = MatrixUtils.createRealVector(inMatrix.getColumn(0));
                 for(int i=1;i<ncols;i++){
-                    retVector.append(inMatrix.getColumnVector(i));
+                    retVector = retVector.append(inMatrix.getColumnVector(i));
                 }
             }
         }
@@ -341,7 +350,7 @@ public final class SME_ENS_Utils {
 
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
-                System.out.printf("%6.2f",(matrix[row][col]));
+                System.out.printf("%6.4f",(matrix[row][col]));
                 System.out.printf("|");
             }
             System.out.println();
