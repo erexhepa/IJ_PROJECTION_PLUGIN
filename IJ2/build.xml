@@ -28,9 +28,10 @@
   </target>
 
 
-  <target name="clean" description="Delete the build files.">
+  <target name="clean" description="Delete the build/out and jar plugin files files.">
     <delete dir="build" />
-    <delete file="ij.jar" />
+    <delete dir="out" />
+    <delete file="SME_PROJECTION_ENS.jar" />
   </target>
 
 
@@ -67,11 +68,6 @@
         <jar jarfile="SME_PROJECTION_ENS.jar" basedir="SME_PROJECTION_ENS"
              manifest="MANIFEST_SME.MF" /><!-- Create JAR archive -->
         <delete dir="SME_PROJECTION_ENS" />
-  </target>
-
-  <target name="SMEPlugin" depends="createSMEjar" description="copy SME jar file to plugin directory">
-      <copy file="SME_PROJECTION_ENS.jar" toDir="out/production/IJ2/ij/plugin" /> <!-- Copy JAR archive -->
-      <copy file="CPU_Meter-2.0.0.jar" toDir="out/production/IJ2/ij/plugin" /> <!-- Copy JAR archive -->
   </target>
 
     <!-- SME PLUGIN TARGETS = END -->

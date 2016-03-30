@@ -4,7 +4,6 @@ import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.plugin.ZProjector;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -15,7 +14,7 @@ import org.apache.commons.math3.linear.RealVector;
  * Created by rexhepaj on 17/03/16.
  */
 public class SME_ENS_EnergyOptimisation {
-    private ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin sme_plugin   = null;
+    private SME_Plugin sme_plugin   = null;
     private final int KMEAN_NORM    = 2;
     private final double ENERGY_STEP= 0.0001;
     private RealMatrix kmeanOutput ;

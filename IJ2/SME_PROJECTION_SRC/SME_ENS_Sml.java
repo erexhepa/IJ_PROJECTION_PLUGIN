@@ -1,7 +1,6 @@
 package SME_PROJECTION_SRC;
 
 import ij.ImagePlus;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin;
 import ij.process.ImageProcessor;
 
 /**
@@ -9,7 +8,7 @@ import ij.process.ImageProcessor;
  */
 public class SME_ENS_Sml {
 
-    private ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin sme_plugin = null;
+    private SME_Plugin sme_plugin = null;
 
     public SME_ENS_Sml(SME_Plugin refplugin){
         sme_plugin = refplugin;

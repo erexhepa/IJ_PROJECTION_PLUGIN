@@ -5,10 +5,6 @@ package SME_PROJECTION_SRC;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.plugin.filter.EDM;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_ENS_Complex;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_ENS_Filter_FFT_;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_ENS_Kmeans_Engine;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin;
 import ij.process.ByteProcessor;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
@@ -23,7 +19,7 @@ import java.util.Arrays;
 
 public class SME_ENS_Kmean_Control {
 
-    private ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin sme_plugin = null;
+    private SME_Plugin sme_plugin = null;
 
     public SME_ENS_Kmean_Control(SME_Plugin refplugin){
         sme_plugin = refplugin;
