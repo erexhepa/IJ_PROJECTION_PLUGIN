@@ -32,10 +32,10 @@ public class SME_ENS_EnergyOptimisation {
     private RealMatrix idmax        = null;
     private RealMatrix idmaxk       = null;
     private RealMatrix idmaxki      = null;
-    private RealMatrix cost         = null;
+    private RealVector cost         = null;
     private RealMatrix movmat       = null;
     private RealMatrix mink         = null;
-    private int iter                = 2;
+    private int iter                = 1;
     private RealMatrix edgeflag     = null;
     private RealMatrix edgeflag2    = null;
     private int maxiter             = 1000;
@@ -73,8 +73,8 @@ public class SME_ENS_EnergyOptimisation {
         mink        = idmax.copy().scalarMultiply(0).scalarAdd(1);
 
         step     = sme_plugin.getStack1().getSize()/(double)stepNumber;
-        cost     = MatrixUtils.createRealMatrix(new double[1][maxiter]);
-        cost.setEntry(0,1,100);cost.setEntry(0,2,10);
+        cost     = MatrixUtils.createRealVector(new double[2]);
+        cost.setEntry(0,100);cost.setEntry(1,10);
     }
 
     public void applyEnergyOptimisation() {
@@ -84,7 +84,7 @@ public class SME_ENS_EnergyOptimisation {
         ZProjector zproject = new ZProjector();
         zproject.setMethod(0);
 
-        while (Math.abs(cost.getEntry(0, iter) - cost.getEntry(0, (iter - 1))) > (ENERGY_STEP)) {
+        while (Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1))) > (ENERGY_STEP)) {
             if(iter>=maxiter){
                 break;
             }
@@ -173,9 +173,8 @@ public class SME_ENS_EnergyOptimisation {
             idmaxk  =   idmaxk.add(shiftc);
             RealVector costIter = SME_ENS_Utils.realmat2vector(minc,0);
             double costIterStep = costIter.getL1Norm()/(minc.getRowDimension()*minc.getColumnDimension());
-            cost.setEntry(0,iter,costIterStep);
-
-            step=step*0.99;
+            cost = cost.append(costIterStep);
+            step = step*0.99;
 
             System.out.println(Integer.toString(iter));
             System.out.println(Double.toString(costIterStep));
@@ -188,7 +187,7 @@ public class SME_ENS_EnergyOptimisation {
         int dimH            =   sme_plugin.getStack1().getHeight();
 
         RealMatrix normMnold = idmaxk.scalarMultiply(1/norm_factor).scalarMultiply(255);
-        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.getData(),dimH,dimW);
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_plugin.setMfoldImage(smeManifold);
     }
@@ -208,7 +207,7 @@ public class SME_ENS_EnergyOptimisation {
             }
         }
 
-        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.getData(),dimH,dimW);
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_plugin.setSmeImage(smeManifold);
     }

@@ -71,7 +71,7 @@ public class SME_ENS_Kmean_Control {
         float sigma_value_3 = ((EDM_value_array[divide*99/100])+5)*(1/5);
 
         imp_sig.setProcessor(fp_sig1);
-        imp_sig.show();
+        //imp_sig.show();
 
         // this.Blur0 = Create_Gaussian_Image(stack2, sigma_value_1, sigma_value_1);
         // this.Blur1 = Create_Gaussian_Image(stack3, sigma_value_2, sigma_value_2);
