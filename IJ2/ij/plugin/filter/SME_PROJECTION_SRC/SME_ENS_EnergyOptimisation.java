@@ -85,6 +85,7 @@ public class SME_ENS_EnergyOptimisation {
         zproject.setMethod(0);
 
         while (Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1))) > (ENERGY_STEP)) {
+
             if(iter>=maxiter){
                 break;
             }
@@ -178,6 +179,9 @@ public class SME_ENS_EnergyOptimisation {
 
             System.out.println(Integer.toString(iter));
             System.out.println(Double.toString(costIterStep));
+
+            IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
+                    Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
         }
     }
 
