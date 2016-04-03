@@ -74,10 +74,10 @@ public class SME_ENS_Sml {
 
             for (i = 0; i < W; ++i) {
                 for (j = 0; j < H; ++j) {
-                    float a = ip_copy1_X.get(i, j);                // get the pixel value in the resultant image after convolution (X axis)
-                    float b = ip_copy1_Y.get(i, j);                // get the pixel value in the resultant image after convolution (Y axis)
-                    float sum = Math.abs(a) +Math.abs(b);                             // add the 2 pixel values
-                    ip_sum.putPixelValue(i, j, (double) sum);                  // put the result of the addition in the newly created ImageProcessor
+                    float a = ip_copy1_X.getf(i, j);                // get the pixel value in the resultant image after convolution (X axis)
+                    float b = ip_copy1_Y.getf(i, j);                // get the pixel value in the resultant image after convolution (Y axis)
+                    float sumPixl = Math.abs(a) +Math.abs(b);                             // add the 2 pixel values
+                    ip_sum.putPixelValue(i, j, (double) sumPixl);                  // put the result of the addition in the newly created ImageProcessor
                 }
             }
 

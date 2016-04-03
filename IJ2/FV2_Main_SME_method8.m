@@ -82,9 +82,9 @@ for k = 1:num_images
 end
 
 % replace standard input
-kmeanMod    = double(imread(fnameKMEAN, 1))+1;
-idx         = reshape(kmeanMod,size(Img,1)*size(Img,2),1);
-timk        = smlMod;
+%kmeanMod    = double(imread(fnameKMEAN, 1))+1;
+%idx         = reshape(kmeanMod,size(Img,1)*size(Img,2),1);
+%timk        = smlMod;
 
 edgeflag=reshape(idx,[size(Img,1) size(Img,2)]);
 edgeflag2=double((edgeflag-1)/Norm);
