@@ -40,6 +40,7 @@ public class SME_ENS_Kmean_Control {
                 foreground_pix [x][y]=1;
             }
         }
+
         for (x = 0; x < W; x++) {                     //Go through x coordinates
             for (y = 0; y < H; y++) {                 //Go through y coordinates
                 if (sme_plugin.getMap2DImage()[x][y]==2)
@@ -181,8 +182,6 @@ public class SME_ENS_Kmean_Control {
         int W = ip_FFT.getWidth();                      // Get the image width
         int H = ip_FFT.getHeight();                     // Get the image height
 
-
-        // Make the padding and apply the FFT for a number of stacks that is not power of 2
         if (!ispower2(size1_)) {
 
             // Find the closest power of 2 in order to find the number of stacks with 0 to add to the original stack
@@ -193,76 +192,24 @@ public class SME_ENS_Kmean_Control {
             // Create ImageProcessor containing only pixels which value is 0
             for (i = 0; i < W; i++) {
                 for (j = 0; j < H; j++) {
-                    ip_zero.putPixel(i, j, 0);
+                    ip_zero.putPixelValue(i, j, 0);
                 }
             }
 
-            // Add the missing slices to the stack image so that the number of slice is a power of 2
-            for (k = 1; k <= (int) number_of_zero; k++) {
-                sme_plugin.getStack().addSlice(ip_zero);
-            }
-
-            // Size of the stack image after doing the padding with 0
-            int size2_ = sme_plugin.getStack().getSize();
+            int size2_ = sme_plugin.getStack1().getSize();
 
             // Set the pixel values
-            for (l = size1_ + 1; l < size2_; l++) {
-                sme_plugin.getStack().setPixels(ip_zero.getPixels(), l);
+            for (l = size1_; l < padding_zero; l++) {
+                sme_plugin.getStack1().addSlice(new FloatProcessor(W,H));
             }
             System.out.println("Padding Done !");
-
-            // Get the right input data for the FFT function
-            SME_ENS_Complex[] z = new SME_ENS_Complex[size2_];                              //Creates a vector type SME_ENS_Complex named z and of size = stack size after padding
-            SME_ENS_Complex[] z_fft_value;
-            float abs_array[] = new float[size2_];                          // Create an empty array of size "size2_"
-            double final_FFT_result_[][] = new double[W * H][size2_];         // Create a new empty vector to put the final result of FFT
-
-            for (x_coord = 0; x_coord < W; x_coord++) {                     //Go through x coordinates
-                for (y_coord = 0; y_coord < H; y_coord++) {                 //Go through y coordinates
-                    for (z_coord = 0; z_coord < size2_; z_coord++) {        //Go through each slice (z coordinates)
-                        z[z_coord] = new SME_ENS_Complex(sme_plugin.getStack().getVoxel(x_coord, y_coord, z_coord), 0);
-                    }
-
-                    // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
-                    z_fft_value = SME_ENS_Filter_FFT_.fft(z);
-                    z_fft_value[0] = new SME_ENS_Complex(0, 0);
-                    z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0);
-
-
-                    //Calculate absolute value
-                    for (z_fft = 0; z_fft < size2_; z_fft++) {
-                        float absolute_ = (float) Math.sqrt((Math.pow(z_fft_value[z_fft].re(), 2.0)) + (Math.pow(z_fft_value[z_fft].im(), 2.0)));
-                        abs_array[z_fft] = absolute_;
-                    }
-
-                    //Add the created array in a new matrix with a width size of z and a height size of W*H
-                    int k_ = y_coord * W + x_coord;
-                    for (z_coord = 0; z_coord < size1_; z_coord++) {
-                        final_FFT_result_[k_][z_coord] = abs_array[z_coord];
-                    }
-                }
-            }
-
-            // Find the max value along (x,y) in the matrix that is needed for normalization
-            double[] vect_max = new double[W];
-            for (i = 0; i < size2_; i++) {
-                double largest_ = final_FFT_result_[i][1];
-                for (j = 0; j < W * H; j++) {
-                    if (final_FFT_result_[j][i] > largest_)
-                        largest_ = final_FFT_result_[j][i];
-                }
-                vect_max[i] = largest_;
-            }
-
-            // Normalization
-            for (i = 0; i < W * H; i++) {
-                for (j = 0; j < size2_; j++) {
-                    final_FFT_result_[i][j] = final_FFT_result_[i][j] / vect_max[j];
-                }
-            }
-
-            return final_FFT_result_;
         }
+
+        size1_ = sme_plugin.getStack1().getSize();                   // Size of the stack image
+        ip_FFT = sme_plugin.getStack1().getProcessor(1);  // Step done just to have W and H of one image
+
+        W = ip_FFT.getWidth();                      // Get the image width
+        H = ip_FFT.getHeight();                     // Get the image height
 
         // Part of the program for the case where the padding is not needed
         SME_ENS_Complex[] z = new SME_ENS_Complex[size1_];
@@ -273,18 +220,19 @@ public class SME_ENS_Kmean_Control {
         for (x_coord = 0; x_coord < W; x_coord++) {              //Go through x coordinates
             for (y_coord = 0; y_coord < H; y_coord++) {          //Go through y coordinates
                 for (z_coord = 0; z_coord < size1_; z_coord++) { //Go through each slice (z coordinates)
-                    z[z_coord] = new SME_ENS_Complex(sme_plugin.getStack().getVoxel(x_coord, y_coord, z_coord), 0);
+                    z[z_coord] = new SME_ENS_Complex(sme_plugin.getStack1().getVoxel(x_coord, y_coord, z_coord), 0);
                 }
 
                 // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
                 z_fft_value = SME_ENS_Filter_FFT_.fft(z);
-                z_fft_value[0] = new SME_ENS_Complex(0, 0);        // replace the first value of the FFT by 0
-                z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0); // replace the last value of the FFT by 0
+                //z_fft_value[0] = new SME_ENS_Complex(0, 0);        // replace the first value of the FFT by 0
+                //z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0); // replace the last value of the FFT by 0
 
 
                 //Calculate absolute value
                 for (z_fft = 0; z_fft < size1_; z_fft++) {
-                    float absolute_ = (float) Math.sqrt((Math.pow(z_fft_value[z_fft].re(), 2.0)) + (Math.pow(z_fft_value[z_fft].im(), 2.0)));
+                    float absolute_ = (float) Math.sqrt((Math.pow(z_fft_value[z_fft].re(), 2.0)) +
+                            (Math.pow(z_fft_value[z_fft].im(), 2.0)));
                     abs_array[z_fft] = absolute_;
                 }
 
@@ -297,22 +245,39 @@ public class SME_ENS_Kmean_Control {
         }
 
         // Find the max value along (x,y) in the matrix that is needed for normalization
-        double[] vect_max = new double[W];
-        for (i = 0; i < size1_; i++) {
-            double largest_ = final_FFT_result_[i][1];
+        int nmbDimFFT       = size1_/2-1;
+        double[][] fft_norm_truncated = new double[W*H][nmbDimFFT];
+        double[] vect_max   = new double[nmbDimFFT];
+        double[] vect_min   = new double[nmbDimFFT];
+
+        vect_min[0] = 0 ; vect_max[0] = 1 ;
+
+        for (i = 0; i < nmbDimFFT; i++) {
+            double largest_ = Double.MIN_VALUE;
+            double smallest = Double.MAX_VALUE;
+
             for (j = 0; j < W * H; j++) {
-                if (final_FFT_result_[j][i] > largest_)
+
+                if (final_FFT_result_[j][i] >= largest_){
                     largest_ = final_FFT_result_[j][i];
+                    vect_max[i] = largest_;
+                }
+                if (final_FFT_result_[j][i] <= smallest) {
+                    smallest = final_FFT_result_[j][i];
+                    vect_min[i] = smallest;
+                }
             }
-            vect_max[i] = largest_;
+
+
         }
 
         // Normalization
         for (i = 0; i < W * H; i++) {
-            for (j = 0; j < size1_; j++) {
-                final_FFT_result_[i][j] = final_FFT_result_[i][j] / vect_max[j];
+            for (j = 0; j < nmbDimFFT; j++) {
+                fft_norm_truncated[i][j] = final_FFT_result_[i][j] / (vect_max[j]-vect_min[j]);
             }
         }
+
         return final_FFT_result_;
     }
 

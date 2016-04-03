@@ -194,6 +194,7 @@ public class SME_ENS_EnergyOptimisation {
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_plugin.setMfoldImage(smeManifold);
+        sme_plugin.getMfoldImage().show();
     }
 
     public void setOutputSME(){
@@ -214,6 +215,7 @@ public class SME_ENS_EnergyOptimisation {
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_plugin.setSmeImage(smeManifold);
+        sme_plugin.getSmeImage().show();
     }
 
 }
