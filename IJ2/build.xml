@@ -54,7 +54,7 @@
     />
   </target>
 
-    <!-- SME PLUGIN TARGETS = START -->
+    <!-- SME PLUGIN BINARY TARGETS = START -->
 
     <target name="prepareDir" description="prepare source directory prior to the archive compilation">
         <!-- Prepare jar directory. -->
@@ -71,7 +71,26 @@
         <delete dir="SME_PROJECTION_ENS" />
   </target>
 
-    <!-- SME PLUGIN TARGETS = END -->
+    <!-- SME PLUGIN BINARY TARGETS = END -->
+
+  <!-- SME PLUGIN SOURCES TARGETS = START -->
+
+  <target name="prepareDirSource" description="prepare source directory prior to the archive compilation">
+    <!-- Prepare jar directory. -->
+    <mkdir dir="SME_PROJECTION_ENS_SRC" />
+    <copydir src="SME_PROJECTION_SRC" dest="SME_PROJECTION_ENS_SRC/SME_PROJECTION_ENS"/>
+    <copydir src="org" dest="SME_PROJECTION_ENS_SRC/org"/>
+    <copyfile src="SME_PROJECTION_SRC/plugins.config" dest="SME_PROJECTION_ENS/plugins.config"/>
+  </target>
+
+  <target name="createSMEjarSource" depends="prepareDirSource" description="Create JAR SME plugin from source files">
+    <!-- Build ij.jar. -->
+    <jar jarfile="SME_PROJECTION_ENS_SRC.jar" basedir="SME_PROJECTION_ENS_SRC"
+         manifest="MANIFEST_SME.MF" /><!-- Create JAR archive -->
+    <delete dir="SME_PROJECTION_ENS_SRC" />
+  </target>
+
+  <!-- SME PLUGIN SOURCES TARGETS = END -->
 
   <target name="javadocs" description="Build the JavaDocs.">
     <delete dir="../api" />

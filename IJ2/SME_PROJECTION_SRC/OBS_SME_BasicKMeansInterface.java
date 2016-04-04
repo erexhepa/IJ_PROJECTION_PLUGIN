@@ -297,7 +297,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
      * distance update flags in the protocluster objects.
      */
     private void computeDistances() throws SME_InsufficientMemoryException {
-        
+
         int numCoords = mCoordinates.length;
         int numClusters = mProtoClusters.length;
 
@@ -305,7 +305,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             // Explicit garbage collection to reduce likelihood of insufficient
             // memory.
             System.gc();
-            // Ensure there is enough memory available for the distances.  
+            // Ensure there is enough memory available for the distances.
             // Throw an exception if not.
             long memRequired = 8L * numCoords * numClusters;
             if (Runtime.getRuntime().freeMemory() < memRequired) {
@@ -322,15 +322,15 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             for (int clust=0; clust<numClusters; clust++) {
                 ProtoCluster cluster = mProtoClusters[clust];
                 if (cluster.getConsiderForAssignment() && cluster.needsUpdate()) {
-                    mDistanceCache[coord][clust] = 
+                    mDistanceCache[coord][clust] =
                         distance(mCoordinates[coord], cluster.getCenter());
                 }
             }
         }
-        
+
     }
-    
-    /** 
+
+    /**
      * Assign each coordinate to the nearest cluster.  Called once
      * per iteration.  Returns the number of coordinates that have
      * changed their cluster membership.
@@ -382,7 +382,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
         }
         return nearest;
     }
- 
+
     /**
      * Compute the euclidean distance between the two arguments.
      */
@@ -398,13 +398,13 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
 
     /**
      * Generate an array of Cluster objects from mProtoClusters.
-     * 
+     *
      * @return array of Cluster object references.
      */
     private SME_Cluster[] generateFinalClusters() {
-        
+
         int numClusters = mProtoClusters.length;
-        
+
         // Convert the proto-clusters to the final Clusters.
         //
         // - accumulate in a list.
@@ -416,7 +416,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
                 clusterList.add(cluster);
             }
         }
-    
+
         // - convert list to an array.
         SME_Cluster[] clusters = new SME_Cluster[clusterList.size()];
         clusterList.toArray(clusters);

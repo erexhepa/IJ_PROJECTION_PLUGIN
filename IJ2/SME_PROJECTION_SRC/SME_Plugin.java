@@ -60,6 +60,10 @@ public class SME_Plugin implements PlugInFilter {
     private ImagePlus mfoldImage = null;
     private ImagePlus smeImage = null;
 
+    private final String MANIFOLD = "Manifold2D";
+    private final String RAWIMAGE = "RawStack";
+
+
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;
         return DOES_ALL + STACK_REQUIRED; // Works for stack images
