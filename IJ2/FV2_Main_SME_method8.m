@@ -43,6 +43,8 @@ for k=1:size(Img,3)
     timk(:,:,k) = abs(Gx) + abs(Gy);
 end
 
+addpath(genpath('tiffPlugin'))
+saveastiff(uint32(timk), 'matlab_sml_centriole.tif');
 
 %% STEP2 = Already encoded in JAVA - FFT
 class=Group;
@@ -87,6 +89,9 @@ end
 %timk        = smlMod;
 
 edgeflag=reshape(idx,[size(Img,1) size(Img,2)]);
+
+saveastiff(uint8(edgeflag), 'matlab_kmeans_centriole.tif')
+
 edgeflag2=double((edgeflag-1)/Norm);
 
 [~,idmax]=max(timk,[],3);

@@ -2,6 +2,7 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 
 // TODO Optimize imports by removing not necessary imports
 
+import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.plugin.filter.EDM;
@@ -87,6 +88,8 @@ public class SME_ENS_Kmean_Control {
         //imp6.show(); // Display the final image
         sme_plugin.getMap2d().show(); // TODO : make this current imagej image that can be grabed by the gui
         sme_plugin.setKmensImage(new ImagePlus("Map2d", (new FloatProcessor(sme_plugin.getMap2DImage()))));
+
+        IJ.saveAsTiff(sme_plugin.getMap2d(),"KMEANtempresults.tiff");
     }
 
     public float [][] Rearrange_Map2DImage(float[][] Map2DImage) {

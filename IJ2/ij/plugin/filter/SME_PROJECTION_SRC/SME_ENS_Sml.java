@@ -53,8 +53,10 @@ public class SME_ENS_Sml {
 
             // Work on the duplicated images.
             // TODO check if you can remove the dublicate call below
-            FloatProcessor ip_copy1_X =new  FloatProcessor(ip.duplicate().getIntArray());
-            FloatProcessor ip_copy1_Y =new  FloatProcessor(ip.duplicate().getIntArray());
+            imp_sml.setPosition(1,slice,1);
+
+            FloatProcessor ip_copy1_X =new  FloatProcessor(imp_sml.getProcessor().duplicate().getIntArray());
+            FloatProcessor ip_copy1_Y =new  FloatProcessor(imp_sml.getProcessor().duplicate().getIntArray());
 
             ip = sme_plugin.getStack1().getProcessor(slice);                     // Returns an ImageProcessor for the specified slice
             FloatProcessor ip_sum = new FloatProcessor(W, H);    //Create an empty ImageProcessor

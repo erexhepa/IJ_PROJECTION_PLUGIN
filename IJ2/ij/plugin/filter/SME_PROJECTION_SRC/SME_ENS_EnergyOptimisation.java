@@ -207,7 +207,7 @@ public class SME_ENS_EnergyOptimisation {
 
         for(int i=0;i<dimH;i++){
             for(int j=0;j<dimW;j++){
-                int zIndex = (int) Math.round(idmaxk.getEntry(i,j));
+                int zIndex = ((int) Math.round(idmaxk.getEntry(i,j)))-1;
                 projMnold.setEntry (i,j,rawStack.getVoxel(j,i,zIndex));
             }
         }
