@@ -8,6 +8,7 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
+import ij.gui.PlotMaker;
 import ij.plugin.ZProjector;
 import ij.plugin.filter.EDM;
 import ij.plugin.filter.GaussianBlur;
@@ -28,7 +29,7 @@ import java.util.Arrays;
  **/
 
 
-public class SME_Plugin implements PlugInFilter {
+public class SME_Plugin_Get_Manifold implements PlugInFilter {
 
     private ImagePlus imp;
     private ImagePlus imp2;
@@ -36,6 +37,7 @@ public class SME_Plugin implements PlugInFilter {
     private ImagePlus imp5;
     private ImagePlus imp5_ind;
     private ImagePlus imp6;
+    private PlotMaker smePlotmaker;
     private SME_KMeans_Paralel mKMeans;
     private ImageStack stack;
     private double[] kmeansLabels;
@@ -65,9 +67,9 @@ public class SME_Plugin implements PlugInFilter {
     private ImagePlus kmensImage = null;
     private ImagePlus mfoldImage = null;
     private ImagePlus smeImage = null;
-
-    private final String MANIFOLD = "Manifold2D";
-    private final String RAWIMAGE = "RawStack";
+    private ImageStack costData     = null;
+    private final String MANIFOLD   = "Manifold2D";
+    private final String RAWIMAGE   = "RawStack";
 
 
     public int setup(String arg, ImagePlus imp) {
@@ -404,5 +406,18 @@ public class SME_Plugin implements PlugInFilter {
 
     public void setProjImage(ImagePlus projImage) {
         this.projImage = projImage;
+    }
+
+
+    public ImageStack getCostData() { return costData;    }
+
+    public void setCostData(ImageStack costData) {        this.costData = costData;    }
+
+    public PlotMaker getSmePlotmaker() {
+        return smePlotmaker;
+    }
+
+    public void setSmePlotmaker(PlotMaker smePlotmaker) {
+        this.smePlotmaker = smePlotmaker;
     }
 }

@@ -11,10 +11,10 @@ import ij.process.ImageProcessor;
  */
 public class SME_ENS_Sml {
 
-    private SME_Plugin sme_plugin = null;
+    private SME_Plugin_Get_Manifold sme_pluginGetManifold = null;
 
-    public SME_ENS_Sml(SME_Plugin refplugin){
-        sme_plugin = refplugin;
+    public SME_ENS_Sml(SME_Plugin_Get_Manifold refplugin){
+        sme_pluginGetManifold = refplugin;
     }
 
     /**
@@ -37,15 +37,15 @@ public class SME_ENS_Sml {
 
         SME_ENS_Convolver  convENS = new SME_ENS_Convolver();
 
-        ImagePlus imp_sml = sme_plugin.getImp().duplicate();
+        ImagePlus imp_sml = sme_pluginGetManifold.getImp().duplicate();
 
         ImageProcessor ip = imp_sml.getProcessor();
-        sme_plugin.setStack1(imp_sml.getStack());                    // ImagePlus into ImageStack
+        sme_pluginGetManifold.setStack1(imp_sml.getStack());                    // ImagePlus into ImageStack
 
         int W = ip.getWidth();                      // Get the image width
         int H = ip.getHeight();                     // Get the image height
         int i, j, slice;                            // Define the type of i, j and slice (equivalent to z axis)
-        int size_ = sme_plugin.getStack1().getSize();               // Size of the stack image
+        int size_ = sme_pluginGetManifold.getStack1().getSize();               // Size of the stack image
 
         ImageStack smlResult = new ImageStack(W, H);
 
@@ -58,7 +58,7 @@ public class SME_ENS_Sml {
             FloatProcessor ip_copy1_X =new  FloatProcessor(imp_sml.getProcessor().duplicate().getIntArray());
             FloatProcessor ip_copy1_Y =new  FloatProcessor(imp_sml.getProcessor().duplicate().getIntArray());
 
-            ip = sme_plugin.getStack1().getProcessor(slice);                     // Returns an ImageProcessor for the specified slice
+            ip = sme_pluginGetManifold.getStack1().getProcessor(slice);                     // Returns an ImageProcessor for the specified slice
             FloatProcessor ip_sum = new FloatProcessor(W, H);    //Create an empty ImageProcessor
 
             // Apply the convolution on the duplicated ImageProcessor
@@ -86,14 +86,14 @@ public class SME_ENS_Sml {
             smlResult.addSlice(ip_sum);         // Assigns a pixel array to the specified slice
         }
 
-        sme_plugin.setStack1(smlResult);
+        sme_pluginGetManifold.setStack1(smlResult);
         IJ.saveAsTiff(new ImagePlus("SMEresult",smlResult),"SMEtempresults.tiff");
         //Image display in new window
-        sme_plugin.setImp2(new ImagePlus("sML_" + sme_plugin.getImp().getTitle(), sme_plugin.getStack1()));
-        sme_plugin.getImp2().setStack(sme_plugin.getStack1(), 1, size_, 1);
-        sme_plugin.getImp2().setCalibration(sme_plugin.getImp2().getCalibration());
+        sme_pluginGetManifold.setImp2(new ImagePlus("sML_" + sme_pluginGetManifold.getImp().getTitle(), sme_pluginGetManifold.getStack1()));
+        sme_pluginGetManifold.getImp2().setStack(sme_pluginGetManifold.getStack1(), 1, size_, 1);
+        sme_pluginGetManifold.getImp2().setCalibration(sme_pluginGetManifold.getImp2().getCalibration());
 
-        //sme_plugin.getImp2().show();
-        sme_plugin.setSmlImage(sme_plugin.getImp2());
+        //sme_pluginGetManifold.getImp2().show();
+        sme_pluginGetManifold.setSmlImage(sme_pluginGetManifold.getImp2());
     }
 }

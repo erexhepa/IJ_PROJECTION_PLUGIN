@@ -20,20 +20,20 @@ import java.util.Arrays;
 
 public class SME_ENS_Kmean_Control {
 
-    private SME_Plugin sme_plugin = null;
+    private SME_Plugin_Get_Manifold sme_pluginGetManifold = null;
 
-    public SME_ENS_Kmean_Control(SME_Plugin refplugin){
-        sme_plugin = refplugin;
+    public SME_ENS_Kmean_Control(SME_Plugin_Get_Manifold refplugin){
+        sme_pluginGetManifold = refplugin;
     }
 
     public void applyKmeans(){
 
         int x, y,i,j,k;
-        int W = sme_plugin.getStack1().getProcessor(1).getWidth();                      // Get the image width
-        int H = sme_plugin.getStack1().getProcessor(1).getHeight();                     // Get the image height
+        int W = sme_pluginGetManifold.getStack1().getProcessor(1).getWidth();                      // Get the image width
+        int H = sme_pluginGetManifold.getStack1().getProcessor(1).getHeight();                     // Get the image height
 
-        Kmeans_(3, FFT_1D_(sme_plugin.getStack1()));
-        Rearrange_Map2DImage(Image_Segmented(sme_plugin.getKmeansLabels()));
+        Kmeans_(3, FFT_1D_(sme_pluginGetManifold.getStack1()));
+        Rearrange_Map2DImage(Image_Segmented(sme_pluginGetManifold.getKmeansLabels()));
 
         float [][] foreground_pix =new float[W][H];
         for (x = 0; x < W; x++) {                     //Go through x coordinates
@@ -44,14 +44,14 @@ public class SME_ENS_Kmean_Control {
 
         for (x = 0; x < W; x++) {                     //Go through x coordinates
             for (y = 0; y < H; y++) {                 //Go through y coordinates
-                if (sme_plugin.getMap2DImage()[x][y]==2)
+                if (sme_pluginGetManifold.getMap2DImage()[x][y]==2)
                     foreground_pix [x][y]=0;
             }
         }
 
         FloatProcessor fp_sig = new FloatProcessor(foreground_pix);
         ByteProcessor bp_=fp_sig.convertToByteProcessor();
-        ImagePlus imp_sig = new ImagePlus(""+sme_plugin.getImp().getTitle(),bp_);
+        ImagePlus imp_sig = new ImagePlus(""+ sme_pluginGetManifold.getImp().getTitle(),bp_);
         float [] EDM_value_array = new float[W*H];
 
         EDM edm_sig1 = new EDM();
@@ -79,23 +79,23 @@ public class SME_ENS_Kmean_Control {
         // this.Blur1 = Create_Gaussian_Image(stack3, sigma_value_2, sigma_value_2);
         // this.Blur2 = Create_Gaussian_Image(stack4, sigma_value_3, sigma_value_3);
 
-        sme_plugin.setMap2DImage(Rearrange_Map2DImage(Image_Segmented(sme_plugin.getKmeansLabels())));
-        sme_plugin.setMap2d( new ImagePlus("Map2d", (new FloatProcessor(sme_plugin.getMap2DImage()))));
+        sme_pluginGetManifold.setMap2DImage(Rearrange_Map2DImage(Image_Segmented(sme_pluginGetManifold.getKmeansLabels())));
+        sme_pluginGetManifold.setMap2d( new ImagePlus("Map2d", (new FloatProcessor(sme_pluginGetManifold.getMap2DImage()))));
 
         //imp2.show();
         //imp5_ind.show();
         //imp5.show();
         //imp6.show(); // Display the final image
-        sme_plugin.getMap2d().show(); // TODO : make this current imagej image that can be grabed by the gui
-        sme_plugin.setKmensImage(new ImagePlus("Map2d", (new FloatProcessor(sme_plugin.getMap2DImage()))));
+        sme_pluginGetManifold.getMap2d().show(); // TODO : make this current imagej image that can be grabed by the gui
+        sme_pluginGetManifold.setKmensImage(new ImagePlus("Map2d", (new FloatProcessor(sme_pluginGetManifold.getMap2DImage()))));
 
-        IJ.saveAsTiff(sme_plugin.getMap2d(),"KMEANtempresults.tiff");
+        IJ.saveAsTiff(sme_pluginGetManifold.getMap2d(),"KMEANtempresults.tiff");
     }
 
     public float [][] Rearrange_Map2DImage(float[][] Map2DImage) {
 
         int x, y;
-        ImageProcessor ip_ = sme_plugin.getStack().getProcessor(1);  // Done just to have W and H of one image
+        ImageProcessor ip_ = sme_pluginGetManifold.getStack().getProcessor(1);  // Done just to have W and H of one image
         int W = ip_.getWidth();                      // Get the image width
         int H = ip_.getHeight();
         float mean_val_array[] = new float[3];
@@ -103,17 +103,17 @@ public class SME_ENS_Kmean_Control {
 
 
         // Create an array containing the 3 mean values
-        mean_val_array[0] = sme_plugin.getMean0();
-        mean_val_array[1] = sme_plugin.getMean1();
-        mean_val_array[2] = sme_plugin.getMean2();
+        mean_val_array[0] = sme_pluginGetManifold.getMean0();
+        mean_val_array[1] = sme_pluginGetManifold.getMean1();
+        mean_val_array[2] = sme_pluginGetManifold.getMean2();
 
         // Sort the array values (increasing order)
         Arrays.sort(mean_val_array);
 
         //In a new array find the index of each mean value after having been sorted
-        mean_val_array_duplicate[0] = Arrays.binarySearch(mean_val_array, sme_plugin.getMean0());
-        mean_val_array_duplicate[1] = Arrays.binarySearch(mean_val_array, sme_plugin.getMean1());
-        mean_val_array_duplicate[2] = Arrays.binarySearch(mean_val_array, sme_plugin.getMean2());
+        mean_val_array_duplicate[0] = Arrays.binarySearch(mean_val_array, sme_pluginGetManifold.getMean0());
+        mean_val_array_duplicate[1] = Arrays.binarySearch(mean_val_array, sme_pluginGetManifold.getMean1());
+        mean_val_array_duplicate[2] = Arrays.binarySearch(mean_val_array, sme_pluginGetManifold.getMean2());
 
         //Change the labels of the 2D Map Image
         for (x = 0; x < W; x++)
@@ -142,28 +142,28 @@ public class SME_ENS_Kmean_Control {
     public float[][] Image_Segmented(double[] kmeansLabels) {
 
         int x, y;
-        ImageProcessor ip_ = sme_plugin.getStack1().getProcessor(1);  // Done just to have W and H of one image
+        ImageProcessor ip_ = sme_pluginGetManifold.getStack1().getProcessor(1);  // Done just to have W and H of one image
         int W = ip_.getWidth();                      // Get the image width
         int H = ip_.getHeight();                     // Get the image height
-        sme_plugin.setMap2DImage( new float[W][H]);
+        sme_pluginGetManifold.setMap2DImage( new float[W][H]);
 
         for (x = 0; x < W; x++) {                     //Go through x coordinates
             for (y = 0; y < H; y++) {                 //Go through y coordinates
                 int k = y * W + x;
-                sme_plugin.getMap2DImage()[x][y] = (float) kmeansLabels[k];
+                sme_pluginGetManifold.getMap2DImage()[x][y] = (float) kmeansLabels[k];
             }
         }
 
         //Image Display in a new window
-        FloatProcessor fp3 = new FloatProcessor(sme_plugin.getMap2DImage());
+        FloatProcessor fp3 = new FloatProcessor(sme_pluginGetManifold.getMap2DImage());
         ImageProcessor ip3 = fp3.convertToFloat();
-        ip3.setFloatArray(sme_plugin.getMap2DImage());
-        ImagePlus imp3 = new ImagePlus("SME_ENS_Kmeans_Engine Segmented Image" + sme_plugin.getImp().getTitle(), ip3);
+        ip3.setFloatArray(sme_pluginGetManifold.getMap2DImage());
+        ImagePlus imp3 = new ImagePlus("SME_ENS_Kmeans_Engine Segmented Image" + sme_pluginGetManifold.getImp().getTitle(), ip3);
         imp3.setProcessor(ip3);
-        sme_plugin.setImp3(imp3);
+        sme_pluginGetManifold.setImp3(imp3);
         //imp3.show();
 
-        return sme_plugin.getMap2DImage();
+        return sme_pluginGetManifold.getMap2DImage();
     }
 
     /**
@@ -180,7 +180,7 @@ public class SME_ENS_Kmean_Control {
         int x_coord, y_coord, z_coord, z_fft, i, j, k, l;
         int size1_ = stack1.getSize();                   // Size of the stack image
         ImageProcessor ip_FFT = stack1.getProcessor(1);  // Step done just to have W and H of one image
-        ImageProcessor ip = sme_plugin.getImp().getProcessor();
+        ImageProcessor ip = sme_pluginGetManifold.getImp().getProcessor();
         ImageProcessor ip_zero = ip.duplicate();
         int W = ip_FFT.getWidth();                      // Get the image width
         int H = ip_FFT.getHeight();                     // Get the image height
@@ -199,17 +199,17 @@ public class SME_ENS_Kmean_Control {
                 }
             }
 
-            int size2_ = sme_plugin.getStack1().getSize();
+            int size2_ = sme_pluginGetManifold.getStack1().getSize();
 
             // Set the pixel values
             for (l = size1_; l < padding_zero; l++) {
-                sme_plugin.getStack1().addSlice(new FloatProcessor(W,H));
+                sme_pluginGetManifold.getStack1().addSlice(new FloatProcessor(W,H));
             }
             System.out.println("Padding Done !");
         }
 
-        size1_ = sme_plugin.getStack1().getSize();                   // Size of the stack image
-        ip_FFT = sme_plugin.getStack1().getProcessor(1);  // Step done just to have W and H of one image
+        size1_ = sme_pluginGetManifold.getStack1().getSize();                   // Size of the stack image
+        ip_FFT = sme_pluginGetManifold.getStack1().getProcessor(1);  // Step done just to have W and H of one image
 
         W = ip_FFT.getWidth();                      // Get the image width
         H = ip_FFT.getHeight();                     // Get the image height
@@ -223,7 +223,7 @@ public class SME_ENS_Kmean_Control {
         for (x_coord = 0; x_coord < W; x_coord++) {              //Go through x coordinates
             for (y_coord = 0; y_coord < H; y_coord++) {          //Go through y coordinates
                 for (z_coord = 0; z_coord < size1_; z_coord++) { //Go through each slice (z coordinates)
-                    z[z_coord] = new SME_ENS_Complex(sme_plugin.getStack1().getVoxel(x_coord, y_coord, z_coord), 0);
+                    z[z_coord] = new SME_ENS_Complex(sme_pluginGetManifold.getStack1().getVoxel(x_coord, y_coord, z_coord), 0);
                 }
 
                 // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
@@ -295,7 +295,7 @@ public class SME_ENS_Kmean_Control {
 
     public void Kmeans_(int numClust_, double[][] result_fft) {
         int m;
-        int slice_num = sme_plugin.getStack().getSize();
+        int slice_num = sme_pluginGetManifold.getStack().getSize();
         boolean CONCURRENT_KMEANS = true;
         int threadcount = 5;
         final int numClust = numClust_;
@@ -314,20 +314,20 @@ public class SME_ENS_Kmean_Control {
                         exception.printStackTrace();
                     }
 
-                    sme_plugin.getGui_main().validate();
+                    sme_pluginGetManifold.getGui_main().validate();
 
                     // Center the window
                     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                    Dimension frameSize = sme_plugin.getGui_main().getSize();
+                    Dimension frameSize = sme_pluginGetManifold.getGui_main().getSize();
                     if (frameSize.height > screenSize.height) {
                         frameSize.height = screenSize.height;
                     }
                     if (frameSize.width > screenSize.width) {
                         frameSize.width = screenSize.width;
                     }
-                    sme_plugin.getGui_main().setLocation((screenSize.width - frameSize.width) / 2,
+                    sme_pluginGetManifold.getGui_main().setLocation((screenSize.width - frameSize.width) / 2,
                             (screenSize.height - frameSize.height) / 2);
-                    sme_plugin.getGui_main().setVisible(true);
+                    sme_pluginGetManifold.getGui_main().setVisible(true);
                     //frame.actionPerformedRun();
                     //clustersKmean = frame.getClustersKmeans();*/
                 }
@@ -357,20 +357,20 @@ public class SME_ENS_Kmean_Control {
             //this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();*/
             SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
             OBSKmeans_Niki.calculateClusters();
-            sme_plugin.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
-            sme_plugin.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
+            sme_pluginGetManifold.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
+            sme_pluginGetManifold.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
 
         }else{
             SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
             OBSKmeans_Niki.calculateClusters();
-            sme_plugin.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
-            sme_plugin.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
+            sme_pluginGetManifold.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
+            sme_pluginGetManifold.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
         }
 
         for (m = 0; m < slice_num; m++) {
-            sme_plugin.setMean0(sme_plugin.getMean0() + (float)sme_plugin.getKmeanCentroids()[0][m]);
-            sme_plugin.setMean1(sme_plugin.getMean1() + (float)sme_plugin.getKmeanCentroids()[1][m]);
-            sme_plugin.setMean2(sme_plugin.getMean2() + (float)sme_plugin.getKmeanCentroids()[2][m]);
+            sme_pluginGetManifold.setMean0(sme_pluginGetManifold.getMean0() + (float) sme_pluginGetManifold.getKmeanCentroids()[0][m]);
+            sme_pluginGetManifold.setMean1(sme_pluginGetManifold.getMean1() + (float) sme_pluginGetManifold.getKmeanCentroids()[1][m]);
+            sme_pluginGetManifold.setMean2(sme_pluginGetManifold.getMean2() + (float) sme_pluginGetManifold.getKmeanCentroids()[2][m]);
         }
 
     }

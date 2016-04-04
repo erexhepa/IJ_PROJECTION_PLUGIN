@@ -3,24 +3,22 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
+import ij.gui.Plot;
+import ij.plugin.ZAxisProfiler;
 import ij.plugin.ZProjector;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 /**
  * Created by rexhepaj on 17/03/16.
  */
 public class SME_ENS_EnergyOptimisation {
-    private SME_Plugin sme_plugin   = null;
+    private SME_Plugin_Get_Manifold sme_pluginGetManifold = null;
     private final int KMEAN_NORM    = 2;
     private final double ENERGY_STEP= 0.0001;
     private RealMatrix kmeanOutput ;
@@ -40,14 +38,14 @@ public class SME_ENS_EnergyOptimisation {
     private RealMatrix edgeflag2    = null;
     private int maxiter             = 1000;
 
-    public SME_ENS_EnergyOptimisation(SME_Plugin refplugin){
-        sme_plugin = refplugin;
+    public SME_ENS_EnergyOptimisation(SME_Plugin_Get_Manifold refplugin){
+        sme_pluginGetManifold = refplugin;
         initOptimisation();
     }
 
     public void initOptimisation(){
-        ImagePlus   smlProjection = sme_plugin.getSmlImage();
-        kmeanOutput = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(sme_plugin.getKmensImage().getProcessor().getFloatArray(),
+        ImagePlus   smlProjection = sme_pluginGetManifold.getSmlImage();
+        kmeanOutput = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(sme_pluginGetManifold.getKmensImage().getProcessor().getFloatArray(),
                 smlProjection.getWidth(),smlProjection.getHeight()));
         kmeanOutput = kmeanOutput.transpose();
 
@@ -63,7 +61,7 @@ public class SME_ENS_EnergyOptimisation {
         // save tmp sml max projection and kmeans projection
 
         IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
-        IJ.saveAsTiff(sme_plugin.getKmensImage(),"kmeansResult.tiff");
+        IJ.saveAsTiff(sme_pluginGetManifold.getKmensImage(),"kmeansResult.tiff");
 
         //SME_ENS_Utils.printRealMatrix(idmax.getData(),"idmax");
         SME_ENS_Utils.printRealMatrixStats(idmax,"idmax");
@@ -72,7 +70,7 @@ public class SME_ENS_EnergyOptimisation {
         idmaxki     = idmax.copy();
         mink        = idmax.copy().scalarMultiply(0).scalarAdd(1);
 
-        step     = sme_plugin.getStack1().getSize()/(double)stepNumber;
+        step     = sme_pluginGetManifold.getStack1().getSize()/(double)stepNumber;
         cost     = MatrixUtils.createRealVector(new double[2]);
         cost.setEntry(0,100);cost.setEntry(1,10);
     }
@@ -94,8 +92,8 @@ public class SME_ENS_EnergyOptimisation {
             idmax1 = idmaxk.scalarAdd(step).copy();
             idmax2 = idmaxk.scalarAdd(-step).copy();
 
-            idmaxkB = SME_ENS_Utils.padSymetricMatrix(idmaxk, true);
-            IB = SME_ENS_Utils.padSymetricMatrix(idmaxkB, true);
+            idmaxkB = SME_ENS_Utils.padSymetricMatrix(idmaxk, Boolean.TRUE);
+            IB = SME_ENS_Utils.padSymetricMatrix(idmaxkB, Boolean.TRUE);
 
             ImageStack base = SME_ENS_Utils.find_base(IB, 3);
             zproject.setImage(new ImagePlus("IterativeProjection", base));
@@ -128,22 +126,22 @@ public class SME_ENS_EnergyOptimisation {
                             colDim, rowDim));
             varold2             = varold2.transpose();
 
-            RealMatrix d1 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax1),edgeflag2,true);
-            RealMatrix d2 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax2),edgeflag2,true);
-            RealMatrix d0 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmaxk),edgeflag2,true);
+            RealMatrix d1 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax1),edgeflag2,Boolean.TRUE);
+            RealMatrix d2 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax2),edgeflag2,Boolean.TRUE);
+            RealMatrix d0 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmaxk),edgeflag2,Boolean.TRUE);
 
             RealMatrix M11 = idmax1.subtract(Mold);
             RealMatrix M12 = idmax2.subtract(Mold);
             RealMatrix M10 = idmaxk.subtract(Mold);
 
             RealMatrix s1 = SME_ENS_Utils.realmatrixDoublepow(varold2.add(
-                    SME_ENS_Utils.elementMultiply(M11, idmax1.subtract(Mold.add(M11.scalarMultiply(1 / (double) 9))),false)
+                    SME_ENS_Utils.elementMultiply(M11, idmax1.subtract(Mold.add(M11.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
             ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(9);
             RealMatrix s2 = SME_ENS_Utils.realmatrixDoublepow(varold2.add(
-                    SME_ENS_Utils.elementMultiply(M12, idmax2.subtract(Mold.add(M12.scalarMultiply(1 / (double) 9))),false)
+                    SME_ENS_Utils.elementMultiply(M12, idmax2.subtract(Mold.add(M12.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
             ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(9);
             RealMatrix s0 = SME_ENS_Utils.realmatrixDoublepow(varold2.add(
-                    SME_ENS_Utils.elementMultiply(M10, idmaxk.subtract(Mold.add(M10.scalarMultiply(1 / (double) 9))),false)
+                    SME_ENS_Utils.elementMultiply(M10, idmaxk.subtract(Mold.add(M10.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
             ).scalarMultiply(1 /(double) 8), 0.5).scalarMultiply(9);
 
             RealMatrix c1 = d1.add(s1);
@@ -183,26 +181,39 @@ public class SME_ENS_EnergyOptimisation {
             IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
                     Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
         }
+
+        sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(cost));
+        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler());
+        ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).run(new ImagePlus("Cost data",sme_pluginGetManifold.getCostData()));
+        RealVector xVal = MatrixUtils.createRealVector(new double[cost.getDimension()]);
+        RealVector yVal = cost.add(cost);
+
+        for(int j=0;j<xVal.getDimension();j++){
+            xVal.setEntry(j,(double) j);
+        }
+
+        //((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).getPlot().addPoints(xVal.toArray(),yVal.toArray(), Plot.LINE);
+        //((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).getPlot().addLegend("Legend Plot");
     }
 
     public void setOutputManifold(){
-        double norm_factor  =   sme_plugin.getStack1().getSize();
-        int dimW            =   sme_plugin.getStack1().getWidth();
-        int dimH            =   sme_plugin.getStack1().getHeight();
+        double norm_factor  =   sme_pluginGetManifold.getStack1().getSize();
+        int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
+        int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
 
         RealMatrix normMnold = idmaxk.scalarMultiply(1/norm_factor).scalarMultiply(255);
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
-        sme_plugin.setMfoldImage(smeManifold);
-        sme_plugin.getMfoldImage().show();
+        sme_pluginGetManifold.setMfoldImage(smeManifold);
+        sme_pluginGetManifold.getMfoldImage().show();
     }
 
     public void setOutputSME(){
-        double norm_factor  =   sme_plugin.getStack1().getSize();
-        int dimW            =   sme_plugin.getStack1().getWidth();
-        int dimH            =   sme_plugin.getStack1().getHeight();
+        double norm_factor  =   sme_pluginGetManifold.getStack1().getSize();
+        int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
+        int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
 
-        ImageStack rawStack  = sme_plugin.getStack();
+        ImageStack rawStack  = sme_pluginGetManifold.getStack();
         RealMatrix projMnold = MatrixUtils.createRealMatrix(dimH,dimW);
 
         for(int i=0;i<dimH;i++){
@@ -214,8 +225,8 @@ public class SME_ENS_EnergyOptimisation {
 
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
-        sme_plugin.setSmeImage(smeManifold);
-        sme_plugin.getSmeImage().show();
+        sme_pluginGetManifold.setSmeImage(smeManifold);
+        sme_pluginGetManifold.getSmeImage().show();
     }
 
 }

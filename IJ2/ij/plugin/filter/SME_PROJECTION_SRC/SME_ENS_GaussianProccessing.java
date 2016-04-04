@@ -11,10 +11,10 @@ import ij.process.ImageProcessor;
  */
 public class SME_ENS_GaussianProccessing {
 
-    private SME_Plugin sme_plugin = null;
+    private SME_Plugin_Get_Manifold sme_pluginGetManifold = null;
 
-    public SME_ENS_GaussianProccessing(SME_Plugin refplugin){
-        sme_plugin = refplugin;
+    public SME_ENS_GaussianProccessing(SME_Plugin_Get_Manifold refplugin){
+        sme_pluginGetManifold = refplugin;
     }
 
     /**
@@ -39,30 +39,30 @@ public class SME_ENS_GaussianProccessing {
             blurimg.blurGaussian(ip_Gauss, sigmaX, sigmaY, 0.01);      // Apply the blurring on the given slice
         }
 
-        sme_plugin.setStack1(Gauss_Stack);
-        int size_   = sme_plugin.getStack1().getSize();
+        sme_pluginGetManifold.setStack1(Gauss_Stack);
+        int size_   = sme_pluginGetManifold.getStack1().getSize();
 
         //Image display in new window
-        sme_plugin.setImp2( new ImagePlus("sML_" + sme_plugin.getImp().getTitle(), sme_plugin.getStack1()));
-        sme_plugin.getImp2().setStack(sme_plugin.getStack1(), 1, size_, 1);
-        sme_plugin.getImp2().setCalibration(sme_plugin.getImp2().getCalibration());
+        sme_pluginGetManifold.setImp2( new ImagePlus("sML_" + sme_pluginGetManifold.getImp().getTitle(), sme_pluginGetManifold.getStack1()));
+        sme_pluginGetManifold.getImp2().setStack(sme_pluginGetManifold.getStack1(), 1, size_, 1);
+        sme_pluginGetManifold.getImp2().setCalibration(sme_pluginGetManifold.getImp2().getCalibration());
 
-        sme_plugin.getImp2().show();
+        sme_pluginGetManifold.getImp2().show();
 
         //return Gauss_Stack;
     }
 
 
     public void Gaussian_Filter_(float[][] Map2DImage_rearranged) {
-        sme_plugin.setMap2DImage(Map2DImage_rearranged);
+        sme_pluginGetManifold.setMap2DImage(Map2DImage_rearranged);
         int x,y,z,slice,i,j,w,sl,k1_;
         int k_=0;
         int i_=0;
         int j_=0;
-        ImageProcessor ip_ = sme_plugin.getStack1().getProcessor(1);  // Done just to have W and H of one image
+        ImageProcessor ip_ = sme_pluginGetManifold.getStack1().getProcessor(1);  // Done just to have W and H of one image
         int W = ip_.getWidth();                      // Get the image width
         int H = ip_.getHeight();
-        int Size_stack = sme_plugin.getStack1().getSize();
+        int Size_stack = sme_pluginGetManifold.getStack1().getSize();
 
         double[] array = new double[Size_stack];
         double[][] Image_AGF_reshape = new double[W * H][Size_stack];
@@ -71,18 +71,18 @@ public class SME_ENS_GaussianProccessing {
         for (i=0;i<W;i++) {
             for (j = 0; j < H; j++) {
 
-                if (sme_plugin.getMap2DImage()[i][j] == 0) { //Map2DImage is the image containing the new labels once relabeled (step done previously)
+                if (sme_pluginGetManifold.getMap2DImage()[i][j] == 0) { //Map2DImage is the image containing the new labels once relabeled (step done previously)
                     for (slice = 0; slice < Size_stack; slice++) {
-                        array[slice] = sme_plugin.getBlur2().getVoxel(i, j, slice);
+                        array[slice] = sme_pluginGetManifold.getBlur2().getVoxel(i, j, slice);
                     }
-                } else if (sme_plugin.getMap2DImage()[i][j] == 1) {
+                } else if (sme_pluginGetManifold.getMap2DImage()[i][j] == 1) {
                     for (slice = 0; slice < Size_stack; slice++) {
-                        array[slice] = sme_plugin.getBlur1().getVoxel(i, j, slice);
+                        array[slice] = sme_pluginGetManifold.getBlur1().getVoxel(i, j, slice);
                     }
                 }
-                if (sme_plugin.getMap2DImage()[i][j] == 2) {
+                if (sme_pluginGetManifold.getMap2DImage()[i][j] == 2) {
                     for (slice = 0; slice < Size_stack; slice++) {
-                        array[slice] = sme_plugin.getBlur0().getVoxel(i, j, slice);
+                        array[slice] = sme_pluginGetManifold.getBlur0().getVoxel(i, j, slice);
                     }
                 }
 
@@ -148,7 +148,7 @@ public class SME_ENS_GaussianProccessing {
         for (x = 0; x < W; x++) {
             for (y = 0; y < H; y++) {
                 sl=(int)index_j[w];
-                Image_AGF_final_projection[x][y] = (float)sme_plugin.getStack().getVoxel(x,y,sl); // get the pixel of the original image at the right stack (getVoxel)
+                Image_AGF_final_projection[x][y] = (float) sme_pluginGetManifold.getStack().getVoxel(x,y,sl); // get the pixel of the original image at the right stack (getVoxel)
                 // using index_j
                 w=w+1;
             }
@@ -157,28 +157,28 @@ public class SME_ENS_GaussianProccessing {
         //Image displayed in a new window Image_AGF_final_projection_
         FloatProcessor fp5_ind = new FloatProcessor(index_representation);
         ImageProcessor ip5_ind = fp5_ind.convertToFloat();
-        ImagePlus imp5_ind = new ImagePlus("Index_image"+sme_plugin.getImp().getTitle(),ip5_ind);
+        ImagePlus imp5_ind = new ImagePlus("Index_image"+ sme_pluginGetManifold.getImp().getTitle(),ip5_ind);
         ip5_ind.setFloatArray(index_representation);
         imp5_ind.setProcessor(ip5_ind);
-        sme_plugin.setImp5_ind(imp5_ind);
+        sme_pluginGetManifold.setImp5_ind(imp5_ind);
         //imp5_ind.show();
 
         //Image displayed in a new window Image_AGF_final_projection_blur
         FloatProcessor fp5 = new FloatProcessor(Image_AGF_final_projection_blur);
         ImageProcessor ip5 = fp5.convertToFloat();
-        ImagePlus imp5 = new ImagePlus("BLUR_Final_Projected_Image"+ sme_plugin.getImp().getTitle(),ip5);
+        ImagePlus imp5 = new ImagePlus("BLUR_Final_Projected_Image"+ sme_pluginGetManifold.getImp().getTitle(),ip5);
         ip5.setFloatArray(Image_AGF_final_projection_blur);
         imp5.setProcessor(ip5);
-        sme_plugin.setImp5(imp5);
+        sme_pluginGetManifold.setImp5(imp5);
         //imp5.show();
 
         //Image displayed in a new window Image_AGF_final_projection_
         FloatProcessor fp6 = new FloatProcessor(Image_AGF_final_projection);
         ImageProcessor ip6 = fp6.convertToFloat();
-        ImagePlus imp6 = new ImagePlus("Final_Projected_Image"+sme_plugin.getImp().getTitle(),ip6);
+        ImagePlus imp6 = new ImagePlus("Final_Projected_Image"+ sme_pluginGetManifold.getImp().getTitle(),ip6);
         ip6.setFloatArray(Image_AGF_final_projection);
         imp6.setProcessor(ip6);
-        sme_plugin.setImp6(imp6);
+        sme_pluginGetManifold.setImp6(imp6);
         imp6.show();
     }
 }

@@ -357,6 +357,20 @@ public final class SME_ENS_Utils {
         }
     }
 
+    public static ImageStack realvec2Stack(RealVector vectorIn) {
+        int stackPadding        = 2;
+        ImageStack retImstack   = new ImageStack(stackPadding,stackPadding);
+
+
+        for(int i=2;i<vectorIn.getDimension();i++){
+            FloatProcessor sliceData = new FloatProcessor(stackPadding,stackPadding);
+            sliceData.add(vectorIn.getEntry(i));
+            retImstack.addSlice(sliceData);
+        }
+
+        return retImstack;
+    }
+
     public static void printRealMatrixStats(RealMatrix inMatrix, String matrixID){
         double[] dataStream     =   realmat2vector(inMatrix,1).toArray();
 

@@ -4,7 +4,6 @@ import ij.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.html.ObjectView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +31,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     private static final String BENCHMARKED_KMEANS  = "Benchmarked K-Means Clustering";
     private static final String CONCURRENT_KMEANS   = "Concurrent K-Means Clustering";
 
-    private SME_Plugin smePlugin;
+    private SME_Plugin_Get_Manifold smePlugin;
 
     // Set ImageJ graphical components
     private ImagePlus currentImage ;
@@ -88,7 +87,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     /**
      * Constructor called to initialize the graphical interface
      */
-    public SME_ENS_GUI_MAIN(SME_Plugin sme_plugin) {
+    public SME_ENS_GUI_MAIN(SME_Plugin_Get_Manifold sme_pluginGetManifold) {
         projMethods[0] = AVG_INT;
         projMethods[1] = MAX_INT;
         projMethods[2] = MED_INT;
@@ -96,7 +95,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
         projMethods[4] = STD_INT;
         projMethods[5] = SUM_SLICE;
 
-        smePlugin = sme_plugin;
+        smePlugin = sme_pluginGetManifold;
         System.out.print("Debug");
         //super("FrameDemo");
     }
