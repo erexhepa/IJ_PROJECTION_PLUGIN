@@ -1,21 +1,16 @@
-%% Finding step soze and effective stacks (new)
-%%
-                                              KE= max(idmax(edgeflag2>0))- min(idmax(edgeflag2>0))+1;
-                step=KE/100;
-%%
-%%
+
 
 %% Finding the W parameter (New)
 %%
-                                 [ncf,hcf]=hist(valk(edgeflag2==1),linspace(min(valk(:)),max(valk(:)),100));
+                                    [ncf,hcf]=hist(valk(edgeflag2==1),linspace(min(valk(:)),max(valk(:)),100));
                                     ncf=ncf/sum(ncf);
 
-                                [ncb,hcb]=hist(valk(edgeflag2==0),linspace(min(valk(:)),max(valk(:)),100));
+                                    [ncb,hcb]=hist(valk(edgeflag2==0),linspace(min(valk(:)),max(valk(:)),100));
                                     ncb=ncb/sum(ncb);
 
-  nt= find(ncb>ncf,1,'last');
-ht=hcb(nt);
-idmaxini=idmax;
+                                    nt= find(ncb>ncf,1,'last');
+                                    ht=hcb(nt);
+                                    idmaxini=idmax;
 
 overlap2=sum(valk(edgeflag2==1)<=ht)./sum(valk(edgeflag2==1)>ht);
 

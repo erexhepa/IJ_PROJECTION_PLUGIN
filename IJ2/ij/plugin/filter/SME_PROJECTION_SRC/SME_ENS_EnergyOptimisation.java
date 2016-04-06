@@ -11,6 +11,8 @@ import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.random.EmpiricalDistribution;
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import java.awt.*;
 
@@ -97,27 +99,68 @@ public class SME_ENS_EnergyOptimisation {
 
     public void initWparam(){
 
+        RealVector edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,1);
+        RealVector edgeflag2Cond2 = SME_ENS_Utils.realmatSelectVector(edgeflag2,0);
+        RealVector valkVec        = SME_ENS_Utils.realmat2vector(valk,0);
+        int histNmbBins           = 100;
+        RealVector hcf, hcb       = MatrixUtils.createRealVector(SME_ENS_Utils.linspace(
+                valkVec.getMinValue(),valkVec.getMaxValue(),histNmbBins));
+        double[] ncf     = new double[histNmbBins];
+        double[] ncb     = new double[histNmbBins];
+
+        EmpiricalDistribution distribution = new EmpiricalDistribution(histNmbBins);
+
+        int k = 0;distribution.load(edgeflag2Cond1.toArray());
+        for(SummaryStatistics stats: distribution.getBinStats())
+        {
+            ncf[k++] = stats.getN();
+        }
+
+        k = 0;distribution.load(edgeflag2Cond2.toArray());
+        for(SummaryStatistics stats: distribution.getBinStats())
+        {
+            ncb[k++] = stats.getN();
+        }
+
+        /**[ncf,hcf]=hist(valk(edgeflag2==1),linspace(min(valk(:)),max(valk(:)),100));
+         ncf=ncf/sum(ncf);
+
+         [ncb,hcb]=hist(valk(edgeflag2==0),linspace(min(valk(:)),max(valk(:)),100));
+         ncb=ncb/sum(ncb);
+
+         nt= find(ncb>ncf,1,'last');
+         ht=hcb(nt);
+         idmaxini=idmax;**/
     }
 
     public void initStepEnergyOpt(){
-        foregroundPixelVal = MatrixUtils.createRealVector(new double[0]);
+        foregroundPixelVal      = MatrixUtils.createRealVector(new double[1]);
+        Boolean vecInitialised  = Boolean.FALSE;
 
         for(int i=0;i<edgeflag2.getRowDimension();i++){
             for(int j=0;j<edgeflag2.getColumnDimension();j++){
                 if(edgeflag2.getEntry(i,j)>0){
-                    foregroundPixelVal.append(idmax.getEntry(i,j));
+                    if(!vecInitialised){
+                        foregroundPixelVal.setEntry(0,idmax.getEntry(i,j));
+                        vecInitialised = Boolean.TRUE;
+                    }else {
+                        foregroundPixelVal = foregroundPixelVal.append(idmax.getEntry(i, j));
+                    }
                 }
+
             }
         }
 
 
-        KE= foregroundPixelVal.getMaxValue()-foregroundPixelVal.getMaxValue()+1;
+        KE= foregroundPixelVal.getMaxValue()-foregroundPixelVal.getMinValue()+1;
         step=KE/100;
 
-        step     = sme_pluginGetManifold.getStack1().getSize()/(double)stepNumber;
+        //step     = sme_pluginGetManifold.getStack1().getSize()/(double)stepNumber;
     }
 
     public void computePSIprojection(){
+
+
 
     }
 

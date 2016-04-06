@@ -344,6 +344,32 @@ public final class SME_ENS_Utils {
         return(retVector);
     }
 
+    public static RealVector realmatSelectVector(RealMatrix inMatrix, int valueSelect){
+        RealVector retVector = MatrixUtils.createRealVector(new double[0]);
+
+        int ncols = inMatrix.getColumnDimension();
+        int nrows = inMatrix.getRowDimension();
+
+        for(int i=0;i<nrows;i++){
+            for(int j=0;j<ncols;j++){
+                    if(inMatrix.getEntry(i,j)==valueSelect) {
+                        retVector = retVector.append(inMatrix.getEntry(i,j));
+                    }
+            }
+        }
+
+
+        return(retVector);
+    }
+
+    public static double[] linspace(double min, double max, int points) {
+        double[] d = new double[points];
+        for (int i = 0; i < points; i++){
+            d[i] = min + i * (max - min) / (points - 1);
+        }
+        return d;
+    }
+
     public static void printRealMatrix(double[][] matrix,String matrixID) {
 
         System.out.println("################## Matrix print - "+matrixID+ " ###################");
