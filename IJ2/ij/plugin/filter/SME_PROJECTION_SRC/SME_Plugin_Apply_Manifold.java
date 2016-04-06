@@ -14,6 +14,8 @@ import ij.plugin.filter.EDM;
 import ij.plugin.filter.GaussianBlur;
 import ij.plugin.filter.PlugInFilter;
 import ij.process.*;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,6 +40,7 @@ public class SME_Plugin_Apply_Manifold implements PlugIn {
 
     private static String none = "*None*";
     private static int maxChannels = 4;
+    private static int nmbChannels = 3;
     private static String[] colors = {"Channel1 stack1 to appy the manifold",
             "Channel2 stack1 to appy the manifold",
             "Channel3 stack1 to appy the manifold",
@@ -51,14 +54,20 @@ public class SME_Plugin_Apply_Manifold implements PlugIn {
     private boolean ignoreLuts;
     private boolean autoFillDisabled;
     private String firstChannelName;
-
+    private ImagePlus[] projectionStacks ;
+    private int stackSize = 0;
+    private int width = 0;
+    private int height = 0;
     public void run(String arg) {
-        applyStackManifold();
+
+        processChannelsManifold();
     }
 
     /** Combines up to seven grayscale stacks into one RGB or composite stack. */
-    public void applyStackManifold() {
-        int[] wList = WindowManager.getIDList();
+    public void processChannelsManifold() {
+        int[] wList         = WindowManager.getIDList();
+        projectionStacks    = new ImagePlus[maxChannels];
+
         if (wList==null) {
             error("No images are open.");
             return;
@@ -91,14 +100,14 @@ public class SME_Plugin_Apply_Manifold implements PlugIn {
         }
 
         GenericDialog gd = new GenericDialog("SME APPLY MANIFOLD TO OPEN STACKS");
-        gd.addChoice("Manifold  :", titles, macro?none:names[0]);
-        gd.addChoice("Channel 1 :", titles, macro?none:names[1]);
-        gd.addChoice("Channel 2 :", titles, macro?none:names[2]);
-        gd.addChoice("Channel 3 :", titles, macro?none:names[3]);
+        gd.addChoice("Manifold  : (uint8 0-255)", titles, macro?none:names[0]);
+        gd.addChoice("Channel 1 : (Mapped to RED in composite)", titles, macro?none:names[1]);
+        gd.addChoice("Channel 2 : (Mapped to GREEN in composite)", titles, macro?none:names[2]);
+        gd.addChoice("Channel 3 : (Mapped to Blue in composite)", titles, macro?none:names[3]);
 
-        gd.addCheckbox("Create composite", createComposite);
-        gd.addCheckbox("Keep source images", keep);
-        gd.addCheckbox("Ignore source LUTs", ignoreLuts);
+        //gd.addCheckbox("Create composite", createComposite);
+        //gd.addCheckbox("Keep source images", keep);
+        //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
         gd.showDialog();
         if (gd.wasCanceled())
             return;
@@ -108,54 +117,48 @@ public class SME_Plugin_Apply_Manifold implements PlugIn {
             index[i] = gd.getNextChoiceIndex();
         }
 
-        createComposite = gd.getNextBoolean();
-        keep = gd.getNextBoolean();
-        ignoreLuts = gd.getNextBoolean();
-        if (!macro) {
-            staticCreateComposite = createComposite;
-            staticKeep = keep;
-            staticIgnoreLuts = ignoreLuts;
-        }
-
         ImagePlus[] images = new ImagePlus[maxChannels];
-        int stackSize = 0;
-        int width = 0;
-        int height = 0;
-        int bitDepth = 0;
+
+        stackSize = 0;
+        width = 0;
+        height = 0;
+
         int slices = 0;
         int frames = 0;
         for (int i=0; i<maxChannels; i++) {
+
             //IJ.log(i+"  "+index[i]+"	"+titles[index[i]]+"  "+wList.length);
             if (index[i]<wList.length) {
                 images[i] = WindowManager.getImage(wList[index[i]]);
-                if (width==0) {
-                    width = images[i].getWidth();
-                    height = images[i].getHeight();
-                    stackSize = images[i].getStackSize();
-                    bitDepth = images[i].getBitDepth();
-                    slices = images[i].getNSlices();
-                    frames = images[i].getNFrames();
-                }
+                if(width<images[i].getWidth()){width = images[i].getWidth();}
+                if(height<images[i].getHeight()){height = images[i].getHeight();}
+                if(stackSize<images[i].getStackSize()){stackSize = images[i].getStackSize();}
             }
         }
+
         if (width==0) {
             error("There must be at least one source image or stack.");
             return;
         }
 
+
         boolean mergeHyperstacks = false;
-        for (int i=0; i<maxChannels; i++) {
+        for (int i=1; i<maxChannels; i++) {
+
+            // break out of the loop if no more images to project
+
+            //if(i>=nmbChannels){
+            //    break;
+            //}
+
             ImagePlus img = images[i];
+
             if (img==null) continue;
             if (img.getStackSize()!=stackSize) {
                 error("SME PROJECT = The source stacks must have the same number of images.");
                 return;
             }
             if (img.isHyperStack()) {
-                if (bitDepth==24) {
-                    error("SME PROJECT = Source hyperstacks cannot be RGB.");
-                    return;
-                }
                 if (img.getNChannels()>1) {
                     error("SME PROJECT = Source hyperstacks cannot have more than 1 channel.");
                     return;
@@ -170,13 +173,15 @@ public class SME_Plugin_Apply_Manifold implements PlugIn {
                 error("The source images or stacks must have the same width and height.");
                 return;
             }
-            if (createComposite && img.getBitDepth()!=bitDepth) {
-                error("The source images must have the same bit depth.");
-                return;
+
+            // do projection and upload to matrix
+            if(i>=wList.length){
+                break;
+            }else {
+                projectionStacks[i] = applyStackManifold(img.getStack(), images[0]);
+                projectionStacks[i].show();
             }
         }
-
-
     }
 
     private String[] getInitialNamesAllstacks(String[] titles) {
@@ -218,6 +223,24 @@ public class SME_Plugin_Apply_Manifold implements PlugIn {
             return none;
     }
 
+    public ImagePlus applyStackManifold(ImageStack imStack, ImagePlus manifold){
+        int dimW            =   imStack.getWidth();
+        int dimH            =   imStack.getHeight();
+
+        RealMatrix projMnold    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
+
+        for(int j=0;j<dimH;j++){
+            for(int i=0;i<dimW;i++){
+                int zIndex = ((int) Math.round(stackSize*(projMnold.getEntry(j,i)/255)))+1;
+                projMnold.setEntry (j,i,imStack.getVoxel(i,j,zIndex));
+            }
+        }
+
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
+        ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+
+        return(smeManifold);
+    }
 
     void error(String msg) {
         IJ.error("Merge Channels", msg);

@@ -6,6 +6,8 @@ import ij.ImageStack;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 
+import java.io.File;
+
 /**
  * Created by rexhepaj on 17/03/16.
  */
@@ -26,6 +28,8 @@ public class SME_ENS_Sml {
         // TODO replace number of ImagePlus, ImageStack new objects
         // TODO update filtering according to the matlab code
         // TODO change holding matrix data from short processor to floatprocessor
+        //File[] hiddenFiles = new File(".").listFiles(File::isHidden);
+
         float[] M   = { -1, 2, -1};
         double[] hGDouble  = {0.00296901674395050, 0.0133062098910137,0.0219382312797146,0.0133062098910137,0.00296901674395050,
                         0.0133062098910137,0.0596342954361801,0.0983203313488458,0.0596342954361801,0.0133062098910137,

@@ -1,4 +1,4 @@
-function [OUTput_image,Manifold,Classmap,movmat,dekay,sftzm]=FV2_Main_SME_method8(Img,FG,Group,Norm,doplot,nametex,makegraph)
+% function [OUTput_image,Manifold,Classmap,movmat,dekay,sftzm]=FV2_Main_SME_methodk(Img,FG,Group,Norm,doplot,nametex,makegraph)
 
 %% STEP1 = Already encoded in JAVA - gaussian filter
 
@@ -15,14 +15,14 @@ function [OUTput_image,Manifold,Classmap,movmat,dekay,sftzm]=FV2_Main_SME_method
 %% This funtion finds the single manifod in the stack where the object is
 %% located. The final output should be the image created from that manifold
 %% and the manifold itself. The input image should be a stack.
-% Img=Img1;%(1:4,1:6,:);
-% FG=0;
-% Group=3;
-% Norm=2;
-% doplot=1;
-% stepn=1;
-% makegraph=1;
-% close all
+Img=Img1;%(1:4,1:6,:);
+FG=0;
+Group=3;
+Norm=2;
+doplot=1;
+stepn=1;
+makegraph=1;
+close all
 
 
 %% Making the profile distribution
@@ -43,14 +43,18 @@ for k=1:size(Img,3)
     timk(:,:,k) = abs(Gx) + abs(Gy);
 end
 
-addpath(genpath('tiffPlugin'))
-saveastiff(uint32(timk), 'matlab_sml_centriole.tif');
+% addpath(genpath('tiffPlugin'))
+% saveastiff(uint32(timk), 'matlab_sml_centriole.tif');
 
-%% STEP2 = Already encoded in JAVA - FFT
+%% STEP2 = Already encoded in JAVA - FFT (new)
 class=Group;
 zprof2=reshape(timk,[size(Img,1)*size(Img,2) size(Img,3)]);
+p2 = nextpow2(size(zprof2,2));
+hi = 2^p2;
+zprof2k=zeros(size(zprof2,1),hi-p2);
+zprof2=[zprof2 zprof2k];
 tempt=abs(fft(zprof2,size(Img,3),2));
-tempt(:,ceil(size(Img,3)/2):end)=[];
+tempt(:,[1 ceil(size(Img,3)/2)+1:end])=[];
 tempt=tempt./repmat((max(tempt,[],1)-min(tempt,[],1)),[size(tempt,1) 1]);
 
 
@@ -70,18 +74,18 @@ end
 
 % read intermediate results from ImageJ
 
-fnameSML    = '../smlResult.tiff';
-fnameKMEAN  = '../kmeansResult.tiff';
-
-info = imfinfo(fnameSML);
-num_images = numel(info);
-
-smlMod      =   zeros(size(Img));
-kmeanMod    =   zeros(size(Img,1),size(Img,2));
-
-for k = 1:num_images
-    smlMod(:,:,k) = imread(fnameSML, k);
-end
+% fnameSML    = '../smlResult.tiff';
+% fnameKMEAN  = '../kmeansResult.tiff';
+%
+% info = imfinfo(fnameSML);
+% num_images = numel(info);
+%
+% smlMod      =   zeros(size(Img));
+% kmeanMod    =   zeros(size(Img,1),size(Img,2));
+%
+% for k = 1:num_images
+%     smlMod(:,:,k) = imread(fnameSML, k);
+% end
 
 % replace standard input
 %kmeanMod    = double(imread(fnameKMEAN, 1))+1;
@@ -90,11 +94,15 @@ end
 
 edgeflag=reshape(idx,[size(Img,1) size(Img,2)]);
 
-saveastiff(uint8(edgeflag), 'matlab_kmeans_centriole.tif')
+% saveastiff(uint8(edgeflag), 'matlab_kmeans_centriole.tif')
 
 edgeflag2=double((edgeflag-1)/Norm);
+%% New
+%%
+[valk,idmax]=max(timk,[],3);
 
-[~,idmax]=max(timk,[],3);
+%%
+%%
 %                 [~,idmin]=min(timk,[],3);
 idmaxk=idmax;
 %                  idmaxk(edgeflag==1)=idmin(edgeflag==1);
@@ -113,18 +121,75 @@ end
 % k = nmber of slices
 
 cost=[];
-step=k/100;
+
+%% Finding step soze and effective stacks (new)
+%%
+KE= max(idmax(edgeflag2>0))- min(idmax(edgeflag2>0))+1;
+step=KE/100;
+%%
+%%
+
+%% Finding the W parameter (New)
+%%
+[ncf,hcf]=hist(valk(edgeflag2==1),linspace(min(valk(:)),max(valk(:)),100));
+ncf=ncf/sum(ncf);
+
+[ncb,hcb]=hist(valk(edgeflag2==0),linspace(min(valk(:)),max(valk(:)),100));
+ncb=ncb/sum(ncb);
+
+nt= find(ncb>ncf,1,'last');
+ht=hcb(nt);
+idmaxini=idmax;
+
+overlap2=sum(valk(edgeflag2==1)<=ht)./sum(valk(edgeflag2==1)>ht);
+
+edgeflag2B = padarray(edgeflag2',1,'symmetric');
+edgeflag2IB = padarray(edgeflag2B',1,'symmetric');
+
+base1=find_base2(edgeflag2IB,3);
+class3=sum(base1==1,3);
+
+idmaxk=idmax;
+
+idmaxkB = padarray(idmaxk',1,'symmetric');
+IB = padarray(idmaxkB',1,'symmetric');
+
+base=find_base(IB,3);
+Mold=mean(base,3);
+varold2=sum((base-repmat(Mold,[1 1 8])).^2,3);
+
+M10=idmaxk-Mold;
+MD=Mold-Mold;
+
+s01=sqrt((varold2+(M10).*(idmaxk-(Mold+(M10)./9)))./8);
+
+sD=sqrt((varold2+(MD).*(Mold-(Mold+(MD)./9)))./8);
+
+sgain=s01-sD;
+dD=abs(idmax-Mold);
+sg=sgain(class3>8 & edgeflag2==1);
+dg=dD(class3>8 & edgeflag2==1);
+
+sgk=sg;
+sg(sgk==0)=[];
+dg(sgk==0)=[];
+
+WA=dg./sg;
+WW=abs(quantile(WA(:),overlap2))
+
+%%
+%%
+
 cost(2)=10;
 cost(1)=100;
 iter=2;
 movmat=[];
 mink=ones(size(idmax));
 
-%% STEP3 - Cost optimisation 
+%% STEP3 - Cost optimisation
 
-while abs((cost(iter)-cost(iter-1)))>0.0001%*k
+while abs((cost(iter)-cost(iter-1)))>0.00001*KE
     
-    %                  movmat(:,:,iter-1)=idmaxk;
     iter=iter+1;
     %                     step=k/(iter);
     idmax1=idmaxk+step;
@@ -145,9 +210,9 @@ while abs((cost(iter)-cost(iter-1)))>0.0001%*k
     M12=idmax2-Mold;
     M10=idmaxk-Mold;
     
-    s1=9*sqrt((varold2+(M11).*(idmax1-(Mold+(M11)./9)))./8);
-    s2=9*sqrt((varold2+(M12).*(idmax2-(Mold+(M12)./9)))./8);
-    s0=9*sqrt((varold2+(M10).*(idmaxk-(Mold+(M10)./9)))./8);
+    s1=WW*sqrt((varold2+(M11).*(idmax1-(Mold+(M11)./9)))./8);
+    s2=WW*sqrt((varold2+(M12).*(idmax2-(Mold+(M12)./9)))./8);
+    s0=WW*sqrt((varold2+(M10).*(idmaxk-(Mold+(M10)./9)))./8);
     
     c1=d1+s1;
     c2=d2+s2;
@@ -160,12 +225,7 @@ while abs((cost(iter)-cost(iter-1)))>0.0001%*k
     shiftc(shiftc==2)=-step;
     
     idmaxk=idmaxk+shiftc;
-    %                 if iter>100
-    %                   idmax(shiftc==0 &  mink==0)=idmaxk(shiftc==0 &  mink==0);
-    %                           edgeflag2(shiftc==0 &  mink==0)=k/iter;
-    %                           sum(sum(shiftc==0 &  mink==0))
-    %                           mink=shiftc;
-    %                 end
+    
     if FG==1
         figure(1)
         imagesc(idmaxk);
@@ -247,26 +307,15 @@ end
 
 sftzm=sftz;
 if makegraph==1
-    [mval,pval]=max(sftz);
-    [m2val,p2val]=min(sftz(pval+1:end));
-    p2val=p2val+pval;
     
-    %             shift=0.95*(mval-m2val);
-    %         highth=m2val+shift;
-    %         sftz(sftz>highth)=[];
-    %         [mval,pval]=max(sftz);
-    %
-    %         shift=0.05*(mval-m2val);
-    %         lowth=m2val+shift;
-    %         sftz(sftz<lowth)=[];
-    %         [m2val,p2val]=min(sftz);
-    
-    sftz=sftz(pval:p2val);
+    %% New
+    %%
+    sftz(1:2)=[];
     sftz2=mat2gray(sftz);
+    dekay=1-sum(sftz2)./length(sftz2);
     k=length(sftz);
-    [fv,C] = fit([0:k-1]',sftz2','exp1');
-    fvout=feval(fv,[0:k+3]);
-    dekay=abs(fv.b);
+    %%
+    %%
     figure()
     plot(1:k,sftz2,'LineWidth',2.00,'Color',[0 0 0]);hold on;
     xlim([1 k])
@@ -314,25 +363,7 @@ if makegraph==1
     
     print([nametex 'Cost.png'], '-dpng', '-r300');
     set(gcf,'Units','inches');
-    
-    % figure()
-    %                    plot(3:iter, costF(3:iter),'LineWidth',2.00,'Color',[0 0 0]);
-    %                        xlim([3 iter])
-    %                        ylim([costF(iter) costF(3)])
-    % hold on;
-    %                                             xlabel('Iteration','FontSize', 24,'FontName','Times');
-    %                                             ylabel('CostF', 'FontSize', 24,'FontName','Times') % y-axis label
-    %
-    %                                                                                  set(gca, 'Ticklength', [0 0])
-    %                                                                                  set(gca, 'box', 'off')
-    %                                                 ax = gca;
-    %
-    %                                                 ha = axes('Position',[0 0 1 1],'Xlim',[0 1],'Ylim',[0 1],'Box','off','Visible','off','Units','normalized', 'clipping' , 'off');
-    %                                                 %                                             text(0.5,1,['Comparison of nMI' ],'HorizontalAlignment','center','VerticalAlignment', 'top');
-    %                                                                                             set(gcf,'PaperPositionMode','auto')
-    %
-    %                                                         print([nametex 'CostF.png'], '-dpng', '-r300');
-    %                                                          set(gcf,'Units','inches');
+    set(gcf,'Units','inches');
 end
 if doplot==1
     
@@ -367,4 +398,3 @@ if doplot==1
     imwrite(uint16(65536*mat2gray(edgeflag)),[nametex 'KmeansG.png']);
     
 end
-

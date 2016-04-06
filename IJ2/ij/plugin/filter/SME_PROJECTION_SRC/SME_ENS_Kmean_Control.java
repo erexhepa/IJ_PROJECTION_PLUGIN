@@ -9,6 +9,8 @@ import ij.plugin.filter.EDM;
 import ij.process.ByteProcessor;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
 
 import javax.swing.*;
 import java.awt.*;
@@ -228,7 +230,7 @@ public class SME_ENS_Kmean_Control {
 
                 // Apply FFT on the pixels having the same x,y coordinates and put results in z_fft_value
                 z_fft_value = SME_ENS_Filter_FFT_.fft(z);
-                //z_fft_value[0] = new SME_ENS_Complex(0, 0);        // replace the first value of the FFT by 0
+                z_fft_value[0] = new SME_ENS_Complex(0, 0);        // replace the first value of the FFT by 0
                 //z_fft_value[size1_ - 1] = new SME_ENS_Complex(0, 0); // replace the last value of the FFT by 0
 
 
@@ -247,17 +249,22 @@ public class SME_ENS_Kmean_Control {
             }
         }
 
+        /** TODO : In order to have identical result with the matlab scripts the matrix of the FFT normalized components
+         * should be trimed with regard to the last n_slices/2. Need also changes to the rest of the KMEAN implementation
+         * to be able to handle less KMEAN coloumn in the input than there are slices. At the moment dependent on the
+         * number of the slices.
+         **/
         // Find the max value along (x,y) in the matrix that is needed for normalization
-        int nmbDimFFT       = size1_/2-1;
-        double[][] fft_norm_truncated = new double[W*H][nmbDimFFT];
-        double[] vect_max   = new double[nmbDimFFT];
-        double[] vect_min   = new double[nmbDimFFT];
+        int nmbDimFFT       = size1_/2;
+        double[][] fft_norm_truncated = new double[W*H][size1_];
+        double[] vect_max   = new double[size1_];
+        double[] vect_min   = new double[size1_];
 
         vect_min[0] = 0 ; vect_max[0] = 1 ;
 
-        for (i = 0; i < nmbDimFFT; i++) {
-            double largest_ = Double.MIN_VALUE;
-            double smallest = Double.MAX_VALUE;
+        for (i = 0; i < size1_; i++) {
+            double largest_ = 1;
+            double smallest = 0;
 
             for (j = 0; j < W * H; j++) {
 
@@ -276,12 +283,19 @@ public class SME_ENS_Kmean_Control {
 
         // Normalization
         for (i = 0; i < W * H; i++) {
-            for (j = 0; j < nmbDimFFT; j++) {
-                fft_norm_truncated[i][j] = final_FFT_result_[i][j] / (vect_max[j]-vect_min[j]);
+            for (j = 0; j < size1_; j++) {
+                if((j<(nmbDimFFT)) && (j!=0)) {
+                    fft_norm_truncated[i][j] = final_FFT_result_[i][j] / (vect_max[j] - vect_min[j]);
+                }else{
+                    fft_norm_truncated[i][j] = 0;
+                }
             }
         }
 
-        return final_FFT_result_;
+        //RealMatrix fftKmeanInput = MatrixUtils.createRealMatrix(fft_norm_truncated);
+        //double[][] truncatedFffKmean = fftKmeanInput.getSubMatrix(0,(W*H-1),1,(nmbDimFFT-1)).getData();
+        //return truncatedFffKmean;
+        return fft_norm_truncated;
     }
 
     /**

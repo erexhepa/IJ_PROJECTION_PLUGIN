@@ -41,7 +41,7 @@ for kid=[1];
     M = [-1 2 -1];
     fname=strrep(fname,'.tif','_');
     
-    [zprojf1,qzr2,classmap,movmat]=FV2_Main_SME_method8(Img1,0,3,2,1,nametex,1);
+    FV2_Main_SME_method8;
     
     zprojf1=uint16(65535*(mat2gray(zprojf1)));
     composite_image=zprojf1;

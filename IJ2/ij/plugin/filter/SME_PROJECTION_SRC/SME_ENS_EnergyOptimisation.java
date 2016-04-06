@@ -37,6 +37,10 @@ public class SME_ENS_EnergyOptimisation {
     private RealMatrix edgeflag     = null;
     private RealMatrix edgeflag2    = null;
     private int maxiter             = 1000;
+    private RealMatrix  valk        = null;
+    private RealVector  psiVector   = null;
+    private double KE = 0;
+    private RealVector foregroundPixelVal     = null;
 
     public SME_ENS_EnergyOptimisation(SME_Plugin_Get_Manifold refplugin){
         sme_pluginGetManifold = refplugin;
@@ -55,8 +59,23 @@ public class SME_ENS_EnergyOptimisation {
         edgeflag2  = MatrixUtils.createRealMatrix(edgeflag.scalarMultiply(normFactor).getData());
         //SME_ENS_Utils.printRealMatrix(edgeflag2.getData());
         //SME_ENS_Utils.printRealMatrixStats(edgeflag2,"edgeflag2");
-
+        //[valk,idmax]=max(timk,[],3);
         idmax       = SME_ENS_Utils.getMaxProjectionIndex(smlProjection.getImageStack()).scalarAdd(1);
+
+
+        ZProjector zproject = new ZProjector();
+        zproject.setMethod(ZProjector.MAX_METHOD);
+        zproject.setImage(new ImagePlus("IterativeProjection", smlProjection.getImageStack()));
+        zproject.doProjection();
+
+        valk =   MatrixUtils.createRealMatrix(
+                SME_ENS_Utils.convertFloatMatrixToDoubles(
+                        zproject.getProjection().getImageStack().getProcessor(1).getFloatArray(),
+                        smlProjection.getImageStack().getWidth(), smlProjection.getImageStack().getHeight()));
+        valk            =   valk.transpose();
+
+        initStepEnergyOpt();
+        initWparam();
 
         // save tmp sml max projection and kmeans projection
 
@@ -70,9 +89,36 @@ public class SME_ENS_EnergyOptimisation {
         idmaxki     = idmax.copy();
         mink        = idmax.copy().scalarMultiply(0).scalarAdd(1);
 
-        step     = sme_pluginGetManifold.getStack1().getSize()/(double)stepNumber;
+        // TODO code function to automatically update the step size
+
         cost     = MatrixUtils.createRealVector(new double[2]);
         cost.setEntry(0,100);cost.setEntry(1,10);
+    }
+
+    public void initWparam(){
+
+    }
+
+    public void initStepEnergyOpt(){
+        foregroundPixelVal = MatrixUtils.createRealVector(new double[0]);
+
+        for(int i=0;i<edgeflag2.getRowDimension();i++){
+            for(int j=0;j<edgeflag2.getColumnDimension();j++){
+                if(edgeflag2.getEntry(i,j)>0){
+                    foregroundPixelVal.append(idmax.getEntry(i,j));
+                }
+            }
+        }
+
+
+        KE= foregroundPixelVal.getMaxValue()-foregroundPixelVal.getMaxValue()+1;
+        step=KE/100;
+
+        step     = sme_pluginGetManifold.getStack1().getSize()/(double)stepNumber;
+    }
+
+    public void computePSIprojection(){
+
     }
 
     public void applyEnergyOptimisation() {
