@@ -85,6 +85,22 @@ public final class SME_ENS_Utils {
         return output;
     }
 
+    public static ImageStack findElementStack(ImageStack stackIn, double compvalue){
+        int nrow = stackIn.getHeight();
+        int ncol = stackIn.getWidth();
+
+        for(int z=0;z<stackIn.getSize();z++) {
+            for (int i = 0; i < nrow; i++) {
+                for (int j = 0; j < ncol; j++) {
+                    if (stackIn.getVoxel(j, i, z) == compvalue) stackIn.setVoxel(j,i,z,1);
+                    else stackIn.setVoxel(j,i,z,0);
+                }
+            }
+        }
+
+        return(stackIn);
+    }
+
     public static RealMatrix stack2matrix(ImageStack imStack){
 
         // TODO Finish development if necessary
@@ -344,7 +360,7 @@ public final class SME_ENS_Utils {
         return(retVector);
     }
 
-    public static RealVector realmatSelectVector(RealMatrix inMatrix, int valueSelect){
+    public static RealVector realmatSelectVector(RealMatrix inMatrix,RealMatrix selectMatrix, int valueSelect){
         RealVector retVector = MatrixUtils.createRealVector(new double[0]);
 
         int ncols = inMatrix.getColumnDimension();
@@ -353,13 +369,25 @@ public final class SME_ENS_Utils {
         for(int i=0;i<nrows;i++){
             for(int j=0;j<ncols;j++){
                     if(inMatrix.getEntry(i,j)==valueSelect) {
-                        retVector = retVector.append(inMatrix.getEntry(i,j));
+                        retVector = retVector.append(selectMatrix.getEntry(i,j));
                     }
             }
         }
 
 
         return(retVector);
+    }
+
+    public static int getLastindComp(RealVector vec1, RealVector vec2){
+        int indxComp = 0;
+
+        for(int i=0;i<vec1.getDimension();i++){
+            if(vec1.getEntry(i)>vec2.getEntry(i)){
+                indxComp=i;
+            }
+        }
+
+        return(indxComp);
     }
 
     public static double[] linspace(double min, double max, int points) {

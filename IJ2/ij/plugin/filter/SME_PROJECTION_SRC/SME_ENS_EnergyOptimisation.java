@@ -13,6 +13,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.random.EmpiricalDistribution;
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
+import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
 import java.awt.*;
 
@@ -22,7 +23,7 @@ import java.awt.*;
 public class SME_ENS_EnergyOptimisation {
     private SME_Plugin_Get_Manifold sme_pluginGetManifold = null;
     private final int KMEAN_NORM    = 2;
-    private final double ENERGY_STEP= 0.0001;
+    private double ENERGY_STEP      = 0.00001;
     private RealMatrix kmeanOutput ;
     private RealMatrix rawdata2D    = null;
     private RealMatrix tmpProcess   = null;
@@ -30,18 +31,32 @@ public class SME_ENS_EnergyOptimisation {
 
     private int stepNumber          = 100;
     private RealMatrix idmax        = null;
+    private RealMatrix idmaxini     = null;
     private RealMatrix idmaxk       = null;
     private RealMatrix idmaxki      = null;
     private RealVector cost         = null;
+    private RealMatrix edgeflag2B   = null;
+    private RealMatrix edgeflag2IB  = null;
     private RealMatrix movmat       = null;
     private RealMatrix mink         = null;
     private int iter                = 1;
     private RealMatrix edgeflag     = null;
     private RealMatrix edgeflag2    = null;
+    private RealMatrix idmaxkB      = null;
     private int maxiter             = 1000;
     private RealMatrix  valk        = null;
     private RealVector  psiVector   = null;
-    private double KE = 0;
+    private double KE               = 0;
+    private int nt                  = 0;
+    private double ht               = 0;
+    private double WW               = 9;
+
+    private RealVector sg           =   MatrixUtils.createRealVector(new double[0]);
+    private RealVector sgain        =   MatrixUtils.createRealVector(new double[0]);
+    private RealVector dg           =   MatrixUtils.createRealVector(new double[0]);
+    private RealVector sgk          =   MatrixUtils.createRealVector(new double[0]);
+    private RealVector WA           =   MatrixUtils.createRealVector(new double[0]);
+
     private RealVector foregroundPixelVal     = null;
 
     public SME_ENS_EnergyOptimisation(SME_Plugin_Get_Manifold refplugin){
@@ -99,38 +114,136 @@ public class SME_ENS_EnergyOptimisation {
 
     public void initWparam(){
 
-        RealVector edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,1);
-        RealVector edgeflag2Cond2 = SME_ENS_Utils.realmatSelectVector(edgeflag2,0);
+        RealVector edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,1);
+        RealVector edgeflag2Cond2 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,0);
         RealVector valkVec        = SME_ENS_Utils.realmat2vector(valk,0);
         int histNmbBins           = 100;
-        RealVector hcf, hcb       = MatrixUtils.createRealVector(SME_ENS_Utils.linspace(
+        RealVector hcb            = MatrixUtils.createRealVector(SME_ENS_Utils.linspace(
                 valkVec.getMinValue(),valkVec.getMaxValue(),histNmbBins));
-        double[] ncf     = new double[histNmbBins];
-        double[] ncb     = new double[histNmbBins];
+        RealVector hcf            = hcb.copy();
+
+        edgeflag2Cond1            = edgeflag2Cond1.mapSubtract(valkVec.getMinValue()).
+                mapDivide((valkVec.getMaxValue() -valkVec.getMinValue()));
+        edgeflag2Cond2            = edgeflag2Cond2.mapSubtract(valkVec.getMinValue()).
+                mapDivide((valkVec.getMaxValue() -valkVec.getMinValue()));
+
+        RealVector ncf     = MatrixUtils.createRealVector(new double[histNmbBins]);
+        RealVector ncb     = MatrixUtils.createRealVector(new double[histNmbBins]);
 
         EmpiricalDistribution distribution = new EmpiricalDistribution(histNmbBins);
 
         int k = 0;distribution.load(edgeflag2Cond1.toArray());
         for(SummaryStatistics stats: distribution.getBinStats())
         {
-            ncf[k++] = stats.getN();
+            ncf.setEntry(k++,stats.getN());
         }
 
         k = 0;distribution.load(edgeflag2Cond2.toArray());
         for(SummaryStatistics stats: distribution.getBinStats())
         {
-            ncb[k++] = stats.getN();
+            ncb.setEntry(k++,stats.getN());
         }
 
-        /**[ncf,hcf]=hist(valk(edgeflag2==1),linspace(min(valk(:)),max(valk(:)),100));
-         ncf=ncf/sum(ncf);
+        ncf     =   ncf.mapDivide(ncf.getL1Norm());
+        ncb     =   ncb.mapDivide(ncb.getL1Norm());
+        nt      =   SME_ENS_Utils.getLastindComp(ncb,ncf);
+        ht      =   hcb.getEntry(nt);
 
-         [ncb,hcb]=hist(valk(edgeflag2==0),linspace(min(valk(:)),max(valk(:)),100));
-         ncb=ncb/sum(ncb);
+        idmaxini        =   idmax.copy();
+        edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,1);
 
-         nt= find(ncb>ncf,1,'last');
-         ht=hcb(nt);
-         idmaxini=idmax;**/
+        double overlap2 = findOverlap2(edgeflag2Cond1);
+
+        edgeflag2B  = SME_ENS_Utils.padSymetricMatrix(edgeflag2, Boolean.TRUE);
+        edgeflag2IB = SME_ENS_Utils.padSymetricMatrix(edgeflag2B, Boolean.TRUE);
+
+        ImageStack base1 =  SME_ENS_Utils.find_base(edgeflag2IB, 3);
+        base1            =  SME_ENS_Utils.findElementStack(base1,1);
+
+        ZProjector zproject = new ZProjector();
+        zproject.setMethod(0);
+        zproject.setImage(new ImagePlus("IterativeProjection", base1));
+        zproject.setMethod(ZProjector.SUM_METHOD);
+        zproject.doProjection();
+
+        int nrowsIB     = base1.getHeight();
+        int ncolsIB     = base1.getWidth();
+
+        RealMatrix class3   =   MatrixUtils.createRealMatrix(
+                                SME_ENS_Utils.convertFloatMatrixToDoubles(
+                                zproject.getProjection().getImageStack().getProcessor(1).getFloatArray(),
+                                ncolsIB, nrowsIB));
+        class3              =   class3.transpose();
+
+        idmaxk              =   idmax;
+        idmaxkB             =   SME_ENS_Utils.padSymetricMatrix(idmaxk, Boolean.TRUE);
+        RealMatrix  IB      =   SME_ENS_Utils.padSymetricMatrix(idmaxkB, Boolean.TRUE);
+        ImageStack  base    =   SME_ENS_Utils.find_base(IB, 3);
+
+        zproject.setMethod(0);
+        zproject.setImage(new ImagePlus("IterativeProjection", base));
+        zproject.doProjection();
+        RealMatrix Mold     =   MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(
+                                zproject.getProjection().getImageStack().getProcessor(1).getFloatArray(),
+                                ncolsIB, nrowsIB));
+        Mold                =   Mold.transpose();
+
+        ImageStack varoldStack = SME_ENS_Utils.repmatMatrixVar(Mold, base);
+
+        zproject.setImage(new ImagePlus("IterativeProjection", varoldStack));
+        zproject.setMethod(3);
+        zproject.doProjection();
+        int rowDim          = varoldStack.getHeight();
+        int colDim          = varoldStack.getWidth();
+
+        RealMatrix varold2  = MatrixUtils.createRealMatrix(
+                SME_ENS_Utils.convertFloatMatrixToDoubles(
+                        zproject.getProjection().getImageStack().getProcessor(1).getFloatArray(),
+                        colDim, rowDim));
+        varold2             = varold2.transpose();
+
+        RealMatrix M10      =   idmaxk.subtract(Mold);
+        RealMatrix MD       =   M10.subtract(M10);
+        RealMatrix s01      =   SME_ENS_Utils.realmatrixDoublepow(varold2.add(
+                                SME_ENS_Utils.elementMultiply(M10, idmaxk.subtract(Mold.add(M10.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
+                                ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(9);
+        RealMatrix sD       =   SME_ENS_Utils.realmatrixDoublepow(varold2.add(
+                                SME_ENS_Utils.elementMultiply(MD, Mold.subtract(Mold.add(MD.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
+                                ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(9);
+
+        RealMatrix sgain    =   s01.subtract(sD);
+        RealMatrix dD       =   idmax.subtract(Mold);
+
+        for(int i=0;i<edgeflag2.getRowDimension();i++){
+            for(int j=0;j<edgeflag2.getColumnDimension();j++){
+                if((class3.getEntry(i,j)>8)&(edgeflag2.getEntry(i,j)==1)){
+                    if(sgain.getEntry(i,j)>0) {
+                        sg.append(sgain.getEntry(i, j));
+                        dg.append(sgain.getEntry(i, j));
+                    }
+                }
+            }
+        }
+
+        WA                  =   dg.ebeDivide(sg);
+        Percentile quantEng =   new Percentile();
+        WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2));
+    }
+
+    public double findOverlap2(RealVector edgeFlagCond){
+
+        double sum1         = 0;
+        double sum2         = 0;
+
+        for(int i=0;i<edgeFlagCond.getDimension();i++){
+            if(edgeFlagCond.getEntry(i)>ht){
+                sum2++;
+            }else{
+                sum1++;
+            }
+        }
+
+        return(sum1/sum2);
     }
 
     public void initStepEnergyOpt(){
@@ -161,15 +274,19 @@ public class SME_ENS_EnergyOptimisation {
     public void computePSIprojection(){
 
 
-
     }
 
     public void applyEnergyOptimisation() {
+
+        initWparam();
+
         RealMatrix idmax1 = idmaxk.copy();
         RealMatrix idmax2 = idmaxk.copy();
         RealMatrix idmaxkB, IB = null;
         ZProjector zproject = new ZProjector();
         zproject.setMethod(0);
+
+        ENERGY_STEP = ENERGY_STEP*KE;
 
         while (Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1))) > (ENERGY_STEP)) {
 
@@ -225,13 +342,13 @@ public class SME_ENS_EnergyOptimisation {
 
             RealMatrix s1 = SME_ENS_Utils.realmatrixDoublepow(varold2.add(
                     SME_ENS_Utils.elementMultiply(M11, idmax1.subtract(Mold.add(M11.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
-            ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(9);
+            ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(WW);
             RealMatrix s2 = SME_ENS_Utils.realmatrixDoublepow(varold2.add(
                     SME_ENS_Utils.elementMultiply(M12, idmax2.subtract(Mold.add(M12.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
-            ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(9);
+            ).scalarMultiply(1 / (double) 8), 0.5).scalarMultiply(WW);
             RealMatrix s0 = SME_ENS_Utils.realmatrixDoublepow(varold2.add(
                     SME_ENS_Utils.elementMultiply(M10, idmaxk.subtract(Mold.add(M10.scalarMultiply(1 / (double) 9))),Boolean.FALSE)
-            ).scalarMultiply(1 /(double) 8), 0.5).scalarMultiply(9);
+            ).scalarMultiply(1 /(double) 8), 0.5).scalarMultiply(WW);
 
             RealMatrix c1 = d1.add(s1);
             RealMatrix c2 = d2.add(s2);
