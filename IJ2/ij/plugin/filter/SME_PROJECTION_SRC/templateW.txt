@@ -1,44 +1,7 @@
-Manifold=idmaxk;
-OUTput_image=zprojf1;
-Classmap=double(edgeflag);
-%                        waitbar(1,h,'Manifold finalized...');close(h)
 
-totalz=sum(timk(:));
-sftz=[];
 for k=1:size(A,3)
-    sft=k-1;
-    qzr3=qzr2-sft;
-    qzr3(qzr3>imageSize(3))=imageSize(3);
-    qzr3(qzr3<1)=1;
+
+
     
-    zprojf1=zeros(size(qzr3));
-    
-    for kin=min(qzr3(:)):max(qzr3(:))
-        temp=Img(:,:,kin);
-        zprojf1(qzr3==kin)=temp(qzr3==kin);
-    end
-    
-    Gx = imfilter(zprojf1, M, 'replicate', 'conv');
-    Gy = imfilter(zprojf1, M', 'replicate', 'conv');
-    zprojf1 = abs(Gx) + abs(Gy);
-    zprojf2=zprojf1;
-    %          zprojf2(Classmap==1)=0;
-    
-    qzr3=qzr2+sft;
-    qzr3(qzr3>imageSize(3))=imageSize(3);
-    qzr3(qzr3<1)=1;
-    
-    zprojf1=zeros(size(qzr3));
-    
-    for kin=min(qzr3(:)):max(qzr3(:))
-        temp=Img(:,:,kin);
-        zprojf1(qzr3==kin)=temp(qzr3==kin);
-    end
-    
-    Gx = imfilter(zprojf1, M, 'replicate', 'conv');
-    Gy = imfilter(zprojf1, M', 'replicate', 'conv');
-    zprojf1 = abs(Gx) + abs(Gy);
-    % zprojf1(Classmap==1)=0;
-    
-    sftz(k)=(sum(zprojf2(:))+sum(zprojf1(:)))/totalz;
+
 end

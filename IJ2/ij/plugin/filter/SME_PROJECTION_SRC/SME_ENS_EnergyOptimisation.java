@@ -8,6 +8,7 @@ import ij.plugin.ZAxisProfiler;
 import ij.plugin.ZProjector;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import org.apache.commons.math3.linear.DefaultRealMatrixChangingVisitor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
@@ -27,6 +28,7 @@ public class SME_ENS_EnergyOptimisation {
     private RealMatrix kmeanOutput ;
     private RealMatrix rawdata2D    = null;
     private RealMatrix tmpProcess   = null;
+    private double totalz           = 0;
     private double step ;
 
     private int stepNumber          = 100;
@@ -45,7 +47,7 @@ public class SME_ENS_EnergyOptimisation {
     private RealMatrix idmaxkB      = null;
     private int maxiter             = 1000;
     private RealMatrix  valk        = null;
-    private RealVector  psiVector   = null;
+    private RealVector  sftz        = MatrixUtils.createRealVector(new double[0]);
     private double KE               = 0;
     private int nt                  = 0;
     private double ht               = 0;
@@ -78,7 +80,7 @@ public class SME_ENS_EnergyOptimisation {
         //SME_ENS_Utils.printRealMatrixStats(edgeflag2,"edgeflag2");
         //[valk,idmax]=max(timk,[],3);
         idmax       = SME_ENS_Utils.getMaxProjectionIndex(smlProjection.getImageStack()).scalarAdd(1);
-
+        totalz      = SME_ENS_Utils.realmat2vector(idmax,0).getL1Norm();
 
         ZProjector zproject = new ZProjector();
         zproject.setMethod(ZProjector.MAX_METHOD);
@@ -273,7 +275,117 @@ public class SME_ENS_EnergyOptimisation {
 
     public void computePSIprojection(){
 
+        /**
+         *
+         Gx = imfilter(zprojf1, M, 'replicate', 'conv');
+         Gy = imfilter(zprojf1, M', 'replicate', 'conv');
+         */
 
+        int[] imageSize = new int[3];
+        float[] M       = { -1, 2, -1};
+
+        RealMatrix qzr2  = idmax.copy();
+        edgeflag2 = edgeflag;
+        ImageStack A = sme_pluginGetManifold.getStack();
+        imageSize[0] = A.getHeight();imageSize[1] = A.getWidth();imageSize[2] = A.getSize();
+
+        qzr2.walkInOptimizedOrder(new SetVisitorRound());
+        qzr2.walkInOptimizedOrder(new SetVisitorTestValreset(3,imageSize[0],imageSize[0]));
+        qzr2.walkInOptimizedOrder(new SetVisitorTestValreset(4,1,1));
+
+        for(int k=0;k<imageSize[2];k++){
+            int sft             =   k-1;
+            RealMatrix qzr3     =   qzr2.scalarAdd(-sft);
+            RealVector qzr3Vec  =   SME_ENS_Utils.realmat2vector(qzr3,0);
+
+            qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(3,imageSize[2],imageSize[2]));
+            qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(4,imageSize[2],imageSize[2]));
+            RealMatrix zprojf1 = MatrixUtils.createRealMatrix(
+                    qzr3.getRowDimension(),qzr3.getColumnDimension());
+
+            for(int kin=(int)qzr3Vec.getMinValue();kin<qzr3Vec.getMaxValue();kin++){
+                RealMatrix temp =   MatrixUtils.createRealMatrix(
+                        SME_ENS_Utils.convertFloatMatrixToDoubles(
+                        sme_pluginGetManifold.getStack().getProcessor(kin).getFloatArray(),
+                        imageSize[1],imageSize[0])).transpose();
+
+                        for(int i1=0;i1<temp.getRowDimension();i1++){
+                            for(int j1=0;j1<temp.getRowDimension();j1++){
+                                if(qzr3.getEntry(i1,j1)==kin){
+                                    zprojf1.setEntry(i1,j1,temp.getEntry(i1,j1));
+                                }
+                            }
+                        }
+            }
+            SME_ENS_Convolver sme_convolver = new SME_ENS_Convolver();
+            FloatProcessor Gx = new FloatProcessor(SME_ENS_Utils.convertDoubleMatrixToFloat(
+                    zprojf1.getData(),
+                    sme_pluginGetManifold.getStack().getHeight(),
+                    sme_pluginGetManifold.getStack().getWidth()));
+            FloatProcessor Gy = new FloatProcessor(SME_ENS_Utils.convertDoubleMatrixToFloat(
+                    zprojf1.getData(),
+                    sme_pluginGetManifold.getStack().getHeight(),
+                    sme_pluginGetManifold.getStack().getWidth()));
+
+            sme_convolver.convolveFloat(Gx,M,1,3);
+            sme_convolver.convolveFloat(Gy,M,3,1);
+
+            Gx.abs(); Gy.abs();
+
+            zprojf1 = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(Gx.getFloatArray(),
+                    Gx.getWidth(),Gx.getHeight())).add( MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(Gx.getFloatArray(),
+                    Gy.getWidth(),Gy.getHeight())));
+            RealMatrix  zprojf2 =   zprojf1.copy();
+
+            /*************************************************/
+
+            qzr3     =   qzr2.scalarAdd(-sft);
+            qzr3Vec  =   SME_ENS_Utils.realmat2vector(qzr3,0);
+
+            qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(3,imageSize[2],imageSize[2]));
+            qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(4,imageSize[2],imageSize[2]));
+            zprojf1 = MatrixUtils.createRealMatrix(
+                    qzr3.getRowDimension(),qzr3.getColumnDimension());
+
+            for(int kin=(int)qzr3Vec.getMinValue();kin<qzr3Vec.getMaxValue();kin++){
+                RealMatrix temp =   MatrixUtils.createRealMatrix(
+                        SME_ENS_Utils.convertFloatMatrixToDoubles(
+                                sme_pluginGetManifold.getStack().getProcessor(kin).getFloatArray(),
+                                imageSize[1],imageSize[0])).transpose();
+
+                for(int i1=0;i1<temp.getRowDimension();i1++){
+                    for(int j1=0;j1<temp.getRowDimension();j1++){
+                        if(qzr3.getEntry(i1,j1)==kin){
+                            zprojf1.setEntry(i1,j1,temp.getEntry(i1,j1));
+                        }
+                    }
+                }
+            }
+
+            sme_convolver = new SME_ENS_Convolver();
+            Gx = new FloatProcessor(SME_ENS_Utils.convertDoubleMatrixToFloat(
+                    zprojf1.getData(),
+                    sme_pluginGetManifold.getStack().getHeight(),
+                    sme_pluginGetManifold.getStack().getWidth()));
+            Gy = new FloatProcessor(SME_ENS_Utils.convertDoubleMatrixToFloat(
+                    zprojf1.getData(),
+                    sme_pluginGetManifold.getStack().getHeight(),
+                    sme_pluginGetManifold.getStack().getWidth()));
+
+            sme_convolver.convolveFloat(Gx,M,1,3);
+            sme_convolver.convolveFloat(Gy,M,3,1);
+
+            Gx.abs(); Gy.abs();
+
+            zprojf1 = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(Gx.getFloatArray(),
+                    Gx.getWidth(),Gx.getHeight())).add( MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(Gx.getFloatArray(),
+                    Gy.getWidth(),Gy.getHeight())));
+
+            RealVector zprojf1Vec = SME_ENS_Utils.realmat2vector(zprojf1,0);
+            RealVector zprojf2Vec = SME_ENS_Utils.realmat2vector(zprojf2,0);
+
+            sftz.append((zprojf1Vec.getL1Norm()+zprojf1Vec.getL1Norm())/totalz);
+        }
     }
 
     public void applyEnergyOptimisation() {
@@ -391,15 +503,14 @@ public class SME_ENS_EnergyOptimisation {
         sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(cost));
         sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler());
         ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).run(new ImagePlus("Cost data",sme_pluginGetManifold.getCostData()));
-        RealVector xVal = MatrixUtils.createRealVector(new double[cost.getDimension()]);
-        RealVector yVal = cost.add(cost);
 
-        for(int j=0;j<xVal.getDimension();j++){
-            xVal.setEntry(j,(double) j);
-        }
+        computePSIprojection();
 
-        //((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).getPlot().addPoints(xVal.toArray(),yVal.toArray(), Plot.LINE);
-        //((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).getPlot().addLegend("Legend Plot");
+        sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(sftz));
+        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler());
+        ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).
+                run(new ImagePlus("PSI data",sme_pluginGetManifold.getCostData()));
+
     }
 
     public void setOutputManifold(){
@@ -435,4 +546,43 @@ public class SME_ENS_EnergyOptimisation {
         sme_pluginGetManifold.getSmeImage().show();
     }
 
+    private static class SetVisitorRound extends DefaultRealMatrixChangingVisitor {
+        @Override
+        public double visit(int i, int j, double value) {
+            return Math.round(value);
+        }
+    }
+
+    private static class SetVisitorTestValreset extends DefaultRealMatrixChangingVisitor {
+
+        double compareValue = 0;
+        double resetValue   = 0;
+        int compOperator    = 5;
+
+        public SetVisitorTestValreset(int opVal, double valComp, double valReset){
+            compareValue = valComp;
+            resetValue   = valReset;
+            compOperator = opVal ;
+        }
+
+        @Override
+        public double visit(int i, int j, double value) {
+            double returnVal = value;
+            switch (compOperator) {
+                case 0: // ==
+                    if(value==compareValue) returnVal=resetValue;
+                case 1: // >=
+                    if(value>=compareValue) returnVal=resetValue;
+                case 2: // <=
+                    if(value<=compareValue) returnVal=resetValue;
+                case 3: // >
+                    if(value>compareValue) returnVal=resetValue;
+                case 4: // <
+                    if(value<compareValue) returnVal=resetValue;
+                default: // !=
+                    if(value!=compareValue) returnVal=resetValue;
+            }
+            return returnVal;
+        }
+    }
 }
