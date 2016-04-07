@@ -168,7 +168,7 @@ sD=sqrt((varold2+(MD).*(Mold-(Mold+(MD)./9)))./8);
 sgain=s01-sD;
 dD=abs(idmax-Mold);
 sg=sgain(class3>8 & edgeflag2==1);
-dg=dD(class3>8 & edgeflag2==1);
+dg=dD((class3>8) & (edgeflag2==1));
 
 sgk=sg;
 sg(sgk==0)=[];

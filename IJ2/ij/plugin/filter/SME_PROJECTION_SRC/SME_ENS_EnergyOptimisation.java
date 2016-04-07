@@ -68,7 +68,8 @@ public class SME_ENS_EnergyOptimisation {
 
     public void initOptimisation(){
         ImagePlus   smlProjection = sme_pluginGetManifold.getSmlImage();
-        kmeanOutput = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(sme_pluginGetManifold.getKmensImage().getProcessor().getFloatArray(),
+        kmeanOutput = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(
+                sme_pluginGetManifold.getKmensImage().getProcessor().getFloatArray(),
                 smlProjection.getWidth(),smlProjection.getHeight()));
         kmeanOutput = kmeanOutput.transpose();
 
@@ -116,7 +117,7 @@ public class SME_ENS_EnergyOptimisation {
 
     public void initWparam(){
 
-        RealVector edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,1);
+        RealVector edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,1); // TODO Check definition of edgeflag2 no equal to matlab
         RealVector edgeflag2Cond2 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,0);
         RealVector valkVec        = SME_ENS_Utils.realmat2vector(valk,0);
         int histNmbBins           = 100;
@@ -146,7 +147,7 @@ public class SME_ENS_EnergyOptimisation {
             ncb.setEntry(k++,stats.getN());
         }
 
-        ncf     =   ncf.mapDivide(ncf.getL1Norm());
+        ncf     =   ncf.mapDivide(ncf.getL1Norm()); // TODO : check this as not equal to the matlab output
         ncb     =   ncb.mapDivide(ncb.getL1Norm());
         nt      =   SME_ENS_Utils.getLastindComp(ncb,ncf);
         ht      =   hcb.getEntry(nt);
@@ -154,7 +155,7 @@ public class SME_ENS_EnergyOptimisation {
         idmaxini        =   idmax.copy();
         edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,1);
 
-        double overlap2 = findOverlap2(edgeflag2Cond1);
+        double overlap2 = findOverlap2(edgeflag2Cond1); // TODO : check this as not equal to the matlab output
 
         edgeflag2B  = SME_ENS_Utils.padSymetricMatrix(edgeflag2, Boolean.TRUE);
         edgeflag2IB = SME_ENS_Utils.padSymetricMatrix(edgeflag2B, Boolean.TRUE);
@@ -220,8 +221,8 @@ public class SME_ENS_EnergyOptimisation {
             for(int j=0;j<edgeflag2.getColumnDimension();j++){
                 if((class3.getEntry(i,j)>8)&(edgeflag2.getEntry(i,j)==1)){
                     if(sgain.getEntry(i,j)>0) {
-                        sg.append(sgain.getEntry(i, j));
-                        dg.append(sgain.getEntry(i, j));
+                        sg = sg.append(sgain.getEntry(i, j));
+                        dg = dg.append(sgain.getEntry(i, j));
                     }
                 }
             }
@@ -229,7 +230,8 @@ public class SME_ENS_EnergyOptimisation {
 
         WA                  =   dg.ebeDivide(sg);
         Percentile quantEng =   new Percentile();
-        WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2));
+        if(dg.getDimension()>0)
+            WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2));
     }
 
     public double findOverlap2(RealVector edgeFlagCond){
@@ -296,12 +298,12 @@ public class SME_ENS_EnergyOptimisation {
         for(int k=0;k<imageSize[2];k++){
             int sft             =   k-1;
             RealMatrix qzr3     =   qzr2.scalarAdd(-sft);
-            RealVector qzr3Vec  =   SME_ENS_Utils.realmat2vector(qzr3,0);
 
             qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(3,imageSize[2],imageSize[2]));
             qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(4,imageSize[2],imageSize[2]));
             RealMatrix zprojf1 = MatrixUtils.createRealMatrix(
                     qzr3.getRowDimension(),qzr3.getColumnDimension());
+            RealVector qzr3Vec  =   SME_ENS_Utils.realmat2vector(qzr3,0);
 
             for(int kin=(int)qzr3Vec.getMinValue();kin<qzr3Vec.getMaxValue();kin++){
                 RealMatrix temp =   MatrixUtils.createRealMatrix(
@@ -340,12 +342,14 @@ public class SME_ENS_EnergyOptimisation {
             /*************************************************/
 
             qzr3     =   qzr2.scalarAdd(-sft);
-            qzr3Vec  =   SME_ENS_Utils.realmat2vector(qzr3,0);
+
 
             qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(3,imageSize[2],imageSize[2]));
             qzr3.walkInOptimizedOrder(new SetVisitorTestValreset(4,imageSize[2],imageSize[2]));
             zprojf1 = MatrixUtils.createRealMatrix(
                     qzr3.getRowDimension(),qzr3.getColumnDimension());
+
+            qzr3Vec  =   SME_ENS_Utils.realmat2vector(qzr3,0);
 
             for(int kin=(int)qzr3Vec.getMinValue();kin<qzr3Vec.getMaxValue();kin++){
                 RealMatrix temp =   MatrixUtils.createRealMatrix(
@@ -384,13 +388,13 @@ public class SME_ENS_EnergyOptimisation {
             RealVector zprojf1Vec = SME_ENS_Utils.realmat2vector(zprojf1,0);
             RealVector zprojf2Vec = SME_ENS_Utils.realmat2vector(zprojf2,0);
 
-            sftz.append((zprojf1Vec.getL1Norm()+zprojf1Vec.getL1Norm())/totalz);
+            sftz = sftz.append((zprojf1Vec.getL1Norm()+zprojf2Vec.getL1Norm())/totalz);
         }
     }
 
     public void applyEnergyOptimisation() {
 
-        initWparam();
+        //initWparam();
 
         RealMatrix idmax1 = idmaxk.copy();
         RealMatrix idmax2 = idmaxk.copy();
@@ -501,13 +505,17 @@ public class SME_ENS_EnergyOptimisation {
         }
 
         sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(cost));
-        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler());
+        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler(
+                "ENERGY OPTIMISATION COST OPTIMISATION","ENERGY OPTIMISATION :: ITERATION","COST VALUE"
+        ));
         ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).run(new ImagePlus("Cost data",sme_pluginGetManifold.getCostData()));
 
         computePSIprojection();
 
         sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(sftz));
-        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler());
+        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler(
+                "ENERGY OPTIMISATION PROJECTION SUITABILITY INDEX","STACK INDEX","PSI VALUE"
+        ));
         ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).
                 run(new ImagePlus("PSI data",sme_pluginGetManifold.getCostData()));
 

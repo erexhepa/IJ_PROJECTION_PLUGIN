@@ -26,6 +26,16 @@ public class SME_Data_Profiler implements Measurements, PlotMaker {
 	private boolean timeProfile;
 	private boolean firstTime = true;
     private Plot plot = null;
+	private String xaxis_label = "time";
+	private String yaxis_label = "Intensity";
+	private String title = "zplot";
+
+	public SME_Data_Profiler(String titleplot, String xlab, String ylab){
+		super();
+		title =titleplot;
+		xaxis_label = xlab;
+		yaxis_label = ylab;
+	}
 
 	public void setPlot(Plot plot) {
 		this.plot = plot;
@@ -41,7 +51,7 @@ public class SME_Data_Profiler implements Measurements, PlotMaker {
 		isPlotMaker = !IJ.macroRunning();
 
 		plot = getPlot();
-		plot.setXYLabels("ENERGY OPTIMISATION :: ITERATION","COST VALUE");
+		plot.setXYLabels(xaxis_label,yaxis_label);
 		plot.setYLabelFont(new Font("Arial", Font.BOLD, 14));
 		plot.setXLabelFont(new Font("Arial", Font.BOLD, 14));
 		plot.setLineWidth(2);
