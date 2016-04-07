@@ -59,6 +59,8 @@ tempt=tempt./repmat((max(tempt,[],1)-min(tempt,[],1)),[size(tempt,1) 1]);
 
 
 %% STEP3 = Already encoded in JAVA - KMEANS
+rng(100);
+
 [idx,c]=kmeans(tempt,class);
 [~,I] = sort(sum(c,2),1);
 idxt=idx;

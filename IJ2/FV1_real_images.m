@@ -6,8 +6,8 @@ frame = 1;
 %% Read the TIF file
 
 name{3} = 'CellBorder1.tif';
-name{1} = 'Centriole1.tif';
-name{2} = 'Neuron1.tif';
+name{2} = 'Centriole1.tif';
+name{1} = 'Neuron1.tif';
 name{16}='Cell_border1.tif';
 
 %  addpath(genpath([cd '/prtools']));

@@ -264,7 +264,7 @@ public class SME_ENS_Kmean_Control {
 
         for (i = 0; i < size1_; i++) {
             double largest_ = 1;
-            double smallest = 0;
+            double smallest = Double.MAX_VALUE;
 
             for (j = 0; j < W * H; j++) {
 
