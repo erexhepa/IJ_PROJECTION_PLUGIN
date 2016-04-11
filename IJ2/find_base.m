@@ -9,6 +9,7 @@ for inx=1:k
         
         base(:,:,loop)=IB(inx:inx+sz1-1,iny:iny+sz2-1);
         loop=loop+1;
+
     end
 end
 

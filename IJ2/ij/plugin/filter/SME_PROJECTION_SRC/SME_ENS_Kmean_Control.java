@@ -11,6 +11,9 @@ import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.random.EmpiricalDistribution;
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,6 +94,7 @@ public class SME_ENS_Kmean_Control {
         sme_pluginGetManifold.getMap2d().show(); // TODO : make this current imagej image that can be grabed by the gui
         sme_pluginGetManifold.setKmensImage(new ImagePlus("Map2d", (new FloatProcessor(sme_pluginGetManifold.getMap2DImage()))));
 
+        // TODO remove this for the final version of the plugin
         IJ.saveAsTiff(sme_pluginGetManifold.getMap2d(),"KMEANtempresults.tiff");
     }
 
@@ -310,76 +314,16 @@ public class SME_ENS_Kmean_Control {
     public void Kmeans_(int numClust_, double[][] result_fft) {
         int m;
         int slice_num = sme_pluginGetManifold.getStack().getSize();
-        boolean CONCURRENT_KMEANS = true;
         int threadcount = 5;
         final int numClust = numClust_;
         final double[][]  coordClust = result_fft;
 
-        if (CONCURRENT_KMEANS) {
 
-            long randomSeed = 1000;
+        SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
+        OBSKmeans_Niki.calculateClusters();
+        sme_pluginGetManifold.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
+        sme_pluginGetManifold.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
 
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    try {
-                        UIManager.setLookAndFeel(UIManager.
-                                getSystemLookAndFeelClassName());
-                    } catch (Exception exception) {
-                        exception.printStackTrace();
-                    }
-
-                    sme_pluginGetManifold.getGui_main().validate();
-
-                    // Center the window
-                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                    Dimension frameSize = sme_pluginGetManifold.getGui_main().getSize();
-                    if (frameSize.height > screenSize.height) {
-                        frameSize.height = screenSize.height;
-                    }
-                    if (frameSize.width > screenSize.width) {
-                        frameSize.width = screenSize.width;
-                    }
-                    sme_pluginGetManifold.getGui_main().setLocation((screenSize.width - frameSize.width) / 2,
-                            (screenSize.height - frameSize.height) / 2);
-                    sme_pluginGetManifold.getGui_main().setVisible(true);
-                    //frame.actionPerformedRun();
-                    //clustersKmean = frame.getClustersKmeans();*/
-                }
-            });
-
-
-            //     = mKMeans.getClusters();
-
-
-
-            /*this.kmeansLabels = new double[result_fft.length];
-            this.kmeanCentroids = new double[numClust_][result_fft[0].length];
-
-            //iterate through the clusters to get all points
-            for(int indxClusters=0;indxClusters<clustersKmean.length;indxClusters++){
-                //iterate through all the clusters points to put them in the original order
-                int[] indxPoints = clustersKmean[indxClusters].getMemberIndexes();
-                //TODO merge lines below
-                double[] centerCoord = clustersKmean[indxClusters].getCenter();
-                this.kmeanCentroids[indxClusters]=centerCoord;
-
-                for(int indxPointclusters=0;indxPointclusters<indxPoints.length;indxPointclusters++){
-                    this.kmeansLabels[indxPoints[indxPointclusters]]=indxClusters;
-                }
-            }
-            //this.kmeanCentroids = OBSKmeans_Niki.getClusterCenters();
-            //this.kmeansLabels = OBSKmeans_Niki.getClusterLabels();*/
-            SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
-            OBSKmeans_Niki.calculateClusters();
-            sme_pluginGetManifold.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
-            sme_pluginGetManifold.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
-
-        }else{
-            SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
-            OBSKmeans_Niki.calculateClusters();
-            sme_pluginGetManifold.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
-            sme_pluginGetManifold.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
-        }
 
         for (m = 0; m < slice_num; m++) {
             sme_pluginGetManifold.setMean0(sme_pluginGetManifold.getMean0() + (float) sme_pluginGetManifold.getKmeanCentroids()[0][m]);

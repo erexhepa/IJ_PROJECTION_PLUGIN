@@ -22,35 +22,6 @@ public class SME_ENS_Kmeans_Engine {
     private double epsilon;
 
     /** The constructor creating an object of KMeans.
-     * @param data  The input pixel features organised as 2D matrix where each row correspond to a pixels and each coloumn
-     *             correspond to features describing the pixel properties.
-     * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
-     * @param clusterCenters    The argument specifies the cluster's center vector descriptors when these are known.
-     */
-    public SME_ENS_Kmeans_Engine(double[][] data, int numClusters, double[][] clusterCenters)
-    {
-        this.dataSize = data.length;
-        this.dataDim = data[0].length;
-
-        // Initialise the class variables
-
-        this.data = data;
-        this.numClusters = numClusters;
-        this.clusterCenters = clusterCenters;
-        this.clusterLabels  = new double[dataSize];
-
-        clusters = new ArrayList[numClusters];
-        for(int i=0;i<numClusters;i++)
-        {
-            clusters[i] = new ArrayList();
-        }
-
-        clusterVars = new double[numClusters];
-
-        epsilon = 0.01;
-    }
-
-    /** The constructor creating an object of KMeans.
      * deterministic manner by using a seed of 100
      * @param data  The input pixel features organised as 2D matrix where each row correspond to a pixels and each coloumn
      *             correspond to features describing the pixel properties.
@@ -82,30 +53,8 @@ public class SME_ENS_Kmeans_Engine {
 
         //TODO: Discuss choice of seed
 
-        if(randomizeCenters)
         {
-            randomizeCenters(numClusters, data);
-        }else{
             randomizeCentersFixedSeed(numClusters, data,100);
-        }
-    }
-
-    /** Method initalising the kmean centers randomly.
-     * @param data  The input pixel features organised as 2D matrix where each row correspond to a pixels and each coloumn
-     *             correspond to features describing the pixel properties.
-     * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
-     */
-    private void randomizeCenters(int numClusters, double[][] data) {
-        Random r = new Random();
-        int[] check = new int[numClusters];
-        for (int i = 0; i < numClusters; i++) {
-            int rand = r.nextInt(dataSize);
-            if (check[i] == 0) {
-                this.clusterCenters[i] = data[rand].clone();
-                check[i] = 1;
-            } else {
-                i--;
-            }
         }
     }
 
@@ -116,6 +65,7 @@ public class SME_ENS_Kmeans_Engine {
      */
     private void randomizeCentersFixedSeed(int numClusters, double[][] data, int seedRandint) {
         Random r = new Random();
+        r.setSeed(0);
         int[] check = new int[numClusters];
         for (int i = 0; i < numClusters; i++) {
             int rand = r.nextInt(dataSize);
@@ -250,7 +200,7 @@ public class SME_ENS_Kmeans_Engine {
             if (Double.isNaN(var2))    // if this happens, there must be some empty clusters
             {
                 delta = Double.MAX_VALUE;
-                randomizeCenters(numClusters, data);
+                randomizeCentersFixedSeed(numClusters, data,100);
                 assignData();
                 calculateClusterCenters();
                 calculateClusterVars();

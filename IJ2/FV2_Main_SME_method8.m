@@ -54,9 +54,9 @@ hi = 2^p2;
 zprof2k=zeros(size(zprof2,1),hi-p2);
 zprof2=[zprof2 zprof2k];
 tempt=abs(fft(zprof2,size(Img,3),2));
-tempt(:,[1 ceil(size(Img,3)/2)+1:end])=[];
+tempt(:,[1 ceil(size(Img,3)/2)+1:end])=0;
 tempt=tempt./repmat((max(tempt,[],1)-min(tempt,[],1)),[size(tempt,1) 1]);
-
+tempt(isnan(tempt)) = 0;
 
 %% STEP3 = Already encoded in JAVA - KMEANS
 rng(100);
@@ -77,21 +77,21 @@ end
 % read intermediate results from ImageJ
 
 % fnameSML    = '../smlResult.tiff';
-% fnameKMEAN  = '../kmeansResult.tiff';
+fnameKMEAN  = '../KMEANtempresults.tiff';
 %
 % info = imfinfo(fnameSML);
 % num_images = numel(info);
 %
 % smlMod      =   zeros(size(Img));
-% kmeanMod    =   zeros(size(Img,1),size(Img,2));
+kmeanMod    =   zeros(size(Img,1),size(Img,2));
 %
 % for k = 1:num_images
 %     smlMod(:,:,k) = imread(fnameSML, k);
 % end
 
 % replace standard input
-%kmeanMod    = double(imread(fnameKMEAN, 1))+1;
-%idx         = reshape(kmeanMod,size(Img,1)*size(Img,2),1);
+kmeanMod    = double(imread(fnameKMEAN, 1))+1;
+idx         = reshape(kmeanMod,size(Img,1)*size(Img,2),1);
 %timk        = smlMod;
 
 edgeflag=reshape(idx,[size(Img,1) size(Img,2)]);
@@ -133,10 +133,15 @@ step=KE/100;
 
 %% Finding the W parameter (New)
 %%
-[ncf,hcf]=hist(valk(edgeflag2==1),linspace(min(valk(:)),max(valk(:)),100));
+valHist  = valk(edgeflag2==1);
+histLinSpace = linspace(min(valk(:)),max(valk(:)),100);
+halfBin = (histLinSpace(2)-histLinSpace(1))/2;
+
+[ncf,hcf]=hist(valHist(:),linspace(min(valk(:)),max(valk(:)),100));
 ncf=ncf/sum(ncf);
 
-[ncb,hcb]=hist(valk(edgeflag2==0),linspace(min(valk(:)),max(valk(:)),100));
+valHist  = valk(edgeflag2==0);
+[ncb,hcb]=hist(valHist(:),linspace(min(valk(:)),max(valk(:)),100));
 ncb=ncb/sum(ncb);
 
 nt= find(ncb>ncf,1,'last');

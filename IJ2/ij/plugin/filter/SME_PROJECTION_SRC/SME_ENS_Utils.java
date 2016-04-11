@@ -8,7 +8,9 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.random.EmpiricalDistribution;
 import org.apache.commons.math3.stat.StatUtils;
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 
 import java.text.DecimalFormat;
@@ -160,7 +162,7 @@ public final class SME_ENS_Utils {
     }
 
 
-    public static ImageStack find_base(RealMatrix inMatrix, int indexK){
+    public static ImageStack find_base(RealMatrix inMatrix, int indexK, Boolean removeSlice){
         int nrowsMat = inMatrix.getRowDimension();
         int ncolsMat = inMatrix.getColumnDimension();
 
@@ -188,14 +190,17 @@ public final class SME_ENS_Utils {
             }
         }
 
-        int indxRetour      = (int) Math.ceil(Math.pow(indexK,2)/2.0);
-        baseMatrix.deleteSlice(indxRetour);
+        if(removeSlice){
+            int indxRetour      = (int) Math.ceil(Math.pow(indexK,2)/2.0);
+            baseMatrix.deleteSlice(indxRetour);
+        }
         /**
          base(:,:,ceil((k^2)/2))=[];
          */
 
         return(baseMatrix);
     }
+
 
     public static ImageStack repmatMatrixVar(RealMatrix inMatrix, ImageStack base){
         //varold2=sum((base-repmat(Mold,[1 1 8])).^2,3);
@@ -366,8 +371,8 @@ public final class SME_ENS_Utils {
         int ncols = inMatrix.getColumnDimension();
         int nrows = inMatrix.getRowDimension();
 
-        for(int i=0;i<nrows;i++){
-            for(int j=0;j<ncols;j++){
+        for(int j=0;j<ncols;j++){
+            for(int i=0;i<nrows;i++){
                     if(inMatrix.getEntry(i,j)==valueSelect) {
                         retVector = retVector.append(selectMatrix.getEntry(i,j));
                     }
@@ -438,5 +443,44 @@ public final class SME_ENS_Utils {
         //System.out.printf("Mode value : ");System.out.printf(df2.format(StatUtils.mode(dataStream)));System.out.printf("\n");
         //System.out.printf("25% value : ");System.out.printf(df2.format(StatUtils.percentile(dataStream,0.25)));System.out.printf("\n");
         //System.out.printf("75% value : ");System.out.printf(df2.format(StatUtils.percentile(dataStream,0.75)));System.out.printf("\n");
+    }
+
+    public static RealVector getHistogramRealvec(RealVector inVector , RealVector histParam){
+        int nmbBins         = (int) histParam.getDimension();
+        double histMin      = histParam.getEntry(0);
+        double histMax      = histParam.getEntry(nmbBins-1);
+        final double binSize = histParam.getEntry(1)-histParam.getEntry(0);
+
+        /**
+         double[] d = new double[points];
+         for (int i = 0; i < points; i++){
+         d[i] = min + i * (max - min) / (points - 1);
+         }
+         return d;
+         */
+        RealVector ncf     = MatrixUtils.createRealVector(new double[nmbBins]);
+
+        for (double d : inVector.toArray()) {
+            int bin = (int) Math.round((d - histMin) / binSize);
+            //recalibrate bin
+            if(d<(histParam.getEntry(bin)-(binSize/2))){bin--;};
+            if(d>=(histParam.getEntry(bin)+(binSize/2))){bin++;};
+            // changed this from numBins
+            //System.out.println(bin);
+            if (bin < 0) { /* this data is smaller than min */
+                ncf.setEntry(0,ncf.getEntry(0) + 1);
+            }
+            else if (bin >= nmbBins) {
+                /* this data point is bigger than max */
+                ncf.setEntry(nmbBins-1,ncf.getEntry(nmbBins-1) + 1);
+            }
+            else {
+                ncf.setEntry((bin),ncf.getEntry(bin) + 1);
+            }
+        }
+
+        ncf     =   ncf.mapDivide(ncf.getL1Norm()); // TODO : check this as not equal to the matlab output
+
+        return ncf;
     }
 }
