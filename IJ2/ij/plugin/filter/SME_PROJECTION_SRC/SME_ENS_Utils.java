@@ -285,11 +285,11 @@ public final class SME_ENS_Utils {
         double[][] maxIndex = new double[imageStack.getProcessor(1).getHeight()]
                 [imageStack.getProcessor(1).getWidth()];
 
-        for(int pixIndexI=0;pixIndexI<=imageStack.getProcessor(1).getHeight();pixIndexI++){
-            for(int pixIndexJ=0;pixIndexJ<=imageStack.getProcessor(1).getHeight();pixIndexJ++){
+        for(int pixIndexI=0;pixIndexI<imageStack.getProcessor(1).getHeight();pixIndexI++){
+            for(int pixIndexJ=0;pixIndexJ<imageStack.getProcessor(1).getWidth();pixIndexJ++){
                 double maxZval = Double.MIN_VALUE;
 
-                for(int pixIndexZ=0;pixIndexZ<=imageStack.getSize();pixIndexZ++){
+                for(int pixIndexZ=0;pixIndexZ<imageStack.getSize();pixIndexZ++){
                     if(imageStack.getVoxel(pixIndexJ,pixIndexI,pixIndexZ)>maxZval){
                         maxIndex[pixIndexI][pixIndexJ] = pixIndexZ;
                         maxZval = imageStack.getVoxel(pixIndexJ,pixIndexI,pixIndexZ);

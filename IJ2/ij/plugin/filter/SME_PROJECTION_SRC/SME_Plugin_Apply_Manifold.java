@@ -231,8 +231,8 @@ public class SME_Plugin_Apply_Manifold implements PlugIn {
 
         for(int j=0;j<dimH;j++){
             for(int i=0;i<dimW;i++){
-                int zIndex = ((int) Math.round(stackSize*(projMnold.getEntry(j,i)/255)))+1;
-                projMnold.setEntry (j,i,imStack.getVoxel(i,j,zIndex));
+                int zIndex = ((int) Math.round(stackSize*(projMnold.getEntry(j,i)/255)));
+                projMnold.setEntry (j,i,imStack.getVoxel(i,j,zIndex-1));
             }
         }
 

@@ -45,7 +45,6 @@ public class SME_ENS_EnergyOptimisation {
     private RealMatrix edgeflag     = null;
     private RealMatrix edgeflag2    = null;
     private RealMatrix idmaxkB      = null;
-    private int maxiter             = 1000;
     private RealMatrix  valk        = null;
     private RealVector  sftz        = MatrixUtils.createRealVector(new double[0]);
     private double KE               = 0;
@@ -225,7 +224,7 @@ public class SME_ENS_EnergyOptimisation {
         WA                  =   dg.ebeDivide(sg);
         Percentile quantEng =   new Percentile();
         if(dg.getDimension()>0)
-            WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2));
+            WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2*100));
     }
 
     public double findOverlap2(RealVector edgeFlagCond){
@@ -409,10 +408,6 @@ public class SME_ENS_EnergyOptimisation {
 
         while (Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1))) > (ENERGY_STEP)) {
 
-            if(iter>=maxiter){
-                break;
-            }
-
             iter++;
             idmax1 = idmaxk.scalarAdd(step).copy();
             idmax2 = idmaxk.scalarAdd(-step).copy();
@@ -531,7 +526,7 @@ public class SME_ENS_EnergyOptimisation {
 
         RealMatrix normMnold = idmaxk.scalarMultiply(1/norm_factor).scalarMultiply(255);
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.transpose().getData(),dimW,dimH);
-        ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+        ImagePlus smeManifold = new ImagePlus("Manifold",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_pluginGetManifold.setMfoldImage(smeManifold);
         sme_pluginGetManifold.getMfoldImage().show();
     }
@@ -552,7 +547,7 @@ public class SME_ENS_EnergyOptimisation {
         }
 
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
-        ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+        ImagePlus smeManifold = new ImagePlus("ProjectionSME",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_pluginGetManifold.setSmeImage(smeManifold);
         sme_pluginGetManifold.getSmeImage().show();
     }
