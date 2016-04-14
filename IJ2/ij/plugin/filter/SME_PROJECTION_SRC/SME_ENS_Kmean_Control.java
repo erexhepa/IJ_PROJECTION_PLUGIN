@@ -12,7 +12,6 @@ import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
-import org.bytedeco.javacpp.opencv_core;
 
 import java.util.*;
 

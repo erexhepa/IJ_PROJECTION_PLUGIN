@@ -64,8 +64,8 @@ public class SME_ENS_Kmeans_Engine {
      * @param numClusters	The number of clusteurs to pass to the KMeans algorithm.
      */
     private void randomizeCentersFixedSeed(int numClusters, double[][] data, int seedRandint) {
-        Random r = new Random();
-        r.setSeed(0);
+        Random r = new Random(seedRandint);
+        r.setSeed(100);
         int[] check = new int[numClusters];
         for (int i = 0; i < numClusters; i++) {
             int rand = r.nextInt(dataSize);
@@ -191,8 +191,7 @@ public class SME_ENS_Kmeans_Engine {
         double var2;
         double delta;
 
-        do
-        {
+
             calculateClusterCenters();
             assignData();
             calculateClusterVars();
@@ -211,7 +210,7 @@ public class SME_ENS_Kmeans_Engine {
                 var1 = var2;
             }
 
-        }while(delta > epsilon);
+
     }
 
     public void setEpsilon(double epsilon)

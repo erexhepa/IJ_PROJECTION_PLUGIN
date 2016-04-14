@@ -9,14 +9,24 @@ import ij.plugin.filter.EDM;
 import ij.process.ByteProcessor;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.ml.clustering.CentroidCluster;
+import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by rexhepaj on 17/03/16.
  */
 
 public class SME_ENS_Kmean_Control {
+    private double[] classLabels;
+    private double[][] classCenters;
+    private int nmbPoints ;
+    private List<CentroidCluster<SME_ENS_PixelPoints>> clusterResults;
+    private KMeansPlusPlusClusterer<SME_ENS_PixelPoints> clusterer ;
 
     private SME_Plugin_Get_Manifold sme_pluginGetManifold = null;
 
@@ -29,6 +39,8 @@ public class SME_ENS_Kmean_Control {
         int x, y,i,j,k;
         int W = sme_pluginGetManifold.getStack1().getProcessor(1).getWidth();                      // Get the image width
         int H = sme_pluginGetManifold.getStack1().getProcessor(1).getHeight();                     // Get the image height
+        nmbPoints       = W*H;
+        classLabels     = new double[W*H];
 
         Kmeans_(3, FFT_1D_(sme_pluginGetManifold.getStack1()));
         Rearrange_Map2DImage(Image_Segmented(sme_pluginGetManifold.getKmeansLabels()));
@@ -311,11 +323,28 @@ public class SME_ENS_Kmean_Control {
         final int numClust = numClust_;
         final double[][]  coordClust = result_fft;
 
+        List<SME_ENS_PixelPoints> clusterInput = new ArrayList<>(result_fft.length);
 
-        SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
-        OBSKmeans_Niki.calculateClusters();
-        sme_pluginGetManifold.setKmeanCentroids(OBSKmeans_Niki.getClusterCenters());
-        sme_pluginGetManifold.setKmeansLabels(OBSKmeans_Niki.getClusterLabels());
+        for (int i=0;i<result_fft.length;i++) {
+            clusterInput.add(new SME_ENS_PixelPoints(MatrixUtils.createRealVector(result_fft[i]),i));
+        }
+
+        clusterer = new KMeansPlusPlusClusterer<SME_ENS_PixelPoints>(numClust_, 10);
+        clusterResults = clusterer.cluster(clusterInput);
+        getClassDetails();
+
+        /*        // output the clusters
+        for (int i=0; i<clusterResults.size(); i++) {
+            System.out.println("Cluster " + i);
+            for (SME_ENS_PixelPoints locationWrapper : clusterResults.get(i).getPoints())
+                System.out.println(locationWrapper.getLocation());
+            System.out.println();
+        }*/
+
+        //SME_ENS_Kmeans_Engine OBSKmeans_Niki = new SME_ENS_Kmeans_Engine(result_fft, numClust_, false);
+        //OBSKmeans_Niki.calculateClusters();
+        sme_pluginGetManifold.setKmeanCentroids(classCenters);
+        sme_pluginGetManifold.setKmeansLabels(classLabels);
 
 
         for (m = 0; m < slice_num; m++) {
@@ -326,6 +355,22 @@ public class SME_ENS_Kmean_Control {
 
     }
 
+    public void getClassDetails(){
+
+        // Initialize class centers and class labels to 0
+        classCenters    = MatrixUtils.createRealMatrix(3,((SME_ENS_PixelPoints)(clusterResults.get(0).getPoints().get(0))).getLocation().getDimension()).getData();
+        classLabels     = MatrixUtils.createRealVector(new double[nmbPoints]).toArray();
+
+        for(int i=0;i<clusterResults.size();i++){
+            for (SME_ENS_PixelPoints locationWrapper : clusterResults.get(i).getPoints()) {
+                classCenters[i]=MatrixUtils.createRealVector(classCenters[i]).add(locationWrapper.getLocation()).toArray();
+
+                // update pixel label
+                classLabels[locationWrapper.getIndexPixel()] = i;
+            }
+            classCenters[i]=MatrixUtils.createRealVector(classCenters[i]).mapDivideToSelf((double)clusterResults.get(i).getPoints().size()).toArray();
+        }
+    }
     private boolean ispower2(int input){
         while(((input != 2) && input % 2 == 0) || input == 1) {
             input = input /2;
