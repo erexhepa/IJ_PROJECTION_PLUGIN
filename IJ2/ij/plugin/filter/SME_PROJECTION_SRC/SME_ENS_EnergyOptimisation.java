@@ -224,7 +224,10 @@ public class SME_ENS_EnergyOptimisation {
         WA                  =   dg.ebeDivide(sg);
         Percentile quantEng =   new Percentile();
         if(dg.getDimension()>0)
-            WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2*100));
+            if(overlap2==0)
+                WW                  =  WA.getMinValue();
+            else
+                WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2*100));
     }
 
     public double findOverlap2(RealVector edgeFlagCond){
