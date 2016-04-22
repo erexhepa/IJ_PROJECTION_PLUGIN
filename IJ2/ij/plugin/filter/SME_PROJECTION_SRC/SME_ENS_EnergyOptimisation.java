@@ -397,7 +397,7 @@ public class SME_ENS_EnergyOptimisation {
         }
     }
 
-    public void applyEnergyOptimisation() {
+    public void applyEnergyOptimisation(Boolean showResults) {
 
         //initWparam();
 
@@ -506,23 +506,23 @@ public class SME_ENS_EnergyOptimisation {
         }
 
         sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(cost));
-        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler(
+        if(showResults) {sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler(
                 "ENERGY OPTIMISATION COST OPTIMISATION","ENERGY OPTIMISATION :: ITERATION","COST VALUE"
         ));
-        ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).run(new ImagePlus("Cost data",sme_pluginGetManifold.getCostData()));
+        ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).run(new ImagePlus("Cost data",sme_pluginGetManifold.getCostData()));}
 
         computePSIprojection();
 
         sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(sftz));
-        sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler(
+        if(showResults) {sme_pluginGetManifold.setSmePlotmaker(new SME_Data_Profiler(
                 "ENERGY OPTIMISATION PROJECTION SUITABILITY INDEX","STACK INDEX","PSI VALUE"
         ));
         ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).
-                run(new ImagePlus("PSI data",sme_pluginGetManifold.getCostData()));
+                run(new ImagePlus("PSI data",sme_pluginGetManifold.getCostData()));}
 
     }
 
-    public void setOutputManifold(){
+    public void setOutputManifold(Boolean showResult){
         double norm_factor  =   sme_pluginGetManifold.getStack1().getSize();
         int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
         int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
@@ -531,10 +531,10 @@ public class SME_ENS_EnergyOptimisation {
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(normMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("Manifold",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_pluginGetManifold.setMfoldImage(smeManifold);
-        sme_pluginGetManifold.getMfoldImage().show();
+        if(showResult) sme_pluginGetManifold.getMfoldImage().show();
     }
 
-    public void setOutputSME(){
+    public void setOutputSME(Boolean showResult){
         double norm_factor  =   sme_pluginGetManifold.getStack1().getSize();
         int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
         int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
@@ -552,7 +552,7 @@ public class SME_ENS_EnergyOptimisation {
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
         ImagePlus smeManifold = new ImagePlus("ProjectionSME",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_pluginGetManifold.setSmeImage(smeManifold);
-        sme_pluginGetManifold.getSmeImage().show();
+        if(showResult) sme_pluginGetManifold.getSmeImage().show();
     }
 
     private static class SetVisitorRound extends DefaultRealMatrixChangingVisitor {

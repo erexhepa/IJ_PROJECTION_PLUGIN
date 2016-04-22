@@ -325,21 +325,21 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     }
 
     public void runSmlStep(){
-        smePlugin.runSml();
+        smePlugin.runSml(true);
         SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getSmlImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         outputIm = imcontent.getIm2Show();
     }
 
     public void runKmeansStep(){
-        smePlugin.runKmeans();
+        smePlugin.runKmeans(true);
         SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getKmensImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         outputIm = imcontent.getIm2Show();
     }
 
     public void runEnoptStep(){
-        smePlugin.runEnergyOptimisation();
+        smePlugin.runEnergyOptimisation(true);
         SME_ENS_Image_Component imcontent1 = new SME_ENS_Image_Component( smePlugin.getMfoldImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         manifoldSME = imcontent1.getIm2Show();
@@ -356,7 +356,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     public void runBatchStep(){
         runSmlStep();updateProjectionOutput(outputIm);
         runKmeansStep();updateProjectionOutput(outputIm);
-        smePlugin.runEnergyOptimisation();
+        smePlugin.runEnergyOptimisation(true);
         SME_ENS_Image_Component imcontent1 = new SME_ENS_Image_Component( smePlugin.getMfoldImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         manifoldSME = imcontent1.getIm2Show();

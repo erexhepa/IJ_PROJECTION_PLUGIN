@@ -103,6 +103,16 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
 
     }
 
+    public void runSimple(Boolean showIntResults){
+        this.rawImage = imp.duplicate();
+        stack = imp.getStack();                  // ImagePlus into ImageStack
+        this.stack1 = stack.duplicate();   // Duplicates the original stack image
+        ImageStack stack2 = stack.duplicate();   // Duplicates the original stack image
+        ImageStack stack3 = stack.duplicate();   // Duplicates the original stack image
+        ImageStack stack4 = stack.duplicate();   // Duplicates the original stack image
+
+    }
+
     public void runProjection(int methodProj){
         ZProjector zproject = new ZProjector();
         zproject.setImage(rawImage.duplicate());
@@ -111,21 +121,21 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
         projImage = zproject.getProjection();
     }
 
-    public void runKmeans(){
+    public void runKmeans(Boolean showIntResults){
         SME_ENS_Kmean_Control smlPlugin = new SME_ENS_Kmean_Control(this);
-        smlPlugin.applyKmeans();
+        smlPlugin.applyKmeans(showIntResults);
     }
 
-    public void runSml(){
+    public void runSml(Boolean showIntResults){
         SME_ENS_Sml smlPlugin = new SME_ENS_Sml(this);
-        smlPlugin.applySML();
+        smlPlugin.applySML(showIntResults);
     }
 
-    public void runEnergyOptimisation(){
+    public void runEnergyOptimisation(Boolean showIntResults){
         SME_ENS_EnergyOptimisation enOpt = new SME_ENS_EnergyOptimisation(this);
-        enOpt.applyEnergyOptimisation();
-        enOpt.setOutputManifold();
-        enOpt.setOutputSME();
+        enOpt.applyEnergyOptimisation(showIntResults);
+        enOpt.setOutputManifold(showIntResults);
+        enOpt.setOutputSME(showIntResults);
     }
 
     public ImagePlus getKmeanMaping(){

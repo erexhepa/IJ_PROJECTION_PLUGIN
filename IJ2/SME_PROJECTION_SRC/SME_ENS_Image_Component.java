@@ -3,8 +3,7 @@ package SME_PROJECTION_SRC;
 import ij.ImagePlus;
 
 import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 
 /**
  * Created by rexhepaj on 16/03/16.

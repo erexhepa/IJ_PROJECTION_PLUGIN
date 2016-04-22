@@ -24,7 +24,7 @@ public class SME_ENS_Sml {
      *
      */
 
-    public void applySML() {
+    public void applySML(Boolean showResults) {
         // TODO replace number of ImagePlus, ImageStack new objects
         // TODO update filtering according to the matlab code
         // TODO change holding matrix data from short processor to floatprocessor

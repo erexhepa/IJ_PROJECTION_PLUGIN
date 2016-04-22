@@ -34,7 +34,7 @@ public class SME_ENS_Kmean_Control {
         sme_pluginGetManifold = refplugin;
     }
 
-    public void applyKmeans(){
+    public void applyKmeans(Boolean showResult){
 
         int x, y,i,j,k;
         int W = sme_pluginGetManifold.getStack1().getProcessor(1).getWidth();                      // Get the image width
@@ -96,7 +96,7 @@ public class SME_ENS_Kmean_Control {
         //imp5_ind.show();
         //imp5.show();
         //imp6.show(); // Display the final image
-        sme_pluginGetManifold.getMap2d().show(); // TODO : make this current imagej image that can be grabed by the gui
+        if(showResult) sme_pluginGetManifold.getMap2d().show(); // TODO : make this current imagej image that can be grabed by the gui
         sme_pluginGetManifold.setKmensImage(new ImagePlus("Map2d", (new FloatProcessor(sme_pluginGetManifold.getMap2DImage()))));
 
         // TODO remove this for the final version of the plugin

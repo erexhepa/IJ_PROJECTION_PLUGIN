@@ -22,7 +22,7 @@ public class SME_ENS_Sml {
      *
      */
 
-    public void applySML() {
+    public void applySML(Boolean showResults) {
         // TODO replace number of ImagePlus, ImageStack new objects
         // TODO update filtering according to the matlab code
         // TODO change holding matrix data from short processor to floatprocessor
@@ -37,7 +37,7 @@ public class SME_ENS_Sml {
 
         float[] hG          = SME_ENS_Utils.convertDoubleVecFloat(hGDouble);
 
-        SME_ENS_Convolver  convENS = new SME_ENS_Convolver();
+        SME_ENS_Convolver convENS = new SME_ENS_Convolver();
 
         ImagePlus imp_sml = sme_pluginGetManifold.getImp().duplicate();
 
