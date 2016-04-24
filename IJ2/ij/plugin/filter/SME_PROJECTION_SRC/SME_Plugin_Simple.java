@@ -9,6 +9,13 @@ import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ForkJoinPool;
+
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by rexhepaj on 22/04/16.
  */
@@ -154,42 +161,30 @@ public class SME_Plugin_Simple implements PlugIn {
 
         boolean mergeHyperstacks = false;
 
-        for (int i=0; i<maxChannels; i++) {
-
-            // break out of the loop if no more images to project
-
-            //if(i>=nmbChannels){
-            //    break;
-            //}
-
-            ImagePlus img = images[i];
-
-            if (img==null) continue;
-
-            if (img.isHyperStack()) {
-                if (img.getNChannels()>1) {
-                    error("SME PROJECT = Source hyperstacks cannot have more than 1 channel.");
-                    return;
-                }
-                if (img.getNSlices()!=slices || img.getNFrames()!=frames) {
-                    error("Source hyperstacks must have the same dimensions.");
-                    return;
-                }
-                mergeHyperstacks = true;
-            } // isHyperStack
-            if (img.getWidth()!=width || images[i].getHeight()!=height) {
-                error("The source images or stacks must have the same width and height.");
-                return;
-            }
-
-            // do projection and upload to matrix
-            if(i>=wList.length){
-                break;
-            }else {
-                projectionStacks[i] = applyStackManifold(img.getStack(), manifoldModel);
-                projectionStacks[i].show();
-            }
+        ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
+        for(int i=0; i<maxChannels; i++){
+            if(images[i]==null) break;
+            listChannels.add(images[i]);
         }
+
+        /**List<ImagePlus> processedImages = listChannels.stream().
+                map(channelIt ->{
+                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    //itIm.show();
+                    return itIm;})
+                .collect(toList());**/
+
+        ForkJoinPool forkJoinPool = new ForkJoinPool(8);
+        CompletableFuture<List<ImagePlus>> processedImages =  CompletableFuture.supplyAsync(()->
+
+                listChannels.parallelStream().
+                map(channelIt ->{
+                  ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                  //itIm.show();
+                  return itIm;})
+                .collect(toList()),
+                forkJoinPool
+        );
     }
 
     private String[] getInitialNamesAllstacks(String[] titles) {
