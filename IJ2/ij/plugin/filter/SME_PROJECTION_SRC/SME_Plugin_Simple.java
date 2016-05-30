@@ -2,6 +2,7 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 
 import ij.*;
 import ij.gui.GenericDialog;
+import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
 import ij.plugin.filter.PlugInFilter;
 import ij.process.FloatProcessor;
@@ -26,7 +27,7 @@ public class SME_Plugin_Simple implements PlugIn {
     private ImagePlus manifold;
     private ImagePlus[] images;
 
-    private static String none = "*None*";
+    private static String none = "Red channel";
     private static int maxChannels = 4;
     private static int nmbChannels = 3;
     private static String[] colors = {"Channel1 stack1 to appy the manifold",
@@ -37,7 +38,7 @@ public class SME_Plugin_Simple implements PlugIn {
     private static boolean staticCreateComposite = true;
     private static boolean staticKeep;
     private static boolean staticIgnoreLuts;
-
+    private ImagePlus manifoldModel;
     private byte[] blank;
     private boolean ignoreLuts;
     private boolean autoFillDisabled;
@@ -52,11 +53,11 @@ public class SME_Plugin_Simple implements PlugIn {
         processChannelsManifold();
     }
 
-    public void getManifold(){
+    public void getManifold(int indexChannel){
         smePlugin = new SME_Plugin_Get_Manifold();
         smePlugin.initProgressBar();
 
-        smePlugin.setup("Manifold channel",images[0]);
+        smePlugin.setup("Manifold channel",images[indexChannel]);
         smePlugin.runSimple(false);
 
 
@@ -89,44 +90,77 @@ public class SME_Plugin_Simple implements PlugIn {
     /** Combines up to seven grayscale stacks into one RGB or composite stack. */
     public void processChannelsManifold() {
         int[] wList         = WindowManager.getIDList();
-        projectionStacks    = new ImagePlus[maxChannels];
-
         if (wList==null) {
             error("No images are open.");
             return;
-        }else if(wList.length<1){
-            error("There must be at least two images open: 1) Stack to project and 2) Manifold");
+        }else if(wList.length>1){
+            error("There must be at most one image open: either 1) Mono-chromatic stack or 2) Stack of composite images (Hyperstack)");
             return;
         }
 
-        String[] titles = new String[wList.length+1];
-        for (int i=0; i<wList.length; i++) {
-            ImagePlus imp = WindowManager.getImage(wList[i]);
-            titles[i] = imp!=null?imp.getTitle():"";
+        if(WindowManager.getImage(wList[0]).isHyperStack()){
+            // hyperstack color
+            processChannelsManifoldColors();
+        }else{
+            // monochromatic image
+            processChannelsManifoldSimple();
+        }
+    }
+
+    public void processChannelsManifoldSimple() {
+        int[] wList         = WindowManager.getIDList();
+        images = new ImagePlus[1];
+
+        stackSize = 0;
+        width = 0;
+        height = 0;
+
+        int slices = 0;
+        int frames = 0;
+        int i ;
+
+        {
+                i = 0;
+                images[i] = WindowManager.getImage(wList[i]);
+                if(width<images[i].getWidth()){width = images[i].getWidth();}
+                if(height<images[i].getHeight()){height = images[i].getHeight();}
+                if(stackSize<images[i].getStackSize()){stackSize = images[i].getStackSize();}
         }
 
-        titles[wList.length] = none;
-        String[] names = getInitialNamesAllstacks(titles);
+
+        if (width==0) {
+            error("There must be at least one source image or stack.");
+            return;
+        }
+
+        // run manifold extraction on the first channel
+        getManifold(0);
+
+        manifoldModel = smePlugin.getMfoldImage();
+        manifoldModel.show();
+        smePlugin.getSmeImage().show();
+    }
+
+    public void processChannelsManifoldColors() {
+        int[] wList         = WindowManager.getIDList();
+        projectionStacks    = new ImagePlus[maxChannels];
+        maxChannels         = 3;
+
+        ImagePlus hyperStackSME = WindowManager.getImage(wList[0]);
+
+        String[] titles = new String[3];
+
+        titles[0] = "Red channel";
+        titles[1] = "Green channel";
+        titles[2] = "Blue channel";
+
+        String[] names = titles;
         boolean createComposite = staticCreateComposite;
         boolean keep = staticKeep;
         ignoreLuts = staticIgnoreLuts;
 
-        String options = Macro.getOptions();
-        boolean macro = IJ.macroRunning() && options!=null;
-        if (macro) {
-            createComposite = keep = ignoreLuts = false;
-            options = options.replaceAll("red=", "c1=");
-            options = options.replaceAll("green=", "c2=");
-            options = options.replaceAll("blue=", "c3=");
-            options = options.replaceAll("gray=", "c4=");
-            Macro.setOptions(options);
-        }
-
         GenericDialog gd = new GenericDialog("SME APPLY MANIFOLD TO OPEN STACKS");
-        gd.addChoice("Channel 0 : Extract manifold  : (uint8 0-255)", titles, macro?none:names[0]);
-        gd.addChoice("Channel 1 : Apply manifold (Mapped to RED in composite)", titles, macro?none:names[1]);
-        gd.addChoice("Channel 2 : Apply manifold (Mapped to GREEN in composite)", titles, macro?none:names[2]);
-        gd.addChoice("Channel 3 : Apply manifold (Mapped to Blue in composite)", titles, macro?none:names[3]);
+        gd.addChoice("Extract manifold  : Select channel", titles, "*none*");
 
         //gd.addCheckbox("Create composite", createComposite);
         //gd.addCheckbox("Keep source images", keep);
@@ -134,12 +168,8 @@ public class SME_Plugin_Simple implements PlugIn {
         gd.showDialog();
         if (gd.wasCanceled())
             return;
-        int[] index = new int[maxChannels];
 
-        for (int i=0; i<maxChannels; i++) {
-            index[i] = gd.getNextChoiceIndex();
-        }
-
+        int index = gd.getNextChoiceIndex();
         images = new ImagePlus[maxChannels];
 
         stackSize = 0;
@@ -148,28 +178,16 @@ public class SME_Plugin_Simple implements PlugIn {
 
         int slices = 0;
         int frames = 0;
-        for (int i=0; i<maxChannels; i++) {
 
-            //IJ.log(i+"  "+index[i]+"	"+titles[index[i]]+"  "+wList.length);
-            if (index[i]<wList.length) {
-                images[i] = WindowManager.getImage(wList[index[i]]);
-                if(width<images[i].getWidth()){width = images[i].getWidth();}
-                if(height<images[i].getHeight()){height = images[i].getHeight();}
-                if(stackSize<images[i].getStackSize()){stackSize = images[i].getStackSize();}
-            }
-        }
-
-        if (width==0) {
-            error("There must be at least one source image or stack.");
-            return;
-        }
+        images = ChannelSplitter.split(hyperStackSME);
+        stackSize = images[0].getStackSize();
 
         // run manifold extraction on the first channel
-        getManifold();
+        getManifold(index);
 
-        ImagePlus manifoldModel = smePlugin.getMfoldImage();
-
-        boolean mergeHyperstacks = false;
+        manifoldModel = smePlugin.getMfoldImage();
+        manifoldModel.show();
+        smePlugin.getSmeImage().show();
 
         ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
         for(int i=0; i<maxChannels; i++){
@@ -178,63 +196,26 @@ public class SME_Plugin_Simple implements PlugIn {
         }
 
         /**List<ImagePlus> processedImages = listChannels.stream().
-                map(channelIt ->{
-                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
-                    //itIm.show();
-                    return itIm;})
-                .collect(toList());**/
+         map(channelIt ->{
+         ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+         //itIm.show();
+         return itIm;})
+         .collect(toList());**/
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(8);
         CompletableFuture<List<ImagePlus>> processedImages =  CompletableFuture.supplyAsync(()->
 
-                listChannels.parallelStream().
-                map(channelIt ->{
-                  ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
-                  //itIm.show();
-                  return itIm;})
-                .collect(toList()),
+                        listChannels.parallelStream().
+                                map(channelIt ->{
+                                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                                    itIm.show();
+                                    return itIm;})
+                                .collect(toList()),
                 forkJoinPool
         );
     }
 
-    private String[] getInitialNamesAllstacks(String[] titles) {
-        String[] names = new String[maxChannels];
-        for (int i=0; i<maxChannels; i++)
-            names[i] = getNameStack(i+1, titles);
-        return names;
-    }
 
-    private String getNameStack(int channel, String[] titles) {
-        if (autoFillDisabled)
-            return none;
-        String str = "C"+channel;
-        String name = null;
-        for (int i=titles.length-1; i>=0; i--) {
-            if (titles!=null && titles[i].startsWith(str) && (firstChannelName==null||titles[i].contains(firstChannelName))) {
-                name = titles[i];
-                if (channel==1)
-                    firstChannelName = name.substring(3);
-                break;
-            }
-        }
-        if (name==null) {
-            for (int i=titles.length-1; i>=0; i--) {
-                int index = titles[i].indexOf(colors[channel-1]);
-                if (titles!=null && index!=-1 && (firstChannelName==null||titles[i].contains(firstChannelName))) {
-                    name = titles[i];
-                    if (channel==1 && index>0)
-                        firstChannelName = name.substring(0, index-1);
-                    break;
-                }
-            }
-        }
-        if (channel==1 && name==null)
-            autoFillDisabled = true;
-        if (name!=null)
-            return name;
-        else
-            return none;
-    }
 
     public ImagePlus applyStackManifold(ImageStack imStack, ImagePlus manifold){
         int dimW            =   imStack.getWidth();
