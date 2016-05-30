@@ -1,430 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="Added:&#10;- A new interface for simple run with less inputs and intermediate steps&#10;- Moved previous interface to an advanced option&#10;&#10;Tested and up and running&#10;">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Complex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Filter_FFT_.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Niki_Plugin.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/CommandListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/CommandListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/CompositeImage.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/CompositeImage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Executer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/Executer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/IJ$ExceptionHandler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/IJ$ExceptionHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/IJ.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/IJ.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/IJEventListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/IJEventListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageJ.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/ImageJ.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageJApplet.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/ImageJApplet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/ImageListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImagePlus.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/ImagePlus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageStack.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/ImageStack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/LookUpTable.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/LookUpTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Macro.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/Macro.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Menus.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/Menus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance$ImageJInstance.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance$ImageJInstance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance$Implementation.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance$Implementation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Prefs.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/Prefs.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/RecentOpener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/RecentOpener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Undo.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/Undo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/VirtualStack.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/VirtualStack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/WindowManager.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/WindowManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Arrow.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Arrow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ColorChooser.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ColorChooser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ColorPanel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ColorPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/DialogListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/DialogListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/EllipseRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/EllipseRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/FreehandRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/FreehandRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/GUI.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/GUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/GenericDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/GenericDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HTMLDialog$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HTMLDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HTMLDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HTMLDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HistogramWindow.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HistogramWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageCanvas.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageLayout.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageLayout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImagePanel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImagePanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageWindow.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Line.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Line.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/MessageDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/MessageDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/MultiLineLabel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/MultiLineLabel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NewImage.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NewImage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NonBlockingGenericDialog$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NonBlockingGenericDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NonBlockingGenericDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NonBlockingGenericDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/OvalRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/OvalRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Overlay.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Overlay.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Plot.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Plot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotCanvas.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotDialog$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotMaker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotMaker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotObject.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotWindow.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PointRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PointRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PolygonRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PolygonRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ProfilePlot.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ProfilePlot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ProgressBar.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ProgressBar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Roi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Roi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiBrush.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiBrush.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiProperties.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiProperties.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/SaveChangesDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/SaveChangesDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ScrollbarWithLabel$Icon.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ScrollbarWithLabel$Icon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ScrollbarWithLabel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ScrollbarWithLabel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ShapeRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ShapeRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/StackWindow$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/StackWindow$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/StackWindow.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/StackWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/TextRoi.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/TextRoi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Toolbar.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Toolbar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/TrimmedButton.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/TrimmedButton.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/WaitForUserDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/WaitForUserDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Wand.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Wand.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/YesNoCancelDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/gui/YesNoCancelDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/BitBuffer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/BitBuffer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ByteVector.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/ByteVector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/DirectoryChooser$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/DirectoryChooser$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/DirectoryChooser.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/DirectoryChooser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileInfo.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileOpener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileOpener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileSaver.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileSaver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImageReader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImageReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImageWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImageWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImportDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImportDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/LogStream.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/LogStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/OpenDialog$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/OpenDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/OpenDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/OpenDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/Opener$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/Opener$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/Opener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/Opener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/PluginClassLoader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/PluginClassLoader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/RandomAccessStream.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/RandomAccessStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/RoiDecoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/RoiDecoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/RoiEncoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/RoiEncoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/SaveDialog$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/SaveDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/SaveDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/SaveDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/TextEncoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/TextEncoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/TiffDecoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/TiffDecoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/TiffEncoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/io/TiffEncoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Debugger.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Debugger.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/ExtensionDescriptor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/ExtensionDescriptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/FunctionFinder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/FunctionFinder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Functions.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Functions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Interpreter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Interpreter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroConstants.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroConstants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroException.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroException.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroExtension.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroExtension.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroRunner.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroRunner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Program.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Program.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/ReturnException.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/ReturnException.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Symbol.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Symbol.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Tokenizer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Tokenizer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Variable.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Variable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Calibration.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Calibration.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/CurveFitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/CurveFitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Measurements.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Measurements.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Minimizer$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Minimizer$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Minimizer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Minimizer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/ResultsTable.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/ResultsTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/SplineFitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/SplineFitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/UserFunction.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/measure/UserFunction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AVI_Reader$raInputStream.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AVI_Reader$raInputStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AVI_Reader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AVI_Reader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AboutBox.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AboutBox.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Animator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Animator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AppearanceOptions.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AppearanceOptions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ArrowToolOptions.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ArrowToolOptions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMPDecoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMPDecoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMP_Reader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMP_Reader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMP_Writer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMP_Writer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchMeasure.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchMeasure.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Binner.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Binner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BrowserLauncher.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BrowserLauncher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CalibrationBar$LiveDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CalibrationBar$LiveDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CalibrationBar.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CalibrationBar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CanvasResizer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CanvasResizer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ChannelArranger.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ChannelArranger.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ChannelSplitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ChannelSplitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ClassChecker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ClassChecker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Clipboard.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Clipboard.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ColorPanel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ColorPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Colors.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Colors.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$CommandAction.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$CommandAction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$PromptDocumentListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$PromptDocumentListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$TableModel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$TableModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandLister.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandLister.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Commands.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Commands.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Compiler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Compiler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool$JavaxCompilerTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool$JavaxCompilerTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool$LegacyCompilerTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool$LegacyCompilerTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompositeConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompositeConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Concatenator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Concatenator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ContrastEnhancer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ContrastEnhancer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ControlPanel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ControlPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Converter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Converter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DICOM.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DICOM.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DicomDecoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DicomDecoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DicomDictionary.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DicomDictionary.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Distribution.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Distribution.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DragAndDrop.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DragAndDrop.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Duplicator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Duplicator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/EventListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/EventListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFT.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFT.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFTMath.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFTMath.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FITS_Reader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FITS_Reader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FITS_Writer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FITS_Writer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FileInfoVirtualStack.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FileInfoVirtualStack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Filters3D$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Filters3D$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Filters3D.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Filters3D.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FitsDecoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FitsDecoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FolderOpener$FolderOpenerDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FolderOpener$FolderOpenerDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FolderOpener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FolderOpener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GIF_Reader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GIF_Reader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GaussianBlur3D.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GaussianBlur3D.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GelAnalyzer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GelAnalyzer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifDecoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifDecoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifEncoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifEncoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifFrame.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GroupedZProjector.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GroupedZProjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Histogram.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Histogram.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Hotkeys.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Hotkeys.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackMaker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackMaker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackReducer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackReducer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImageCalculator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImageCalculator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImageJ_Updater.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImageJ_Updater.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImagesToStack.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImagesToStack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JavaProperties.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JavaProperties.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JavaScriptEvaluator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JavaScriptEvaluator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JpegWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JpegWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LUT_Editor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LUT_Editor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LZWEncoder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LZWEncoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ListVirtualStack.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ListVirtualStack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LutLoader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LutLoader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MacroInstaller.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MacroInstaller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Macro_Runner.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Macro_Runner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MeasurementsWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MeasurementsWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Memory.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Memory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MontageMaker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MontageMaker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/NewPlugin.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/NewPlugin.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/NextImageOpener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/NextImageOpener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Options.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Options.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Orthogonal_Views.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Orthogonal_Views.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/OverlayCommands.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/OverlayCommands.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/OverlayLabels.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/OverlayLabels.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PGM_Reader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PGM_Reader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PNG_Writer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PNG_Writer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PNM_Writer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PNM_Writer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Plots.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Plots.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlotsCanvas.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlotsCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugIn.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugIn.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugInExecuter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugInExecuter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugInInterpreter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugInInterpreter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PluginInstaller.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PluginInstaller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PointToolOptions.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PointToolOptions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Profiler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Profiler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Projector.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Projector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ProxySettings.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ProxySettings.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RGBStackConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RGBStackConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RGBStackMerge.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RGBStackMerge.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Raw.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Raw.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RectToolOptions.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RectToolOptions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Resizer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Resizer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ResultsSorter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ResultsSorter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiEnlarger.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiEnlarger.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiInterpolator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiInterpolator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiReader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiRotator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiRotator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiScaler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiScaler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScaleBar$BarDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScaleBar$BarDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScaleBar.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScaleBar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Scaler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Scaler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScreenGrabber.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScreenGrabber.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Selection.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Selection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SimpleCommands$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SimpleCommands$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SimpleCommands.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SimpleCommands.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Slicer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Slicer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SpecifyROI.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SpecifyROI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackCombiner.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackCombiner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackEditor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackEditor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackInserter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackInserter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackMaker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackMaker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackReducer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackReducer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackReverser.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackReverser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Stack_Statistics.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Stack_Statistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Startup.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Startup.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Straightener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Straightener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SubHyperstackMaker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SubHyperstackMaker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SubstackMaker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SubstackMaker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SurfacePlotter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SurfacePlotter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Text.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Text.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextFileReader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextFileReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextReader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ThreadLister.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ThreadLister.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Thresholder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Thresholder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ThumbnailsCanvas.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ThumbnailsCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Timer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Timer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Timer2.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Timer2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$2.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$3.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/URLOpener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/URLOpener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/WandToolOptions.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/WandToolOptions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/WindowOrganizer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/WindowOrganizer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/XYCoordinates.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/XYCoordinates.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/XY_Reader.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/XY_Reader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZAxisProfiler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZAxisProfiler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$AverageIntensity.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$AverageIntensity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$MaxIntensity.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$MaxIntensity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$MinIntensity.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$MinIntensity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$RayFunction.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$RayFunction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$StandardDeviation.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$StandardDeviation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Zoom.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Zoom.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/AVI_Writer$RaOutputStream.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/AVI_Writer$RaOutputStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/AVI_Writer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/AVI_Writer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Analyzer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Analyzer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/BackgroundSubtracter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/BackgroundSubtracter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Benchmark.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Benchmark.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Binary.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Binary.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Calibrator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Calibrator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Convolver.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Convolver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Duplicater.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Duplicater.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/EDM.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/EDM.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ExtendedPlugInFilter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ExtendedPlugInFilter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FFTCustomFilter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FFTCustomFilter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FFTFilter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FFTFilter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Filler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Filler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Filters.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Filters.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FractalBoxCounter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FractalBoxCounter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/GaussianBlur$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/GaussianBlur$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/GaussianBlur.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/GaussianBlur.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ImageMath.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ImageMath.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ImageProperties.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ImageProperties.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Info.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Info.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LineGraphAnalyzer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LineGraphAnalyzer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Log2_.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Log2_.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutApplier.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutApplier.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutViewer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutViewer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutWindow.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/MaximumFinder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/MaximumFinder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ParticleAnalyzer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ParticleAnalyzer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/PlugInFilter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/PlugInFilter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/PlugInFilterRunner.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/PlugInFilterRunner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Printer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Printer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RGBStackSplitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RGBStackSplitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RankFilters$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RankFilters$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RankFilters.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RankFilters.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RoiWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RoiWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RollingBall.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RollingBall.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Rotator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Rotator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/SaltAndPepper.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/SaltAndPepper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ScaleDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ScaleDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/SetScaleDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/SetScaleDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Shadows.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Shadows.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/StackLabeler.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/StackLabeler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ThresholdToSelection$Outline.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ThresholdToSelection$Outline.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ThresholdToSelection.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ThresholdToSelection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Transformer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Transformer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Translator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Translator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/UnsharpMask.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/UnsharpMask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Writer.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Writer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/XYWriter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/XYWriter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Channels.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Channels.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorCanvas.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorGenerator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorPicker.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorPicker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorThresholder$BandPlot.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorThresholder$BandPlot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorThresholder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorThresholder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ContrastAdjuster.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ContrastAdjuster.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ContrastPlot.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ContrastPlot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/DisplayChangeEvent.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/DisplayChangeEvent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/DisplayChangeListener.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/DisplayChangeListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Editor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Editor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Fitter$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Fitter$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Fitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Fitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/IJEventMulticaster.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/IJEventMulticaster.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/LineWidthAdjuster.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/LineWidthAdjuster.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/MemoryMonitor$PlotCanvas.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/MemoryMonitor$PlotCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/MemoryMonitor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/MemoryMonitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PasteController.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PasteController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PlugInDialog.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PlugInDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PlugInFrame.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PlugInFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Recorder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Recorder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/RoiManager$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/RoiManager$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/RoiManager.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/RoiManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/SyncWindows.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/SyncWindows.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ThresholdAdjuster.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ThresholdAdjuster.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ThresholdPlot.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ThresholdPlot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/TrimmedLabel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/TrimmedLabel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/ArrowTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/ArrowTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/BrushTool$Options.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/BrushTool$Options.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/BrushTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/BrushTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/MacroToolRunner.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/MacroToolRunner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/OverlayBrushTool$Options.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/OverlayBrushTool$Options.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/OverlayBrushTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/OverlayBrushTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PixelInspectionTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PixelInspectionTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PixelInspector.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PixelInspector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PlugInTool.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PlugInTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder$Method.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder$Method.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryInterpolator$IDT.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryInterpolator$IDT.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryInterpolator.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryInterpolator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/Blitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/Blitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteBlitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteBlitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteStatistics.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteStatistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorBlitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorBlitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorSpaceConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorSpaceConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorStatistics.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorStatistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/Cube.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/Cube.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/DownsizeTable.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/DownsizeTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/EllipseFitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/EllipseFitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FHT.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/FHT.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatBlitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatBlitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatPolygon.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatPolygon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatStatistics.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatStatistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloodFiller.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloodFiller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageStatistics.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageStatistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/LUT.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/LUT.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/MedianCut.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/MedianCut.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/PolygonFiller.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/PolygonFiller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortBlitter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortBlitter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortStatistics.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortStatistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackProcessor.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackStatistics.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackStatistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/TypeConverter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/process/TypeConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextCanvas.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextPanel.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextWindow.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextWindow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/ArrayUtil.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/ArrayUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/DicomTools.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/DicomTools.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Java2.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/Java2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/StringSorter.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/StringSorter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/ThreadUtil.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/ThreadUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools$1.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools$2.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/WildcardMatch.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/util/WildcardMatch.class" />
+    <list default="true" id="9d886db3-9bf4-44c8-80e2-cd8da4b85425" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/misc.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/IJ_Props.txt" afterPath="$PROJECT_DIR$/out/production/IJ2/IJ_Props.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/build.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/build.xml" />
     </list>
     <ignored path="IJ2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -450,7 +28,7 @@
       <file leaf-file-name="SME_Plugin_Simple.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36594912">
+            <state vertical-scroll-proportion="1.1482112">
               <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1160,7 +738,7 @@
       <workItem from="1461333227947" duration="17486000" />
       <workItem from="1461840942847" duration="3072000" />
       <workItem from="1462356864421" duration="937000" />
-      <workItem from="1464604492143" duration="20480000" />
+      <workItem from="1464604492143" duration="20670000" />
     </task>
     <task id="LOCAL-00001" summary="Found error on Niki_Plugin.java, padding of slice profile with 0s in such a way to be a power of 2.">
       <created>1450278227838</created>
@@ -1312,11 +890,17 @@
       <option name="project" value="LOCAL" />
       <updated>1464628108847</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Added:&#10;-  functionality to apply sme to color stack &#10;-  fixed issue with image not showing correct results simple/advanced&#10;-  fixed all interface issues&#10;&#10;- Problem with applying manifold to individual channels.&#10;">
+      <created>1464636566484</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1464636566484</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211825000" />
+    <option name="totallyTimeSpent" value="212015000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1337,11 +921,11 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37321937" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3903134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3903134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27160493" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23642172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23642172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39506173" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1349,7 +933,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17305644" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4624881" sideWeight="0.4978701" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4624881" sideWeight="0.4978701" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6001899" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1430,7 +1014,8 @@
     <MESSAGE value="Removed the testing option from the drop-down menu in ImageJ.&#10;" />
     <MESSAGE value="Added:&#10;- progress bar tested and working" />
     <MESSAGE value="Added:&#10;- Adding the zprojection into the plugin sources to avoid the progress-bar to be overiden" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added:&#10;- Adding the zprojection into the plugin sources to avoid the progress-bar to be overiden" />
+    <MESSAGE value="Added:&#10;-  functionality to apply sme to color stack &#10;-  fixed issue with image not showing correct results simple/advanced&#10;-  fixed all interface issues&#10;&#10;- Problem with applying manifold to individual channels.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added:&#10;-  functionality to apply sme to color stack &#10;-  fixed issue with image not showing correct results simple/advanced&#10;-  fixed all interface issues&#10;&#10;- Problem with applying manifold to individual channels.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1906,7 +1491,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36594912">
+        <state vertical-scroll-proportion="1.1482112">
           <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
