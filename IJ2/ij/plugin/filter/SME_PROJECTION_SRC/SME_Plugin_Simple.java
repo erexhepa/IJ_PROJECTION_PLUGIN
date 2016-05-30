@@ -54,12 +54,22 @@ public class SME_Plugin_Simple implements PlugIn {
 
     public void getManifold(){
         smePlugin = new SME_Plugin_Get_Manifold();
+        smePlugin.initProgressBar();
+
         smePlugin.setup("Manifold channel",images[0]);
         smePlugin.runSimple(false);
 
+
+        //IJ.showStatus("Running SML");
         runSmlStep();
+        smePlugin.updateProgressbar(0.1);
+        //IJ.showStatus("Running KMEANS");
         runKmeansStep();
+        smePlugin.updateProgressbar(0.3);
+        //IJ.showStatus("Running Energy Optimisation");
         runEnoptStep();
+        smePlugin.updateProgressbar(1);
+        //IJ.showStatus("Finished");
     }
 
     public void runSmlStep(){

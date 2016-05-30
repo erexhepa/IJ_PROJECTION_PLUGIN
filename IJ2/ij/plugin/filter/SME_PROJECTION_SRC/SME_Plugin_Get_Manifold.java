@@ -5,6 +5,7 @@
 
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
+import ij.IJ;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
@@ -70,7 +71,25 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
     private ImageStack costData     = null;
     private final String MANIFOLD   = "Manifold2D";
     private final String RAWIMAGE   = "RawStack";
+    private double progressbar = 0;
 
+    public double getProgressbar(){
+
+        return progressbar;
+    }
+
+    public void updateProgressbar(double incrProgressbar){
+        progressbar = incrProgressbar ;
+        IJ.showProgress((progressbar));
+    }
+
+    public void updateProgressbar(){
+        IJ.showProgress((progressbar));
+    }
+
+    public void initProgressBar(){
+        progressbar = 0;
+    }
 
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;

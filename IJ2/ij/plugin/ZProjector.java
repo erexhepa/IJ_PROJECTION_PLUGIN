@@ -101,13 +101,13 @@ public class ZProjector implements PlugIn {
 		//  Make sure input image is a stack.
 		if(stackSize==1) {
 	    	IJ.error("Z Project", "Stack required"); 
-	    	return; 
+	    	return;
 		}
 	
 		//  Check for inverting LUT.
 		if (imp.getProcessor().isInvertedLut()) {
-	    	if (!IJ.showMessageWithCancel("ZProjection", lutMessage))
-	    		return; 
+	    	//if (!IJ.showMessageWithCancel("ZProjection", lutMessage))
+	    	//	return;
 		}
 
 		// Set default bounds.
@@ -153,7 +153,7 @@ public class ZProjector implements PlugIn {
 			long tstop = System.currentTimeMillis();
 			projImage.setCalibration(imp.getCalibration());
 			if (simpleComposite) IJ.run(projImage, "Grays", "");
-			projImage.show("ZProjector: " +IJ.d2s((tstop-tstart)/1000.0,2)+" seconds");
+			//projImage.show("ZProjector: " +IJ.d2s((tstop-tstart)/1000.0,2)+" seconds");
 		}
 
 		imp.unlock();
@@ -263,10 +263,10 @@ public class ZProjector implements PlugIn {
 		// Do the projection
 		int sliceCount = 0;
 		for (int n=startSlice; n<=stopSlice; n+=increment) {
-			if (!isHyperstack) {
-	    		IJ.showStatus("ZProjection " + color +": " + n + "/" + stopSlice);
-	    		IJ.showProgress(n-startSlice, stopSlice-startSlice);
-	    	}
+			//if (!isHyperstack) {
+	    	//	IJ.showStatus("ZProjection " + color +": " + n + "/" + stopSlice);
+	    	//	IJ.showProgress(n-startSlice, stopSlice-startSlice);
+	    	//}
 	    	projectSlice(stack.getPixels(n), rayFunc, ptype);
 	    	sliceCount++;
 		}
@@ -335,8 +335,8 @@ public class ZProjector implements PlugIn {
 		increment = channels;
 		boolean rgb = imp.getBitDepth()==24;
 		for (int frame=firstFrame; frame<=lastFrame; frame++) {
-			IJ.showStatus(""+ (frame-firstFrame) + "/" + (lastFrame-firstFrame));
-			IJ.showProgress(frame-firstFrame, lastFrame-firstFrame);
+			//IJ.showStatus(""+ (frame-firstFrame) + "/" + (lastFrame-firstFrame));
+			//IJ.showProgress(frame-firstFrame, lastFrame-firstFrame);
 			for (int channel=1; channel<=channels; channel++) {
 				startSlice = (frame-1)*channels*slices + (start-1)*channels + channel;
 				stopSlice = (frame-1)*channels*slices + (stop-1)*channels + channel;
@@ -366,7 +366,7 @@ public class ZProjector implements PlugIn {
 			else
 				projImage.setOverlay(projectHyperStackRois(overlay));
 		}
-        IJ.showProgress(1, 1);
+        //IJ.showProgress(1, 1);
 	}
 	
 	//Added by Marcel Boeglin 2013.09.22
@@ -522,7 +522,7 @@ public class ZProjector implements PlugIn {
     }
 
 	ImagePlus doMedianProjection() {
-		IJ.showStatus("Calculating median...");
+		//IJ.showStatus("Calculating median...");
 		ImageStack stack = imp.getStack();
 		ImageProcessor[] slices = new ImageProcessor[sliceCount];
 		int index = 0;
@@ -535,7 +535,7 @@ public class ZProjector implements PlugIn {
 		int height = ip2.getHeight();
 		int inc = Math.max(height/30, 1);
 		for (int y=0; y<height; y++) {
-			if (y%inc==0) IJ.showProgress(y, height-1);
+			//if (y%inc==0) IJ.showProgress(y, height-1);
 			for (int x=0; x<width; x++) {
 				for (int i=0; i<sliceCount; i++)
 				values[i] = slices[i].getPixelValue(x, y);
@@ -544,7 +544,7 @@ public class ZProjector implements PlugIn {
 		}
 		if (imp.getBitDepth()==8)
 			ip2 = ip2.convertToByte(false);
-		IJ.showProgress(1, 1);
+		//IJ.showProgress(1, 1);
 		return new ImagePlus(makeTitle(), ip2);
 	}
 

@@ -406,8 +406,11 @@ public class SME_ENS_EnergyOptimisation {
         RealMatrix idmaxkB, IB = null;
         ZProjector zproject = new ZProjector();
         zproject.setMethod(0);
+        double dist2goal = 0;
+        double startProgressBar = 0 ;
 
         ENERGY_STEP = ENERGY_STEP*KE;
+        startProgressBar = sme_pluginGetManifold.getProgressbar();
 
         while (Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1))) > (ENERGY_STEP)) {
 
@@ -501,8 +504,12 @@ public class SME_ENS_EnergyOptimisation {
             System.out.println(Integer.toString(iter));
             System.out.println(Double.toString(costIterStep));
 
-            IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
-                    Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
+            dist2goal = (startProgressBar+(ENERGY_STEP*1.0)/(Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1)))))/(startProgressBar+1);
+
+            //IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
+            //        Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
+            System.out.println("Progress Bar :: "+(dist2goal));
+            sme_pluginGetManifold.updateProgressbar(dist2goal);
         }
 
         sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(cost));
