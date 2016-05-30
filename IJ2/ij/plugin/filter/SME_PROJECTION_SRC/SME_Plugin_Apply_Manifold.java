@@ -9,7 +9,6 @@ import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.CompositeConverter;
 import ij.plugin.PlugIn;
-import ij.plugin.ZProjector;
 import ij.plugin.filter.EDM;
 import ij.plugin.filter.GaussianBlur;
 import ij.plugin.filter.PlugInFilter;

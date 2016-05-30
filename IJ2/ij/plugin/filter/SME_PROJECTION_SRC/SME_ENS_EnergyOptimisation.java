@@ -5,7 +5,6 @@ import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.Plot;
 import ij.plugin.ZAxisProfiler;
-import ij.plugin.ZProjector;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.DefaultRealMatrixChangingVisitor;

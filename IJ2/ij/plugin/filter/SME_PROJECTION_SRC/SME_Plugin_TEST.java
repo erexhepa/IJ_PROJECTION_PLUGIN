@@ -6,7 +6,6 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.GenericDialog;
-import ij.plugin.ZProjector;
 import ij.plugin.filter.EDM;
 import ij.plugin.filter.GaussianBlur;
 import ij.plugin.filter.PlugInFilter;
