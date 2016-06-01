@@ -137,7 +137,7 @@ public class SME_Plugin_Simple implements PlugIn {
         getManifold(0);
 
         manifoldModel = smePlugin.getMfoldImage();
-        manifoldModel.show();
+        //manifoldModel.show();
         smePlugin.getSmeImage().show();
     }
 
@@ -159,8 +159,8 @@ public class SME_Plugin_Simple implements PlugIn {
         boolean keep = staticKeep;
         ignoreLuts = staticIgnoreLuts;
 
-        GenericDialog gd = new GenericDialog("SME APPLY MANIFOLD TO OPEN STACKS");
-        gd.addChoice("Extract manifold  : Select channel", titles, "*none*");
+        GenericDialog gd = new GenericDialog("SME Stacking");
+        gd.addChoice("Extract manifold from", titles, "*none*");
 
         //gd.addCheckbox("Create composite", createComposite);
         //gd.addCheckbox("Keep source images", keep);
@@ -186,7 +186,7 @@ public class SME_Plugin_Simple implements PlugIn {
         getManifold(index);
 
         manifoldModel = smePlugin.getMfoldImage();
-        manifoldModel.show();
+        //manifoldModel.show();
         smePlugin.getSmeImage().show();
 
         ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
