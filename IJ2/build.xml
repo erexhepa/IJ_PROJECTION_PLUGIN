@@ -77,17 +77,17 @@
 
   <target name="prepareDirSource" description="prepare source directory prior to the archive compilation">
     <!-- Prepare jar directory. -->
-    <mkdir dir="SME_PROJECTION_ENS_SRC" />
-    <copydir src="SME_PROJECTION_SRC" dest="SME_PROJECTION_ENS_SRC/SME_PROJECTION_ENS"/>
+    <mkdir dir="src_java" />
+    <copydir src="SME_PROJECTION_SRC" dest="src_java/SME_stacking"/>
     <copydir src="org" dest="SME_PROJECTION_ENS_SRC/org"/>
-    <copyfile src="SME_PROJECTION_SRC/plugins.config" dest="SME_PROJECTION_ENS/plugins.config"/>
+    <copyfile src="SME_PROJECTION_SRC/plugins.config" dest="src_java/plugins.config"/>
   </target>
 
   <target name="createSMEjarSource" depends="prepareDirSource" description="Create JAR SME plugin from source files">
     <!-- Build ij.jar. -->
-    <jar jarfile="SME_PROJECTION_ENS_SRC.jar" basedir="SME_PROJECTION_ENS_SRC"
+    <jar jarfile="src_java.jar" basedir="src_java"
          manifest="MANIFEST_SME.MF" /><!-- Create JAR archive -->
-    <delete dir="SME_PROJECTION_ENS_SRC" />
+    <delete dir="SME_stacking" />
   </target>
 
   <!-- SME PLUGIN SOURCES TARGETS = END -->
