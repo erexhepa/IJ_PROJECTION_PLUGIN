@@ -11,6 +11,8 @@ import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -101,7 +103,11 @@ public class SME_Plugin_Simple implements PlugIn {
 
         if(WindowManager.getImage(wList[0]).isHyperStack()){
             // hyperstack color
-            processChannelsManifoldColors();
+            try {
+                processChannelsManifoldColors();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
         }else{
             // monochromatic image
             processChannelsManifoldSimple();
@@ -142,18 +148,19 @@ public class SME_Plugin_Simple implements PlugIn {
         smePlugin.getSmeImage().show();
     }
 
-    public void processChannelsManifoldColors() {
+    public void processChannelsManifoldColors() throws NoSuchMethodException {
         int[] wList         = WindowManager.getIDList();
         projectionStacks    = new ImagePlus[maxChannels];
-        maxChannels         = 3;
 
         ImagePlus hyperStackSME = WindowManager.getImage(wList[0]);
+        images = ChannelSplitter.split(hyperStackSME);
+        maxChannels         = images.length;
 
-        String[] titles = new String[3];
+        String[] titles = new String[images.length];
 
-        titles[0] = "Red channel";
-        titles[1] = "Green channel";
-        titles[2] = "Blue channel";
+        for(int i=0;i<images.length;i++){
+            titles[i] = "Channel-"+i;
+        }
 
         String[] names = titles;
         boolean createComposite = staticCreateComposite;
@@ -171,7 +178,7 @@ public class SME_Plugin_Simple implements PlugIn {
             return;
 
         int index = gd.getNextChoiceIndex();
-        images = new ImagePlus[maxChannels];
+        //images = new ImagePlus[maxChannels];
 
         stackSize = 0;
         width = 0;
@@ -180,13 +187,25 @@ public class SME_Plugin_Simple implements PlugIn {
         int slices = 0;
         int frames = 0;
 
-        images = ChannelSplitter.split(hyperStackSME);
         stackSize = images[0].getStackSize();
 
-        for(int i=0;i<images.length;i++){
+        for(int i=0;i<images.length;i++) {
             Object pixVal = images[i].getStack().getPixels(1);
-            images[i].getStack().setType(pixVal);
+            Method setType = images[i].getStack().getClass().getDeclaredMethod("setType", Object.class);
+            setType.setAccessible(true);
+            try {
+                setType.invoke(images[i].getStack(), pixVal);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
         }
+
+        //for(int i=0;i<images.length;i++){
+        //    Object pixVal = images[i].getStack().getPixels(1);
+        //    images[i].getStack().setType(pixVal);
+        //}
 
         // run manifold extraction on the first channel
         getManifold(index);

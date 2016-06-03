@@ -73,7 +73,7 @@ public class ImageStack {
 			setType(pixels);
 	}
 	
-	public void setType(Object pixels) {
+	private void setType(Object pixels) {
 		if (pixels==null)
 			return;
 		if (pixels instanceof byte[])

@@ -125,7 +125,7 @@ public class SME_ENS_EnergyOptimisation {
         // TODO code function to automatically update the step size
 
         cost     = MatrixUtils.createRealVector(new double[2]);
-        cost.setEntry(0,100);cost.setEntry(1,10);
+        cost.setEntry(0, Integer.MAX_VALUE);cost.setEntry(1,1000);
     }
 
     public void initWparam(){
@@ -410,6 +410,8 @@ public class SME_ENS_EnergyOptimisation {
 
         ENERGY_STEP = ENERGY_STEP*KE;
         startProgressBar = sme_pluginGetManifold.getProgressbar();
+        double oldDistance = Integer.MAX_VALUE;
+        double costIterStep=0;
 
         while (Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1))) > (ENERGY_STEP)) {
 
@@ -496,20 +498,24 @@ public class SME_ENS_EnergyOptimisation {
 
             idmaxk  =   idmaxk.add(shiftc);
             RealVector costIter = SME_ENS_Utils.realmat2vector(minc,0);
-            double costIterStep = costIter.getL1Norm()/(minc.getRowDimension()*minc.getColumnDimension());
+            oldDistance  = costIterStep;
+            costIterStep = costIter.getL1Norm()/(minc.getRowDimension()*minc.getColumnDimension());
             cost = cost.append(costIterStep);
-            step = step*0.99;
+            step = step * 0.99;
 
-            System.out.println(Integer.toString(iter));
-            System.out.println(Double.toString(costIterStep));
+            if(iter>2) {
+                dist2goal = ((Math.abs(oldDistance-costIterStep)));
 
-            dist2goal = (startProgressBar+(ENERGY_STEP*1.0)/(Math.abs(cost.getEntry(iter) - cost.getEntry((iter - 1)))))/(startProgressBar+1);
+                System.out.println(Integer.toString(iter));
+                System.out.println(Double.toString(costIterStep));
 
-            //IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
-            //        Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
-            System.out.println("Progress Bar :: "+(dist2goal));
-            sme_pluginGetManifold.updateProgressbar(dist2goal);
-            IJ.showStatus("                                 ");
+
+                //IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
+                //        Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
+                System.out.println("Progress Bar :: " + (dist2goal));
+                sme_pluginGetManifold.updateProgressbar(dist2goal);
+                IJ.showStatus("                                 ");
+            }
         }
 
         sme_pluginGetManifold.setCostData(SME_ENS_Utils.realvec2Stack(cost));
