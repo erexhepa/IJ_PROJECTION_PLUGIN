@@ -73,7 +73,7 @@ public class ImageStack {
 			setType(pixels);
 	}
 	
-	private void setType(Object pixels) {
+	public void setType(Object pixels) {
 		if (pixels==null)
 			return;
 		if (pixels instanceof byte[])
@@ -355,7 +355,9 @@ public class ImageStack {
 				case RGB:
 					int[] ints = (int[])stack[z];
 					return ints[y*width+x]&0xffffffff;
-				default: return 0.0;
+				default:
+					double[] dbls = (double[])stack[z];
+					return dbls[y*width+x];
 			}
 		} else
 			return 0.0;

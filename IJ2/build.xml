@@ -60,7 +60,7 @@
         <!-- Prepare jar directory. -->
         <mkdir dir="SME_stacking" />
        <copydir src="build/SME_PROJECTION_SRC" dest="SME_stacking/SME_PROJECTION_SRC"/>
-       <copydir src="build/org" dest="SME_PROJECTION_ENS/org"/>
+       <copydir src="build/org" dest="SME_stacking/org"/>
       <copyfile src="SME_PROJECTION_SRC/plugins.config" dest="SME_stacking/plugins.config"/>
   </target>
 
@@ -87,7 +87,7 @@
     <!-- Build ij.jar. -->
     <jar jarfile="src_java.jar" basedir="src_java"
          manifest="MANIFEST_SME.MF" /><!-- Create JAR archive -->
-    <delete dir="SME_stacking" />
+    <delete dir="src_java" />
   </target>
 
   <!-- SME PLUGIN SOURCES TARGETS = END -->

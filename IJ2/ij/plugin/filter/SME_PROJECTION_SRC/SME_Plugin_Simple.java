@@ -1,5 +1,6 @@
 package ij.plugin.filter.SME_PROJECTION_SRC;
 
+import com.sun.corba.se.spi.ior.ObjectKey;
 import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
@@ -182,12 +183,17 @@ public class SME_Plugin_Simple implements PlugIn {
         images = ChannelSplitter.split(hyperStackSME);
         stackSize = images[0].getStackSize();
 
+        for(int i=0;i<images.length;i++){
+            Object pixVal = images[i].getStack().getPixels(1);
+            images[i].getStack().setType(pixVal);
+        }
+
         // run manifold extraction on the first channel
         getManifold(index);
 
         manifoldModel = smePlugin.getMfoldImage();
         //manifoldModel.show();
-        smePlugin.getSmeImage().show();
+        //smePlugin.getSmeImage().show();
 
         ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
         for(int i=0; i<maxChannels; i++){
