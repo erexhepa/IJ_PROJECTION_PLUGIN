@@ -91,7 +91,7 @@ public class SME_ENS_Sml {
         }
 
         sme_pluginGetManifold.setStack1(smlResult);
-        IJ.saveAsTiff(new ImagePlus("SMEresult",smlResult),"SMEtempresults.tiff");
+        //IJ.saveAsTiff(new ImagePlus("SMEresult",smlResult),"SMEtempresults.tiff");
         //Image display in new window
         sme_pluginGetManifold.setImp2(new ImagePlus("sML_" + sme_pluginGetManifold.getImp().getTitle(), sme_pluginGetManifold.getStack1()));
         sme_pluginGetManifold.getImp2().setStack(sme_pluginGetManifold.getStack1(), 1, size_, 1);
