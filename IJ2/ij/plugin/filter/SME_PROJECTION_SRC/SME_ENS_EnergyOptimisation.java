@@ -498,21 +498,20 @@ public class SME_ENS_EnergyOptimisation {
 
             idmaxk  =   idmaxk.add(shiftc);
             RealVector costIter = SME_ENS_Utils.realmat2vector(minc,0);
-            oldDistance  = costIterStep;
             costIterStep = costIter.getL1Norm()/(minc.getRowDimension()*minc.getColumnDimension());
             cost = cost.append(costIterStep);
             step = step * 0.99;
 
             if(iter>2) {
-                dist2goal = ((Math.abs(oldDistance-costIterStep)));
+                dist2goal = startProgressBar+0.8*(((cost.getEntry(2)-costIterStep)/(cost.getEntry(2))));
 
-                System.out.println(Integer.toString(iter));
-                System.out.println(Double.toString(costIterStep));
-
-
+                //System.out.println(Integer.toString(iter));
+                //System.out.println(Double.toString(cost.getEntry(iter-1)));
+                //System.out.println(Double.toString(cost.getEntry(iter)));
+                //System.out.println(Double.toString(cost.getEntry(iter-1)-cost.getEntry(iter)));
                 //IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
                 //        Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
-                System.out.println("Progress Bar :: " + (dist2goal));
+                //System.out.println("Progress Bar :: " + Double.toString(dist2goal));
                 sme_pluginGetManifold.updateProgressbar(dist2goal);
                 IJ.showStatus("                                 ");
             }
