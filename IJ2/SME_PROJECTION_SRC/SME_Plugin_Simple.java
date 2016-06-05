@@ -4,6 +4,8 @@ import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
+import ij.plugin.filter.SME_PROJECTION_SRC.SME_ENS_Utils;
+import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Get_Manifold;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -49,7 +51,7 @@ public class SME_Plugin_Simple implements PlugIn {
     private int stackSize = 0;
     private int width = 0;
     private int height = 0;
-    private SME_Plugin_Get_Manifold smePlugin;
+    private ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Get_Manifold smePlugin;
 
     public void run(String arg) {
         processChannelsManifold();
@@ -150,7 +152,7 @@ public class SME_Plugin_Simple implements PlugIn {
         // get channel color ids
         Color[]  colors1 = new Color[images.length];
         for(int i=0;i<images.length;i++){
-            hyperStackSME.setC(i);
+            hyperStackSME.setC(i+1);
             colors1[i] = (((CompositeImage) hyperStackSME).getChannelColor());
         }
 
@@ -181,7 +183,7 @@ public class SME_Plugin_Simple implements PlugIn {
         ignoreLuts = staticIgnoreLuts;
 
         GenericDialog gd = new GenericDialog("SME Stacking");
-        gd.addChoice("Extract manifold from", titles, "*none*");
+        gd.addChoice("Extract manifold from", titles, titles[0]);
 
         //gd.addCheckbox("Create composite", createComposite);
         //gd.addCheckbox("Keep source images", keep);

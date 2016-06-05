@@ -152,7 +152,7 @@ public class SME_Plugin_Simple implements PlugIn {
         // get channel color ids
         Color[]  colors1 = new Color[images.length];
         for(int i=0;i<images.length;i++){
-            hyperStackSME.setC(i);
+            hyperStackSME.setC(i+1);
             colors1[i] = (((CompositeImage) hyperStackSME).getChannelColor());
         }
 
@@ -183,7 +183,7 @@ public class SME_Plugin_Simple implements PlugIn {
         ignoreLuts = staticIgnoreLuts;
 
         GenericDialog gd = new GenericDialog("SME Stacking");
-        gd.addChoice("Extract manifold from", titles, "*none*");
+        gd.addChoice("Extract manifold from", titles, titles[0]);
 
         //gd.addCheckbox("Create composite", createComposite);
         //gd.addCheckbox("Keep source images", keep);
