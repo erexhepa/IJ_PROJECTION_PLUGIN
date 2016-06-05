@@ -1,9 +1,6 @@
 package SME_PROJECTION_SRC;
 
-import ij.IJ;
-import ij.ImagePlus;
-import ij.ImageStack;
-import ij.WindowManager;
+import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
@@ -12,6 +9,7 @@ import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -93,16 +91,13 @@ public class SME_Plugin_Simple implements PlugIn {
 
     /** Combines up to seven grayscale stacks into one RGB or composite stack. */
     public void processChannelsManifold() {
-        int[] wList         = WindowManager.getIDList();
-        if (wList==null) {
-            error("No images are open.");
-            return;
-        }else if(wList.length>1){
-            error("There must be at most one image open: either 1) Mono-chromatic stack or 2) Stack of composite images (Hyperstack)");
+
+        if (WindowManager.getCurrentImage()==null) {
+            error("No images is selected.");
             return;
         }
 
-        if(WindowManager.getImage(wList[0]).isHyperStack()){
+        if(WindowManager.getCurrentImage().isHyperStack()){
             // hyperstack color
             try {
                 processChannelsManifoldColors();
@@ -116,8 +111,8 @@ public class SME_Plugin_Simple implements PlugIn {
     }
 
     public void processChannelsManifoldSimple() {
-        int[] wList         = WindowManager.getIDList();
         images = new ImagePlus[1];
+        images[0] = WindowManager.getCurrentImage();
 
         stackSize = 0;
         width = 0;
@@ -129,7 +124,6 @@ public class SME_Plugin_Simple implements PlugIn {
 
         {
                 i = 0;
-                images[i] = WindowManager.getImage(wList[i]);
                 if(width<images[i].getWidth()){width = images[i].getWidth();}
                 if(height<images[i].getHeight()){height = images[i].getHeight();}
                 if(stackSize<images[i].getStackSize()){stackSize = images[i].getStackSize();}
@@ -150,17 +144,35 @@ public class SME_Plugin_Simple implements PlugIn {
     }
 
     public void processChannelsManifoldColors() throws NoSuchMethodException {
-        int[] wList         = WindowManager.getIDList();
-        projectionStacks    = new ImagePlus[maxChannels];
-
-        ImagePlus hyperStackSME = WindowManager.getImage(wList[0]);
+        ImagePlus hyperStackSME = WindowManager.getCurrentImage();
         images = ChannelSplitter.split(hyperStackSME);
-        maxChannels         = images.length;
 
+        // get channel color ids
+        Color[]  colors1 = new Color[images.length];
+        for(int i=0;i<images.length;i++){
+            hyperStackSME.setC(i);
+            colors1[i] = (((CompositeImage) hyperStackSME).getChannelColor());
+        }
+
+        maxChannels         = images.length;
+        projectionStacks    = new ImagePlus[maxChannels];
         String[] titles = new String[images.length];
 
         for(int i=0;i<images.length;i++){
-            titles[i] = "Channel-"+i;
+            if(colors1[i].equals(Color.RED))
+                titles[i] = "Channel-RED";
+            else if(colors1[i].equals(Color.GREEN))
+                titles[i] = "Channel-GREEN";
+            else if(colors1[i].equals(Color.BLUE))
+                titles[i] = "Channel-BLUE";
+            else if(colors1[i].equals(Color.GRAY))
+                titles[i] = "Channel-GRAY";
+            else if(colors1[i].equals(Color.CYAN))
+                titles[i] = "Channel-CYAN";
+            else if(colors1[i].equals(Color.MAGENTA))
+                titles[i] = "Channel-MAGENTA";
+            else if(colors1[i].equals(Color.yellow))
+                titles[i] = "Channel-YELLOW";
         }
 
         String[] names = titles;

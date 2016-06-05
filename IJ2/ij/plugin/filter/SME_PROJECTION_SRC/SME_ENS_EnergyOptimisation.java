@@ -514,6 +514,9 @@ public class SME_ENS_EnergyOptimisation {
                 //System.out.println("Progress Bar :: " + Double.toString(dist2goal));
                 sme_pluginGetManifold.updateProgressbar(dist2goal);
                 IJ.showStatus("                                 ");
+            }else{
+                sme_pluginGetManifold.updateProgressbar(startProgressBar);
+                IJ.showStatus("                                 ");
             }
         }
 
