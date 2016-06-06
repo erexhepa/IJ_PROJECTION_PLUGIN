@@ -98,7 +98,7 @@ public class SME_ENS_Kmean_Control {
         sme_pluginGetManifold.setKmensImage(new ImagePlus("Map2d", (new FloatProcessor(sme_pluginGetManifold.getMap2DImage()))));
 
         // TODO remove this for the final version of the plugin
-        IJ.saveAsTiff(sme_pluginGetManifold.getMap2d(),"KMEANtempresults.tiff");
+        //IJ.saveAsTiff(sme_pluginGetManifold.getMap2d(),"KMEANtempresults.tiff");
     }
 
     public float [][] Rearrange_Map2DImage(float[][] Map2DImage) {

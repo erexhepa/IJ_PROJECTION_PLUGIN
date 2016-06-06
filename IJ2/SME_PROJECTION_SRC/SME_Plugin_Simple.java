@@ -4,8 +4,6 @@ import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_ENS_Utils;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Get_Manifold;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -51,7 +49,7 @@ public class SME_Plugin_Simple implements PlugIn {
     private int stackSize = 0;
     private int width = 0;
     private int height = 0;
-    private ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Get_Manifold smePlugin;
+    private SME_Plugin_Get_Manifold smePlugin;
 
     public void run(String arg) {
         processChannelsManifold();
