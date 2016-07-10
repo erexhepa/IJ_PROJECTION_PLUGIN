@@ -250,7 +250,9 @@ public class SME_Plugin_Simple implements PlugIn {
             vecChannels[i]= processedImages.get(i);
         }
 
-        RGBStackMerge.mergeChannels(vecChannels,false);
+        RGBStackMerge channelMerger = new RGBStackMerge();
+        ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+        mergedHyperstack.show();
 
         /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
         CompletableFuture<List<ImagePlus>> processedImages =  CompletableFuture.supplyAsync(()->
