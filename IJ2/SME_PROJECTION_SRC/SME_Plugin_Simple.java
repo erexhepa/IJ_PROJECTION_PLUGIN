@@ -4,6 +4,7 @@ import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
+import ij.plugin.RGBStackMerge;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -14,8 +15,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ForkJoinPool;
 
 import static java.util.stream.Collectors.toList;
 
@@ -71,7 +70,7 @@ public class SME_Plugin_Simple implements PlugIn {
         smePlugin.updateProgressbar(0.3);
         //IJ.showStatus("Running Energy Optimisation");
         runEnoptStep();
-        smePlugin.updateProgressbar(1);
+
         //IJ.showStatus("Finished");
     }
 
@@ -141,6 +140,7 @@ public class SME_Plugin_Simple implements PlugIn {
         manifoldModel = smePlugin.getMfoldImage();
         //manifoldModel.show();
         smePlugin.getSmeImage().show();
+        smePlugin.updateProgressbar(1);
     }
 
     public void processChannelsManifoldColors() throws NoSuchMethodException {
@@ -233,14 +233,24 @@ public class SME_Plugin_Simple implements PlugIn {
             listChannels.add(images[i]);
         }
 
-        /**List<ImagePlus> processedImages = listChannels.stream().
+        List<ImagePlus> processedImages = listChannels.stream().
          map(channelIt ->{
          ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
-         //itIm.show();
          return itIm;})
-         .collect(toList());**/
+         .collect(toList());
 
-        ForkJoinPool forkJoinPool = new ForkJoinPool(8);
+        ImagePlus[] vecChannels = new ImagePlus[images.length];
+
+        for(int i=0; i<processedImages.size(); i++){
+            if(images[i]==null) break;
+            vecChannels[i]= processedImages.get(i);
+        }
+
+        RGBStackMerge channelMerger = new RGBStackMerge();
+        ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+        mergedHyperstack.show();
+
+        /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
         CompletableFuture<List<ImagePlus>> processedImages =  CompletableFuture.supplyAsync(()->
 
                         listChannels.parallelStream().
@@ -250,7 +260,9 @@ public class SME_Plugin_Simple implements PlugIn {
                                     return itIm;})
                                 .collect(toList()),
                 forkJoinPool
-        );
+        );*/
+
+        smePlugin.updateProgressbar(1);
     }
 
 

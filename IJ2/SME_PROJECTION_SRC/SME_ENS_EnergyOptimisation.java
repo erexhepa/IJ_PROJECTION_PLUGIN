@@ -17,7 +17,7 @@ import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 public class SME_ENS_EnergyOptimisation {
     private SME_Plugin_Get_Manifold sme_pluginGetManifold = null;
     private final int KMEAN_NORM    = 2;
-    private double ENERGY_STEP      = 0.00001;
+    private double ENERGY_STEP      = 0.000001;
     private RealMatrix kmeanOutput ;
     private RealMatrix rawdata2D    = null;
     private RealMatrix tmpProcess   = null;
@@ -37,6 +37,7 @@ public class SME_ENS_EnergyOptimisation {
     private int iter                = 1;
     private RealMatrix edgeflag     = null;
     private RealMatrix edgeflag2    = null;
+    private RealMatrix edgeflag3k   = null;
     private RealMatrix idmaxkB      = null;
     private RealMatrix  valk        = null;
     private RealVector  sftz        = MatrixUtils.createRealVector(new double[0]);
@@ -72,6 +73,8 @@ public class SME_ENS_EnergyOptimisation {
         //SME_ENS_Utils.printRealMatrix(edgeflag.getData());
         double normFactor = 1.0/KMEAN_NORM;
         edgeflag2  = MatrixUtils.createRealMatrix(edgeflag.scalarMultiply(normFactor).getData());
+        edgeflag3k = MatrixUtils.createRealMatrix(edgeflag.scalarMultiply(normFactor).getData());
+
         //SME_ENS_Utils.printRealMatrix(edgeflag2.getData());
         //SME_ENS_Utils.printRealMatrixStats(edgeflag2,"edgeflag2");
         //[valk,idmax]=max(timk,[],3);
@@ -106,8 +109,8 @@ public class SME_ENS_EnergyOptimisation {
 
         // save tmp sml max projection and kmeans projection
 
-        IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
-        IJ.saveAsTiff(sme_pluginGetManifold.getKmensImage(),"kmeansResult.tiff");
+        //IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
+        //IJ.saveAsTiff(sme_pluginGetManifold.getKmensImage(),"kmeansResult.tiff");
 
         //SME_ENS_Utils.printRealMatrix(idmax.getData(),"idmax");
         SME_ENS_Utils.printRealMatrixStats(idmax,"idmax");
@@ -126,6 +129,8 @@ public class SME_ENS_EnergyOptimisation {
 
         RealVector edgeflag2Cond1 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,1); // TODO Check definition of edgeflag2 no equal to matlab
         RealVector edgeflag2Cond2 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,0);
+        RealVector edgeflag2Cond3 = SME_ENS_Utils.realmatSelectVector(edgeflag2,valk,0.5);
+
         RealVector valkVec        = SME_ENS_Utils.realmat2vector(valk,0);
         int histNmbBins           = 100;
         RealVector hcb            = MatrixUtils.createRealVector(SME_ENS_Utils.linspace(
@@ -133,7 +138,8 @@ public class SME_ENS_EnergyOptimisation {
         RealVector hcf            = hcb.copy();
 
         RealVector ncf     = SME_ENS_Utils.getHistogramRealvec(edgeflag2Cond1, hcb);
-        RealVector ncb     = SME_ENS_Utils.getHistogramRealvec(edgeflag2Cond2, hcb);
+        //TODO: replace edgeflag2Cond3 with edgeflag2Cond2 if going back to previous version
+        RealVector ncb     = SME_ENS_Utils.getHistogramRealvec(edgeflag2Cond3, hcb);
 
         nt      =   SME_ENS_Utils.getLastindComp(ncb,ncf);
         ht      =   hcb.getEntry(nt);
@@ -216,11 +222,32 @@ public class SME_ENS_EnergyOptimisation {
 
         WA                  =   dg.ebeDivide(sg);
         Percentile quantEng =   new Percentile();
-        if(dg.getDimension()>0)
+
+        // TODO: Remplace the following code with uncommented block in case of returning to
+        // the non smooth manifold
+/*        if(dg.getDimension()>0)
             if(overlap2==0)
                 WW                  =  WA.getMinValue();
             else
-                WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2*100));
+                WW                  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2*100));*/
+
+        double lambda1  =   Math.abs(quantEng.evaluate(WA.toArray(),overlap2*100));
+
+        double meanfg   =   SME_ENS_Utils.realvectorMean(edgeflag2Cond1);
+        double meansfg  =   SME_ENS_Utils.realvectorMean(edgeflag2Cond3);
+        double meanbg   =   SME_ENS_Utils.realvectorMean(edgeflag2Cond2);
+
+        double RT       =   (meansfg-meanbg)/(meanfg-meanbg);
+
+        double C1       =   1/lambda1;
+        double C2       =   RT/lambda1;
+        double C3       =   0/lambda1;
+
+        SME_ENS_Utils.realmatSetVector(edgeflag3k,edgeflag2,1,C1);
+        SME_ENS_Utils.realmatSetVector(edgeflag3k,edgeflag2,0.5,C2);
+        SME_ENS_Utils.realmatSetVector(edgeflag3k,edgeflag2,0,C3);
+
+        WW=1;
     }
 
     public double findOverlap2(RealVector edgeFlagCond){
@@ -447,9 +474,9 @@ public class SME_ENS_EnergyOptimisation {
                             colDim, rowDim));
             varold2             = varold2.transpose();
 
-            RealMatrix d1 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax1),edgeflag2,Boolean.TRUE);
-            RealMatrix d2 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax2),edgeflag2,Boolean.TRUE);
-            RealMatrix d0 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmaxk),edgeflag2,Boolean.TRUE);
+            RealMatrix d1 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax1),edgeflag3k,Boolean.TRUE);
+            RealMatrix d2 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmax2),edgeflag3k,Boolean.TRUE);
+            RealMatrix d0 = SME_ENS_Utils.elementMultiply(idmax.subtract(idmaxk),edgeflag3k,Boolean.TRUE);
 
             RealMatrix M11 = idmax1.subtract(Mold);
             RealMatrix M12 = idmax2.subtract(Mold);
@@ -506,7 +533,10 @@ public class SME_ENS_EnergyOptimisation {
                 //IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
                 //        Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
                 //System.out.println("Progress Bar :: " + Double.toString(dist2goal));
-                sme_pluginGetManifold.updateProgressbar(dist2goal);
+                if(dist2goal<1) {
+                    sme_pluginGetManifold.updateProgressbar(dist2goal);
+                }
+
                 IJ.showStatus("                                 ");
             }else{
                 sme_pluginGetManifold.updateProgressbar(startProgressBar);
