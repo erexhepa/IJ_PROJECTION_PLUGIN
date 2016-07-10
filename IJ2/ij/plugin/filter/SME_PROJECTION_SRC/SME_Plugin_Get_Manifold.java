@@ -153,7 +153,10 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
 
     public void runSml(Boolean showIntResults){
         SME_ENS_Sml smlPlugin = new SME_ENS_Sml(this);
-        smlPlugin.applySML(showIntResults);
+
+        //TODO: Replace line below with dummy sml with the line below if SML is activated
+        //smlPlugin.applySML(showIntResults);
+        smlPlugin.applySMLdummy(showIntResults);
     }
 
     public void runEnergyOptimisation(Boolean showIntResults){

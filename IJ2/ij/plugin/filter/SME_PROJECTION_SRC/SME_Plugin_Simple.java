@@ -5,6 +5,7 @@ import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
+import ij.plugin.RGBStackMerge;
 import ij.plugin.filter.PlugInFilter;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
@@ -235,14 +236,23 @@ public class SME_Plugin_Simple implements PlugIn {
             listChannels.add(images[i]);
         }
 
-        /**List<ImagePlus> processedImages = listChannels.stream().
+        List<ImagePlus> processedImages = listChannels.stream().
          map(channelIt ->{
          ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
-         //itIm.show();
+         itIm.show();
          return itIm;})
-         .collect(toList());**/
+         .collect(toList());
 
-        ForkJoinPool forkJoinPool = new ForkJoinPool(8);
+        ImagePlus[] vecChannels = new ImagePlus[images.length];
+
+        for(int i=0; i<processedImages.size(); i++){
+            if(images[i]==null) break;
+            vecChannels[i]= processedImages.get(i);
+        }
+
+        RGBStackMerge.mergeChannels(vecChannels,false);
+
+        /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
         CompletableFuture<List<ImagePlus>> processedImages =  CompletableFuture.supplyAsync(()->
 
                         listChannels.parallelStream().
@@ -252,7 +262,9 @@ public class SME_Plugin_Simple implements PlugIn {
                                     return itIm;})
                                 .collect(toList()),
                 forkJoinPool
-        );
+        );*/
+
+
     }
 
 
