@@ -115,8 +115,8 @@ public class SME_ENS_EnergyOptimisation {
 
         // save tmp sml max projection and kmeans projection
 
-        IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
-        IJ.saveAsTiff(sme_pluginGetManifold.getKmensImage(),"kmeansResult.tiff");
+        //IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
+        //IJ.saveAsTiff(sme_pluginGetManifold.getKmensImage(),"kmeansResult.tiff");
 
         //SME_ENS_Utils.printRealMatrix(idmax.getData(),"idmax");
         SME_ENS_Utils.printRealMatrixStats(idmax,"idmax");
@@ -539,7 +539,10 @@ public class SME_ENS_EnergyOptimisation {
                 //IJ.showStatus("ENS PLUGIN ENERGY OPTIMISATION - STEP :: "+
                 //        Integer.toString(iter) + " - COST = " + Double.toString(costIterStep));
                 //System.out.println("Progress Bar :: " + Double.toString(dist2goal));
-                sme_pluginGetManifold.updateProgressbar(dist2goal);
+                if(dist2goal<1) {
+                    sme_pluginGetManifold.updateProgressbar(dist2goal);
+                }
+
                 IJ.showStatus("                                 ");
             }else{
                 sme_pluginGetManifold.updateProgressbar(startProgressBar);

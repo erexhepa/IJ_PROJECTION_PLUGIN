@@ -74,7 +74,7 @@ public class SME_Plugin_Simple implements PlugIn {
         smePlugin.updateProgressbar(0.3);
         //IJ.showStatus("Running Energy Optimisation");
         runEnoptStep();
-        smePlugin.updateProgressbar(1);
+
         //IJ.showStatus("Finished");
     }
 
@@ -144,6 +144,7 @@ public class SME_Plugin_Simple implements PlugIn {
         manifoldModel = smePlugin.getMfoldImage();
         //manifoldModel.show();
         smePlugin.getSmeImage().show();
+        smePlugin.updateProgressbar(1);
     }
 
     public void processChannelsManifoldColors() throws NoSuchMethodException {
@@ -239,7 +240,6 @@ public class SME_Plugin_Simple implements PlugIn {
         List<ImagePlus> processedImages = listChannels.stream().
          map(channelIt ->{
          ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
-         itIm.show();
          return itIm;})
          .collect(toList());
 
@@ -266,7 +266,7 @@ public class SME_Plugin_Simple implements PlugIn {
                 forkJoinPool
         );*/
 
-
+        smePlugin.updateProgressbar(1);
     }
 
 
