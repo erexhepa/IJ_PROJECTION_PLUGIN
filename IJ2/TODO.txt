@@ -1,0 +1,77 @@
+TODO Reply to the editor :
+
+Here i am attaching some datasets to try. This are the 4 new datasets
+provided by the review.
+
+https://cloud.biologie.ens.fr/index.php/s/fDSPFAWMXlB3Q4t
+
+1. Composite cropped (Widefield)
+
+This is a cropped 3 channel stack. The 3rd channel is in Magenta colormap.
+In the final composite output would be good to have the 3rd channel in
+Magenta colormap too. We use the third channel in the Magenta as reference
+channel in this case.
+
+2. DIC DNA Actin Tubes0009 - TRITCs (Widefield)
+
+This is the 3rd channel of dataset 1. I am attaching one result with SML
+(sum modified laplacian) as operator. (This you implemented earlier)
+
+3. DIC DNA Actin Tubes0009 - Cy5.5 - Copy (Widefield)
+
+This is the 1st channel of dataset 1. I am attaching the result with SML
+for this one too.
+
+4. SYTOXO488-1s (Confocal)
+
+We can use MIP in this case which is the current version of the plugin
+
+Let me know if you can access them. Also whenever you want we can discuss
+on this or provide you the matlab code, or necessary results to compare.
+
+--------------------------------
+
+ 1) Specifically: if we deal with a confocal image (as most of our images) the initial
+ Zmap should be a maximum intensity projection, but if we deal with a wide field microscopy
+ image then a SML is better adapted. So we would like to add another drop down menu to the
+ plugin (above the "reference channel" that already existing for color image where the choice
+ is "Confocal" or "Wide field" which will in the first case do what the plugin do currently
+ and in the second case compute SML rather than an MIP at the beginning of the algorithm.
+
+ 2) the issue of color is that the third channel is pink but then in the composite image it
+ becomes blue... I can sort of guess why but ideally we would provide the same output. Another
+ (related) issue is the index color versus separate channel, if color type is 8bits indexed then
+ the user should be warn to change it, for now I think an error is thrown
+
+ Ok I see the point about the blue channel. You're talking about the output from the plugin that put
+ the magenta as blue ? Ok this can easily fixed. My fault because I always fix the firs as red,the
+ second as blue and the third as blue.
+
+ Thanks Sreetama. Before you modify the github I think we have two other options that may be better.
+ Elton could you please tell us if one of them is possible:
+ 1) If plugin is applied on such image pop up a windows saying that SME cannot be run on such a data type
+ and it need to be converted to whatever is necessary.
+
+ 2) convert the image before automatically?
+
+ Hi,
+
+ Yeah I see why he is getting the error but again is color indexed image however it is not a standart composite
+ color image and I don't get it how does it get it or does it try to test it if we clearly mention that the input
+ must be either composite or monochromatic stack.
+
+ You have to be very careful with ImageJ because under the hood is a mess and if you do not use standart data types
+ strange things can happen and you don't realise it.
+
+ Is the colour stack a standart microscopy image ?
+
+ ------------------------------
+
+ under the hood the image is an an Object ImagePlus of type 4
+
+ define as :
+
+ The COLOR_256 indicates an 8-bit image that has an associated look-up table: each pixel value does not represent an
+ intensity, but rather it's associated with a color. The table of values versus colors is limited to 256, and hence
+ these images may not look very well. For image processing, you should avoid COLOR_256 images (also known as "8-bit color"
+ images). These images are meant for display in the web in ".gif" format, but have been superseeded by JPEG or PNG.
