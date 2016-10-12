@@ -25,7 +25,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by rexhepaj on 22/04/16.
  */
-public class SME_Plugin_Simple implements PlugIn {
+public class SME_Plugin_Simple_BFIELD implements PlugIn {
     private ImagePlus imp;
     private ImagePlus rawImage;
     private ImagePlus projectedImage;

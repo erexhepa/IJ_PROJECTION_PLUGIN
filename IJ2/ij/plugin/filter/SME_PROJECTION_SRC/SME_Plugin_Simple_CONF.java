@@ -1,4 +1,4 @@
-package SME_PROJECTION_SRC;
+package ij.plugin.filter.SME_PROJECTION_SRC;
 
 import ij.*;
 import ij.gui.GenericDialog;
@@ -21,7 +21,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by rexhepaj on 22/04/16.
  */
-public class SME_Plugin_Simple implements PlugIn {
+public class SME_Plugin_Simple_CONF implements PlugIn {
     private ImagePlus imp;
     private ImagePlus rawImage;
     private ImagePlus projectedImage;

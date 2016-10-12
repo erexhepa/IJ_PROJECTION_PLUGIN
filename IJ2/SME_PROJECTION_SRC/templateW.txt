@@ -1,7 +1,0 @@
-
-for k=1:size(A,3)
-
-
-    
-
-end
