@@ -9,6 +9,7 @@ import ij.plugin.filter.EDM;
 import ij.process.ByteProcessor;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import ij.process.ShortProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
@@ -211,8 +212,25 @@ public class SME_ENS_Kmean_Control {
             int size2_ = sme_pluginGetManifold.getStack1().getSize();
 
             // Set the pixel values
+            // get bit depth wheather 8 bit int, 16 bit int or 32 bit float
+            // Returns the bit depth (8=byte, 16=short, 24=RGB, 32=float)
+            int bitDepthStack = sme_pluginGetManifold.getStack1().getBitDepth();
+
             for (l = size1_; l < padding_zero; l++) {
-                sme_pluginGetManifold.getStack1().addSlice(new FloatProcessor(W,H));
+                switch (bitDepthStack){
+                    case 8: {
+                        sme_pluginGetManifold.getStack1().addSlice(new ByteProcessor(W, H));
+                        break;
+                    }
+                    case 16:{
+                        sme_pluginGetManifold.getStack1().addSlice(new ShortProcessor(W,H));
+                        break;
+                    }
+                    case 32:{
+                        sme_pluginGetManifold.getStack1().addSlice(new FloatProcessor(W,H));
+                        break;
+                    }
+                }
             }
             System.out.println("Padding Done !");
         }

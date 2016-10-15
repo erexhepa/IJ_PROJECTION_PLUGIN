@@ -364,7 +364,7 @@ plug-in07="ENS_SME_PROJECTION_GET_MANIFOLD",ij.plugin.filter.SME_PROJECTION_SRC.
 plug-in08="ENS_SME_PROJECTION_APPLY_MANIFOLD",ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Apply_Manifold
 plug-in09="ENS_SME_PROJECTION_TEST_MANIFOLD",ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_TEST
 plug-in10="ENS_SME_PROJECTION_SIMPLE - BRIGHTFIELD", ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Simple_BFIELD
-plug-in10="ENS_SME_PROJECTION_SIMPLE - CONFOCAL", ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Simple_CONF
+plug-in11="ENS_SME_PROJECTION_SIMPLE - CONFOCAL", ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Simple_CONF
 
 # Install user plugins located in ij.jar to Plugins>User Plugins submenu
 #user_plugins01="Red And Blue",RedAndBlue_

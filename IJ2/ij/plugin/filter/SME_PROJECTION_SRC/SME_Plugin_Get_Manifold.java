@@ -153,13 +153,16 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
         IJ.showProgress((progressbar));
     }
 
-    public void runSml(Boolean showIntResults){
+    public void runSml(Boolean showIntResults, Boolean activateSML){
         IJ.showProgress((progressbar));
         SME_ENS_Sml smlPlugin = new SME_ENS_Sml(this);
 
-        //TODO: Replace line below with dummy sml with the line below if SML is activated
-        //smlPlugin.applySML(showIntResults);
-        smlPlugin.applySMLdummy(showIntResults);
+        if(activateSML){
+            smlPlugin.applySML(showIntResults);
+        }else {
+            smlPlugin.applySMLdummy(showIntResults);
+        }
+
         IJ.showProgress((progressbar));
     }
 

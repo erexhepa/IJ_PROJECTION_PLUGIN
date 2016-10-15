@@ -325,7 +325,7 @@ public class SME_ENS_GUI_MAIN extends JFrame implements ActionListener {
     }
 
     public void runSmlStep(){
-        smePlugin.runSml(true);
+        smePlugin.runSml(true,false);
         SME_ENS_Image_Component imcontent = new SME_ENS_Image_Component( smePlugin.getSmlImage(),Boolean.TRUE,
                 currentImage.getWidth(), currentImage.getHeight(),6);
         outputIm = imcontent.getIm2Show();

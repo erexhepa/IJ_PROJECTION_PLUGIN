@@ -79,7 +79,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
     }
 
     public void runSmlStep(){
-        smePlugin.runSml(false);
+        smePlugin.runSml(false,true);
 
     }
 
@@ -97,6 +97,11 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         if (WindowManager.getCurrentImage()==null) {
             error("No images is selected.");
+            return;
+        }
+
+        if (WindowManager.getCurrentImage().getBitDepth()==24) {
+            error("SME Pluing has detected a stack of RGB images, Please change to monochromatic images or hyper stack");
             return;
         }
 
@@ -144,6 +149,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         manifoldModel = smePlugin.getMfoldImage();
         //manifoldModel.show();
         smePlugin.getSmeImage().show();
+        smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
         smePlugin.updateProgressbar(1);
     }
 
@@ -253,7 +259,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         RGBStackMerge channelMerger = new RGBStackMerge();
         ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
         mergedHyperstack.show();
-
+        mergedHyperstack.setTitle("SME PROJECTION - WIDE FIELD");
         /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
         CompletableFuture<List<ImagePlus>> processedImages =  CompletableFuture.supplyAsync(()->
 
@@ -267,6 +273,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         );*/
 
         smePlugin.updateProgressbar(1);
+        smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
     }
 
 
