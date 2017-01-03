@@ -16,7 +16,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
     // an array of the simpler class Cluster at the conclusion.
     private ProtoCluster[] mProtoClusters;
 
-    // Cache of coordinate-to-cluster distances. Number of entries = 
+    // Cache of coordinate-to-cluster distances. Number of entries =
     // number of clusters X number of coordinates.
     private double[][] mDistanceCache;
 
@@ -34,16 +34,16 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
     // Seed for the random number generator used to select
     // coordinates for the initial cluster centers.
     private long mRandomSeed;
-    
+
     // An array of Cluster objects: the output of k-means.
     private SME_Cluster[] mClusters;
 
     // Listeners to be notified of significant happenings.
     private List<SME_KMeansListener> mListeners = new ArrayList<SME_KMeansListener>(1);
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param coordinates two-dimensional array containing the coordinates to be clustered.
      * @param k  the number of desired clusters.
      * @param maxIterations the maximum number of clustering iterations.
@@ -58,9 +58,9 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
         mRandomSeed = randomSeed;
     }
 
-    /** 
+    /**
      * Adds a KMeansListener to be notified of significant happenings.
-     * 
+     *
      * @param l  the listener to be added.
      */
     public void addKMeansListener(SME_KMeansListener l) {
@@ -70,10 +70,10 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             }
         }
     }
-    
+
     /**
      * Removes a KMeansListener from the listener list.
-     * 
+     *
      * @param l the listener to be removed.
      */
     public void removeKMeansListener(SME_KMeansListener l) {
@@ -81,10 +81,10 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             mListeners.remove(l);
         }
     }
-    
+
     /**
      * Posts a message to registered KMeansListeners.
-     * 
+     *
      * @param message
      */
     private void postKMeansMessage(String message) {
@@ -97,10 +97,10 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             }
         }
     }
-    
+
     /**
      * Notifies registered listeners that k-means is complete.
-     * 
+     *
      * @param clusters the output of clustering.
      * @param executionTime the number of milliseconds taken to cluster.
      */
@@ -114,12 +114,12 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             }
         }
     }
-    
+
     /**
      * Notifies registered listeners that k-means has failed because of
      * a Throwable caught in the run method.
-     * 
-     * @param err 
+     *
+     * @param err
      */
     private void postKMeansError(Throwable err) {
         if (mListeners.size() > 0) {
@@ -135,29 +135,29 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
     /**
      * Get the clusters computed by the algorithm.  This method should
      * not be called until clustering has completed successfully.
-     * 
+     *
      * @return an array of Cluster objects.
      */
     public SME_Cluster[] getClusters() {
         return mClusters;
     }
-    
+
     /**
      * Run the clustering algorithm.
      */
     public void run() {
 
         try {
-            
+
             // Note the start time.
             long startTime = System.currentTimeMillis();
-            
+
             postKMeansMessage("K-Means clustering started");
-            
+
             // Randomly initialize the cluster centers creating the
             // array mProtoClusters.
             initCenters();
-            
+
             postKMeansMessage("... centers initialized");
 
             // Perform the initial computation of distances.
@@ -168,11 +168,11 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
 
             // Number of moves in the iteration and the iteration counter.
             int moves = 0, it = 0;
-            
+
             // Main Loop:
             //
             // Two stopping criteria:
-            // - no moves in makeAssignments 
+            // - no moves in makeAssignments
             //   (moves == 0)
             // OR
             // - the maximum number of iterations has been reached
@@ -182,7 +182,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
 
                 // Compute the centers of the clusters that need updating.
                 computeCenters();
-                
+
                 // Compute the stored distances between the updated clusters and the
                 // coordinates.
                 computeDistances();
@@ -191,7 +191,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
                 moves = makeAssignments();
 
                 it++;
-                
+
                 postKMeansMessage("... iteration " + it + " moves = " + moves);
 
             } while (moves > 0 && it < mMaxIterations);
@@ -199,15 +199,15 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             // Transform the array of ProtoClusters to an array
             // of the simpler class Cluster.
             mClusters = generateFinalClusters();
-            
+
             long executionTime = System.currentTimeMillis() - startTime;
-            
+
             postKMeansComplete(mClusters, executionTime);
-            
+
         } catch (Throwable t) {
-           
+
             postKMeansError(t);
-            
+
         } finally {
 
             // Clean up temporary data structures used during the algorithm.
@@ -222,10 +222,10 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
     private void initCenters() {
 
         Random random = new Random(mRandomSeed);
-        
+
         int coordCount = mCoordinates.length;
 
-        // The array mClusterAssignments is used only to keep track of the cluster 
+        // The array mClusterAssignments is used only to keep track of the cluster
         // membership for each coordinate.  The method makeAssignments() uses it
         // to keep track of the number of moves.
         if (mClusterAssignments == null) {
@@ -258,13 +258,13 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
     }
 
     /**
-     * Recompute the centers of the protoclusters with 
+     * Recompute the centers of the protoclusters with
      * update flags set to true.
      */
     private void computeCenters() {
-        
+
         int numClusters = mProtoClusters.length;
-        
+
         // Sets the update flags of the protoclusters that haven't been deleted and
         // whose memberships have changed in the iteration just completed.
         //
@@ -274,7 +274,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
                 if (!cluster.isEmpty()) {
                     // This sets the protocluster's update flag to
                     // true only if its membership changed in last call
-                    // to makeAssignments().  
+                    // to makeAssignments().
                     cluster.setUpdateFlag();
                     // If the update flag was set, update the center.
                     if (cluster.needsUpdate()) {
@@ -290,7 +290,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
         }
     }
 
-    /** 
+    /**
      * Compute distances between coodinates and cluster centers,
      * storing them in the distance cache.  Only distances that
      * need to be computed are computed.  This is determined by

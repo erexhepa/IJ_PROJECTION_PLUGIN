@@ -49,6 +49,9 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
     private ImageStack Blur4;
     private ImageStack Blur5;
 
+    private int lowBuffManifold ;
+    private int highBuffManifold ;
+
     private ImageStack stack1;
     private float[][] Map2DImage;
     private SME_Cluster[] clustersKmean;
@@ -66,6 +69,11 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
     private final String MANIFOLD   = "Manifold2D";
     private final String RAWIMAGE   = "RawStack";
     private double progressbar = 0;
+
+    public SME_Plugin_Get_Manifold() {
+        highBuffManifold = 0;
+        lowBuffManifold = 0;
+    }
 
     public double getProgressbar(){
 
@@ -88,6 +96,22 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
     public int setup(String arg, ImagePlus imp) {
         this.imp = imp;
         return DOES_ALL + STACK_REQUIRED; // Works for stack images
+    }
+
+    public int getLowBuffManifold() {
+        return lowBuffManifold;
+    }
+
+    public void setLowBuffManifold(int lowBuffManifold) {
+        this.lowBuffManifold = lowBuffManifold;
+    }
+
+    public int getHighBuffManifold() {
+        return highBuffManifold;
+    }
+
+    public void setHighBuffManifold(int highBuffManifold) {
+        this.highBuffManifold = highBuffManifold;
     }
 
     public void run(ImageProcessor ip) {

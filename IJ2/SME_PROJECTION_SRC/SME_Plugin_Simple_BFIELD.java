@@ -28,6 +28,14 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
     private ImagePlus manifold;
     private ImagePlus[] images;
 
+    public int getLowBuffManifold() {
+        return lowBuffManifold;
+    }
+
+
+    private int lowBuffManifold = 0;
+    private int highBuffManifold= 0;
+
     private static String none = "Red channel";
     private static int maxChannels = 4;
     private static int nmbChannels = 3;
@@ -50,12 +58,17 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
     private int height = 0;
     private SME_Plugin_Get_Manifold smePlugin;
 
+
     public void run(String arg) {
         processChannelsManifold();
     }
 
     public void getManifold(int indexChannel){
         smePlugin = new SME_Plugin_Get_Manifold();
+
+        smePlugin.setLowBuffManifold(this.getLowBuffManifold());
+        smePlugin.setHighBuffManifold(this.getHighBuffManifold());
+
         smePlugin.initProgressBar();
 
         smePlugin.setup("Manifold channel",images[indexChannel]);
@@ -114,6 +127,18 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         }
     }
 
+    public void setLowBuffManifold(int lowBuffManifold) {
+        this.lowBuffManifold = lowBuffManifold;
+    }
+
+    public int getHighBuffManifold() {
+        return highBuffManifold;
+    }
+
+    public void setHighBuffManifold(int highBuffManifold) {
+        this.highBuffManifold = highBuffManifold;
+    }
+
     public void processChannelsManifoldSimple() {
         images = new ImagePlus[1];
         images[0] = WindowManager.getCurrentImage();
@@ -138,6 +163,21 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
             error("There must be at least one source image or stack.");
             return;
         }
+
+        GenericDialog gd = new GenericDialog("SME Stacking");
+
+        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize()/2,0);
+        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize()/2,0);
+        //gd.addCheckbox("Keep source images", keep);
+        //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
+
+        gd.showDialog();
+
+        this.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
+        this.setHighBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getValue());
+
+        if (gd.wasCanceled())
+            return;
 
         // run manifold extraction on the first channel
         getManifold(0);
@@ -189,10 +229,15 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         GenericDialog gd = new GenericDialog("SME Stacking");
         gd.addChoice("Extract manifold from", titles, titles[0]);
 
-        //gd.addCheckbox("Create composite", createComposite);
+        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize()/2,0);
+        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize()/2,0);
         //gd.addCheckbox("Keep source images", keep);
         //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
         gd.showDialog();
+
+        this.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
+        this.setHighBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getValue());
+
         if (gd.wasCanceled())
             return;
 
