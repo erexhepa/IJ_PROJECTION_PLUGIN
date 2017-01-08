@@ -166,8 +166,8 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         GenericDialog gd = new GenericDialog("SME Stacking");
 
-        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize()/2,0);
-        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize()/2,0);
+        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
+        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
         //gd.addCheckbox("Keep source images", keep);
         //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
 
@@ -229,8 +229,8 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         GenericDialog gd = new GenericDialog("SME Stacking");
         gd.addChoice("Extract manifold from", titles, titles[0]);
 
-        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize()/2,0);
-        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize()/2,0);
+        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
+        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
         //gd.addCheckbox("Keep source images", keep);
         //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
         gd.showDialog();

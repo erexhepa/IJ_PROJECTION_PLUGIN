@@ -36,7 +36,7 @@ public class SME_ENS_Sml {
 
         float[] hG          = SME_ENS_Utils.convertDoubleVecFloat(hGDouble);
 
-        SME_ENS_Convolver convENS = new SME_ENS_Convolver();
+        SME_ENS_Convolver  convENS = new SME_ENS_Convolver();
 
         ImagePlus imp_sml = sme_pluginGetManifold.getImp().duplicate();
 
@@ -108,7 +108,7 @@ public class SME_ENS_Sml {
 
         float[] hG          = SME_ENS_Utils.convertDoubleVecFloat(hGDouble);
 
-        SME_ENS_Convolver convENS = new SME_ENS_Convolver();
+        SME_ENS_Convolver  convENS = new SME_ENS_Convolver();
 
         ImagePlus imp_sml = sme_pluginGetManifold.getImp().duplicate();
 

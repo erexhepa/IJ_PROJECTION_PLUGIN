@@ -5,6 +5,7 @@ import ij.ImagePlus;
 import ij.ImageStack;
 import ij.gui.Plot;
 import ij.plugin.ZAxisProfiler;
+import ij.plugin.Z_projection;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 import org.apache.commons.math3.linear.DefaultRealMatrixChangingVisitor;
@@ -423,6 +424,7 @@ public class SME_ENS_EnergyOptimisation {
         }
     }
 
+
     public void applyEnergyOptimisation(Boolean showResults) {
 
         //initWparam();
@@ -590,7 +592,7 @@ public class SME_ENS_EnergyOptimisation {
         for(int i=0;i<dimH;i++){
             for(int j=0;j<dimW;j++){
                 int zIndex = ((int) Math.round(idmaxk.getEntry(i,j)))-1;
-                projMnold.setEntry (i,j,rawStack.getVoxel(j,i,zIndex));
+                projMnold.setEntry(i,j,rawStack.getVoxel(j,i,zIndex));
             }
         }
 
@@ -600,6 +602,54 @@ public class SME_ENS_EnergyOptimisation {
         if(showResult) sme_pluginGetManifold.getSmeImage().show();
     }
 
+    public void setOutputSME(Boolean showResult, int lowLevel, int highLevel){
+        double norm_factor  =   sme_pluginGetManifold.getStack1().getSize();
+        int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
+        int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
+
+        ImageStack rawStack  = sme_pluginGetManifold.getStack();
+        RealMatrix projMnold = MatrixUtils.createRealMatrix(dimH,dimW);
+
+        for(int i=0;i<dimH;i++){
+            for(int j=0;j<dimW;j++){
+                int zIndex = ((int) Math.round(idmaxk.getEntry(i,j)))-1;
+                if(lowLevel==0 & highLevel==0){
+                    projMnold.setEntry(i,j,rawStack.getVoxel(j,i,zIndex));
+                }else {
+                    ImageStack voxelData = rawStack.crop(j,i,0,1,1,sme_pluginGetManifold.getStack().getSize());
+
+                    // set to 0 all pixels which fall outside the local manifold-voxel neighboorhood
+                    int iterUp = zIndex-highLevel;
+                    int iterDown = zIndex+lowLevel;
+
+                    if(iterUp<0)
+                        iterUp=0;
+                    if(iterDown>=(sme_pluginGetManifold.getStack().getSize()-1))
+                        iterDown=sme_pluginGetManifold.getStack().getSize()-1;
+
+                    for(int ivox=0;ivox<iterUp;ivox++){
+                        voxelData.setVoxel(0,0,ivox,0);
+                    }
+
+                    for(int ivox=iterDown;ivox<sme_pluginGetManifold.getStack().getSize();ivox++){
+                        voxelData.setVoxel(0,0,ivox,0);
+                    }
+
+                    ZProjector zproject = new ZProjector();
+                    zproject.setMethod(ZProjector.MAX_METHOD);
+                    zproject.setImage(new ImagePlus("IterativeProjection", voxelData));
+                    zproject.doProjection();
+
+                    projMnold.setEntry(i,j,zproject.getProjection().getStack().getVoxel(0,0,0));
+                }
+            }
+        }
+
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
+        ImagePlus smeManifold = new ImagePlus("ProjectionSME",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+        sme_pluginGetManifold.setSmeImage(smeManifold);
+        if(showResult) sme_pluginGetManifold.getSmeImage().show();
+    }
     private static class SetVisitorRound extends DefaultRealMatrixChangingVisitor {
         @Override
         public double visit(int i, int j, double value) {

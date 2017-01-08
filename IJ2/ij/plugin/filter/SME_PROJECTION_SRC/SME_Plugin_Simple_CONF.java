@@ -165,14 +165,14 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         }
 
         GenericDialog gd = new GenericDialog("SME Stacking");
-        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize()/2,0);
-        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize()/2,0);
+        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
+        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
         //gd.addCheckbox("Keep source images", keep);
         //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
         gd.showDialog();
 
-        smePlugin.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getX());
-        smePlugin.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getX());
+        this.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
+        this.setHighBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getValue());
 
         if (gd.wasCanceled())
             return;
@@ -227,14 +227,14 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         GenericDialog gd = new GenericDialog("SME Stacking");
         gd.addChoice("Extract manifold from", titles, titles[0]);
 
-        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize()/2,0);
-        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize()/2,0);
+        gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
+        gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
         //gd.addCheckbox("Keep source images", keep);
         //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
         gd.showDialog();
 
-        smePlugin.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getX());
-        smePlugin.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getX());
+        this.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
+        this.setHighBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getValue());
 
         if (gd.wasCanceled())
             return;

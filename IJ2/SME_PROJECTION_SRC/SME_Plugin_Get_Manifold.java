@@ -189,7 +189,7 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
         SME_ENS_EnergyOptimisation enOpt = new SME_ENS_EnergyOptimisation(this);
         enOpt.applyEnergyOptimisation(showIntResults);
         enOpt.setOutputManifold(showIntResults);
-        enOpt.setOutputSME(showIntResults);
+        enOpt.setOutputSME(showIntResults,this.getLowBuffManifold(),this.getHighBuffManifold());
     }
 
     public ImagePlus getKmeanMaping(){
