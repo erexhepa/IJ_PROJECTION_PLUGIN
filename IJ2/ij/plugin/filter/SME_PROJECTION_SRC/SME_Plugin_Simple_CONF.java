@@ -7,6 +7,7 @@ import ij.plugin.PlugIn;
 import ij.plugin.RGBStackMerge;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import ij.process.LUT;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
@@ -295,6 +296,9 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
         RGBStackMerge channelMerger = new RGBStackMerge();
         ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+        LUT[] lutTable = (((CompositeImage)hyperStackSME)).getLuts();
+        ((CompositeImage) mergedHyperstack).setLuts(lutTable);
+
         mergedHyperstack.show();
         mergedHyperstack.setTitle("SME PROJECTION - CONFOCAL");
 
@@ -314,7 +318,7 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
     }
 
 
-    public void runConfColour(int index){
+    public void runConfColour(int index,LUT[] lutTable){
         getManifold(index);
 
         manifoldModel = smePlugin.getMfoldImage();
@@ -342,6 +346,9 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
         RGBStackMerge channelMerger = new RGBStackMerge();
         ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+
+        ((CompositeImage) mergedHyperstack).setLuts(lutTable);
+
         mergedHyperstack.show();
         mergedHyperstack.setTitle("SME PROJECTION - CONFOCAL");
 

@@ -5,8 +5,11 @@ import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
 import ij.plugin.RGBStackMerge;
+import ij.plugin.filter.SME_PROJECTION_SRC.SME_ENS_Utils;
+import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Get_Manifold;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import ij.process.LUT;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
@@ -299,6 +302,10 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         RGBStackMerge channelMerger = new RGBStackMerge();
         ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+
+        LUT[] lutTable = (((CompositeImage)hyperStackSME)).getLuts();
+        ((CompositeImage) mergedHyperstack).setLuts(lutTable);
+
         mergedHyperstack.show();
         mergedHyperstack.setTitle("SME PROJECTION - WIDE FIELD");
         /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
@@ -317,7 +324,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
     }
 
-    public void runBfieldColour(int index){
+    public void runBfieldColour(int index,LUT[] lutTable){
         // run manifold extraction on the first channel
         getManifold(index);
 
@@ -346,6 +353,9 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         RGBStackMerge channelMerger = new RGBStackMerge();
         ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+
+        ((CompositeImage) mergedHyperstack).setLuts(lutTable);
+
         mergedHyperstack.show();
         mergedHyperstack.setTitle("SME PROJECTION - WIDE FIELD");
         /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
@@ -379,7 +389,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         int dimW            =   imStack.getWidth();
         int dimH            =   imStack.getHeight();
 
-        RealMatrix projMnold    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
+        RealMatrix projMnold    = MatrixUtils.createRealMatrix(ij.plugin.filter.SME_PROJECTION_SRC.SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
 
         for(int j=0;j<dimH;j++){
             for(int i=0;i<dimW;i++){

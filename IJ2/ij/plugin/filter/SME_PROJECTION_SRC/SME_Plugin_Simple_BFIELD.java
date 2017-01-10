@@ -9,6 +9,7 @@ import ij.plugin.RGBStackMerge;
 import ij.plugin.filter.PlugInFilter;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import ij.process.LUT;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
@@ -303,6 +304,10 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         RGBStackMerge channelMerger = new RGBStackMerge();
         ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+
+        LUT[] lutTable = (((CompositeImage)hyperStackSME)).getLuts();
+        ((CompositeImage) mergedHyperstack).setLuts(lutTable);
+
         mergedHyperstack.show();
         mergedHyperstack.setTitle("SME PROJECTION - WIDE FIELD");
         /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
@@ -321,7 +326,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
     }
 
-    public void runBfieldColour(int index){
+    public void runBfieldColour(int index,LUT[] lutTable){
         // run manifold extraction on the first channel
         getManifold(index);
 
@@ -350,6 +355,9 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         RGBStackMerge channelMerger = new RGBStackMerge();
         ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+
+        ((CompositeImage) mergedHyperstack).setLuts(lutTable);
+
         mergedHyperstack.show();
         mergedHyperstack.setTitle("SME PROJECTION - WIDE FIELD");
         /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);

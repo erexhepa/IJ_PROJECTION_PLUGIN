@@ -7,6 +7,7 @@ import ij.plugin.PlugIn;
 import ij.plugin.RGBStackMerge;
 import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
+import ij.process.LUT;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
@@ -161,12 +162,14 @@ public class SME_Plugin_Simple implements PlugIn {
             smePluginConf.setStackSize(stackSize);
             smePluginBfield.setStackSize(stackSize);
 
+            LUT[] lutTable = (((CompositeImage)hyperStackSME)).getLuts();
+
             if(gd.getNextBoolean()==Boolean.TRUE){
                 //confocal multichannel
-                smePluginConf.runConfColour(index);
+                smePluginConf.runConfColour(index,lutTable);
             }else{
                 //brighfield multichannel
-                smePluginBfield.runBfieldColour(index);
+                smePluginBfield.runBfieldColour(index,lutTable);
             }
 
         }else{

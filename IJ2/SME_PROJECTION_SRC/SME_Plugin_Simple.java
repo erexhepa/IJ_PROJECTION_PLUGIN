@@ -6,6 +6,8 @@ import ij.WindowManager;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
+import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Get_Manifold;
+import ij.process.LUT;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
@@ -155,12 +157,14 @@ public class SME_Plugin_Simple implements PlugIn {
             smePluginConf.setStackSize(stackSize);
             smePluginBfield.setStackSize(stackSize);
 
+            LUT[] lutTable = (((CompositeImage)hyperStackSME)).getLuts();
+
             if(gd.getNextBoolean()==Boolean.TRUE){
                 //confocal multichannel
-                smePluginConf.runConfColour(index);
+                smePluginConf.runConfColour(index,lutTable);
             }else{
                 //brighfield multichannel
-                smePluginBfield.runBfieldColour(index);
+                smePluginBfield.runBfieldColour(index,lutTable);
             }
 
         }else{
