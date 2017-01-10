@@ -17,7 +17,7 @@ public class SME_BenchmarkedKMeansInterface implements SME_KMeans_Paralel {
     // an array of the simpler class Cluster at the conclusion.
     private ProtoCluster[] mProtoClusters;
 
-    // Cache of coordinate-to-cluster distances. Number of entries = 
+    // Cache of coordinate-to-cluster distances. Number of entries =
     // number of clusters X number of coordinates.
     private double[][] mDistanceCache;
 
@@ -35,7 +35,7 @@ public class SME_BenchmarkedKMeansInterface implements SME_KMeans_Paralel {
     // Seed for the random number generator used to select
     // coordinates for the initial cluster centers.
     private long mRandomSeed;
-    
+
     // An array of Cluster objects: the output of k-means.
     private SME_Cluster[] mClusters;
 

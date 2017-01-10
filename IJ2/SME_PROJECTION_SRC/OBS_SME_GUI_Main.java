@@ -54,7 +54,7 @@ public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMea
 
 
     public OBS_SME_GUI_Main(int numClust_, double[][] result_fft) {
-
+            
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         coordinates = result_fft;
         contentPane = (JPanel) getContentPane();
@@ -137,7 +137,7 @@ public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMea
         mTopPanel.add(mRunButton, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0
                 , GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 5, 10), 0, 0));
-
+        
         mImplementationCB.addItem(BASIC_KMEANS);
         mImplementationCB.addItem(BENCHMARKED_KMEANS);
         mImplementationCB.addItem(CONCURRENT_KMEANS);
@@ -162,10 +162,10 @@ public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMea
         }
         return value;
     }
-
+    
     /**
      * Generates the coordinates to be clustered.
-     *
+     * 
      * @param coordCount the number of coordinates.
      * @param dimensions the length of the coordinates.
      * @param clusterCount the number of clusters in the distribution.
@@ -176,10 +176,10 @@ public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMea
             int coordCount, int dimensions, int clusterCount, long randomSeed)
     throws SME_InsufficientMemoryException {
 
-        // Explicit garbage collection to reduce the likelihood of
+        // Explicit garbage collection to reduce the likelihood of 
         // having insufficient memory.
         System.gc();
-
+        
         long memRequired = 8L * (long) dimensions * (long) (coordCount + clusterCount);
         if (Runtime.getRuntime().freeMemory() < memRequired) {
             throw new SME_InsufficientMemoryException();

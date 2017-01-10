@@ -41,8 +41,8 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
     private int highBuffManifold= 0;
 
     private static String none = "Red channel";
-    private static int maxChannels = 4;
-    private static int nmbChannels = 3;
+    private int maxChannels = 4;
+    private int nmbChannels = 3;
     private static String[] colors = {"Channel1 stack1 to appy the manifold",
             "Channel2 stack1 to appy the manifold",
             "Channel3 stack1 to appy the manifold",
@@ -321,7 +321,63 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
     }
 
+    public void runBfieldColour(int index){
+        // run manifold extraction on the first channel
+        getManifold(index);
 
+        manifoldModel = smePlugin.getMfoldImage();
+        //manifoldModel.show();
+        //smePlugin.getSmeImage().show();
+
+        ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
+        for(int i=0; i<maxChannels; i++){
+            if(images[i]==null) break;
+            listChannels.add(images[i]);
+        }
+
+        List<ImagePlus> processedImages = listChannels.stream().
+                map(channelIt ->{
+                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    return itIm;})
+                .collect(toList());
+
+        ImagePlus[] vecChannels = new ImagePlus[images.length];
+
+        for(int i=0; i<processedImages.size(); i++){
+            if(images[i]==null) break;
+            vecChannels[i]= processedImages.get(i);
+        }
+
+        RGBStackMerge channelMerger = new RGBStackMerge();
+        ImagePlus mergedHyperstack  = channelMerger.mergeHyperstacks(vecChannels,false);
+        mergedHyperstack.show();
+        mergedHyperstack.setTitle("SME PROJECTION - WIDE FIELD");
+        /*ForkJoinPool forkJoinPool = new ForkJoinPool(8);
+        CompletableFuture<List<ImagePlus>> processedImages =  CompletableFuture.supplyAsync(()->
+
+                        listChannels.parallelStream().
+                                map(channelIt ->{
+                                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                                    itIm.show();
+                                    return itIm;})
+                                .collect(toList()),
+                forkJoinPool
+        );*/
+
+        smePlugin.updateProgressbar(1);
+        smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
+    }
+
+    public void runBfieldMono(int index){
+        getManifold(0);
+
+        // run manifold extraction on the first channel
+        manifoldModel = smePlugin.getMfoldImage();
+        //manifoldModel.show();
+        smePlugin.getSmeImage().show();
+        smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
+        smePlugin.updateProgressbar(1);
+    }
 
     public ImagePlus applyStackManifold(ImageStack imStack, ImagePlus manifold){
         int dimW            =   imStack.getWidth();
@@ -344,5 +400,181 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
     void error(String msg) {
         IJ.error("Merge Channels", msg);
+    }
+
+    public ImagePlus getImp() {
+        return imp;
+    }
+
+    public void setImp(ImagePlus imp) {
+        this.imp = imp;
+    }
+
+    public ImagePlus getRawImage() {
+        return rawImage;
+    }
+
+    public void setRawImage(ImagePlus rawImage) {
+        this.rawImage = rawImage;
+    }
+
+    public ImagePlus getProjectedImage() {
+        return projectedImage;
+    }
+
+    public void setProjectedImage(ImagePlus projectedImage) {
+        this.projectedImage = projectedImage;
+    }
+
+    public ImagePlus getManifold() {
+        return manifold;
+    }
+
+    public void setManifold(ImagePlus manifold) {
+        this.manifold = manifold;
+    }
+
+    public ImagePlus[] getImages() {
+        return images;
+    }
+
+    public void setImages(ImagePlus[] images) {
+        this.images = images;
+    }
+
+    public static String getNone() {
+        return none;
+    }
+
+    public static void setNone(String none) {
+        SME_Plugin_Simple_BFIELD.none = none;
+    }
+
+    public int getMaxChannels() {
+        return maxChannels;
+    }
+
+    public void setMaxChannels(int maxChannels) {
+        this.maxChannels = maxChannels;
+    }
+
+    public int getNmbChannels() {
+        return nmbChannels;
+    }
+
+    public void setNmbChannels(int nmbChannels) {
+        this.nmbChannels = nmbChannels;
+    }
+
+    public static String[] getColors() {
+        return colors;
+    }
+
+    public static void setColors(String[] colors) {
+        SME_Plugin_Simple_BFIELD.colors = colors;
+    }
+
+    public static boolean isStaticCreateComposite() {
+        return staticCreateComposite;
+    }
+
+    public static void setStaticCreateComposite(boolean staticCreateComposite) {
+        SME_Plugin_Simple_BFIELD.staticCreateComposite = staticCreateComposite;
+    }
+
+    public static boolean isStaticKeep() {
+        return staticKeep;
+    }
+
+    public static void setStaticKeep(boolean staticKeep) {
+        SME_Plugin_Simple_BFIELD.staticKeep = staticKeep;
+    }
+
+    public static boolean isStaticIgnoreLuts() {
+        return staticIgnoreLuts;
+    }
+
+    public static void setStaticIgnoreLuts(boolean staticIgnoreLuts) {
+        SME_Plugin_Simple_BFIELD.staticIgnoreLuts = staticIgnoreLuts;
+    }
+
+    public ImagePlus getManifoldModel() {
+        return manifoldModel;
+    }
+
+    public void setManifoldModel(ImagePlus manifoldModel) {
+        this.manifoldModel = manifoldModel;
+    }
+
+    public byte[] getBlank() {
+        return blank;
+    }
+
+    public void setBlank(byte[] blank) {
+        this.blank = blank;
+    }
+
+    public boolean isIgnoreLuts() {
+        return ignoreLuts;
+    }
+
+    public void setIgnoreLuts(boolean ignoreLuts) {
+        this.ignoreLuts = ignoreLuts;
+    }
+
+    public boolean isAutoFillDisabled() {
+        return autoFillDisabled;
+    }
+
+    public void setAutoFillDisabled(boolean autoFillDisabled) {
+        this.autoFillDisabled = autoFillDisabled;
+    }
+
+    public String getFirstChannelName() {
+        return firstChannelName;
+    }
+
+    public void setFirstChannelName(String firstChannelName) {
+        this.firstChannelName = firstChannelName;
+    }
+
+    public ImagePlus[] getProjectionStacks() {
+        return projectionStacks;
+    }
+
+    public void setProjectionStacks(ImagePlus[] projectionStacks) {
+        this.projectionStacks = projectionStacks;
+    }
+
+    public int getStackSize() {
+        return stackSize;
+    }
+
+    public void setStackSize(int stackSize) {
+        this.stackSize = stackSize;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public SME_Plugin_Get_Manifold getSmePlugin() {
+        return smePlugin;
+    }
+
+    public void setSmePlugin(SME_Plugin_Get_Manifold smePlugin) {
+        this.smePlugin = smePlugin;
     }
 }
