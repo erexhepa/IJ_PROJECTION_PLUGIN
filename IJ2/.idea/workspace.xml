@@ -2,20 +2,502 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5173cfe1-0f70-4885-9646-96db2049f811" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.FBCIndex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.FBCLockFolder/.FBCSemaphoreFile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.gdb_history" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/IJ2.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/IJ_Props.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/aREADME.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/applet.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/CommandListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/CompositeImage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Executer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/IJ$ExceptionHandler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/IJ.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/IJEventListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageJ.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageJApplet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImagePlus.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/ImageStack.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/LookUpTable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Macro.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Menus.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance$ImageJInstance.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance$Implementation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/OtherInstance.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Prefs.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/RecentOpener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/Undo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/VirtualStack.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/WindowManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Arrow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ColorChooser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ColorPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/DialogListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/EllipseRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/FreehandRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/GUI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/GenericDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HTMLDialog$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HTMLDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/HistogramWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageCanvas.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageLayout.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImagePanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ImageWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Line.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/MessageDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/MultiLineLabel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NewImage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NonBlockingGenericDialog$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/NonBlockingGenericDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/OvalRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Overlay.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Plot.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotCanvas.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotDialog$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotMaker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotObject.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PlotWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PointRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/PolygonRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ProfilePlot.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ProgressBar.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Roi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiBrush.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/RoiProperties.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/SaveChangesDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ScrollbarWithLabel$Icon.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ScrollbarWithLabel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/ShapeRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/StackWindow$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/StackWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/TextRoi.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Toolbar.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/TrimmedButton.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/WaitForUserDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/Wand.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/gui/YesNoCancelDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/BitBuffer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ByteVector.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/DirectoryChooser$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/DirectoryChooser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileOpener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/FileSaver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImageReader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImageWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/ImportDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/LogStream.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/OpenDialog$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/OpenDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/Opener$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/Opener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/PluginClassLoader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/RandomAccessStream.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/RoiDecoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/RoiEncoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/SaveDialog$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/SaveDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/TextEncoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/TiffDecoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/io/TiffEncoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Debugger.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/ExtensionDescriptor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/FunctionFinder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Functions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Interpreter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroConstants.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroExtension.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/MacroRunner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Program.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/ReturnException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Symbol.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Tokenizer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/macro/Variable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Calibration.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/CurveFitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Measurements.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Minimizer$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/Minimizer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/ResultsTable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/SplineFitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/measure/UserFunction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AVI_Reader$raInputStream.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AVI_Reader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AboutBox.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Animator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/AppearanceOptions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ArrowToolOptions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMPDecoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMP_Reader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BMP_Writer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchMeasure.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BatchProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Binner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/BrowserLauncher.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CalibrationBar$LiveDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CalibrationBar.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CanvasResizer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ChannelArranger.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ChannelSplitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ClassChecker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Clipboard.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ColorPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Colors.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$CommandAction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$PromptDocumentListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder$TableModel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandFinder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CommandLister.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Commands.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Compiler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool$JavaxCompilerTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool$LegacyCompilerTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompilerTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/CompositeConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Concatenator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ContrastEnhancer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ControlPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Converter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DICOM.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DicomDecoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DicomDictionary.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Distribution.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/DragAndDrop.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Duplicator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/EventListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFT.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FFTMath.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FITS_Reader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FITS_Writer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FileInfoVirtualStack.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Filters3D$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Filters3D.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FitsDecoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FolderOpener$FolderOpenerDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/FolderOpener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GIF_Reader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GaussianBlur3D.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GelAnalyzer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifDecoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifEncoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifFrame.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GifWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/GroupedZProjector.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Histogram.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Hotkeys.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackMaker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/HyperStackReducer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImageCalculator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImageJ_Updater.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ImagesToStack.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JavaProperties.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JavaScriptEvaluator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/JpegWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LUT_Editor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LZWEncoder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ListVirtualStack.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/LutLoader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MacroInstaller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Macro_Runner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MeasurementsWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Memory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/MontageMaker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/NewPlugin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/NextImageOpener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Options.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Orthogonal_Views.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/OverlayCommands.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/OverlayLabels.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PGM_Reader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PNG_Writer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PNM_Writer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Plots.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlotsCanvas.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugIn.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugInExecuter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PlugInInterpreter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PluginInstaller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/PointToolOptions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Profiler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Projector.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ProxySettings.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RGBStackConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RGBStackMerge.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RandomOvals.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Raw.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RectToolOptions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Resizer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ResultsSorter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiEnlarger.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiInterpolator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiReader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiRotator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/RoiScaler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScaleBar$BarDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScaleBar.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Scaler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ScreenGrabber.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Selection.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SimpleCommands$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SimpleCommands.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Slicer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SpecifyROI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackCombiner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackEditor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackInserter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackMaker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackReducer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackReverser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/StackWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Stack_Statistics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Startup.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Straightener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SubHyperstackMaker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SubstackMaker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/SurfacePlotter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Text.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextFileReader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextReader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TextWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ThreadLister.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Thresholder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ThumbnailsCanvas.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Timer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Timer2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/TreePanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/URLOpener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/WandToolOptions.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/WindowOrganizer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/XYCoordinates.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/XY_Reader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZAxisProfiler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$AverageIntensity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$MaxIntensity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$MinIntensity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$RayFunction.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector$StandardDeviation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/ZProjector.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/Zoom.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/AVI_Writer$RaOutputStream.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/AVI_Writer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Analyzer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/BackgroundSubtracter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Benchmark.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Binary.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Calibrator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Convolver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Duplicater.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/EDM.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ExtendedPlugInFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FFTCustomFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FFTFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Filler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Filters.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/FractalBoxCounter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/GaussianBlur$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/GaussianBlur.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ImageMath.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ImageProperties.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Info.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LineGraphAnalyzer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Log2_.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutApplier.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutViewer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/LutWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/MaximumFinder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ParticleAnalyzer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/PlugInFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/PlugInFilterRunner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Printer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RGBStackSplitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RankFilters$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RankFilters.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RoiWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/RollingBall.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Rotator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/SaltAndPepper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ScaleDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/SetScaleDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Shadows.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/StackLabeler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ThresholdToSelection$Outline.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/ThresholdToSelection.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Transformer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Translator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/UnsharpMask.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/Writer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/filter/XYWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Channels.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorCanvas.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorPicker.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorThresholder$BandPlot.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ColorThresholder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ContrastAdjuster.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ContrastPlot.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/DisplayChangeEvent.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/DisplayChangeListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Editor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Fitter$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Fitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/IJEventMulticaster.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/LineWidthAdjuster.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/MemoryMonitor$PlotCanvas.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/MemoryMonitor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PasteController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PlugInDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/PlugInFrame.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/Recorder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/RoiManager$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/RoiManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/SyncWindows.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ThresholdAdjuster.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/ThresholdPlot.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/frame/TrimmedLabel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/ArrowTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/BrushTool$Options.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/BrushTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/MacroToolRunner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/OverlayBrushTool$Options.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/OverlayBrushTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PixelInspectionTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PixelInspector.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/plugin/tool/PlugInTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder$Method.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/AutoThresholder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryInterpolator$IDT.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryInterpolator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/BinaryProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/Blitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteBlitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ByteStatistics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorBlitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorSpaceConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ColorStatistics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/Cube.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/DownsizeTable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/EllipseFitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FHT.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatBlitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatPolygon.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloatStatistics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/FloodFiller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ImageStatistics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/LUT.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/MedianCut.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/PolygonFiller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortBlitter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/ShortStatistics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackProcessor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/StackStatistics.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/process/TypeConverter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextCanvas.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextPanel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/text/TextWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/ArrayUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/DicomTools.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Java2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/StringSorter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/ThreadUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/Tools.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/util/WildcardMatch.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/images/about.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/images/microscope.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/AddParticles.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/Circle_Tool.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/ConvertStackToBinary.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/DeveloperMenuTool.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/Filter_Plugin.src" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/FloodFillTool.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/LUTMenuTool.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/MoveSelection.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/My_Plugin.src" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/Plugin_Frame.src" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/Prototype_Tool.src" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/Search.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/ShowAllLuts.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/SprayCanTool.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/StacksMenuTool.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/StartupMacros.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/macros/TimeStamp.ijm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/plugins/MacAdapter.source" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/plugins/MacClipboard.source" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/IJ2/release-notes.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_stacking.jar" afterPath="$PROJECT_DIR$/SME_stacking.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/ij/CompositeImage.class" afterPath="$PROJECT_DIR$/out/production/IJ2/ij/CompositeImage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src_java.jar" afterPath="$PROJECT_DIR$/src_java.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../kmeansResult.tiff" afterPath="$PROJECT_DIR$/../kmeansResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../smlResult.tiff" afterPath="$PROJECT_DIR$/../smlResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_BasicKMeansInterface.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_BasicKMeansInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_GUI_Main.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_GUI_Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeansInterface.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeansInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Data_Profiler.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Data_Profiler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Complex.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Complex.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Filter_FFT_.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Filter_FFT_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GUI_MAIN.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GUI_MAIN.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Prepare.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Prepare.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_PixelPoints.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_PixelPoints.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_COLOURS.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_COLOURS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Function.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Function.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Max_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Max_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Min_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Min_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/CompositeImage.java" afterPath="$PROJECT_DIR$/ij/CompositeImage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/IJ2/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
     </list>
     <ignored path="IJ2.iws" />
@@ -38,72 +520,8 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ZProjector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2139#2140#0" expanded="false" />
-                <element signature="e#2163#2164#0" expanded="false" />
-                <element signature="e#2783#2784#0" expanded="false" />
-                <element signature="e#2809#2810#0" expanded="false" />
-                <element signature="e#2917#2918#0" expanded="false" />
-                <element signature="e#2944#2945#0" expanded="false" />
-                <element signature="e#5048#5049#0" expanded="false" />
-                <element signature="e#5089#5090#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SME_KMeans_Concurrent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2072#2092#0" expanded="false" />
-                <element signature="e#3701#3702#0" expanded="false" />
-                <element signature="e#3734#3735#0" expanded="false" />
-                <element signature="e#3793#3794#0" expanded="false" />
-                <element signature="e#3837#3838#0" expanded="false" />
-                <element signature="e#3885#3886#0" expanded="false" />
-                <element signature="e#3926#3927#0" expanded="false" />
-                <element signature="e#3998#3999#0" expanded="false" />
-                <element signature="e#4058#4059#0" expanded="false" />
-                <element signature="e#4145#4146#0" expanded="false" />
-                <element signature="e#4185#4186#0" expanded="false" />
-                <element signature="e#4294#4295#0" expanded="false" />
-                <element signature="e#4352#4353#0" expanded="false" />
-                <element signature="e#6699#6700#0" expanded="false" />
-                <element signature="e#6731#6732#0" expanded="false" />
-                <element signature="e#15857#15870#0" expanded="false" />
-                <element signature="e#18527#18528#0" expanded="false" />
-                <element signature="e#18565#18566#0" expanded="false" />
-                <element signature="e#20025#20026#0" expanded="false" />
-                <element signature="e#20073#20074#0" expanded="false" />
-                <element signature="e#21654#21655#0" expanded="false" />
-                <element signature="e#21707#21708#0" expanded="false" />
-                <element signature="e#21913#21914#0" expanded="false" />
-                <element signature="e#21963#21964#0" expanded="false" />
-                <element signature="e#22269#22270#0" expanded="false" />
-                <element signature="e#22311#22312#0" expanded="false" />
-                <element signature="e#26297#26638#0" expanded="false" />
-                <element signature="e#26637#26638#0" expanded="false" />
-                <element signature="e#26895#27241#0" expanded="false" />
-                <element signature="e#27240#27241#0" expanded="false" />
-                <element signature="e#32686#32687#0" expanded="false" />
-                <element signature="e#32731#32732#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plugins.config" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/plugins.config">
+      <file leaf-file-name="SME_ENS_Kmeans_Engine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -112,49 +530,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_Plugin_Simple_CONF.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4365">
-              <caret line="349" column="62" selection-start-line="349" selection-start-column="8" selection-end-line="349" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#processChannelsManifoldSimple#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SME_Plugin_Simple_BFIELD.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1335">
-              <caret line="328" column="48" selection-start-line="328" selection-start-column="48" selection-end-line="328" selection-end-column="48" />
-              <folding>
-                <element signature="method#getManifold#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
-                <element signature="method#runSmlStep#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
-                <element signature="method#runKmeansStep#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
-                <element signature="method#processChannelsManifoldSimple#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
-                <element signature="method#processChannelsManifoldColors#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SME_Plugin_Get_Manifold.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="162" column="5" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
-              <folding>
-                <element signature="method#run#0;class#SME_Plugin_Get_Manifold#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SME_Plugin_Simple.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
+      <file leaf-file-name="SME_ENS_ENS_Projection_Average_Intensity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -163,8 +540,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_Plugin_Simple_CONF.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java">
+      <file leaf-file-name="SME_ENS_Projection_STD_Intensity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -173,8 +550,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_Plugin_Simple_BFIELD.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java">
+      <file leaf-file-name="SME_ENS_Projection_Sum_Intensity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -183,14 +560,62 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_Plugin_Simple.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
+      <file leaf-file-name="SME_ENS_Sml_TEST.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2565">
-              <caret line="171" column="62" selection-start-line="171" selection-start-column="62" selection-end-line="171" selection-end-column="62" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SME_ENS_GaussianProccessing.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SME_ENS_Projection_Median_Intensity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OBS_SME_Plugin_GUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SME_ENS_Image_Component.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SME_ENS_Kmean_Control.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -232,6 +657,7 @@
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
         <option value="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" />
       </list>
     </option>
   </component>
@@ -307,8 +733,8 @@
       <recent name="ij.plugin.filter.SME_PROJECTION_SRC" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/SME_PROJECTION_SRC" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/SME_PROJECTION_SRC" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ImageJplugin">
@@ -794,7 +1220,7 @@
       <workItem from="1483909782880" duration="5956000" />
       <workItem from="1483992262506" duration="11460000" />
       <workItem from="1484085658485" duration="1262000" />
-      <workItem from="1484086927748" duration="173000" />
+      <workItem from="1484086927748" duration="663000" />
     </task>
     <task id="LOCAL-00001" summary="ADD EXAMPLE IMAGES AND TODO LIST - NAT METHODS REPLY">
       <created>1476249885404</created>
@@ -838,19 +1264,26 @@
       <option name="project" value="LOCAL" />
       <updated>1484007918742</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed issue with output color not being the same as output colour.">
+      <created>1484087134439</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1484087134439</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42154000" />
+    <option name="totallyTimeSpent" value="42644000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="30" y="23" width="1410" height="877" extended-state="6" />
+    <frame x="30" y="23" width="1410" height="877" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -915,7 +1348,8 @@
     <MESSAGE value="UPDATED corrected interfaces to take into account the number of layers above and below the manifold." />
     <MESSAGE value="UPDATED corrected interface bugs related to the new added functionalities of buffer around manifold. Color mix on confocal stack still not fixed." />
     <MESSAGE value="Merged Conf and BrightField interfaces together" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged Conf and BrightField interfaces together" />
+    <MESSAGE value="Fixed issue with output color not being the same as output colour." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with output color not being the same as output colour." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -958,42 +1392,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_GUI_MAIN.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="324" column="5" selection-start-line="324" selection-start-column="5" selection-end-line="324" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="218" column="53" selection-start-line="218" selection-start-column="53" selection-end-line="218" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_Convolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="405" column="42" selection-start-line="405" selection-start-column="42" selection-end-line="405" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_Sml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java" />
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java" />
     <entry file="file://$PROJECT_DIR$/TODO.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -1005,9 +1403,7 @@
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" />
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java" />
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Max_Intensity.java" />
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java" />
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java" />
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java" />
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Data_Profiler.java" />
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" />
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" />
@@ -1060,29 +1456,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/plugins.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1102,6 +1475,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="359" column="52" selection-start-line="359" selection-start-column="52" selection-end-line="359" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1148,15 +1522,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#523#524#0" expanded="false" />
-            <element signature="e#554#555#0" expanded="false" />
-            <element signature="e#587#588#0" expanded="false" />
-            <element signature="e#620#621#0" expanded="false" />
-            <element signature="e#654#655#0" expanded="false" />
-            <element signature="e#683#684#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1164,15 +1530,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1657#1658#0" expanded="false" />
-            <element signature="e#1694#1695#0" expanded="false" />
-            <element signature="e#1794#1795#0" expanded="false" />
-            <element signature="e#1846#1847#0" expanded="false" />
-            <element signature="e#13545#13546#0" expanded="false" />
-            <element signature="e#13581#13582#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1180,23 +1538,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3725#3726#0" expanded="false" />
-            <element signature="e#3751#3752#0" expanded="false" />
-            <element signature="e#15787#15788#0" expanded="false" />
-            <element signature="e#15822#15823#0" expanded="false" />
-            <element signature="e#15881#15882#0" expanded="false" />
-            <element signature="e#15929#15930#0" expanded="false" />
-            <element signature="e#15973#15974#0" expanded="false" />
-            <element signature="e#16010#16011#0" expanded="false" />
-            <element signature="e#16073#16074#0" expanded="false" />
-            <element signature="e#16125#16126#0" expanded="false" />
-            <element signature="e#16163#16164#0" expanded="false" />
-            <element signature="e#16194#16195#0" expanded="false" />
-            <element signature="e#16245#16246#0" expanded="false" />
-            <element signature="e#16285#16286#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1212,12 +1554,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#2454#2455#0" expanded="false" />
-            <element signature="e#2520#2521#0" expanded="false" />
-            <element signature="e#3979#3980#0" expanded="false" />
-            <element signature="e#4022#4023#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1225,9 +1562,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1235,17 +1570,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2139#2140#0" expanded="false" />
-            <element signature="e#2163#2164#0" expanded="false" />
-            <element signature="e#2783#2784#0" expanded="false" />
-            <element signature="e#2809#2810#0" expanded="false" />
-            <element signature="e#2917#2918#0" expanded="false" />
-            <element signature="e#2944#2945#0" expanded="false" />
-            <element signature="e#5048#5049#0" expanded="false" />
-            <element signature="e#5089#5090#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1253,41 +1578,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2072#2092#0" expanded="false" />
-            <element signature="e#3701#3702#0" expanded="false" />
-            <element signature="e#3734#3735#0" expanded="false" />
-            <element signature="e#3793#3794#0" expanded="false" />
-            <element signature="e#3837#3838#0" expanded="false" />
-            <element signature="e#3885#3886#0" expanded="false" />
-            <element signature="e#3926#3927#0" expanded="false" />
-            <element signature="e#3998#3999#0" expanded="false" />
-            <element signature="e#4058#4059#0" expanded="false" />
-            <element signature="e#4145#4146#0" expanded="false" />
-            <element signature="e#4185#4186#0" expanded="false" />
-            <element signature="e#4294#4295#0" expanded="false" />
-            <element signature="e#4352#4353#0" expanded="false" />
-            <element signature="e#6699#6700#0" expanded="false" />
-            <element signature="e#6731#6732#0" expanded="false" />
-            <element signature="e#15857#15870#0" expanded="false" />
-            <element signature="e#18527#18528#0" expanded="false" />
-            <element signature="e#18565#18566#0" expanded="false" />
-            <element signature="e#20025#20026#0" expanded="false" />
-            <element signature="e#20073#20074#0" expanded="false" />
-            <element signature="e#21654#21655#0" expanded="false" />
-            <element signature="e#21707#21708#0" expanded="false" />
-            <element signature="e#21913#21914#0" expanded="false" />
-            <element signature="e#21963#21964#0" expanded="false" />
-            <element signature="e#22269#22270#0" expanded="false" />
-            <element signature="e#22311#22312#0" expanded="false" />
-            <element signature="e#26297#26638#0" expanded="false" />
-            <element signature="e#26637#26638#0" expanded="false" />
-            <element signature="e#26895#27241#0" expanded="false" />
-            <element signature="e#27240#27241#0" expanded="false" />
-            <element signature="e#32686#32687#0" expanded="false" />
-            <element signature="e#32731#32732#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1361,6 +1652,94 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Cluster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />

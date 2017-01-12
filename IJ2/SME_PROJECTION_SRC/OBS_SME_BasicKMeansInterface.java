@@ -297,7 +297,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
      * distance update flags in the protocluster objects.
      */
     private void computeDistances() throws SME_InsufficientMemoryException {
-        
+
         int numCoords = mCoordinates.length;
         int numClusters = mProtoClusters.length;
 
@@ -305,7 +305,7 @@ public class OBS_SME_BasicKMeansInterface implements SME_KMeans_Paralel {
             // Explicit garbage collection to reduce likelihood of insufficient
             // memory.
             System.gc();
-            // Ensure there is enough memory available for the distances.  
+            // Ensure there is enough memory available for the distances.
             // Throw an exception if not.
             long memRequired = 8L * numCoords * numClusters;
             if (Runtime.getRuntime().freeMemory() < memRequired) {
