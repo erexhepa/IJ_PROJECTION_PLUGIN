@@ -109,6 +109,8 @@ public class KMeansPlusPlusClusterer<T extends Clusterable> extends Clusterer<T>
      * @param measure the distance measure to use
      */
     public KMeansPlusPlusClusterer(final int k, final int maxIterations, final DistanceMeasure measure) {
+        //JDKRandomGenerator randomGenerator = new JDKRandomGenerator();
+        //randomGenerator.setSeed(123);
         this(k, maxIterations, measure, new JDKRandomGenerator());
     }
 
@@ -147,6 +149,7 @@ public class KMeansPlusPlusClusterer<T extends Clusterable> extends Clusterer<T>
         this.k             = k;
         this.maxIterations = maxIterations;
         this.random        = random;
+        this.random.setSeed(123);
         this.emptyStrategy = emptyStrategy;
     }
 

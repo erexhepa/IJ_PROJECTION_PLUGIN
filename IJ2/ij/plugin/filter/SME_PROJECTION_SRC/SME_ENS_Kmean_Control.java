@@ -13,6 +13,8 @@ import ij.process.ShortProcessor;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
+import org.apache.commons.math3.ml.distance.EuclideanDistance;
+import org.apache.commons.math3.random.JDKRandomGenerator;
 
 import java.util.*;
 
@@ -345,7 +347,9 @@ public class SME_ENS_Kmean_Control {
             clusterInput.add(new SME_ENS_PixelPoints(MatrixUtils.createRealVector(result_fft[i]),i));
         }
 
-        clusterer = new KMeansPlusPlusClusterer<SME_ENS_PixelPoints>(numClust_, 10);
+        JDKRandomGenerator randomGeneratorKmeans = new JDKRandomGenerator(123);
+        randomGeneratorKmeans.setSeed(123);
+        clusterer = new KMeansPlusPlusClusterer<SME_ENS_PixelPoints>(numClust_, 15, new EuclideanDistance(),randomGeneratorKmeans);
         clusterResults = clusterer.cluster(clusterInput);
         getClassDetails();
 
@@ -387,6 +391,7 @@ public class SME_ENS_Kmean_Control {
             classCenters[i]=MatrixUtils.createRealVector(classCenters[i]).mapDivideToSelf((double)clusterResults.get(i).getPoints().size()).toArray();
         }
     }
+    
     private boolean ispower2(int input){
         while(((input != 2) && input % 2 == 0) || input == 1) {
             input = input /2;

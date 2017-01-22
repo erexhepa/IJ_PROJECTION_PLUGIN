@@ -71,7 +71,6 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         smePlugin.setup("Manifold channel",images[indexChannel]);
         smePlugin.runSimple(false);
 
-
         //IJ.showStatus("Running SML");
         runSmlStep();
         smePlugin.updateProgressbar(0.1);
@@ -166,6 +165,13 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         }
 
         GenericDialog gd = new GenericDialog("SME Stacking");
+
+        gd.addMessage("Image type :");
+        String[] channelMessage = new String[1];
+        channelMessage[0] = "single channel";
+
+        gd.addChoice("Extract manifold from ",channelMessage,"single channel");
+
         gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
         gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
         //gd.addCheckbox("Keep source images", keep);
@@ -322,7 +328,10 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         getManifold(index);
 
         manifoldModel = smePlugin.getMfoldImage();
-        //manifoldModel.show();
+
+        //TODO add comment below to avoid showing the manifold
+        manifoldModel.show();
+
         //smePlugin.getSmeImage().show();
 
         ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
@@ -373,7 +382,11 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         getManifold(0);
 
         manifoldModel = smePlugin.getMfoldImage();
-        //manifoldModel.show();
+        manifoldModel.show();
+
+        //TODO add comment below to avoid showing the manifold
+        manifoldModel.show();
+
         smePlugin.getSmeImage().show();
         smePlugin.getSmeImage().setTitle("SME PROJECTION - CONFOCAL");
         smePlugin.updateProgressbar(1);

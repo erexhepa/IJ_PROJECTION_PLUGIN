@@ -2,6 +2,7 @@ package ij.plugin.filter.SME_PROJECTION_SRC;
 
 import ij.*;
 import ij.gui.GenericDialog;
+import ij.gui.ScrollbarWithLabel;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
 import ij.plugin.RGBStackMerge;
@@ -11,6 +12,7 @@ import ij.process.LUT;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 
+import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -75,6 +77,8 @@ public class SME_Plugin_Simple implements PlugIn {
         smePluginConf = new SME_Plugin_Simple_CONF();
         smePluginBfield = new SME_Plugin_Simple_BFIELD();
 
+        Font headerFont = new Font("Serif", Font.ITALIC | Font.BOLD  , 18);
+
         if(WindowManager.getCurrentImage().isHyperStack()){
             // hyperstack color
 
@@ -117,11 +121,28 @@ public class SME_Plugin_Simple implements PlugIn {
                     titles[i] = "Channel-YELLOW";
             }
 
-            GenericDialog gd = new GenericDialog("SME Stacking multi-channel stack");
-            gd.addChoice("Extract manifold from", titles, titles[0]);
-            gd.addCheckbox("IS IMAGE CONFOCAL (CHECK BOX IF YES) ?",Boolean.FALSE);
-            gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
-            gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
+            GenericDialog gd = new GenericDialog("SME Plugin");
+
+            gd.addMessage("Image type :",headerFont);
+            gd.addMessage(" ",headerFont);
+            String[] channelMessage = new String[1];
+            String[] imtypeMessage = new String[2];
+
+            imtypeMessage[0] = "Confocal";
+            imtypeMessage[1] = "Bright field";
+
+            gd.addChoice("Extract manifold from",titles, titles[0]);
+            gd.addChoice("The image stack is     ",imtypeMessage,"Confocal");
+
+            gd.addMessage("                                                                                  ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
+            //gd.addMessage("                                 ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
+
+            gd.addMessage("Extracted layers (optional) :",headerFont);
+            gd.addMessage(" ");
+
+            gd.addSlider("below manifold",0,images[0].getStackSize(),0);
+            gd.addSlider("above manifold",0,images[0].getStackSize(),0);
+
             gd.showDialog();
 
             smePluginConf.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
@@ -164,7 +185,9 @@ public class SME_Plugin_Simple implements PlugIn {
 
             LUT[] lutTable = (((CompositeImage)hyperStackSME)).getLuts();
 
-            if(gd.getNextBoolean()==Boolean.TRUE){
+            int indexConfocal  = gd.getNextChoiceIndex();
+
+            if(indexConfocal==0){
                 //confocal multichannel
                 smePluginConf.runConfColour(index,lutTable);
             }else{
@@ -209,10 +232,52 @@ public class SME_Plugin_Simple implements PlugIn {
                 return;
             }
 
-            GenericDialog gd = new GenericDialog("SME Stacking single-channel stack");
-            gd.addCheckbox("IS IMAGE CONFOCAL (CHECK BOX IF YES) ?",Boolean.FALSE);
-            gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
-            gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
+            GenericDialog gd = new GenericDialog("SME Plugin");
+
+            gd.addPanel(new Panel(),GridBagConstraints.WEST,new Insets(0,0,0,0));
+
+
+
+            gd.addMessage("Image type :",headerFont);
+            gd.addMessage(" ",headerFont);
+            String[] channelMessage = new String[1];
+            String[] imtypeMessage = new String[2];
+            channelMessage[0] = "single channel";
+            imtypeMessage[0] = "Confocal";
+            imtypeMessage[1] = "Bright field";
+
+            gd.addChoice("Extract manifold from",channelMessage,"single channel");
+            gd.addChoice("The image stack is     ",imtypeMessage,"Confocal");
+
+            ((Component) (gd.getChoices().elementAt(0))).setEnabled(false);
+            ((Component) (gd.getChoices().elementAt(0))).setForeground(new Color(125,125,125));
+
+            //((Component) (gd.getChoices().elementAt(0))).setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+            //((Component) (gd.getChoices().elementAt(1))).setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+
+            //gd.addMessage("____________________________________",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
+            gd.addMessage("                                                                                  ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
+            //gd.addMessage("                                 ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
+
+            gd.addMessage("Extracted layers (optional) :",headerFont);
+            gd.addMessage(" ");
+
+            gd.addSlider("below manifold",0,images[0].getStackSize(),0);
+            gd.addSlider("above manifold",0,images[0].getStackSize(),0);
+
+            GridBagLayout grid = (GridBagLayout) gd.getLayout();
+            Component comp = (Component) gd.getChoices().elementAt(0);
+
+            GridBagConstraints c = grid.getConstraints(comp);
+
+            c.insets.left = c.insets.left + 0 ;
+            c.insets.top = 0;
+            c.insets.bottom = 0;
+            grid.setConstraints(comp, c);
+
+            //((Component) (gd.getSliders().elementAt(0))).setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+            //((Component) (gd.getSliders().elementAt(1))).setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+
             gd.showDialog();
 
             smePluginConf.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());

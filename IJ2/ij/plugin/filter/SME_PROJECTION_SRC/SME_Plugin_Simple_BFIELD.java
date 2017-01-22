@@ -171,6 +171,12 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         GenericDialog gd = new GenericDialog("SME Stacking");
 
+        gd.addMessage("Image type :");
+        String[] channelMessage = new String[1];
+        channelMessage[0] = "single channel";
+
+        gd.addChoice("Extract manifold from ",channelMessage,"single channel");
+
         gd.addSlider("How many layers to add below manifold ?",0,images[0].getStackSize(),0);
         gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
         //gd.addCheckbox("Keep source images", keep);
@@ -331,7 +337,9 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         getManifold(index);
 
         manifoldModel = smePlugin.getMfoldImage();
-        //manifoldModel.show();
+
+        //TODO add comment below to avoid showing the manifold
+        manifoldModel.show();
         //smePlugin.getSmeImage().show();
 
         ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
@@ -381,7 +389,8 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         // run manifold extraction on the first channel
         manifoldModel = smePlugin.getMfoldImage();
-        //manifoldModel.show();
+        //TODO add comment below to avoid showing the manifold
+        manifoldModel.show();
         smePlugin.getSmeImage().show();
         smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
         smePlugin.updateProgressbar(1);
