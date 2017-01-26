@@ -6,9 +6,6 @@ import ij.WindowManager;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Get_Manifold;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Simple_BFIELD;
-import ij.plugin.filter.SME_PROJECTION_SRC.SME_Plugin_Simple_CONF;
 import ij.process.LUT;
 
 import java.awt.*;
