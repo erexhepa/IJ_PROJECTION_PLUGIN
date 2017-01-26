@@ -643,6 +643,7 @@ public class SME_ENS_EnergyOptimisation {
                     projMnold.setEntry(i,j,zproject.getProjection().getStack().getVoxel(0,0,0));
                 }
             }
+
         }
 
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
@@ -650,6 +651,7 @@ public class SME_ENS_EnergyOptimisation {
         sme_pluginGetManifold.setSmeImage(smeManifold);
         if(showResult) sme_pluginGetManifold.getSmeImage().show();
     }
+
     private static class SetVisitorRound extends DefaultRealMatrixChangingVisitor {
         @Override
         public double visit(int i, int j, double value) {
