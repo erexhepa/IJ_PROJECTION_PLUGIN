@@ -560,6 +560,12 @@ public class SME_ENS_EnergyOptimisation {
         ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).
                 run(new ImagePlus("PSI data",sme_pluginGetManifold.getCostData()));}
 
+        int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
+        int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
+
+        float[][] idmaxkFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(idmaxk.transpose().getData(),dimW,dimH);
+        sme_pluginGetManifold.setManifoldIndex(new ImagePlus("",((ImageProcessor) new FloatProcessor(idmaxkFlaot))));
+
     }
 
     public void setOutputManifold(Boolean showResult){
@@ -636,6 +642,7 @@ public class SME_ENS_EnergyOptimisation {
                     projMnold.setEntry(i,j,zproject.getProjection().getStack().getVoxel(0,0,0));
                 }
             }
+
         }
 
         float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
@@ -643,6 +650,7 @@ public class SME_ENS_EnergyOptimisation {
         sme_pluginGetManifold.setSmeImage(smeManifold);
         if(showResult) sme_pluginGetManifold.getSmeImage().show();
     }
+
     private static class SetVisitorRound extends DefaultRealMatrixChangingVisitor {
         @Override
         public double visit(int i, int j, double value) {

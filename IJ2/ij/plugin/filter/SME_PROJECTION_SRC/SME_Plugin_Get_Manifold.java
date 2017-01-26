@@ -65,6 +65,16 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
     private ImagePlus map2d ;
 
     // Output step by step images
+
+    public ImagePlus getManifoldIndex() {
+        return manifoldIndex;
+    }
+
+    public void setManifoldIndex(ImagePlus manifoldIndex) {
+        this.manifoldIndex = manifoldIndex;
+    }
+
+    private ImagePlus manifoldIndex = null;
     private ImagePlus rawImage = null;
     private ImagePlus projImage = null;
     private ImagePlus smlImage = null;

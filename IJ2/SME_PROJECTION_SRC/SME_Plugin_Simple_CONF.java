@@ -289,7 +289,8 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
         List<ImagePlus> processedImages = listChannels.stream().
                 map(channelIt ->{
-                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    ImagePlus itIm =  applyStackManifolfWithMarge(smePlugin,channelIt.getImageStack(),
+                            smePlugin.getManifoldIndex(),lowBuffManifold,highBuffManifold);
                     return itIm;})
                 .collect(toList());
 
@@ -330,7 +331,7 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         manifoldModel = smePlugin.getMfoldImage();
 
         //TODO add comment below to avoid showing the manifold
-        manifoldModel.show();
+        //manifoldModel.show();
 
         //smePlugin.getSmeImage().show();
 
@@ -342,7 +343,9 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
         List<ImagePlus> processedImages = listChannels.stream().
                 map(channelIt ->{
-                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    //ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    ImagePlus itIm =  applyStackManifolfWithMarge(smePlugin,channelIt.getImageStack(),
+                            smePlugin.getManifoldIndex(),lowBuffManifold,highBuffManifold);
                     return itIm;})
                 .collect(toList());
 
@@ -385,7 +388,7 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         manifoldModel.show();
 
         //TODO add comment below to avoid showing the manifold
-        manifoldModel.show();
+        //manifoldModel.show();
 
         smePlugin.getSmeImage().show();
         smePlugin.getSmeImage().setTitle("SME PROJECTION - CONFOCAL");
@@ -409,6 +412,62 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         ImagePlus smeManifold = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
 
         return(smeManifold);
+    }
+
+    public ImagePlus applyStackManifolfWithMarge(SME_Plugin_Get_Manifold sme_pluginGetManifold, ImageStack imStack,
+                                                 ImagePlus manifold, int lowLevel, int highLevel){
+
+        double norm_factor  =   sme_pluginGetManifold.getStack1().getSize();
+        int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
+        int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
+
+        RealMatrix projMnold    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
+        RealMatrix projMnoldRaw    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
+
+        ImageStack rawStack  = imStack;
+
+        for(int i=0;i<dimH;i++){
+            for(int j=0;j<dimW;j++){
+                int zIndex = ((int) Math.round(projMnoldRaw.getEntry(i,j)))-1;
+                if(lowLevel==0 & highLevel==0){
+                    projMnold.setEntry(i,j,rawStack.getVoxel(j,i,zIndex));
+                }else {
+                    ImageStack voxelData = rawStack.crop(j,i,0,1,1,sme_pluginGetManifold.getStack().getSize());
+
+                    // set to 0 all pixels which fall outside the local manifold-voxel neighboorhood
+                    int iterUp = zIndex-highLevel;
+                    int iterDown = zIndex+lowLevel;
+
+                    if(iterUp<0)
+                        iterUp=0;
+                    if(iterDown>=(sme_pluginGetManifold.getStack().getSize()-1))
+                        iterDown=sme_pluginGetManifold.getStack().getSize()-1;
+
+                    for(int ivox=0;ivox<iterUp;ivox++){
+                        voxelData.setVoxel(0,0,ivox,0);
+                    }
+
+                    for(int ivox=iterDown;ivox<sme_pluginGetManifold.getStack().getSize();ivox++){
+                        voxelData.setVoxel(0,0,ivox,0);
+                    }
+
+                    ZProjector zproject = new ZProjector();
+                    zproject.setMethod(ZProjector.MAX_METHOD);
+                    zproject.setImage(new ImagePlus("IterativeProjection", voxelData));
+                    zproject.doProjection();
+
+                    projMnold.setEntry(i,j,zproject.getProjection().getStack().getVoxel(0,0,0));
+                }
+            }
+
+        }
+
+        float[][] mfoldFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(projMnold.transpose().getData(),dimW,dimH);
+        ImagePlus smeManifold = new ImagePlus("ProjectionSME",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+        sme_pluginGetManifold.setSmeImage(smeManifold);
+        ImagePlus smeManifold2 = new ImagePlus("",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
+
+        return(smeManifold2);
     }
 
     void error(String msg) {

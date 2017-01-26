@@ -339,7 +339,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         manifoldModel = smePlugin.getMfoldImage();
 
         //TODO add comment below to avoid showing the manifold
-        manifoldModel.show();
+        //manifoldModel.show();
         //smePlugin.getSmeImage().show();
 
         ArrayList<ImagePlus> listChannels = new ArrayList<>(1);
@@ -350,7 +350,9 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
         List<ImagePlus> processedImages = listChannels.stream().
                 map(channelIt ->{
-                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    //ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    ImagePlus itIm =  applyStackManifolfWithMarge(smePlugin,channelIt.getImageStack(),
+                            smePlugin.getManifoldIndex(),lowBuffManifold,highBuffManifold);
                     return itIm;})
                 .collect(toList());
 
@@ -390,7 +392,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         // run manifold extraction on the first channel
         manifoldModel = smePlugin.getMfoldImage();
         //TODO add comment below to avoid showing the manifold
-        manifoldModel.show();
+        //manifoldModel.show();
         smePlugin.getSmeImage().show();
         smePlugin.getSmeImage().setTitle("SME PROJECTION - WIDE FIELD");
         smePlugin.updateProgressbar(1);

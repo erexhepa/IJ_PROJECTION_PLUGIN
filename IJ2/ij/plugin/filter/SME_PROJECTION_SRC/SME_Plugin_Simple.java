@@ -77,7 +77,7 @@ public class SME_Plugin_Simple implements PlugIn {
         smePluginConf = new SME_Plugin_Simple_CONF();
         smePluginBfield = new SME_Plugin_Simple_BFIELD();
 
-        Font headerFont = new Font("Serif", Font.ITALIC | Font.BOLD  , 18);
+        Font headerFont = new Font("Serif", Font.PLAIN | Font.BOLD  , 18);
 
         if(WindowManager.getCurrentImage().isHyperStack()){
             // hyperstack color
@@ -123,13 +123,13 @@ public class SME_Plugin_Simple implements PlugIn {
 
             GenericDialog gd = new GenericDialog("SME Plugin");
 
-            gd.addMessage("Image type :",headerFont);
+            gd.addMessage("Image type ",headerFont);
             gd.addMessage(" ",headerFont);
             String[] channelMessage = new String[1];
             String[] imtypeMessage = new String[2];
 
             imtypeMessage[0] = "Confocal";
-            imtypeMessage[1] = "Bright field";
+            imtypeMessage[1] = "Widefield";
 
             gd.addChoice("Extract manifold from",titles, titles[0]);
             gd.addChoice("The image stack is     ",imtypeMessage,"Confocal");
@@ -137,7 +137,7 @@ public class SME_Plugin_Simple implements PlugIn {
             gd.addMessage("                                                                                  ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
             //gd.addMessage("                                 ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
 
-            gd.addMessage("Extracted layers (optional) :",headerFont);
+            gd.addMessage("Extract additional layers (optional) ",headerFont);
             gd.addMessage(" ");
 
             gd.addSlider("below manifold",0,images[0].getStackSize(),0);
@@ -238,13 +238,13 @@ public class SME_Plugin_Simple implements PlugIn {
 
 
 
-            gd.addMessage("Image type :",headerFont);
+            gd.addMessage("Image type ",headerFont);
             gd.addMessage(" ",headerFont);
             String[] channelMessage = new String[1];
             String[] imtypeMessage = new String[2];
             channelMessage[0] = "single channel";
             imtypeMessage[0] = "Confocal";
-            imtypeMessage[1] = "Bright field";
+            imtypeMessage[1] = "Widefield";
 
             gd.addChoice("Extract manifold from",channelMessage,"single channel");
             gd.addChoice("The image stack is     ",imtypeMessage,"Confocal");
@@ -259,7 +259,7 @@ public class SME_Plugin_Simple implements PlugIn {
             gd.addMessage("                                                                                  ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
             //gd.addMessage("                                 ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
 
-            gd.addMessage("Extracted layers (optional) :",headerFont);
+            gd.addMessage("Extract additional layers (optional)  ",headerFont);
             gd.addMessage(" ");
 
             gd.addSlider("below manifold",0,images[0].getStackSize(),0);

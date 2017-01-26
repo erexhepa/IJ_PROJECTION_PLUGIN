@@ -289,7 +289,8 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
         List<ImagePlus> processedImages = listChannels.stream().
                 map(channelIt ->{
-                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    ImagePlus itIm =  applyStackManifolfWithMarge(smePlugin,channelIt.getImageStack(),
+                            smePlugin.getManifoldIndex(),lowBuffManifold,highBuffManifold);
                     return itIm;})
                 .collect(toList());
 
@@ -330,7 +331,7 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         manifoldModel = smePlugin.getMfoldImage();
 
         //TODO add comment below to avoid showing the manifold
-        manifoldModel.show();
+        //manifoldModel.show();
 
         //smePlugin.getSmeImage().show();
 
@@ -342,7 +343,9 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
         List<ImagePlus> processedImages = listChannels.stream().
                 map(channelIt ->{
-                    ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    //ImagePlus itIm =  applyStackManifold(((ImagePlus)channelIt).getStack(), manifoldModel);
+                    ImagePlus itIm =  applyStackManifolfWithMarge(smePlugin,channelIt.getImageStack(),
+                            smePlugin.getManifoldIndex(),lowBuffManifold,highBuffManifold);
                     return itIm;})
                 .collect(toList());
 
@@ -385,7 +388,7 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         manifoldModel.show();
 
         //TODO add comment below to avoid showing the manifold
-        manifoldModel.show();
+        //manifoldModel.show();
 
         smePlugin.getSmeImage().show();
         smePlugin.getSmeImage().setTitle("SME PROJECTION - CONFOCAL");
@@ -421,7 +424,7 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
         RealMatrix projMnold    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
         RealMatrix projMnoldRaw    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
 
-        ImageStack rawStack  = sme_pluginGetManifold.getStack();
+        ImageStack rawStack  = imStack;
 
         for(int i=0;i<dimH;i++){
             for(int j=0;j<dimW;j++){

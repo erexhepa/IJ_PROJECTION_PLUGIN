@@ -567,6 +567,12 @@ public class SME_ENS_EnergyOptimisation {
         ((SME_Data_Profiler) sme_pluginGetManifold.getSmePlotmaker()).
                 run(new ImagePlus("PSI data",sme_pluginGetManifold.getCostData()));}
 
+        int dimW            =   sme_pluginGetManifold.getStack1().getWidth();
+        int dimH            =   sme_pluginGetManifold.getStack1().getHeight();
+
+        float[][] idmaxkFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(idmaxk.transpose().getData(),dimW,dimH);
+        sme_pluginGetManifold.setManifoldIndex(new ImagePlus("",((ImageProcessor) new FloatProcessor(idmaxkFlaot))));
+
     }
 
     public void setOutputManifold(Boolean showResult){

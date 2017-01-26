@@ -2,10 +2,54 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5173cfe1-0f70-4885-9646-96db2049f811" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_stacking.jar" afterPath="$PROJECT_DIR$/SME_stacking.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij.jar" afterPath="$PROJECT_DIR$/ij.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../kmeansResult.tiff" afterPath="$PROJECT_DIR$/../kmeansResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../smlResult.tiff" afterPath="$PROJECT_DIR$/../smlResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_BasicKMeansInterface.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_BasicKMeansInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_GUI_Main.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_GUI_Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeansInterface.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeansInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Data_Profiler.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Data_Profiler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Complex.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Complex.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Filter_FFT_.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Filter_FFT_.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GUI_MAIN.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GUI_MAIN.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Prepare.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Prepare.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_PixelPoints.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_PixelPoints.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_COLOURS.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_COLOURS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Function.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Function.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Max_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Max_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Min_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Min_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
@@ -30,8 +74,8 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SME_BenchmarkedKMeansInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeansInterface.java">
+      <file leaf-file-name="SME_Plugin_TEST.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -40,8 +84,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_ENS_Image_Prepare.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Prepare.java">
+      <file leaf-file-name="SME_Plugin_Get_Manifold.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -50,31 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_ENS_Projection_STD_Intensity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java">
+      <file leaf-file-name="OBS_SME_Plugin_GUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SME_InsufficientMemoryException.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SME_Plugin_Simple.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -83,66 +107,81 @@
       <file leaf-file-name="SME_Plugin_Simple_BFIELD.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="472" column="5" selection-start-line="418" selection-start-column="4" selection-end-line="472" selection-end-column="5" />
+            <state relative-caret-position="175">
+              <caret line="355" column="19" selection-start-line="355" selection-start-column="19" selection-end-line="355" selection-end-column="19" />
               <folding>
                 <element signature="method#getManifold#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
                 <element signature="method#runKmeansStep#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
                 <element signature="method#processChannelsManifold#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
                 <element signature="method#processChannelsManifoldSimple#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
                 <element signature="method#processChannelsManifoldColors#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
-                <element signature="method#runBfieldColour#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
                 <element signature="method#runBfieldMono#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
+                <element signature="method#applyStackManifold#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_Plugin_Simple_CONF.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SME_Plugin_Simple.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="259" column="93" selection-start-line="259" selection-start-column="87" selection-end-line="259" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SME_Plugin_Simple.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-33">
+              <caret line="251" column="0" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SME_Plugin_Simple_CONF.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="467" column="5" selection-start-line="467" selection-start-column="5" selection-end-line="467" selection-end-column="5" />
+            <state relative-caret-position="141">
+              <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
               <folding>
                 <element signature="method#processChannelsManifoldSimple#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
-                <element signature="method#processChannelsManifoldColors#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
-                <element signature="method#runConfColour#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
                 <element signature="method#runConfMono#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
                 <element signature="method#applyStackManifold#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
-                <element signature="method#applyStackManifolfWithMarge#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_Plugin_Apply_Manifold.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java">
+      <file leaf-file-name="ZProjector.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_ENS_EnergyOptimisation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java">
+      <file leaf-file-name="SME_ENS_Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="610" column="54" selection-start-line="610" selection-start-column="54" selection-end-line="610" selection-end-column="54" />
+            <state relative-caret-position="285">
+              <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SME_Plugin_Get_Manifold.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java">
+      <file leaf-file-name="SME_ENS_Convolver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="844">
-              <caret line="220" column="45" selection-start-line="220" selection-start-column="45" selection-end-line="220" selection-end-column="45" />
-              <folding>
-                <element signature="method#run#0;class#SME_Plugin_Get_Manifold#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -182,12 +221,13 @@
         <option value="$PROJECT_DIR$/org/apache/commons/math3/ml/clustering/KMeansPlusPlusClusterer.java" />
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" />
         <option value="$PROJECT_DIR$/org/apache/commons/math3/random/JDKRandomGenerator.java" />
-        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
         <option value="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" />
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" />
-        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
         <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
+        <option value="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
+        <option value="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
       </list>
     </option>
   </component>
@@ -235,8 +275,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -257,6 +295,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -268,6 +308,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="SME_PROJECTION_SRC" />
       <recent name="ij.plugin.filter.SME_PROJECTION_SRC" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -764,7 +805,8 @@
       <workItem from="1485020110910" duration="7107000" />
       <workItem from="1485208657763" duration="586000" />
       <workItem from="1485291140542" duration="2578000" />
-      <workItem from="1485409488734" duration="1319000" />
+      <workItem from="1485409488734" duration="1377000" />
+      <workItem from="1485465125494" duration="3543000" />
     </task>
     <task id="LOCAL-00001" summary="ADD EXAMPLE IMAGES AND TODO LIST - NAT METHODS REPLY">
       <created>1476249885404</created>
@@ -836,42 +878,58 @@
       <option name="project" value="LOCAL" />
       <updated>1485208757305</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed issue with projection mode with buffer around the manifold not working for color stacks.">
+      <created>1485411383868</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1485411383868</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69701000" />
+    <option name="totallyTimeSpent" value="73302000" />
+  </component>
+  <component name="TodoView" selected-index="1">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="30" y="23" width="1410" height="877" extended-state="6" />
+    <frame x="30" y="23" width="1410" height="877" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13084795" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37285903" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37285903" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IntellijBashOrg" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -916,46 +974,23 @@
     <MESSAGE value="Fixed issue with output color not being the same as output colour." />
     <MESSAGE value="Fixed issue with missing java class." />
     <MESSAGE value="Fixed issue with interface, random seed kmean and number of Kmean iterations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with interface, random seed kmean and number of Kmean iterations" />
+    <MESSAGE value="Fixed issue with projection mode with buffer around the manifold not working for color stacks." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with projection mode with buffer around the manifold not working for color stacks." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java</url>
-          <line>124</line>
+          <line>134</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java</url>
-          <line>344</line>
-          <properties />
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java</url>
-          <line>393</line>
-          <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java</url>
-          <line>389</line>
-          <properties />
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java</url>
-          <line>103</line>
+          <line>113</line>
           <properties />
           <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java</url>
-          <line>157</line>
-          <properties />
-          <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_Sml.java</url>
@@ -991,7 +1026,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="79" />
+      <option name="time" value="87" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1016,22 +1051,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" />
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_ENS_SRC/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java" />
-    <entry file="file://$PROJECT_DIR$/org/apache/commons/math3/exception/MathIllegalArgumentException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1103,28 +1122,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Complex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1249,21 +1247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1285,27 +1268,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2677#2678#0" expanded="false" />
-            <element signature="e#2714#2715#0" expanded="false" />
-            <element signature="e#2814#2815#0" expanded="false" />
-            <element signature="e#2866#2867#0" expanded="false" />
-            <element signature="e#50164#50165#0" expanded="false" />
-            <element signature="e#50200#50201#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1341,68 +1307,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+        <state relative-caret-position="-2501">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java">
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state relative-caret-position="259">
+          <caret line="572" column="113" selection-start-line="572" selection-start-column="113" selection-end-line="572" selection-end-column="113" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="220" column="45" selection-start-line="220" selection-start-column="45" selection-end-line="220" selection-end-column="45" />
+        <state relative-caret-position="-555">
+          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
           <folding>
+            <element signature="e#1686#1687#0" expanded="true" />
+            <element signature="e#1747#1748#0" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
             <element signature="method#run#0;class#SME_Plugin_Get_Manifold#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java">
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="610" column="54" selection-start-line="610" selection-start-column="54" selection-end-line="610" selection-end-column="54" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="472" column="5" selection-start-line="418" selection-start-column="4" selection-end-line="472" selection-end-column="5" />
+        <state relative-caret-position="175">
+          <caret line="355" column="19" selection-start-line="355" selection-start-column="19" selection-end-line="355" selection-end-column="19" />
           <folding>
             <element signature="method#getManifold#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
             <element signature="method#runKmeansStep#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
             <element signature="method#processChannelsManifold#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
             <element signature="method#processChannelsManifoldSimple#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
             <element signature="method#processChannelsManifoldColors#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
-            <element signature="method#runBfieldColour#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
             <element signature="method#runBfieldMono#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
+            <element signature="method#applyStackManifold#0;class#SME_Plugin_Simple_BFIELD#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="467" column="5" selection-start-line="467" selection-start-column="5" selection-end-line="467" selection-end-column="5" />
+        <state relative-caret-position="141">
+          <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
           <folding>
             <element signature="method#processChannelsManifoldSimple#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
-            <element signature="method#processChannelsManifoldColors#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
-            <element signature="method#runConfColour#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
             <element signature="method#runConfMono#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
             <element signature="method#applyStackManifold#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
-            <element signature="method#applyStackManifolfWithMarge#0;class#SME_Plugin_Simple_CONF#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="259" column="93" selection-start-line="259" selection-start-column="87" selection-end-line="259" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-33">
+          <caret line="251" column="0" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
