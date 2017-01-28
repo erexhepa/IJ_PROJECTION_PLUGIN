@@ -1,8 +1,6 @@
 package SME_PROJECTION_SRC;
 
-import ij.CompositeImage;
-import ij.ImagePlus;
-import ij.WindowManager;
+import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
@@ -114,8 +112,11 @@ public class SME_Plugin_Simple implements PlugIn {
 
         GenericDialog gd = new GenericDialog("SME Plugin");
 
+        MenuBar menuBar = Menus.getMenuBar();
+        Font font = menuBar.getFont();
+        int oldSize = font.getSize();
 
-        Font boldFont = new Font("Arial", Font.BOLD, 16);
+        Font boldFont =  new Font(font.getFontName(), Font.BOLD, 12);
 
         gd.setInsets(0, 0, 0);
         gd.addMessage("Reference channel and image type:",boldFont);
