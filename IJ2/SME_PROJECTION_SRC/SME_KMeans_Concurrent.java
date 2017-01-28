@@ -18,7 +18,7 @@ public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
     // an array of the simpler class Cluster at the conclusion.
     private ProtoCluster[] mProtoClusters;
 
-    // Cache of coordinate-to-cluster distances. Number of entries =
+    // Cache of coordinate-to-cluster distances. Number of entries = 
     // number of clusters X number of coordinates.
     private double[][] mDistanceCache;
 
@@ -41,7 +41,7 @@ public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
     // Subtask manager that handles the thread pool to which
     // time-consuming tasks are delegated.
     private SubtaskManager mSubtaskManager;
-
+    
     // An array of Cluster objects: the output of k-means.
     private SME_Cluster[] mClusters;
     private SME_Cluster[] mClusters2;
@@ -366,14 +366,14 @@ public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
      * distance update flags in the protocluster objects.
      */
     private void computeDistances() throws SME_InsufficientMemoryException {
-        
+
         if (mDistanceCache == null) {
             int numCoords = mCoordinates.length;
             int numClusters = mProtoClusters.length;
             // Explicit garbage collection to reduce likelihood of insufficient
             // memory.
             System.gc();
-            // Ensure there is enough memory available for the distances.  
+            // Ensure there is enough memory available for the distances.
             // Throw an exception if not.
             long memRequired = 8L * numCoords * numClusters;
             if (Runtime.getRuntime().freeMemory() < memRequired) {
@@ -383,13 +383,13 @@ public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
             // and cluster centers
             mDistanceCache = new double[numCoords][numClusters];
         }
-        
+
         // Bulk of the work is delegated to the
         // SubtaskManager.
         mSubtaskManager.computeDistances();
     }
-    
-    /** 
+
+    /**
      * Assign each coordinate to the nearest cluster.  Called once
      * per iteration.  Returns the number of coordinates that have
      * changed their cluster membership.
@@ -431,7 +431,7 @@ public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
         }
         return nearest;
     }
- 
+
     /**
      * Compute the euclidean distance between the two arguments.
      */
@@ -447,13 +447,13 @@ public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
 
     /**
      * Generate an array of Cluster objects from mProtoClusters.
-     * 
+     *
      * @return array of Cluster object references.
      */
     private SME_Cluster[] generateFinalClusters() {
-        
+
         int numClusters = mProtoClusters.length;
-        
+
         // Convert the proto-clusters to the final Clusters.
         //
         // - accumulate in a list.
@@ -465,7 +465,7 @@ public class SME_KMeans_Concurrent implements SME_KMeans_Paralel {
                 clusterList.add(cluster);
             }
         }
-    
+
         // - convert list to an array.
         SME_Cluster[] clusters = new SME_Cluster[clusterList.size()];
         clusterList.toArray(clusters);

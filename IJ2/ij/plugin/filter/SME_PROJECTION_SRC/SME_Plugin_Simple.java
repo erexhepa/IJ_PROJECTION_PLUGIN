@@ -79,10 +79,16 @@ public class SME_Plugin_Simple implements PlugIn {
 
         Font headerFont = new Font("Serif", Font.PLAIN | Font.BOLD  , 18);
 
-        if(WindowManager.getCurrentImage().isHyperStack()){
-            // hyperstack color
 
+        float stacksize = 10;
+
+        // Default chdannel Message
+        String[] channelMessage = {"Channel-RED", "Channel-GREEN", "Channel-BLUE"};
+
+        if(WindowManager.getCurrentImage().isHyperStack()){
             images = ChannelSplitter.split(hyperStackSME);
+
+            channelMessage = new String[images.length];
 
             smePluginConf.setImages(images);
             smePluginBfield.setImages(images);
@@ -94,6 +100,89 @@ public class SME_Plugin_Simple implements PlugIn {
                 colors1[i] = (((CompositeImage) hyperStackSME).getChannelColor());
             }
 
+            for(int i=0;i<images.length;i++){
+                if(colors1[i].equals(Color.RED))
+                    channelMessage[i] = "Channel-RED";
+                else if(colors1[i].equals(Color.GREEN))
+                    channelMessage[i] = "Channel-GREEN";
+                else if(colors1[i].equals(Color.BLUE))
+                    channelMessage[i] = "Channel-BLUE";
+                else if(colors1[i].equals(Color.GRAY))
+                    channelMessage[i] = "Channel-GRAY";
+                else if(colors1[i].equals(Color.CYAN))
+                    channelMessage[i] = "Channel-CYAN";
+                else if(colors1[i].equals(Color.MAGENTA))
+                    channelMessage[i] = "Channel-MAGENTA";
+                else if(colors1[i].equals(Color.yellow))
+                    channelMessage[i] = "Channel-YELLOW";
+            }
+        }
+
+        String[] imtypeMessage = {"Confocal", "Widefield"};
+
+        GenericDialog gd = new GenericDialog("SME Plugin");
+        Font boldFont = new Font(gd.getFont().getFontName(), Font.BOLD, gd.getFont().getSize());
+
+        gd.setInsets(0, 0, 0);
+        gd.addMessage("Reference channel and image type:", boldFont);
+
+        if(WindowManager.getCurrentImage().isHyperStack()){
+            gd.addChoice("Extract manifold from", channelMessage, channelMessage[0]);
+        }else{
+            channelMessage[0] = "single channel";
+            gd.addChoice("Extract manifold from", channelMessage, channelMessage[0]);
+            ((Component) (gd.getChoices().elementAt(0))).setEnabled(false);
+            ((Component) (gd.getChoices().elementAt(0))).setForeground(new Color(125,125,125));
+        }
+
+        gd.addChoice("Microscopy type is",imtypeMessage,"Confocal");
+
+        gd.setInsets(20, 0, 0);
+        gd.addMessage("Combine additional layers for extraction (optional):", boldFont);
+        gd.addSlider("below the manifold",0,stacksize,0);
+        gd.addSlider("above the manifold",0,stacksize,0);
+
+        GridBagLayout grid = (GridBagLayout) gd.getLayout();
+        for (Component comp : gd.getComponents())
+        {
+            if (comp instanceof Label) {
+
+                Label label = ((Label) comp);
+                if (label.getName().equals("label1") ||
+                        label.getName().equals("label2") ||
+                        label.getName().equals("label4") ||
+                        label.getName().equals("label5"))
+                {
+                    GridBagConstraints c = grid.getConstraints(comp);
+
+                    // option 1: left aligned
+                    c.anchor = GridBagConstraints.WEST;
+                    c.insets.left = 10;
+                    label.setAlignment(Label.LEFT);
+
+                    // option 2: right aligned
+					/*
+					c.anchor = GridBagConstraints.EAST;
+					c.insets.right = 5;
+					label.setAlignment(Label.RIGHT);
+					*/
+
+                    grid.setConstraints(comp, c);
+                }
+
+            }
+        }
+
+        gd.showDialog();
+
+        if (gd.wasCanceled())
+            return;
+
+        if(WindowManager.getCurrentImage().isHyperStack()){
+            // hyperstack color
+
+            //images = ChannelSplitter.split(hyperStackSME);
+
             maxChannels         = images.length;
             projectionStacks    = new ImagePlus[maxChannels];
 
@@ -102,48 +191,9 @@ public class SME_Plugin_Simple implements PlugIn {
             smePluginBfield.setProjectionStacks(projectionStacks);
             smePluginBfield.setMaxChannels(maxChannels);
 
-            String[] titles = new String[images.length];
-
-            for(int i=0;i<images.length;i++){
-                if(colors1[i].equals(Color.RED))
-                    titles[i] = "Channel-RED";
-                else if(colors1[i].equals(Color.GREEN))
-                    titles[i] = "Channel-GREEN";
-                else if(colors1[i].equals(Color.BLUE))
-                    titles[i] = "Channel-BLUE";
-                else if(colors1[i].equals(Color.GRAY))
-                    titles[i] = "Channel-GRAY";
-                else if(colors1[i].equals(Color.CYAN))
-                    titles[i] = "Channel-CYAN";
-                else if(colors1[i].equals(Color.MAGENTA))
-                    titles[i] = "Channel-MAGENTA";
-                else if(colors1[i].equals(Color.yellow))
-                    titles[i] = "Channel-YELLOW";
-            }
-
-            GenericDialog gd = new GenericDialog("SME Plugin");
-
-            gd.addMessage("Image type ",headerFont);
-            gd.addMessage(" ",headerFont);
-            String[] channelMessage = new String[1];
-            String[] imtypeMessage = new String[2];
-
             imtypeMessage[0] = "Confocal";
             imtypeMessage[1] = "Widefield";
 
-            gd.addChoice("Extract manifold from",titles, titles[0]);
-            gd.addChoice("The image stack is     ",imtypeMessage,"Confocal");
-
-            gd.addMessage("                                                                                  ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
-            //gd.addMessage("                                 ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
-
-            gd.addMessage("Extract additional layers (optional) ",headerFont);
-            gd.addMessage(" ");
-
-            gd.addSlider("below manifold",0,images[0].getStackSize(),0);
-            gd.addSlider("above manifold",0,images[0].getStackSize(),0);
-
-            gd.showDialog();
 
             smePluginConf.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
             smePluginConf.setHighBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getValue());
@@ -232,61 +282,10 @@ public class SME_Plugin_Simple implements PlugIn {
                 return;
             }
 
-            GenericDialog gd = new GenericDialog("SME Plugin");
-
-            gd.addPanel(new Panel(),GridBagConstraints.WEST,new Insets(0,0,0,0));
-
-
-
-            gd.addMessage("Image type ",headerFont);
-            gd.addMessage(" ",headerFont);
-            String[] channelMessage = new String[1];
-            String[] imtypeMessage = new String[2];
             channelMessage[0] = "single channel";
             imtypeMessage[0] = "Confocal";
             imtypeMessage[1] = "Widefield";
 
-            gd.addChoice("Extract manifold from",channelMessage,"single channel");
-            gd.addChoice("The image stack is     ",imtypeMessage,"Confocal");
-
-            ((Component) (gd.getChoices().elementAt(0))).setEnabled(false);
-            ((Component) (gd.getChoices().elementAt(0))).setForeground(new Color(125,125,125));
-
-            //((Component) (gd.getChoices().elementAt(0))).setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-            //((Component) (gd.getChoices().elementAt(1))).setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-
-            //gd.addMessage("____________________________________",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
-            gd.addMessage("                                                                                  ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
-            //gd.addMessage("                                 ",new Font("Serif", Font.ITALIC | Font.BOLD | Font.LAYOUT_NO_LIMIT_CONTEXT, 18));
-
-            gd.addMessage("Extract additional layers (optional)  ",headerFont);
-            gd.addMessage(" ");
-
-            gd.addSlider("below manifold",0,images[0].getStackSize(),0);
-            gd.addSlider("above manifold",0,images[0].getStackSize(),0);
-
-            GridBagLayout grid = (GridBagLayout) gd.getLayout();
-            Component comp = (Component) gd.getChoices().elementAt(0);
-
-            GridBagConstraints c = grid.getConstraints(comp);
-
-            c.insets.left = c.insets.left + 0 ;
-            c.insets.top = 0;
-            c.insets.bottom = 0;
-            grid.setConstraints(comp, c);
-
-            //((Component) (gd.getSliders().elementAt(0))).setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-            //((Component) (gd.getSliders().elementAt(1))).setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-
-            gd.showDialog();
-
-            smePluginConf.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
-            smePluginConf.setHighBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getValue());
-            smePluginBfield.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
-            smePluginBfield.setHighBuffManifold(((Scrollbar)gd.getSliders().elementAt(1)).getValue());
-
-            if (gd.wasCanceled())
-                return;
 
             if(gd.getNextBoolean()==Boolean.TRUE){
                 //confocal multichannel

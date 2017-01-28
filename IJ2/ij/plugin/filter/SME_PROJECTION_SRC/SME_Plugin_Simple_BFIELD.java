@@ -428,7 +428,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         RealMatrix projMnold    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
         RealMatrix projMnoldRaw    = MatrixUtils.createRealMatrix(SME_ENS_Utils.convertFloatMatrixToDoubles(manifold.getProcessor().getFloatArray(),dimW,dimH)).transpose();
 
-        ImageStack rawStack  = sme_pluginGetManifold.getStack();
+        ImageStack rawStack  = imStack;
 
         for(int i=0;i<dimH;i++){
             for(int j=0;j<dimW;j++){
