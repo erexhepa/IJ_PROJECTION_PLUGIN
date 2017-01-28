@@ -115,10 +115,10 @@ public class SME_Plugin_Simple implements PlugIn {
         GenericDialog gd = new GenericDialog("SME Plugin");
 
 
-        //Font boldFont = new Font(gd.getFont().getFontName(), Font.BOLD, 10);
+        Font boldFont = new Font("Arial", Font.BOLD, 16);
 
         gd.setInsets(0, 0, 0);
-        gd.addMessage("Reference channel and image type:");
+        gd.addMessage("Reference channel and image type:",boldFont);
 
         if(WindowManager.getCurrentImage().isHyperStack()){
             gd.addChoice("Extract manifold from", channelMessage, channelMessage[0]);
@@ -132,7 +132,7 @@ public class SME_Plugin_Simple implements PlugIn {
         gd.addChoice("Microscopy type is",imtypeMessage,"Confocal");
 
         gd.setInsets(20, 0, 0);
-        gd.addMessage("Combine additional layers for extraction (optional):");
+        gd.addMessage("Combine additional layers for extraction (optional):",boldFont);
         gd.addSlider("below the manifold",0,stacksize,0);
         gd.addSlider("above the manifold",0,stacksize,0);
 
