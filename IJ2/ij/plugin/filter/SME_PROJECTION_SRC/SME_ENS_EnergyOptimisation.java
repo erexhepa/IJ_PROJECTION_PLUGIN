@@ -261,6 +261,7 @@ public class SME_ENS_EnergyOptimisation {
 
         double sum1         = 0;
         double sum2         = 0;
+        double returnVal    = 0;
 
         for(int i=0;i<edgeFlagCond.getDimension();i++){
             if(edgeFlagCond.getEntry(i)>ht){
@@ -270,7 +271,22 @@ public class SME_ENS_EnergyOptimisation {
             }
         }
 
-        return(sum1/sum2);
+        // overlap has to be between 0 - 100
+        if(((sum1-sum2)!=0)){
+            if(sum2!=0){
+                if(((sum1/sum2)>100)){
+                    returnVal = 100;
+                }else{
+                    returnVal = sum1/sum2;
+                }
+            }else{
+             returnVal = 0;
+            }
+        }else{
+            returnVal = 0;
+        }
+
+        return(returnVal);
     }
 
     public void initStepEnergyOpt(){

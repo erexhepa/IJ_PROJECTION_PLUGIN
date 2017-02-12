@@ -194,7 +194,7 @@ public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMea
                 exemplars[i][j] = 100.0 * random.nextDouble();
             }
         }
-
+ 
         for (int i=0; i<coordCount; i++) {
             int cluster = random.nextInt(clusterCount);
             double[] exemplar = exemplars[cluster];
@@ -203,7 +203,7 @@ public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMea
                 coord[j] = exemplar[j] + 50*random.nextGaussian();
             }
         }
-
+        
         return coordinates;
         //return data2cluster;
     }
@@ -223,20 +223,20 @@ public class OBS_SME_GUI_Main extends JFrame implements ActionListener, SME_KMea
     public synchronized void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == mRunButton && !mRunning) {
-
+            
             // Ensure entered parameters make sense.
             try {
-
-                int coordCount = (int) getEnteredValue (mCoordCountTF,
+                
+                int coordCount = (int) getEnteredValue (mCoordCountTF, 
                         1L, (long) Integer.MAX_VALUE);
                 int clusterCount = (int) getEnteredValue(mClusterCountTF,
                         1L, (long) (coordCount - 1));
-                long randomSeed = getEnteredValue(mRandomSeedTF,
+                long randomSeed = getEnteredValue(mRandomSeedTF, 
                         Long.MIN_VALUE, Long.MAX_VALUE);
 
                 //TODO: add number of dimensions for the test
                 //double[][] coordinates = generateCoordinates(coordCount, 50, clusterCount, randomSeed);
-
+                
                 String implementation = (String) mImplementationCB.getSelectedItem();
                 if (implementation == BASIC_KMEANS) {
                     mKMeans = new OBS_SME_BasicKMeansInterface(coordinates, clusterCount, 500, randomSeed);

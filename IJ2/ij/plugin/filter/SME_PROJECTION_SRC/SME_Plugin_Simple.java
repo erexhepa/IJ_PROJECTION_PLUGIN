@@ -80,8 +80,6 @@ public class SME_Plugin_Simple implements PlugIn {
         Font headerFont = new Font("Serif", Font.PLAIN | Font.BOLD  , 18);
 
 
-        float stacksize = 10;
-
         // Default chdannel Message
         String[] channelMessage = {"Channel-RED", "Channel-GREEN", "Channel-BLUE"};
 
@@ -115,13 +113,29 @@ public class SME_Plugin_Simple implements PlugIn {
                     channelMessage[i] = "Channel-MAGENTA";
                 else if(colors1[i].equals(Color.yellow))
                     channelMessage[i] = "Channel-YELLOW";
+                else{
+                    channelMessage[i] = "Channel-GRAY";
+                }
             }
+        }
+
+        float stacksize = 10;
+
+        if(WindowManager.getCurrentImage().isHyperStack()){
+            stacksize = ChannelSplitter.split(hyperStackSME)[0].getImageStack().getSize();
+        }else{
+            stacksize = WindowManager.getCurrentImage().getImageStack().getSize();
         }
 
         String[] imtypeMessage = {"Confocal", "Widefield"};
 
         GenericDialog gd = new GenericDialog("SME Plugin");
-        Font boldFont = new Font(gd.getFont().getFontName(), Font.BOLD, gd.getFont().getSize());
+        MenuBar menuBar = Menus.getMenuBar();
+        Font font = menuBar.getFont();
+        int oldSize = font.getSize();
+        Font boldFont =  new Font(font.getFontName(), Font.BOLD, oldSize);
+
+        //Font boldFont = new Font(gd.getFont().getFontName(), Font.BOLD, gd.getFont().getSize());
 
         gd.setInsets(0, 0, 0);
         gd.addMessage("Reference channel and image type:", boldFont);

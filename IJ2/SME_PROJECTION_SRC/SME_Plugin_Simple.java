@@ -1,6 +1,9 @@
 package SME_PROJECTION_SRC;
 
-import ij.*;
+import ij.CompositeImage;
+import ij.ImagePlus;
+import ij.Menus;
+import ij.WindowManager;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.PlugIn;
@@ -70,8 +73,6 @@ public class SME_Plugin_Simple implements PlugIn {
         Font headerFont = new Font("Serif", Font.PLAIN | Font.BOLD  , 18);
 
 
-        float stacksize = 10;
-
         // Default chdannel Message
         String[] channelMessage = {"Channel-RED", "Channel-GREEN", "Channel-BLUE"};
 
@@ -105,21 +106,32 @@ public class SME_Plugin_Simple implements PlugIn {
                     channelMessage[i] = "Channel-MAGENTA";
                 else if(colors1[i].equals(Color.yellow))
                     channelMessage[i] = "Channel-YELLOW";
+                else{
+                    channelMessage[i] = "Channel-GRAY";
+                }
             }
+        }
+
+        float stacksize = 10;
+
+        if(WindowManager.getCurrentImage().isHyperStack()){
+            stacksize = ChannelSplitter.split(hyperStackSME)[0].getImageStack().getSize();
+        }else{
+            stacksize = WindowManager.getCurrentImage().getImageStack().getSize();
         }
 
         String[] imtypeMessage = {"Confocal", "Widefield"};
 
         GenericDialog gd = new GenericDialog("SME Plugin");
-
         MenuBar menuBar = Menus.getMenuBar();
         Font font = menuBar.getFont();
         int oldSize = font.getSize();
+        Font boldFont =  new Font(font.getFontName(), Font.BOLD, oldSize);
 
-        Font boldFont =  new Font(font.getFontName(), Font.BOLD, 12);
+        //Font boldFont = new Font(gd.getFont().getFontName(), Font.BOLD, gd.getFont().getSize());
 
         gd.setInsets(0, 0, 0);
-        gd.addMessage("Reference channel and image type:",boldFont);
+        gd.addMessage("Reference channel and image type:", boldFont);
 
         if(WindowManager.getCurrentImage().isHyperStack()){
             gd.addChoice("Extract manifold from", channelMessage, channelMessage[0]);
@@ -133,7 +145,7 @@ public class SME_Plugin_Simple implements PlugIn {
         gd.addChoice("Microscopy type is",imtypeMessage,"Confocal");
 
         gd.setInsets(20, 0, 0);
-        gd.addMessage("Combine additional layers for extraction (optional):",boldFont);
+        gd.addMessage("Combine additional layers for extraction (optional):", boldFont);
         gd.addSlider("below the manifold",0,stacksize,0);
         gd.addSlider("above the manifold",0,stacksize,0);
 
