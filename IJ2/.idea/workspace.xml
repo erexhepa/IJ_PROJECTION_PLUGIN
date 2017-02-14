@@ -2,55 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5173cfe1-0f70-4885-9646-96db2049f811" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SME_stacking.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij.jar" afterPath="$PROJECT_DIR$/ij.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src_java.jar" afterPath="$PROJECT_DIR$/src_java.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SME_stacking.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../kmeansResult.tiff" afterPath="$PROJECT_DIR$/../kmeansResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../smlResult.tiff" afterPath="$PROJECT_DIR$/../smlResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_BasicKMeansInterface.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_BasicKMeansInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_GUI_Main.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_GUI_Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/OBS_SME_Plugin_GUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeansInterface.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_BenchmarkedKMeansInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Cluster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Data_Profiler.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Data_Profiler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Complex.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Complex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Convolver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_ENS_Projection_Average_Intensity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Filter_FFT_.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Filter_FFT_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GUI_MAIN.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GUI_MAIN.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_GaussianProccessing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Component.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Prepare.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Image_Prepare.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmean_Control.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Kmeans_Engine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Manifold_Extraction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_PixelPoints.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_PixelPoints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_COLOURS.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_COLOURS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Function.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Function.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Max_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Max_Intensity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Median_Intensity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Min_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Min_Intensity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_STD_Intensity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Projection_Sum_Intensity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Sml_TEST.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_ENS_Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_InsufficientMemoryException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeansListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Concurrent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_KMeans_Paralel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Apply_Manifold.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Get_Manifold.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_BFIELD.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_Simple_CONF.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/SME_Plugin_TEST.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java" afterPath="$PROJECT_DIR$/SME_PROJECTION_SRC/ZProjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_ENS_EnergyOptimisation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" afterPath="$PROJECT_DIR$/ij/plugin/filter/SME_PROJECTION_SRC/SME_Plugin_Simple.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
     </list>
     <ignored path="IJ2.iws" />
@@ -263,9 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -284,22 +236,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IJ2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SME_PROJECTION_SRC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -832,7 +773,8 @@
       <workItem from="1485704404917" duration="900000" />
       <workItem from="1485843197418" duration="1109000" />
       <workItem from="1486813409308" duration="3556000" />
-      <workItem from="1486935668139" duration="2123000" />
+      <workItem from="1486935668139" duration="2317000" />
+      <workItem from="1487052025522" duration="64000" />
     </task>
     <task id="LOCAL-00001" summary="ADD EXAMPLE IMAGES AND TODO LIST - NAT METHODS REPLY">
       <created>1476249885404</created>
@@ -953,11 +895,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485608789915</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed issues 1-4 with regard to small functional bugs">
+      <created>1486938034475</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1486938034475</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90878000" />
+    <option name="totallyTimeSpent" value="91136000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -969,12 +918,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="35" y="23" width="1410" height="877" extended-state="6" />
+    <frame x="35" y="23" width="1410" height="877" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39130434" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39130434" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1046,7 +995,8 @@
     <MESSAGE value="Fixed issue with the Font class" />
     <MESSAGE value="Fixed the font to arial, bold, 16" />
     <MESSAGE value="Fixed the font to that of the IJ menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the font to that of the IJ menu" />
+    <MESSAGE value="Fixed issues 1-4 with regard to small functional bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issues 1-4 with regard to small functional bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1246,17 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#1746#0" expanded="false" />
-            <element signature="e#1285#1286#0" expanded="false" />
-            <element signature="e#1308#1309#0" expanded="false" />
-            <element signature="e#1484#1485#0" expanded="false" />
-            <element signature="e#1513#1514#0" expanded="false" />
-            <element signature="e#1575#1576#0" expanded="false" />
-            <element signature="e#1611#1612#0" expanded="false" />
-            <element signature="e#1675#1676#0" expanded="false" />
-            <element signature="e#1742#1743#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1272,9 +1211,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1282,7 +1218,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
           <caret line="279" column="41" selection-start-line="279" selection-start-column="41" selection-end-line="279" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1290,7 +1225,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="137" column="10" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
