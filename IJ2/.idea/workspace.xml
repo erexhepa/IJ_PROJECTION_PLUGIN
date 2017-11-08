@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5173cfe1-0f70-4885-9646-96db2049f811" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SME_stacking.jar" afterPath="$PROJECT_DIR$/SME_stacking.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../kmeansResult.tiff" afterPath="$PROJECT_DIR$/../kmeansResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../smlResult.tiff" afterPath="$PROJECT_DIR$/../smlResult.tiff" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -780,7 +779,7 @@
       <workItem from="1486813409308" duration="3556000" />
       <workItem from="1486935668139" duration="2317000" />
       <workItem from="1487052025522" duration="425000" />
-      <workItem from="1510120577450" duration="313000" />
+      <workItem from="1510120577450" duration="454000" />
     </task>
     <task id="LOCAL-00001" summary="ADD EXAMPLE IMAGES AND TODO LIST - NAT METHODS REPLY">
       <created>1476249885404</created>
@@ -915,11 +914,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487052097473</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Creation of two branches from published master branch to allow further development for parallelisation and other changes.">
+      <created>1510120948607</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1510120948607</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91810000" />
+    <option name="totallyTimeSpent" value="91951000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1009,7 +1015,8 @@
     <MESSAGE value="Fixed the font to arial, bold, 16" />
     <MESSAGE value="Fixed the font to that of the IJ menu" />
     <MESSAGE value="Fixed issues 1-4 with regard to small functional bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issues 1-4 with regard to small functional bugs" />
+    <MESSAGE value="Creation of two branches from published master branch to allow further development for parallelisation and other changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Creation of two branches from published master branch to allow further development for parallelisation and other changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
