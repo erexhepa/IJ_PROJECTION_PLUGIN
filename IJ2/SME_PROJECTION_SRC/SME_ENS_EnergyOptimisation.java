@@ -267,8 +267,8 @@ public class SME_ENS_EnergyOptimisation {
         // overlap has to be between 0 - 100
         if(((sum1-sum2)!=0)){
             if(sum2!=0){
-                if(((sum1/sum2)>100)){
-                    returnVal = 100;
+                if(((sum1/sum2)>1)){
+                    returnVal = 1;
                 }else{
                     returnVal = sum1/sum2;
                 }
@@ -279,6 +279,9 @@ public class SME_ENS_EnergyOptimisation {
             returnVal = 0;
         }
 
+        if(returnVal==0){
+            returnVal=0.01;
+        }
         return(returnVal);
     }
 
