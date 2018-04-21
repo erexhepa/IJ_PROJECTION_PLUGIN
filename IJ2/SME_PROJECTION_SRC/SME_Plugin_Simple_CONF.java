@@ -55,6 +55,25 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
     private SME_Plugin_Get_Manifold smePlugin;
 
+    private String currentFilename = "";
+    private String currentFoldername = "";
+
+    public String getCurrentFilename() {
+        return currentFilename;
+    }
+
+    public void setCurrentFilename(String currentFilename) {
+        this.currentFilename = currentFilename;
+    }
+
+    public String getCurrentFoldername() {
+        return currentFoldername;
+    }
+
+    public void setCurrentFoldername(String currentFoldername) {
+        this.currentFoldername = currentFoldername;
+    }
+
 
     public void run(String arg) {
         processChannelsManifold();
@@ -62,6 +81,8 @@ public class SME_Plugin_Simple_CONF implements PlugIn {
 
     public void getManifold(int indexChannel){
         smePlugin = new SME_Plugin_Get_Manifold();
+        smePlugin.setCurrentFilename(currentFilename);
+        smePlugin.setCurrentFoldername(currentFoldername);
 
         smePlugin.setLowBuffManifold(this.getLowBuffManifold());
         smePlugin.setHighBuffManifold(this.getHighBuffManifold());

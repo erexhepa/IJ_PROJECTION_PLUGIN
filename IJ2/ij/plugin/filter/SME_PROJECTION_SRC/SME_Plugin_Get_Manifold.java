@@ -86,6 +86,26 @@ public class SME_Plugin_Get_Manifold implements PlugInFilter {
     private final String RAWIMAGE   = "RawStack";
     private double progressbar = 0;
 
+    private String currentFilename = "";
+    private String currentFoldername = "";
+
+    public String getCurrentFilename() {
+        return currentFilename;
+    }
+
+    public void setCurrentFilename(String currentFilename) {
+        this.currentFilename = currentFilename;
+    }
+
+    public String getCurrentFoldername() {
+        return currentFoldername;
+    }
+
+    public void setCurrentFoldername(String currentFoldername) {
+        this.currentFoldername = currentFoldername;
+    }
+
+
     public SME_Plugin_Get_Manifold() {
         highBuffManifold = 0;
         lowBuffManifold = 0;

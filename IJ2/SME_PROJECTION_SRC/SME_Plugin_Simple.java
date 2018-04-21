@@ -46,6 +46,17 @@ public class SME_Plugin_Simple implements PlugIn {
     private int width = 0;
     private int height = 0;
 
+    public String getCurrentImageFname() {
+        return currentImageFname;
+    }
+
+    public String getCurrentImageFolder() {
+        return currentImageFolder;
+    }
+
+    private String currentImageFname = "";
+    private String currentImageFolder= "..";
+
     private int lowBuffManifold = 0;
     private int highBuffManifold = 0;
     private int index ;
@@ -114,6 +125,16 @@ public class SME_Plugin_Simple implements PlugIn {
 
         float stacksize = 10;
 
+        currentImageFname = (String) hyperStackSME.getTitle();
+        String extension  = ".tiff";
+
+        int i = currentImageFname.lastIndexOf('.');
+        extension = currentImageFname.substring(i);
+
+
+        currentImageFname = currentImageFname.replace(extension,"_smeprojection.tiff");
+        currentImageFolder  = (String) hyperStackSME.getOriginalFileInfo().directory;
+
         if(WindowManager.getCurrentImage().isHyperStack()){
             stacksize = ChannelSplitter.split(hyperStackSME)[0].getImageStack().getSize();
         }else{
@@ -148,6 +169,9 @@ public class SME_Plugin_Simple implements PlugIn {
         gd.addMessage("Combine additional layers for extraction (optional):", boldFont);
         gd.addSlider("below the manifold",0,stacksize,0);
         gd.addSlider("above the manifold",0,stacksize,0);
+        gd.addStringField("SME Output file name:", currentImageFname);
+        gd.addStringField("SME Output folder:", currentImageFolder);
+
 
         GridBagLayout grid = (GridBagLayout) gd.getLayout();
         for (Component comp : gd.getComponents())
@@ -220,7 +244,7 @@ public class SME_Plugin_Simple implements PlugIn {
             stackSize = images[0].getStackSize();
 
             try {
-                for (int i = 0; i < images.length; i++) {
+                for ( i = 0; i < images.length; i++) {
                     Object pixVal = images[i].getStack().getPixels(1);
                     Method setType = images[i].getStack().getClass().getDeclaredMethod("setType", Object.class);
                     setType.setAccessible(true);
@@ -267,7 +291,6 @@ public class SME_Plugin_Simple implements PlugIn {
 
             int slices = 0;
             int frames = 0;
-            int i ;
 
             {
                 i = 0;
@@ -279,10 +302,14 @@ public class SME_Plugin_Simple implements PlugIn {
             smePluginConf.setWidth(width);
             smePluginConf.setHeight(height);
             smePluginConf.setStackSize(stackSize);
+            smePluginConf.setCurrentFilename(currentImageFname);
+            smePluginConf.setCurrentFoldername(currentImageFolder);
+
             smePluginBfield.setWidth(width);
             smePluginBfield.setHeight(height);
             smePluginBfield.setStackSize(stackSize);
-
+            smePluginBfield.setCurrentFilename(currentImageFname);
+            smePluginBfield.setCurrentFoldername(currentImageFolder);
 
             if (width==0) {
                 error("There must be at least one source image or stack.");

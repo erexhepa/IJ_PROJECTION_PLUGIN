@@ -592,6 +592,11 @@ public class SME_ENS_EnergyOptimisation {
         float[][] idmaxkFlaot = SME_ENS_Utils.convertDoubleMatrixToFloat(idmaxk.transpose().getData(),dimW,dimH);
         sme_pluginGetManifold.setManifoldIndex(new ImagePlus("",((ImageProcessor) new FloatProcessor(idmaxkFlaot))));
 
+        //IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
+        String outSMEfilename = sme_pluginGetManifold.getCurrentFoldername()+"/"+sme_pluginGetManifold.getCurrentFilename();
+        outSMEfilename = outSMEfilename.replace("_smeprojection.tiff","_smeprojectionIndex.tiff");
+        //outSMEfilename = outSMEfilename.replace(,".tiff")
+        IJ.saveAsTiff(new ImagePlus("SML_Projection",((ImageProcessor) new FloatProcessor(idmaxkFlaot))),outSMEfilename);
     }
 
     public void setOutputManifold(Boolean showResult){
@@ -675,6 +680,12 @@ public class SME_ENS_EnergyOptimisation {
         ImagePlus smeManifold = new ImagePlus("ProjectionSME",((ImageProcessor) new FloatProcessor(mfoldFlaot)));
         sme_pluginGetManifold.setSmeImage(smeManifold);
         if(showResult) sme_pluginGetManifold.getSmeImage().show();
+
+        //IJ.saveAsTiff(new ImagePlus("SML_Projection",smlProjection.getImageStack()),"smlResult.tiff");
+        String outSMEfilename = sme_pluginGetManifold.getCurrentFoldername()+"/"+sme_pluginGetManifold.getCurrentFilename();
+        outSMEfilename = outSMEfilename.replace("_smeprojection.tiff","_smeprojectionImage.tiff");
+        //outSMEfilename = outSMEfilename.replace(,".tiff")
+        IJ.saveAsTiff(smeManifold,outSMEfilename);
     }
 
     private static class SetVisitorRound extends DefaultRealMatrixChangingVisitor {

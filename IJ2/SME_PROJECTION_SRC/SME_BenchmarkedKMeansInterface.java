@@ -41,16 +41,16 @@ public class SME_BenchmarkedKMeansInterface implements SME_KMeans_Paralel {
 
     // Listeners to be notified of significant happenings.
     private List<SME_KMeansListener> mListeners = new ArrayList<SME_KMeansListener>(1);
-    
-    // Fields to accumulate the time in milliseconds for 
+
+    // Fields to accumulate the time in milliseconds for
     // initializing the centers, computing the distances,
     // computing the centers, and making the assignments.
-    private long mInitCentersMS, mComputeDistancesMS, 
+    private long mInitCentersMS, mComputeDistancesMS,
         mComputeCentersMS, mAssignmentMS;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param coordinates two-dimensional array containing the coordinates to be clustered.
      * @param k  the number of desired clusters.
      * @param maxIterations the maximum number of clustering iterations.
@@ -65,9 +65,9 @@ public class SME_BenchmarkedKMeansInterface implements SME_KMeans_Paralel {
         mRandomSeed = randomSeed;
     }
 
-    /** 
+    /**
      * Adds a KMeansListener to be notified of significant happenings.
-     * 
+     *
      * @param l  the listener to be added.
      */
     public void addKMeansListener(SME_KMeansListener l) {

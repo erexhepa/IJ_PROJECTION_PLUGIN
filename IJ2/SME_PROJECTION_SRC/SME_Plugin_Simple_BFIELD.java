@@ -1,5 +1,6 @@
 package SME_PROJECTION_SRC;
 
+
 import ij.*;
 import ij.gui.GenericDialog;
 import ij.plugin.ChannelSplitter;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+
 /**
  * Created by rexhepaj on 22/04/16.
  */
@@ -28,6 +30,25 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
     private ImagePlus projectedImage;
     private ImagePlus manifold;
     private ImagePlus[] images;
+
+    private String currentFilename = "";
+    private String currentFoldername = "";
+
+    public String getCurrentFilename() {
+        return currentFilename;
+    }
+
+    public void setCurrentFilename(String currentFilename) {
+        this.currentFilename = currentFilename;
+    }
+
+    public String getCurrentFoldername() {
+        return currentFoldername;
+    }
+
+    public void setCurrentFoldername(String currentFoldername) {
+        this.currentFoldername = currentFoldername;
+    }
 
     public int getLowBuffManifold() {
         return lowBuffManifold;
@@ -66,6 +87,8 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
 
     public void getManifold(int indexChannel){
         smePlugin = new SME_Plugin_Get_Manifold();
+        smePlugin.setCurrentFilename(currentFilename);
+        smePlugin.setCurrentFoldername(currentFoldername);
 
         smePlugin.setLowBuffManifold(this.getLowBuffManifold());
         smePlugin.setHighBuffManifold(this.getHighBuffManifold());
@@ -178,6 +201,7 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         //gd.addCheckbox("Keep source images", keep);
         //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
 
+
         gd.showDialog();
 
         this.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
@@ -240,6 +264,8 @@ public class SME_Plugin_Simple_BFIELD implements PlugIn {
         gd.addSlider("How many layers to add above manifold ?",0,images[0].getStackSize(),0);
         //gd.addCheckbox("Keep source images", keep);
         //gd.addCheckbox("Ignore source LUTs", ignoreLuts);
+        gd.addStringField("SME Output file ID:", "SME_output");
+
         gd.showDialog();
 
         this.setLowBuffManifold(((Scrollbar)gd.getSliders().elementAt(0)).getValue());
