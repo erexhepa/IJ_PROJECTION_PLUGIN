@@ -178,6 +178,11 @@ public class SME_Plugin_Simple implements PlugIn {
         gd.addSlider("above the manifold",0,stacksize,0);
         gd.addStringField("SME Output file name:", currentImageFname);
         gd.addStringField("SME Output folder:", currentImageFolder);
+        //final JFileChooser fc = new JFileChooser();
+        //JButton selectFileButton = new JButton("SME Output file name:");
+        //gd.add(selectFileButton);
+        //JButton selectOutdirButton = new JButton("SME Output folder:");
+        //gd.add(selectOutdirButton);
 
 
         GridBagLayout grid = (GridBagLayout) gd.getLayout();
@@ -196,6 +201,7 @@ public class SME_Plugin_Simple implements PlugIn {
                     // option 1: left aligned
                     c.anchor = GridBagConstraints.WEST;
                     c.insets.left = 10;
+
                     label.setAlignment(Label.LEFT);
 
                     // option 2: right aligned
@@ -215,6 +221,15 @@ public class SME_Plugin_Simple implements PlugIn {
 
         if (gd.wasCanceled())
             return;
+
+        currentImageFname = ((TextField) gd.getStringFields().elementAt(0)).getText();
+        currentImageFolder = ((TextField) gd.getStringFields().elementAt(1)).getText();
+
+        smePluginConf.setCurrentFilename(currentImageFname);
+        smePluginConf.setCurrentFoldername(currentImageFolder);
+
+        smePluginBfield.setCurrentFilename(currentImageFname);
+        smePluginBfield.setCurrentFoldername(currentImageFolder);
 
         if(WindowManager.getCurrentImage().isHyperStack()){
             // hyperstack color
